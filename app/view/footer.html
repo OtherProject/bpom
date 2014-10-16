@@ -1,0 +1,82 @@
+
+{if $page.page!='article'}
+	{$classfooter="position:absolute;bottom:25px;"}
+{/if}
+<div id="wrapperfooter" style="border:0px solid #000;{$classfooter}width:100%">
+
+	<div id="footer" align="center">	
+	<!--<img src="{$basedomain}assets/img/footer.png" style="height:100%"/>-->
+	</div>
+	<div id="titlefooter">
+		<div id="titlefooterleft">Nestl&eacute; LACTOGEN 3 ActivGro &copy; 2014. All Right Reserved</div>
+		<div id="titlefooterright" align="right">
+			<!--<span  id='#'>
+			<a href='{$basedomain}home/privacy'>Privasi</a></span>. 
+			-->
+			<span  id='basic-modal'><a href='#' class='basic3'>Kebijakan Privasi</a></span>.
+			<span  id='basic-modal'><a href='#' class='basic2'>Syarat & Ketentuan</a></span>. <a href="https://www.facebook.com/RumahNutrisiNestle" target="_blank">Facebook</a>
+		</div>
+	</div>
+</div>
+	
+	{if $page.page=='home'}
+		<script src="{$basedomain}assets/js/WallopSlider.js"></script>
+  	<script src="{$basedomain}assets/js/script.js"></script>
+	{/if}
+  	
+	
+	<script type='text/javascript' src='{$basedomain}assets/js/basic.js'></script>
+	
+	
+
+	<script type="text/javascript" src="{$basedomain}assets/js/modernizr.custom.04022.js"></script>
+  	<script type="text/javascript" src="{$basedomain}assets/js/jquery-ui.js"></script>
+
+  	{if $page.page=='home'}
+  	<script type="text/javascript" src="{$basedomain}assets/js/jquery-ui-timepicker-addon.js"></script>
+	<script type="text/javascript">
+	
+		$(function(){
+			$('#postdate').datepicker({
+				dateFormat:'yy-mm-dd'
+			});
+			$('#postdate1').datepicker({
+				dateFormat:'yy-mm-dd'
+			});
+			$('#postdate2').datepicker({
+				dateFormat:'yy-mm-dd'
+			});
+
+			
+		});
+	</script>
+
+	<!-- Beatpicker -->
+	<script src="{$basedomain}assets/js/plugins/beatpicker/js/BeatPicker.min.js"></script>
+  	{/if}
+	
+  	{if $page.page=='uploadfoto'}
+  	<script type="text/javascript" src="{$basedomain}assets/js/jquery.form.js"></script>
+	<script type="text/javascript" src='{$basedomain}assets/js/jquery.guillotine.js'></script>
+  	{/if}
+	
+
+	<div id="basic-modal-content" class="global">
+			<div id="headerPopup"></div>
+			<div id="contentPopup"></div>
+		</div>
+
+	<script>
+	{literal}
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	 
+	  ga('create', 'UA-54500863-1', 'auto');
+	  ga('send', 'pageview'); 
+	{/literal}
+	</script>		
+		
+</body>
+</html>
