@@ -1,0 +1,11 @@
+cache/*
+public_assets/*
+config/config.php
+config/access.php
+tmp/*
+libs/*
+logs/*
+admin/config/config.php
+admin/cache/*
+admin/tmp/*
+admin/logs/*
