@@ -36,7 +36,7 @@ table {
 	border-spacing:0;
 }
 caption, th, td {
-	text-align:left;
+	/*text-align:left;*/
 	font-weight:normal;
 }
 blockquote:before, blockquote:after,
@@ -62,7 +62,7 @@ body {
 }
 
 a, a:visited {
-	color:blue;
+	/*color:blue;*/
 	text-decoration:none;
 }
 a:hover, a:active {

@@ -35,10 +35,10 @@
             <a href="profile.html">Profile</a>
             <a href="contact.html">Contact Us</a>
         </div>
-        <div id="search" align="right" style="margin-top:-90px;margin-right:20px;">
-        		<input type="text" id="search" /> &nbsp; <input type="button" value="Search" name="search" id="seacrh" />            
+        <div id="search" align="right" style="margin-top:-90px;margin-right:235px;">
+        		<input type="text" id="search"placeholder ="Searching"/> &nbsp; <input type="button" value="Search" name="search" id="seacrh" />            
         </div>
-        <div id="login" align="right" style="margin-top:46px;margin-right:20px;">
+        <div id="login" align="right" style="margin-top:46px;margin-right:235px;">
         	<a href="#" onclick="login()">Login</a>
         </div>
     </div>
@@ -60,13 +60,39 @@
                     <p style="color:#FF0000;">Email: napza@pom.go.id
                     
                     <br/><br/><p>Badan Pengawas Obat dan Makanan Republik Indonesia
-					<div class="lokasi" align="right"><img title="Lokasi" class="peta" alt="peta" src="asset/images/peta.png" width="30%" height="30%"/></div>
+					<div class="comment">
+                    	<form method="post" action="">
+                             <table class="tableComment">
+                                <tr style="margin-bottom:10px;">
+                                   <td>Subject</td><td>:</td>
+                                   <td><input type="text" name="username" value="" size="20" id="username" placeholder ="Subject"/> </td>
+                                </tr>
+                                <tr>
+                                   <td>Email</td><td>:</td>
+                                   <td><input type="text" name="password" value="" size="20" id="password" placeholder ="Email"/></td>
+                                </tr>
+                                <tr>
+                                   <td>Comment</td><td>:</td>
+                                   <td><textarea style="width:300px; height:100px;"></textarea></td>
+                                </tr>                                 
+                                <tr>
+                                   <td colspan="3" align="right">            
+                                       <input class="form-btn-save" type="submit" id="save" value="Send" /> &nbsp;&nbsp;
+                                       <input class="form-btn-close" type="reset" value="Cancel" /> &nbsp;&nbsp;
+                                  </td>
+                                </tr>
+                             </table>
+                         </form>
+                    <div class="lokasi" align="right"><img title="Lokasi" class="peta" alt="peta" src="asset/images/peta.png" width="30%" height="30%"/></div>
              		              	
                 </div>   						
             </div>
          </div>        
     </div>
-    <div id="footer">
+    
+</center>
+<center>
+<div id="footer">
     	<div class="site">
     		<a href="index.html">Home</a>
             <a href="news.html">News</a>

@@ -9,6 +9,7 @@
 	width:65%;
 	min-height:400px;
 	margin-bottom:10px;
+	font-family:Arial, Helvetica, sans-serif;
 }
 #headbg{
 	background-image:url(../asset/images/head.png);
@@ -40,35 +41,47 @@
 }
 
 #menu a{
-	padding:0px 20px 0px 20px;
-	color:#018bcf;
+	width: 100px;
+	height: 20px;
+	margin-top:-20px;
+	color: #008fd6;
+	padding:6px;
+	text-decoration:none;
+}
+
+#menu a:hover{
+	color: #ffffff;
+	background: #008fd6;
 }
 
 .headnews{
 	width:69%;
 	height:35px;
-	background-color:#bae03f;
+	background-color:#d1ec7a;
+	border-radius: 0px 15px 0px 0px;
 }
 
 .news{
 	width:69%;
-	height:200px;
+	height:250px;
 	background-color:#EBEBEB;
 }
 
 #grafik{
-	margin-top:-235px;
+	margin-top:-285px;
 }
 
 .headgrafik{
 	width:30%;
 	height:35px;
-	background-color:#bae03f;
+	background-color:#d1ec7a;
+	border-radius: 15px 0px 0px 0px;
 }
 
 .teksHead{
 	padding:4px 0px 0px 10px;
-	font-size:16px;
+	font-size:18px;
+	font-weight:bold;
 	font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -80,16 +93,18 @@
 
 #footer{
 	height:100px;
+	margin-top:70px;
 	background:#018bcf;
 }
 .footer a{
 	color:#FFFFFF;
 }
 .site{
-	padding-top:20px;	
+	padding-top:20px;
 }
 .site a{
-	padding:0px 20px 0px 20px;	
+	padding:0px 20px 0px 20px;
+	color:#FFFFFF;	
 }
 /*page news*/
 .detailNews{
@@ -110,7 +125,7 @@
 }
 
 .headDetail{
-	background-color:#bae03f;
+	background-color:#d1ec7a;
 	height:35px;
 	border-radius: 0px 15px 0px 0px;
 	margin-top:10px;
@@ -122,7 +137,7 @@
 }
 
 .headlist{
-	background-color:#018bcf;
+	background-color:#63c0ee;
 	height:35px;
 	margin-top:10px;
 	border-radius: 15px 0px 0px 0px;
@@ -139,20 +154,20 @@
 
 /*profile*/
 .headProfile{
-	background-color:#bae03f;
+	background-color:#d1ec7a;
 	height:35px;
 	margin-top:10px;
 	border-radius: 0px 15px 0px 0px;
 }
 .teksProfile{
 	background-color:#EFEFEF;
-	padding:10px;
+	padding:40px;
 	text-align:justify;
 	text-indent:30px;
 }
 /*contact*/
 .headContact{
-	background-color:#bae03f;
+	background-color:#d1ec7a;
 	height:35px;
 	margin-top:10px;
 	border-radius: 0px 15px 0px 0px;
@@ -171,6 +186,7 @@
 	-webkit-box-shadow: 0 0 5px 5px#888;
 	box-shadow: 0 0 5px 5px #888;
 	padding:10px;
+	margin-top:-220px;
 }
 
 /*Login*/
@@ -189,5 +205,11 @@
 
 .tableForm td{
 	padding:10px;
+}
+
+
+
+.tableComment td{
+	padding:5px;
 }
 
