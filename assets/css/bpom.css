@@ -1,5 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
+
+body{
+	background-color: #ededed;
+}
 #container{
 	margin:6px auto;
 	width:65%;
@@ -64,7 +68,7 @@
 .news{
 	width:69%;
 	height:250px;
-	background-color:#EBEBEB;
+	background-color:#F7F7F7;
 }
 
 #grafik{
@@ -132,7 +136,7 @@
 }
 
 .detail{
-	background-color:#EFEFEF;
+	background-color:#F7F7F7;
 	padding:10px;
 }
 
@@ -144,7 +148,7 @@
 }
 
 .list{
-	background-color:#EFEFEF;
+	background-color:#F7F7F7;
 	padding:10px;
 }
 
@@ -160,7 +164,7 @@
 	border-radius: 0px 15px 0px 0px;
 }
 .teksProfile{
-	background-color:#EFEFEF;
+	background-color:#F7F7F7;
 	padding:40px;
 	text-align:justify;
 	text-indent:30px;
@@ -173,7 +177,7 @@
 	border-radius: 0px 15px 0px 0px;
 }
 .teksContact{
-	background-color:#EFEFEF;
+	background-color:#F7F7F7;
 	padding:10px;
 	text-align:justify;
 	text-indent:30px;
