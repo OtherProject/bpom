@@ -1,6 +1,8 @@
 <?php
 class marticle extends Database {
 	
+	var $prefix = "bpom";
+	
 	function article_inp($data)
 	{
 		
@@ -12,7 +14,7 @@ class marticle extends Database {
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
-						nestle_news_content (title,brief,content,image,file,articletype,
+						{$this->prefix}_news_content (title,brief,content,image,file,articletype,
 												created_date,posted_date,authorid,n_status)
 					VALUES
 						('".$data['title']."','".$data['brief']."','".$data['content']."','".$data['image']."'
@@ -21,7 +23,7 @@ class marticle extends Database {
 							,'".$data['authorid']."','".$data['n_status']."')";
 
 		} else {
-			$query = "UPDATE nestle_news_content
+			$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '{$data['title']}',
 							brief = '{$data['brief']}',
@@ -42,8 +44,8 @@ class marticle extends Database {
 	
 	function get_article($type=1)
 	{
-		$query = "SELECT * FROM nestle_news_content WHERE n_status = '1' OR n_status = '0' ORDER BY created_date DESC";
-		
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE articleType  IN (0) AND n_status = '1' OR n_status = '0'  ORDER BY created_date DESC";
+		// pr($query);
 		$result = $this->fetch($query,1);
 
 		foreach ($result as $key => $value) {
@@ -70,7 +72,7 @@ class marticle extends Database {
 	
 	function get_article_trash()
 	{
-		$query = "SELECT * FROM nestle_news_content WHERE n_status = '2' ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '2' ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 
@@ -89,7 +91,7 @@ class marticle extends Database {
 	{
 		foreach ($id as $key => $value) {
 			
-			$query = "UPDATE nestle_news_content SET n_status = '2' WHERE id = '{$value}'";
+			$query = "UPDATE {$this->prefix}_news_content SET n_status = '2' WHERE id = '{$value}'";
 		
 			$result = $this->query($query);
 		
@@ -113,7 +115,7 @@ class marticle extends Database {
 	{
 		foreach ($id as $key => $value) {
 			
-			$query = "UPDATE nestle_news_content SET n_status = '0' WHERE id = '{$value}'";
+			$query = "UPDATE {$this->prefix}_news_content SET n_status = '0' WHERE id = '{$value}'";
 		
 			$result = $this->query($query);
 		
@@ -125,7 +127,7 @@ class marticle extends Database {
 	
 	function get_article_id($data)
 	{
-		$query = "SELECT * FROM nestle_news_content WHERE id= {$data} LIMIT 1";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE id= {$data} LIMIT 1";
 		
 		$result = $this->fetch($query,0);
 
@@ -145,11 +147,11 @@ class marticle extends Database {
 		$field = implode(',', $tmpfield);
 		$value = implode(',', $tmpvalue);
 
-		$query = "INSERT INTO nestle_news_content_repo ({$field}) VALUES ($value)";
+		$query = "INSERT INTO {$this->prefix}_news_content_repo ({$field}) VALUES ($value)";
 
 		$result = $this->query($query);
 
-		$queryid = "SELECT id FROM nestle_news_content_repo ORDER BY created_date DESC LIMIT 1";
+		$queryid = "SELECT id FROM {$this->prefix}_news_content_repo ORDER BY created_date DESC LIMIT 1";
 
 		$id = $this->fetch($queryid,0);
 
@@ -163,7 +165,7 @@ class marticle extends Database {
 		$field2 = implode(',', $tmpfield2);
 		$value2 = implode(',', $tmpvalue2);
 
-		$query2= "INSERT INTO nestle_news_content_repo ({$field2}) VALUES ($value2)";
+		$query2= "INSERT INTO {$this->prefix}_news_content_repo ({$field2}) VALUES ($value2)";
 
 		$result = $this->query($query2);
 		return true;
@@ -173,12 +175,12 @@ class marticle extends Database {
 
 		global $CONFIG;
 
-		$query = "SELECT * FROM nestle_news_content_repo WHERE gallerytype = 1 AND n_status = 1 ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content_repo WHERE gallerytype = 1 AND n_status = 1 ORDER BY created_date DESC";
 
 		$result = $this->fetch($query,1);
 
 		foreach ($result as $key => $val) {
-			$query = "SELECT * FROM nestle_news_content_repo WHERE gallerytype = 2 AND n_status = 1 AND otherid = {$val['id']} LIMIT 1";
+			$query = "SELECT * FROM {$this->prefix}_news_content_repo WHERE gallerytype = 2 AND n_status = 1 AND otherid = {$val['id']} LIMIT 1";
 			$res = $this->fetch($query,0);
 			$result[$key]['cover'] = $res['files'];
 			$result[$key]['covername'] = $res['title'];
@@ -203,12 +205,21 @@ class marticle extends Database {
 		if (!$id) return false;
 
 
-		$query2= "UPDATE nestle_news_content_repo SET n_status = {$n_status} WHERE id = {$id} LIMIT 1";
+		$query2= "UPDATE {$this->prefix}_news_content_repo SET n_status = {$n_status} WHERE id = {$id} LIMIT 1";
 
 		$result = $this->query($query2);
 		if ($result) return true;
 		return false;
 
+	}
+
+	function getContent($type=1)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE articletype = {$type} ";
+		
+		$result = $this->fetch($query,1);
+		if ($result) return $result;
+		return false;
 	}
 }
 ?>

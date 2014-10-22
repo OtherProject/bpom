@@ -1,6 +1,8 @@
 <?php
 class contentHelper extends Database {
 	
+	var $prefix = "bpom";
+
 	function getData()
 	{
 		$sql = "SELECT * FROM code_activity";
@@ -62,5 +64,80 @@ class contentHelper extends Database {
 		
 		return $result;
 	}
+
+	function getWilayah($name=null)
+	{
+		$query = "SELECT * FROM tbl_wilayah WHERE parent = 0 ORDER BY nama_wilayah";
+		// pr($query);
+		$result = $this->fetch($query,1);
+		
+		return $result;
+	}
+
+	function getBalai($name=null)
+	{
+		$query = "SELECT * FROM tbl_balai WHERE parent = 0 ORDER BY namaBalai";
+		// pr($query);
+		$result = $this->fetch($query,1);
+		
+		return $result;
+	}
+
+	function getDataEvaluasi($id=false, $n_status=1)
+	{
+
+		$filter = "";
+		if ($id) $filter = " AND e.id = {$id}";
+
+		$query = "SELECT e.*, p.merek, p.produsen, p.alamat, p.jenis, i.typeGambar,
+					i.tulisanGambar, b.namaBalai
+					FROM {$this->prefix}_evaluasi e LEFT JOIN {$this->prefix}_product p 
+					ON e.produkID = p.id LEFT JOIN  {$this->prefix}_product_image_type i
+					ON e.jenisGambar = i.id LEFT JOIN  tbl_balai b
+					ON e.balaiID = b.kodeBalai 
+					WHERE e.n_status = {$n_status} {$filter}";
+		// pr($query);
+		$result = $this->fetch($query,1);
+		
+		return $result;
+	}
+
+	function updateDataEvaluasi($data=array())
+	{
+
+		if (empty($data)) return false;
+
+		$ignoreList = array('id','alamat','tulisanGambar');
+		foreach ($data as $key => $value) {
+			
+			if (!in_array($key, $ignoreList)){
+				$tmpField[] = "`$key` = ". "'".$value."'";
+				
+			}
+		}
+
+		
+		$impData = implode(',', $tmpField);
+
+		$sql = "UPDATE {$this->prefix}_evaluasi SET {$impData} WHERE id = {$data['id']} LIMIT 1";
+		// pr($sql);
+		$res = $this->query($sql);
+		if ($res) return true;
+		return false;
+	}
+
+	function validateData($id=false, $n_status=2)
+	{
+
+		if (!$id) return false;
+		$sql = "UPDATE {$this->prefix}_evaluasi SET n_status = {$n_status} WHERE id IN ({$id})";
+		// pr($sql);
+		$res = $this->query($sql);
+		if ($res) return true;
+		return false;
+	}
+
+	
+
 }
 ?>

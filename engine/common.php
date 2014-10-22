@@ -751,4 +751,9 @@ function ImageCreateFromBMP($filename)
 }
 
 
+function strReplaceAssoc(array $replace, $subject) {
+   return str_replace(array_keys($replace), array_values($replace), $subject);   
+} 
+
+
 ?>

@@ -62,10 +62,12 @@ class userHelper extends Database {
      * @param $data = 
      * @param $field =  field name
      */
-    function getUserData($field,$data){
-        if($data==false) return false;
-        $sql = "SELECT * FROM `person` WHERE `$field` = '".$data."' ";
-        $res = $this->fetch($sql,0);  
+    function getUserData($id=false,$data=false){
+
+        $filter = "";
+        if(!$id==false) $filter = " AND id = {$id}";
+        $sql = "SELECT * FROM `social_member` WHERE 1";
+        $res = $this->fetch($sql,1);  
         if(empty($res)){return false;}
         return $res; 
     }
@@ -93,6 +95,44 @@ class userHelper extends Database {
                 VALUES ({$userid}, '{$filename}', '{$data}', '{$date}')";
         // pr($sql);
         $res = $this->query($sql,1);  
+        if ($res) return true;
+        return false;
+    }
+
+    function addUser($data=array())
+    {
+
+        if($data==false) return false;
+
+        foreach ($data as $key => $value) {
+            
+            $tmpfield[] = "`$key`";
+            $tmpdata[]= "'".$value."'";
+            
+        }
+
+        $field = implode(',',$tmpfield);
+        $data = implode(',',$tmpdata);
+        
+        $sql = "INSERT INTO social_member ({$field}) 
+                VALUES ({$data})";
+        // pr($sql);
+        // exit;
+        $res = $this->query($sql);
+        if ($res) return true;
+        return false;
+    }
+
+    function updateUser($data=false,$n_status=0)
+    {
+
+        if (empty($data)) return false;
+
+        
+        
+        $sql = "UPDATE social_member SET n_status = {$n_status} WHERE id IN ({$data}) LIMIT 1";
+        pr($sql);
+        $res = $this->query($sql);
         if ($res) return true;
         return false;
     }

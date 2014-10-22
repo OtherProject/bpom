@@ -206,6 +206,93 @@ class article extends Controller {
 		}
 	}
 
+	function profil()
+	{
+
+		global $CONFIG;
+		$getProfil = $this->models->getContent(1);
+		$this->view->assign('data',$getProfil[0]);
+
+		if ($_POST['title']){
+			$_POST['articletype']=1;
+			$_POST['n_status']=1;
+			$x = form_validation($_POST);
+
+			   try
+			   {
+			   		if(isset($x) && count($x) != 0)
+			   		{
+						//update or insert
+						$x['action'] = 'insert';
+						if($x['id'] != ''){
+							$x['action'] = 'update';
+						}
+						
+						//upload file
+						if(!empty($_FILES)){
+							if($_FILES['file_image']['name'] != ''){
+								if($x['action'] == 'update') deleteFile($x['image']);
+								$image = uploadFile('file_image',null,'image');
+								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
+								$x['image'] = $image['full_name'];
+							}
+						}
+						
+						$data = $this->models->article_inp($x);
+			   		}
+				   	
+			   }catch (Exception $e){}
+			   
+            echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."article/profil'</script>";
+            
+		}
+
+		return $this->loadView('profil');
+	}
+
+	function kontak()
+	{
+		global $CONFIG;
+		$getKontak = $this->models->getContent(2);
+		$this->view->assign('data',$getKontak[0]);
+
+		if ($_POST['title']){
+			$_POST['articletype']=2;
+			$_POST['n_status']=1;
+			$x = form_validation($_POST);
+
+			   try
+			   {
+			   		if(isset($x) && count($x) != 0)
+			   		{
+						//update or insert
+						$x['action'] = 'insert';
+						if($x['id'] != ''){
+							$x['action'] = 'update';
+						}
+						
+						//upload file
+						if(!empty($_FILES)){
+							if($_FILES['file_image']['name'] != ''){
+								if($x['action'] == 'update') deleteFile($x['image']);
+								$image = uploadFile('file_image',null,'image');
+								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
+								$x['image'] = $image['full_name'];
+							}
+						}
+						
+						$data = $this->models->article_inp($x);
+			   		}
+				   	
+			   }catch (Exception $e){}
+			   
+            echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."article/kontak'</script>";
+            
+		}
+
+		return $this->loadView('kontak');
+	}
+
 }
 
 ?>

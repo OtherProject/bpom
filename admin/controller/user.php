@@ -1,5 +1,4 @@
 <?php
-defined ('TATARUANG') or exit ( 'Forbidden Access' );
 
 class user extends Controller {
 	
@@ -8,11 +7,16 @@ class user extends Controller {
 	public function __construct()
 	{
 		parent::__construct();
+
 		global $app_domain;
-		
 		$this->loadmodule();
-		
+		$this->view = $this->setSmarty();
+		$sessionAdmin = new Session;
+		$this->admin = $sessionAdmin->get_session();
+		// $this->validatePage();
+		$this->view->assign('app_domain',$app_domain);
 	}
+
 	public function loadmodule()
 	{
 		
@@ -22,8 +26,23 @@ class user extends Controller {
 	public function index(){
        
 		
-		$data['listuser'] = $this->userHelper->getListUser();
-		return $this->loadView('user/user-list',$data);
+		$dataUser = $this->userHelper->getUserData();
+
+		// pr($_POST);
+
+		if ($_POST['status']){
+			
+			$iduser = implode(',', $_POST['ids']);
+			$updateUser = $this->userHelper->updateUser($iduser, $_POST['status']);
+			if ($updateUser){
+				$this->view->assign('status',true);
+			}else{
+				$this->view->assign('status',false);
+			}
+		}
+
+		$this->view->assign('data',$dataUser);
+		return $this->loadView('user');
 
 	}
     
@@ -40,25 +59,33 @@ class user extends Controller {
        
 		global $basedomain;
 		
-		if (_p('token')){
-			
-			// upload image 
-			$uploadImage['status'] = false;
-			if ($_FILES['image']['name']!="")$uploadImage = uploadFile('image','user');
+		// if (_p('token')){
 			
 			
-			$addUser = $this->userHelper->addUser();
-			if ($uploadImage['status']){
-				
-				$updateUser = $this->userHelper->updateUserImage($uploadImage['filename'],$addUser);
+		// 	$uploadImage['status'] = false;
+		// 	if ($_FILES['image']['name']!="")$uploadImage = uploadFile('image','user');
+			
+		if ($_POST['name']){
+
+			$addUser = $this->userHelper->addUser($_POST);
+			if ($addUser){
+				$this->view->assign('status',true);
+			}else{
+				$this->view->assign('status',false);
 			}
-			
-			if ($addUser) redirect($basedomain.'user');
-			exit;
 		}
+		// 	$addUser = $this->userHelper->addUser();
+		// 	if ($uploadImage['status']){
+				
+		// 		$updateUser = $this->userHelper->updateUserImage($uploadImage['filename'],$addUser);
+		// 	}
+			
+		// 	if ($addUser) redirect($basedomain.'user');
+		// 	exit;
+		// }
+		// pr($_POST);
 		
-		
-		return $this->loadView('user/user-input');
+		return $this->loadView('user-detail');
 
 	}
 	
