@@ -3,7 +3,7 @@ class contentHelper extends Database {
 
 	function __construct()
 	{
-		$this->prefix = "nestle";
+		$this->prefix = "bpom";
 		$session = new Session();
 		$this->user = $session->get_session();
 	}
@@ -16,7 +16,7 @@ class contentHelper extends Database {
 		$filter = "";
 		if ($id) $filter = "AND id = {$id}";
 
-		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = 1 {$filter} ORDER BY posted_date DESC LIMIT {$start},{$limit}";
+		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE articleType = 0 AND n_status = 1 {$filter} ORDER BY posted_date DESC LIMIT {$start},{$limit}";
 		$res = $this->fetch($sql,1);
 		if ($res) return $res;
 		return false;
@@ -212,42 +212,7 @@ class contentHelper extends Database {
 		return $this->query("UPDATE {$this->prefix}_createimage SET n_status = $status WHERE id = {$image['id']}");
 	}
 
-	function registerUser($data)
-	{
-
-		$useraccount = false;
-		$jumlhAnak = intval($data['jmlhAnak']);
-
-		$useraccount = $this->user['default'];
-		if (!$useraccount) return false;
-
-		if ($useraccount['usertype']>1){
-			$sql = "UPDATE social_member SET name = '{$data['nama']}', email = '{$data['email']}', phone_number = '{$data['telp']}', StreetName = '{$data['alamat']}', verified = 1 WHERE id = {$useraccount['id']} LIMIT 1";
-
-		}else{
-			$sql = "UPDATE social_member SET name = '{$data['nama']}', phone_number = '{$data['telp']}', StreetName = '{$data['alamat']}', verified = 1 WHERE id = {$useraccount['id']} LIMIT 1";
-
-		}
-		// pr($sql);
-		$res = $this->query($sql);
-
-		if ($res){
-
-			for($i=0; $i<=$jumlhAnak-1; $i++){
-
-				$sql = "INSERT INTO nestle_child (userid, name, birthdate, n_status)
-						VALUES ({$useraccount['id']}, '{$data['childName'][$i]}','{$data['childDate'][$i]}',1) ";
-				// pr($sql);
-				$res = $this->query($sql);
-			}
-
-			return true;
-
-		}
-
-		return false;
-	}
-
+	
 
 }
 ?>

@@ -9,6 +9,7 @@ define ('APPPATH', './');
 define ('CODEKIR', true);
 define ('LIBS', 'libs/');
 define ('LOGS', 'logs/');
+define ('CACHE', 'cache/');
 define ('TMP', 'tmp/');
 
 require_once (COREPATH.'loader.php');

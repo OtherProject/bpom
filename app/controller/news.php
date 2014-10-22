@@ -1,7 +1,7 @@
 <?php
 
 
-class home extends Controller {
+class news extends Controller {
 	
 	var $models = FALSE;
 	var $view;
@@ -33,7 +33,7 @@ class home extends Controller {
     // pr($getData);
     $this->view->assign('data',$getData);	
 
-  	return $this->loadView('home');
+  	return $this->loadView('news');
   }
 	
 	

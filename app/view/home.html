@@ -1,107 +1,56 @@
+{include file="slider.html"}
+<div id="headline" align="left">
+                <div class="headnews" align="left">
+                    <div class="teksHead">Headline News </div>
+                </div>
+                <div class="news" align="right">
+                    <div class="teksNews" align="left">
 
-<div id="wrapperhome">
-	<div id="slides">
-		 <div class="sp-slideshow">
-			
-				<input id="button-1" type="radio" name="radio-set" class="sp-selector-1"  checked="checked"/>
-				<label for="button-1" class="button-label-1" style="opacity:0"></label>
-				
-				<input id="button-2" type="radio" name="radio-set" class="sp-selector-2" />
-				<label for="button-2" class="button-label-2" style="opacity:0"></label>
-				
-				<label for="button-1" class="sp-arrow sp-a1"></label>
-				<label for="button-2" class="sp-arrow sp-a2"></label>
-				
-				<div class="sp-content">
-					<div class="sp-parallax-bg"></div>
-					<ul class="sp-slider clearfix">
-						<li>
-							<div style="margin:0 auto;width:627px;margin-left:0px;border:0px solid #000"> 
-								<div style="margin:0 auto;float:left;width:242px;border:0px solid #000">
-									<img src="{$basedomain}assets/file/slide-1-img.png" alt="slide-1"/>
-								</div>
-								<div style="margin:0 auto;float:left;width:370px;border:0px solid #000">
-									<div id="contentSlide">
-										<!--<span class="titleSlide">Si Kecil Aktif dan Ceria? Raih Jalan-jalan ke Singapura!</span>-->
-										<img src="{$basedomain}assets/file/title.png" />
-										<p class="isiSlide">Nestl&eacute; LACTOGEN 3 ActivGro mengajak Ibu dan Ayah untuk berbagi momen keceriaan Si Kecil yang aktif di Go with ActivGro dan menangkan hadiah menarik lainnya.<br/><br/>
-										{if $user}
-											<a href="{$basedomain}uploadfoto/pilihframe" class="btnpinkslide" style="font-size:12px">Upload foto Si Kecil sekarang!</a>
-										{else}
-											<a href="{$basedomain}home/connect" class="btnpinkslide" style="font-size:12px">Upload foto Si Kecil sekarang!</a>
-										{/if}
-</p>	
-										</div>
-								</div>
-							</div>
-						</li>
-						<li class="my-button"><img src="{$basedomain}assets/file/slide-2.png" alt="slide-2" />
-						
-						<br/>
-						{if $user}
-							<a href="{$basedomain}uploadfoto/pilihframe" class="btnpinkslide">Ikuti Sekarang</a>
-						{else}
-							<a href="{$basedomain}home/connect" class="btnpinkslide">Ikuti Sekarang</a>
-						{/if}
-						
-	
-						</li>
-					</ul>
-				</div> <!-- sp-content -->
-				
-			</div> <!-- sp-slideshow -->
-	</div>
-</div>
+                        
+                        <div class="picHeadline" style="padding:10px;">
+                            <img src="{$basedomain}assets/images/tembakau.jpg" width="20%" height="20%" />
+                        </div>
+                           
+                        <div class="picHeadline1" style="padding:20px 10px 10px 10px;">
+                            <img src="{$basedomain}assets/images/cigarette_composition.gif" width="20%" height="20%" />
+                        </div>
 
-
-<script type="text/javascript">
-		{literal}
-		$(function(){
-			
-			
-
-			setTimeout(function(){
-				// panggil slide 2
-				slide2();
-				
-			}, 8000);
-
-			setTimeout(function(){
-				
-				slide1();
-			}, 16000);
-		});
-
-		// $(document).on('click','.sp-a1', function(){
-
-		// 	console.log('slide1');
-		// 	setTimeout(function(){
-		// 		console.log('ada');
-		// 		$('#button-2').trigger('click');
-				
-		// 	}, 2000);
-		// })
-		
-		function slide1()
-		{
-			$('#button-1').trigger('click');
-			setTimeout(function(){
-				
-				slide2();
-			}, 16000);
-		}
-
-		function slide2()
-		{
-			$('#button-2').trigger('click');
-			setTimeout(function(){
-				
-				slide1();
-			}, 16000);
-		}
-
-		{/literal}
-	</script>
-
-
-      
+                       
+                        <table border="1" style="margin-left:10px;margin-right:10px; margin-top:-144px; width:450px;" align="right">
+                            <tr>
+                                <td style="font-size:17px;" >Pelanggaran Gambar</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:12px;border-bottom: 1px solid #999999; padding-right:10px;">Senin, 20/10/2014</td>
+                            </tr>
+                            <tr>
+                                <td width="90%" style="color:#666666;">
+                                    Salah satu perusahan rokok tidak mencantumkan gambar yang telah ditetapkan oleh pemerintah.Salah satu perusahan rokok tidak mencantumkan gambar yang telah ditetapkan oleh..
+                                    <br>
+                                    <a href="#">Read More...</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:17px;" >Pelanggaran TAR</td>
+                            </tr>
+                             <tr>
+                                <td style="font-size:12px;border-bottom: 1px solid #999999; padding-right:10px;">Senin, 20/10/2014</td>
+                            </tr>
+                            <tr>
+                                <td width="90%" style="color:#666666;">
+                                    Salah satu perusahan rokok tidak mencantumkan TAR yang telah ditetapkan oleh pemerintah.Salah satu perusahan rokok tidak mencantumkan gambar yang telah ditetapkan oleh..<br>
+                                    <a href="#">Read More...</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="grafik" align="right">
+                <div class="headgrafik">
+                    <div class="teksHead" align="left">Statistik</div>
+                </div>
+                <div class="statistik" align="center">                  
+                    <img width="100%" height="100%" alt="statistik" src="{$basedomain}assets/images/examplechart.png" />                 
+                </div>
+            </div>
