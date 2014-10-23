@@ -1,4 +1,8 @@
 
+	<script src="{$basedomain}assets/js/jquery.js"></script>
+  	<!-- Bootstrap javascript -->
+  	<script src="{$basedomain}assets/js/bootstrap.min.js"></script>
+
 	<script type="text/javascript" src="{$basedomain}assets/js/jquery-1.9.0.min.js"></script>
     <script type="text/javascript" src="{$basedomain}assets/js/jquery.nivo.slider.js"></script>
     <script type="text/javascript" src="{$basedomain}assets/js/jquery-ui.js"></script>
@@ -39,7 +43,7 @@
 	</script>
 
 	
-	<div id="footer">
+	<div id="footer" align="center">
     	<div class="site">
     		<a href="index.html">Home</a>
             <a href="news.html">News</a>
@@ -73,10 +77,20 @@
                                                 <td><input type="text" name="password" value="" size="20" id="password"/>
                                             </tr>                                
                                             <tr>
-                                                <td colspan="3" align="right">            
-                                                    <input class="form-btn-save" type="submit" id="save" value="Save" /> &nbsp;&nbsp;
-                                                    <input class="form-btn-close" type="reset" value="Cancel" /> &nbsp;&nbsp;
-                                                    <input class="form-btn-register" type="submit" value="Register" />
+                                                <td colspan="3" align="right">   
+                                                <button id="btn-dis" class="btn btn-info" type="submit">
+													<i class="fa fa-save"></i>
+													Login
+													</button>   
+													<a href="{$basedomain}register"><button id="btn-dis" class="btn btn-success" type="button">
+													<i class="fa fa-save"></i>
+													Register
+													</button></a>
+													<button id="btn-dis" class="btn btn-warning" type="submit">
+													<i class="fa fa-save"></i>
+													Cancel
+													</button>
+
                                                 </td>
                                             </tr>
                                         </table>

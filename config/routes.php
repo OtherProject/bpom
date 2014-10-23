@@ -9,8 +9,9 @@ $ROUTES = array(
 		'home',
 		'contact',
 		'news',
-                'profile', 
-                'login',
+        'profile', 
+        'login',
+        'register'
                 
                 );
 ?>
