@@ -8,6 +8,26 @@ class userHelper extends Database {
         $this->user = $getSessi['ses_user']['login'];
     }
 
+
+    function getListUser($data=false, $debug=false)
+    {
+
+        $id = $data['id'];
+
+        $sql = array(
+                    'table' =>'social_member',
+                    'field' => "*",
+                    'condition' => "id = {$id}",
+                    'limit' => 1
+                );
+        // $sqlu = "UPDATE social_member SET last_login = '{$lastLogin}' ,login_count = {$loginCount} WHERE id = {$res['id']} LIMIT 1";
+        $result = $this->lazyQuery($sql);
+        if ($result) return $result;
+        return false;
+
+    }
+
+
     function editProfile($data=false){
         if($data==false) return false;
         

@@ -212,7 +212,45 @@ class contentHelper extends Database {
 		return $this->query("UPDATE {$this->prefix}_createimage SET n_status = $status WHERE id = {$image['id']}");
 	}
 
-	
+	function getIndustri($id=false)
+	{
 
+		 $sql = array(
+                    'table' =>"{$this->prefix}_industri",
+                    'field' => "*",
+                    'condition' => "id = {$id}",
+                    'limit' => 1
+                );
+        $result = $this->lazyQuery($sql);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getLokasi($id=false)
+	{
+
+		 $sql = array(
+                    'table' =>"tbl_wilayah",
+                    'field' => "*",
+                    'condition' => 'parent = 0 ORDER BY nama_wilayah'
+                );
+        $result = $this->lazyQuery($sql);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getKab($id=false)
+	{
+
+		if (!$id) return false;
+		$sql = array(
+                    'table' =>"tbl_wilayah",
+                    'field' => "*",
+                    'condition' => "parent = '{$id}' ORDER BY nama_wilayah"
+                );
+        $result = $this->lazyQuery($sql);
+        if ($result) return $result;
+        return false;
+	}
 }
 ?>

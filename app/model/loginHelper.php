@@ -6,7 +6,7 @@ class loginHelper extends Database {
     {
         global $basedomain;
         $this->loadmodule();
-        $this->salt = '1nf0k0mun1t4s';
+        $this->salt = 'ovancop2014';
         $this->session = new Session();
         $this->user = $this->session->get_session();
     }
@@ -35,20 +35,30 @@ class loginHelper extends Database {
         // exit;
         if ($res){
             
-            $salt = sha1($res['salt'].$password);
+            $salt = sha1($password.$res['salt']);
             
-            // pr($salt);exit;
+            $isnewuser = $res['verified'];
+            $loginCount = intval($res['login_count'] +1);
+            $lastLogin = date('Y-m-d H:i:s');
+
+            // pr($salt);
+            // exit;
             if ($res['password'] == $salt){
                 
-                $loginCount = intval($res['login_count'] +1);
-                $lastLogin = date('Y-m-d H:i:s');
+
                 
-                $sqlu = "UPDATE social_member SET last_login = '{$lastLogin}' ,login_count = {$loginCount} WHERE id = {$res['id']} LIMIT 1";
-                $result = $this->query($sqlu);
+                $sql = array(
+                            'table' =>'social_member',
+                            'field' => "last_login = '{$lastLogin}' ,login_count = {$loginCount}",
+                            'condition' => "id = {$res['id']}",
+                            'limit' => 1
+                        );
+                // $sqlu = "UPDATE social_member SET last_login = '{$lastLogin}' ,login_count = {$loginCount} WHERE id = {$res['id']} LIMIT 1";
+                $result = $this->lazyQuery($sql,false,2);
                 
                 // $_SESSION['user'] = $res;
 
-                $ignoreFIeld = array('salt','password','email_token','email','username');
+                $ignoreFIeld = array('salt','password','email_token','username');
 
                 foreach ($res as $key=> $val){
                     
@@ -57,74 +67,57 @@ class loginHelper extends Database {
 
                 $this->session->set_session($newCred);
                 
+                if ($isnewuser>0){
+                    $newCred['statusAccount'] = 1;
+                }else{
+                    $newCred['statusAccount'] = 0;
+                }
+
                 return $newCred;
             }
+
         }
         
         return false;
     }
 
-    function loginSosmed($sosmed=1,$data=array())
+    function updateUserAccount($data=array())
     {
 
-        if (!$data) return false;
-
-        foreach ($data as $key => $value) {
-            $$key = $value;
-        }
-        
         $date = date('Y-m-d H:i:s');
-        $sql = "SELECT * FROM social_member WHERE sosmed_id = '{$data['id']}' AND usertype = {$sosmed} LIMIT 1";
-        // pr($sql);
-        $result = $this->fetch($sql);
-        if ($result){
-            logFile(serialize($result));
-            $loginCount = intval($result['login_count'] +1);
-            $lastLogin = date('Y-m-d H:i:s');
-            
-            $sqlu = "UPDATE social_member SET last_login = '{$lastLogin}' ,login_count = {$loginCount} WHERE id = {$result['id']} LIMIT 1";
-            $res = $this->query($sqlu);
+        $email = $data['email'];
+        $id = $data['id'];
+        $password = sha1($data['password'].$this->salt);
 
-            $dataSession = $result;
-        }else{
+        
+        $sql = array(
+                    'table' =>'social_member',
+                    'field' => "verified = 1, n_status = 1, salt = '{$this->salt}', password = '{$password}'",
+                    'condition' => "id = {$id} AND email = '{$email}'",
+                    'limit' => 1
+                );
+        // $sqlu = "UPDATE social_member SET last_login = '{$lastLogin}' ,login_count = {$loginCount} WHERE id = {$res['id']} LIMIT 1";
+        $result = $this->lazyQuery($sql,false,2);
+        if ($result) return true;
+        
+        return false;
+    }
 
-            if ($sosmed==1){
-                $sql = "INSERT IGNORE INTO social_member (sosmed_id, name, email, register_date, middle_name, last_name, sex, link, usertype,n_status) 
-                        VALUES ('{$id}','{$first_name}','{$email}','{$date}', '{$middle_name}','{$last_name}','{$gender}','{$link}',1,1)";
-                // pr($sql);
-                $res = $this->query($sql);
-                
-            }else{
+    function getEmailToken($username=false, $all=false)
+    {
 
-                $sql = "INSERT IGNORE INTO social_member (sosmed_id, name, register_date, username, description, link, city, usertype,n_status)
-                        VALUES ('{$data['id']}', '{$data['name']}', '{$date}',  '{$data['screen_name']}', '{$data['description']}','{$data['url']}','{$data['location']}',2,1)";
-                // pr($sql);
-                $res = $this->query($sql);
-            }
-            
-            logFile($sql);
-            logFile($res);
-            sleep(1);
-            $sql = "SELECT * FROM social_member WHERE sosmed_id = '{$data['id']}' LIMIT 1";
-            // pr($sql);
-            logFile($sql);
-            $result = $this->fetch($sql);
+        $filter = "";
 
+        if($username==false) return false;
+        
+        if($all) $filter = " * ";
+        else $filter = " email_token ";
 
-            // $debuging = "SELECT * from social_member";
-            // $resDebug = $this->fetch($debuging,1);
-            logFile(serialize($resDebug));
-            
-
-            // pr($sql);
-            logFile(serialize($result));
-            $dataSession = $result;
-        }
-        // pr($dataSession);
-        // exit;
-        $this->session->set_session($dataSession);
-
-        return $dataSession;
+        $sql = "SELECT {$filter} FROM `social_member` WHERE `email` = '".$username."' LIMIT 1";
+        // logFile($sql);
+        $res = $this->fetch($sql);
+        if ($res) return $res;
+        return false;
     }
 
 	

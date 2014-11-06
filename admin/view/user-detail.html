@@ -10,7 +10,7 @@ $(function () {
 </script>
 
 <div id="content-header">
-	<h1>Tambah User</h1>
+	<h1>Detail User</h1>
 </div> <!-- #content-header -->	
 
 <div id="content-container">
@@ -22,56 +22,67 @@ $(function () {
 	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}user/add" enctype="multipart/form-data">
 		
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div class="portlet">
 				
 					<div class="portlet-header">
 
 						<h3>
 							<i class="fa fa-file"></i>
-							Form User
+							Detail User
 						</h3>
 
 					</div> <!-- /.portlet-header -->
 				
 					<div class="portlet-content">
-				
 						<div class="col-sm-12">
 							<div class="form-group">
-							<label for="text-input">Nama</label>
+							<label for="text-input">Nama Perusahaan</label>
+									<input type="text" name="name" class="form-control" value="{$data.perusahaan.namaIndustri}" data-required="true" />
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+							<label for="text-input">Nama Depan</label>
 									<input type="text" name="name" class="form-control" value="{$data.name}" data-required="true" />
 							</div>
 						</div>	
-						
-						<div class="col-md-12">
+						<div class="col-sm-6">
+							<div class="form-group">
+							<label for="text-input">Nama Belakang</label>
+									<input type="text" name="name" class="form-control" value="{$data.last_name}" data-required="true" />
+							</div>
+						</div>	
+						<div class="col-md-6">
 							<div class="form-group">
 							<label for="text-input">Email</label>
 									<input type="text" name="email" class="form-control" value="{$data.email}" />
 							</div>
 						</div>
 
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<div class="form-group">
-							<label for="text-input">Instansi</label>
+							<label for="text-input">Jabatan</label>
 									<input type="text" name="description" class="form-control" value="{$data.description}" />
 							</div>
 						</div>
-
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<div class="form-group">
-							<select class="btn btn-default btn-sm" style="text-align:left" name="usertype">
-
-								<option value="0">-- Pilih Level User --</option>
-								
-								<option value="1">Verificator 1</option>
-								<option value="2">Verificator 2</option>
-								<option value="3">Verificator 3</option>
-							</select>
+							<label for="text-input">Alamat</label>
+									<input type="text" name="StreetName" class="form-control" value="{$data.StreetName}" />
 							</div>
 						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+							<label for="text-input">No Telpon</label>
+									<input type="text" name="phone_number" class="form-control" value="{$data.phone_number}" />
+							</div>
+						</div>
+						
 					</div>
 				</div>
-				<button type="submit" class="btn btn-info" id="btn-dis"><i class="fa fa-save"></i> Simpan Data</button>
+				{*}
+				<button type="submit" class="btn btn-info" id="btn-dis"><i class="fa fa-save"></i> Simpan Data</button>{/*}
 			</div>
 		
 		

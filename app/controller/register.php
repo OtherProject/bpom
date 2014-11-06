@@ -17,13 +17,14 @@ class register extends Controller {
     $this->user = $userdata['default'];
     $browsertype = $this->checkBrowser();
     $this->view->assign('browsertype',$browsertype);
-
+    $this->session = new Session();
     }
 	
 	function loadmodule()
 	{
     $this->loginHelper = $this->loadModel('loginHelper');
     $this->contentHelper = $this->loadModel('contentHelper');
+    $this->userHelper = $this->loadModel('userHelper');
 	}
 	function index(){
 
@@ -36,7 +37,28 @@ class register extends Controller {
   	return $this->loadView('register');
   }
 	
-	
+	function save()
+  {
+
+    global $basedomain;
+
+    $token = str_shuffle(qwertyasdfgzxcvb123456789);
+    $saveAccount = $this->userHelper->createAccount($_POST);
+    if ($saveAccount){
+      redirect($basedomain.'register/status/?token='.$token);
+    }else{
+      redirect($basedomain.'register/status/?token=');
+    }
+  }
+
+  function status()
+  {
+
+    $token = _g('token');
+    $this->view->assign('status',true);
+    return $this->loadView('register-status');
+  }
+
   function formRegister()
   {
     global $basedomain;
@@ -93,36 +115,96 @@ class register extends Controller {
 
   }
 
-	function loginSocmed()
+	function validate()
   {
 
-    global $CONFIG, $basedomain;
+    global $basedomain;
+        $data = _g('ref');
+        
+        // exit;
+        logFile($data);
+        if ($data){
 
-    
-  }
-  function thanks(){
-    return $this->loadView('thanks');
+            $coba = array('email'=>'o.pulu@yahoo.com', 'token'=>'1234');
+            $enc = encode(serialize($coba));
 
-  }
+            // pr($enc);
+            
+            $decode = unserialize(decode($data));
+           
+            // check if token is valid
+            // pr($decode);
 
-  function privacy(){
-     return $this->loadView('privacy');
+            $getToken = $this->loginHelper->getEmailToken($decode['email']);
 
-  }
+            if ($getToken['email_token']==$decode['token']){
+              
+              redirect($basedomain.'register/accountValid/?ref='.$data);
+            }else{
+              pr('Token mismatch');
+            }
 
-  function debuging()
-  {
-    $email = _g('email');
-    if ($email==""){print(json_encode(false));exit;}
-    $debug = $this->loginHelper->debuging($email);
-    if($debug){
-      print(json_encode(true));
-    }else{
-      print(json_encode(false));
+        }
+       
     }
 
-    exit;
-  }
+    function accountValid()
+    {
+      
+      global $basedomain;
+        $token = _p('token');
+        if ($token){
+            
+            $decode = unserialize(decode($token));
+            $getToken = $this->loginHelper->getEmailToken($decode['email'],1);
+            if ($getToken['email_token']==$decode['token']){
+
+
+            }else{
+              pr('Token Mismatch');
+              exit;
+            }
+
+            // pr($_POST);
+            $data['password'] = _p('password');
+            $data['id'] = $getToken['id'];
+            $data['email'] = $decode['email'];
+
+            $updateAccount = $this->loginHelper->updateUserAccount($data);
+            if ($updateAccount){
+               
+                logFile('account user '.$data['email']. ' created');
+
+                $this->session->set_session($getToken);
+
+                redirect($basedomain.'account');
+                // $this->view->assign('validate','Validate account success');
+                
+            }else{
+                
+                logFile('update n_status user '.$data['email'].' failed');
+            }
+        }
+
+
+        $ref = _g('ref');
+        $decode = unserialize(decode($ref));
+        if ($decode){
+          $getToken = $this->loginHelper->getEmailToken($decode['email'],1);
+          if ($getToken['email_token']==$decode['token']){
+
+            if ($getToken['verified']>0){
+              redirect($basedomain);
+            }
+            $getInd = $this->contentHelper->getIndustri($getToken['industri_id']);
+            // pr($getInd);
+            $this->view->assign('token',$ref);  
+            $this->view->assign('data',$getInd[0]);  
+          }
+        }
+        $this->view->assign('enterAccount',true);  
+        return $this->loadView('register-validate');
+    }
 }
 
 ?>

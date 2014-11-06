@@ -1,7 +1,7 @@
 <?php
 // defined ('TATARUANG') or exit ( 'Forbidden Access' );
 
-class evaluasi extends Controller {
+class pelaporan extends Controller {
 	
 	var $models = FALSE;
 	
@@ -51,7 +51,7 @@ class evaluasi extends Controller {
 		// pr($data);exit;
 		
 
-		return $this->loadView('evaluasi/evaluasi');
+		return $this->loadView('evaluasi');
 
 	}
 
@@ -83,41 +83,10 @@ class evaluasi extends Controller {
 		// pr($data);exit;
 		
 
-		return $this->loadView('evaluasi/evaluasi-mlr');
+		return $this->loadView('evaluasi');
 
 	}
 
-	public function iklanmlr_detail(){
-		
-		$data = $this->contentHelper->getDataEvaluasi();
-		// pr($data);
-		if ($data){
-			
-			$this->view->assign('data',$data);
-		}
-		
-		if ($_POST['status']){
-
-			if (count($_POST['ids']>0)){
-
-				$id = implode(',', $_POST['ids']);
-
-				$status = intval($_POST['status']);
-				$approve = $this->contentHelper->validateData($id, $status);
-				if ($approve){
-					echo "<script>window.location.href='".$basedomain."evaluasi'</script>";
-					// redirect($basedomain.'evaluasi');
-				}
-			}
-			
-		}
-		
-		// pr($data);exit;
-		
-
-		return $this->loadView('evaluasi/evaluasi-mlr-detail');
-
-	}
 
 	public function iklantv(){
 		
@@ -147,7 +116,7 @@ class evaluasi extends Controller {
 		// pr($data);exit;
 		
 
-		return $this->loadView('evaluasi/evaluasi');
+		return $this->loadView('evaluasi');
 
 	}
 
@@ -179,7 +148,7 @@ class evaluasi extends Controller {
 		// pr($data);exit;
 		
 
-		return $this->loadView('evaluasi/evaluasi');
+		return $this->loadView('evaluasi');
 
 	}
 
@@ -188,20 +157,9 @@ class evaluasi extends Controller {
 		global $basedomain;
 
 		$id = _g('id');
-
-
-		$getMerek = $this->contentHelper->getMerekProduk();
-		$this->view->assign('getMerek',$getMerek);
-
-		
-		if (!$id){
-			$this->view->assign('addnew',true);
-		}else{
-			$data = $this->contentHelper->getDataEvaluasi($id);
-			// pr($data);
-			$this->view->assign('data',$data[0]);
-		}
-		
+		$data = $this->contentHelper->getDataEvaluasi($id);
+		// pr($data);
+		$this->view->assign('data',$data[0]);
 		$this->view->assign('id',$id);
 		if ($_POST['id']){
 
@@ -228,38 +186,24 @@ class evaluasi extends Controller {
 			}
 		}
 
-		return $this->loadView('evaluasi/evaluasi-detail');
+		return $this->loadView('evaluasi-detail');
 	}
 	
 	
-	// function ajax()
-	// {
-		
-	// 	$id = _p('id');
-	// 	$n_status = _p('n_status');
-		
-	// 	$data = $this->models->updateStatusFrame($id, $n_status);
-	// 	if ($data){
-	// 		print json_encode(array('status'=>true));
-	// 	}else{
-	// 		print json_encode(array('status'=>false));
-	// 	}
-
-	// 	exit;
-	// }
-
 	function ajax()
 	{
+		
+		$id = _p('id');
+		$n_status = _p('n_status');
+		
+		$data = $this->models->updateStatusFrame($id, $n_status);
+		if ($data){
+			print json_encode(array('status'=>true));
+		}else{
+			print json_encode(array('status'=>false));
+		}
 
-	    $id = _p('merek');
-	    $getKab = $this->contentHelper->getProdusen($id);
-	    if ($getKab){
-	      print json_encode(array('status'=>true, 'res'=>$getKab));
-	    }else{
-	      print json_encode(array('status'=>false));
-	    }
-	    
-	    exit;
+		exit;
 	}
 }
 

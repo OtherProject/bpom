@@ -137,7 +137,44 @@ class contentHelper extends Database {
 		return false;
 	}
 
-	
+	function getIndustri($id=false)
+	{
 
+		$sql = array(
+                    'table' =>"{$this->prefix}_industri",
+                    'field' => "*",
+                    'condition' => "id = {$id}",
+                    'limit' => 1
+                );
+        $result = $this->lazyQuery($sql);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getMerekProduk($id=false)
+	{
+		$sql = array(
+                    'table' =>"{$this->prefix}_product",
+                    'field' => "*",
+                    'condition' => "n_status = 1",
+                    
+                );
+        $result = $this->lazyQuery($sql);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getProdusen($id=false)
+	{
+		$sql = array(
+                    'table' =>"{$this->prefix}_product",
+                    'field' => "*",
+                    'condition' => "n_status = 1 AND id = {$id}",
+                    
+                );
+        $result = $this->lazyQuery($sql);
+        if ($result) return $result;
+        return false;
+	}
 }
 ?>

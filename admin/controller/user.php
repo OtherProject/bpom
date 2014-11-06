@@ -21,6 +21,7 @@ class user extends Controller {
 	{
 		
 		$this->userHelper = $this->loadModel('userHelper');
+		$this->contentHelper = $this->loadModel('contentHelper');
 	}
 	
 	public function index(){
@@ -93,8 +94,18 @@ class user extends Controller {
 	function edit()
 	{
 		global $basedomain, $app_domain;;
-		$userid = intval(_g('id'));
-		$data['listuser'] = $this->userHelper->getListUser($userid);
+		$userid['id'] = intval(_g('id'));
+
+		$dataUser = $this->userHelper->getListUser($userid);
+		if ($dataUser){
+			$getIndustri = $this->contentHelper->getIndustri($dataUser[0]['industri_id']);
+
+			foreach ($dataUser as $key => $value) {
+				$dataUser[$key]['perusahaan'] = $getIndustri[0];
+			}
+		}
+		
+
 		
 		if (_p('token')){
 			
@@ -115,8 +126,10 @@ class user extends Controller {
 			if ($addUser) redirect($basedomain.'user');
 			exit;
 		}
-		
-		return $this->loadView('user/user-edit',$data);
+
+		// pr($dataUser);
+		$this->view->assign('data',$dataUser[0]);
+		return $this->loadView('user-detail');
 	}
 	
 	function delete()
