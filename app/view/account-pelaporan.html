@@ -1,0 +1,253 @@
+<br>
+
+<form method="post" action="{$basedomain}register/save">
+
+<div class="content-container">
+<div class="row">
+
+  
+  
+    
+      
+      <div class="col-md-6">
+        <div class="portlet">
+        
+          <div class="portlet-header">
+
+            <h3>
+              <i class="fa fa-file"></i>
+              Informasi Produk
+            </h3>
+
+          </div> <!-- /.portlet-header -->
+        
+          <div class="portlet-content">
+        
+            <div class="col-sm-6">
+              <div class="form-group">
+              <label for="text-input">Merek</label>
+                  <select class="form-control" name="jenisKelamin">
+                    <option value="1" {if $data.jenisKelamin==1}selected{/if}>Merek 1</option>
+                    <option value="2" {if $data.jenisKelamin==2}selected{/if}>Merek 2</option>
+                  </select>
+              </div>
+            </div>  
+            <div class="col-sm-12">
+              <div class="form-group">
+              <label for="text-input">Jenis</label>
+                  <input type="text" name="merek" class="form-control" value="{$data.merek}" data-required="true" />
+              </div>
+            </div> 
+            <div class="col-sm-12">
+              <div class="form-group">
+              <label for="text-input">Isi Kemasan</label>
+                  <input type="text" name="merek" class="form-control" value="{$data.merek}" data-required="true" />
+              </div>
+            </div> 
+            <div class="col-sm-12">
+              <div class="form-group">
+              <label for="text-input">Bentuk Kemasan</label>
+                  <input type="text" name="merek" class="form-control" value="{$data.merek}" data-required="true" />
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="col-md-6">
+        <div class="portlet">
+        
+          <div class="portlet-header">
+
+            <h3>
+              <i class="fa fa-file"></i>
+              Pencantuman Peringatan Kesehatan
+            </h3>
+
+          </div> <!-- /.portlet-header -->
+        
+          <div class="portlet-content">
+        
+            <div class="col-sm-12">
+              <div class="form-group">
+              <label for="text-input">Jenis Gambar</label>
+                  <input type="text" name="merek" class="form-control" value="{$data.merek}" data-required="true" />
+              </div>
+            </div>  
+            
+            <div class="col-md-6">
+              <div class="form-group">
+              <label for="text-input">Tulisan Peringatan Kesehatan</label>
+                  <input type="text" name="produsen" class="form-control" value="{$data.produsen}" />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+              <label for="text-input">Luas Depan</label>
+                  <input type="text" name="jenis" class="form-control" value="{$data.jenis}" />
+              </div>
+            </div>
+
+            
+            <div class="col-md-6">
+              <div class="form-group">
+              <label for="text-input">Luas Belakang</label>
+                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" />
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="form-group">
+              <label for="text-input">Warna dan Kejelasan Gambar</label>
+                  <input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+              <label for="text-input">Evaluasi</label>
+                  <input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+              </div>
+            </div>
+            
+      
+          </div>
+        </div>
+      </div>
+
+<div class="clearfix"></div>
+<br>
+      <div class="col-md-6">
+        <div class="portlet">
+        
+          <div class="portlet-header">
+
+            <h3>
+              <i class="fa fa-file"></i>
+              Pencantuman Informasi Kesehatan
+            </h3>
+
+          </div> <!-- /.portlet-header -->
+        
+          <div class="portlet-content">
+        
+            <div class="col-sm-6">
+              <div class="form-group">
+              <label for="text-input">Kadar Nikotin (mg)</label>
+                  <input type="text" name="merek" class="form-control" value="{$data.merek}" data-required="true" />
+              </div>
+            </div>  
+            
+            <div class="col-md-6">
+              <div class="form-group">
+              <label for="text-input">Kadar Tar (mg)</label>
+                  <input type="text" name="produsen" class="form-control" value="{$data.produsen}" />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+              <label for="text-input">Penulisan sisi samping/atas</label>
+                  <input type="text" name="jenis" class="form-control" value="{$data.jenis}" />
+              </div>
+            </div>
+
+            
+            <div class="col-md-6">
+              <div class="form-group">
+              <label for="text-input">Tulisan</label>
+                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" />
+              </div>
+            </div>
+            
+            <div class="col-md-12">
+              <div class="form-group">
+              <label for="text-input">Pernyataan "dilarang menjual atau memberi kepada anak dan  perempuan hamil"</label>
+                  <input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+              <label for="text-input">kode Produksi</label>
+                  <input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+              <label for="text-input">Tanggal Produksi</label>
+                  <input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+              </div>
+            </div>
+             <div class="col-md-12">
+              <div class="form-group">
+              <label for="text-input">Pernyataan "tidak ada batas aman"</label>
+                  <input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+              </div>
+            </div>
+             <div class="col-md-12">
+            <div class="form-group">
+              <label for="text-input">Pernyataan "mengandung lebih dari 4000 zat kimia …..."</label>
+                  <input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+              </div>
+           </div>
+           <div class="col-md-12">
+            <div class="form-group">
+              <label for="text-input">Kata promotif dan menyesatkan</label>
+                  <input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="portlet">
+        
+          <div class="portlet-header">
+
+            <h3>
+              <i class="fa fa-file"></i>
+              Kesimpulan
+            </h3>
+
+          </div> <!-- /.portlet-header -->
+        
+          <div class="portlet-content">
+        
+            <div class="col-sm-12">
+              <div class="form-group">
+              <label for="text-input">Evaluasi informasi kesehatan (MK/TMK)</label>
+                  <input type="text" name="merek" class="form-control" value="{$data.merek}" data-required="true" />
+              </div>
+            </div>  
+            
+            <div class="col-md-6">
+              <div class="form-group">
+              <label for="text-input">Kesimpulan (MK/TMK)</label>
+                  <input type="text" name="produsen" class="form-control" value="{$data.produsen}" />
+              </div>
+            </div>
+
+            
+
+          </div>
+        </div>
+      </div>
+
+      </div>
+      
+</div>
+
+</form>
+
+<br>
+<button id="btn-dis" class="btn btn-info" type="submit">
+      <i class="fa fa-save"></i>
+      Simpan Data
+      </button>
+      <button id="btn-dis" class="btn btn-warning" type="submit">
+      <i class="fa fa-save"></i>
+      Reset
+      </button>

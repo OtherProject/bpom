@@ -51,7 +51,7 @@ class pelaporan extends Controller {
 		// pr($data);exit;
 		
 
-		return $this->loadView('evaluasi');
+		return $this->loadView('pelaporan');
 
 	}
 
@@ -159,7 +159,7 @@ class pelaporan extends Controller {
 		$id = _g('id');
 		$data = $this->contentHelper->getDataEvaluasi($id);
 		// pr($data);
-		$this->view->assign('data',$data[0]);
+		// $this->view->assign('data',$data[0]);
 		$this->view->assign('id',$id);
 		if ($_POST['id']){
 
@@ -186,7 +186,7 @@ class pelaporan extends Controller {
 			}
 		}
 
-		return $this->loadView('evaluasi-detail');
+		return $this->loadView('pelaporan-detail');
 	}
 	
 	

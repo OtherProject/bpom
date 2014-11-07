@@ -70,6 +70,16 @@ class account extends Controller {
     return $this->loadView('account-pabrik');
   }
 
+  function pelaporan()
+  {
+
+    $id_industri = $this->user['industri_id'];
+    $getIndustri = $this->contentHelper->getIndustri($id_industri);
+    $this->view->assign('datapabrik',$getIndustri[0]); 
+    // pr($getIndustri);
+    return $this->loadView('account-pelaporan');
+  }
+
   function ajax()
   {
 

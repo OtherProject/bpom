@@ -95,20 +95,20 @@
 							<div class="form-group">
 							<label for="text-input">Nama Produsen / Importir</label>
 								
-									<input type="text" name="produsen" class="form-control namaprodusen" value="{$data.produsen}" disabled/>
+									<input type="text" name="produsen" class="form-control namaprodusen" value="{$data.produsen}" />
 							</div>
 						</div>
 
-						<div class="col-md-3">
+						<div class="col-md-6">
 							<div class="form-group">
-							<label for="text-input">Jenis Rokok</label>
-									<input type="text" name="jenis" class="form-control jenisrokok" value="{$data.jenis}" disabled/>
+							<label for="text-input">Nama Stasiun TV</label>
+									<input type="text" name="jenis" class="form-control jenisrokok" value="{$data.jenis}" />
 							</div>
 						</div>
 
-						<div class="col-md-7">
+						<div class="col-md-6">
 							<div class="form-group">
-							<label for="text-input">Tanggal Pembelian</label>
+							<label for="text-input">Tanggal Tayang</label>
 								<div id="tanggalBeli" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
 									<input class="form-control" type="text" name="tanggalBeli" value="{$data.tanggalBeli}" data-required="true">
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -119,46 +119,65 @@
 						
 						<div class="col-sm-12">
 							<div class="form-group">
-							<label for="textarea-input">Lokasi Pembelian</label>
-									<textarea name="lokasiBeli" id="isi"  cols="10" rows="20" class="form-control">{$data.lokasiBeli}</textarea>
+							<label for="textarea-input">Waktu Tayang</label>
+									<input type="text" name="jenis" class="form-control jenisrokok" value="{$data.jenis}" />
 							</div>
 							
 							
 						</div>
+					</div>
+				</div>
+				
+				<div class="portlet">
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-file"></i>
+							 Materi Iklan Lainnya
+						</h3>
+
+					</div> <!-- /.portlet-header -->
+					<div class="portlet-content">
+						<div class="col-md-6">
+							<div class="form-group">
+							<label for="text-input">Penandaan 18+</label>
+									<input type="text" name="kadarNikotin" class="form-control" value="{$data.kadarNikotin}" />
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+							<label for="text-input">Tidak merangsang</label>
+									<input type="text" name="kadarPenulisan_sisi" class="form-control" value="{$data.kadarPenulisan_sisi}" />
+							</div>
+						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-							<label for="text-input">Kata promotif dan menyesatkan</label>
-									<input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" />
+							<label for="text-input">Tidak menggunakan bentuk rokok/asosiasi lainnya</label>
+									<input type="text" name="kadarTar" class="form-control" value="{$data.kadarTar}" />
 							</div>
 						</div>
 						
 						<div class="col-md-12">
 							<div class="form-group">
-							<label for="text-input">Evaluasi informasi kesehatan (MK/TMK)</label>
-									<input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+							<label for="text-input">Tidak ditujukan untuk anak, remaja, wanita hamil</label>
+									<input type="text" name="kadarTulisan" class="form-control" value="{$data.kadarTulisan}" />
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-							<label for="text-input">KESIMPULAN (MK/TMK)</label>
-									<input type="text" name="kesimpulan" class="form-control" value="{$data.kesimpulan}" />
+							<label for="text-input">Tidak bertentangan dengan norma</label>
+									<input type="text" name="kadarTulisan" class="form-control" value="{$data.kadarTulisan}" />
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-							<label for="text-input">Tahun</label>
-									<input type="text" name="tahun" class="form-control" value="{$data.tahun}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Harga</label>
-									<input type="text" name="harga" class="form-control" value="{$data.harga}" />
+							<label for="text-input">Evalusi</label>
+									<input type="text" name="gambar" class="form-control" value="{$data.evaluasiPeringatan}" />
 							</div>
 						</div>
 					</div>
+
 				</div>
-				
 			</div>
 		
 		
@@ -185,15 +204,15 @@
 									<input type="text" name="tulisanGambar" class="form-control" value="{$data.tulisanGambar}" />
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<div class="form-group">
-							<label for="text-input">Luas Depan (%)</label>
+							<label for="text-input">Gambar jelas dan mencolok sesuai dengan ketentuan</label>
 									<input type="text" name="luasPeringatan_depan" class="form-control" value="{$data.luasPeringatan_depan}" />
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-							<label for="text-input">Luas Belakang (%)</label>
+							<label for="text-input">Durasi iklan 10% dari total durasi</label>
 									<input type="text" name="luasPeringatan_belakang" class="form-control" value="{$data.luasPeringatan_belakang}" />
 							</div>
 						</div>
@@ -205,111 +224,21 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-							<label for="text-input">Evaluasi Kesehatan</label>
+							<label for="text-input">Full screen</label>
 									<input type="text" name="evaluasiPeringatan" class="form-control" value="{$data.evaluasiPeringatan}" />
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-							<label for="text-input">Upload Gambar</label>
-									<input type="file" name="gambar" class="form-control" value="{$data.evaluasiPeringatan}" />
+							<label for="text-input">Evalusi</label>
+									<input type="text" name="gambar" class="form-control" value="{$data.evaluasiPeringatan}" />
 							</div>
 						</div>
 						
 					</div>
 				</div>
 				
-				<div class="portlet">
-					<div class="portlet-header">
-
-						<h3>
-							<i class="fa fa-file"></i>
-							Kadar Nikotin dan Tar
-						</h3>
-
-					</div> <!-- /.portlet-header -->
-					<div class="portlet-content">
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Kadar Nikotin (mg)</label>
-									<input type="text" name="kadarNikotin" class="form-control" value="{$data.kadarNikotin}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Kadar Tar (mg)</label>
-									<input type="text" name="kadarTar" class="form-control" value="{$data.kadarTar}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Penulisan</label>
-									<input type="text" name="kadarPenulisan_sisi" class="form-control" value="{$data.kadarPenulisan_sisi}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Tulisan</label>
-									<input type="text" name="kadarTulisan" class="form-control" value="{$data.kadarTulisan}" />
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="portlet">
-					<div class="portlet-header">
-
-						<h3>
-							<i class="fa fa-file"></i>
-							Pencantuman Informasi Kesehatan
-						</h3>
-
-					</div> <!-- /.portlet-header -->
-					<div class="portlet-content">
-						<div class="col-md-12">
-							<div class="form-group">
-							<label for="text-input">Pernyataan "dilarang menjual atau memberi kepada anak dan  perempuan hamil"</label>
-									<input type="text" name="pernyataanUtama" class="form-control" value="{$data.pernyataanUtama}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Kode Produksi</label>
-									<input type="text" name="kodeProduksi" class="form-control" value="{$data.kodeProduksi}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Tgl Produksi</label>
-								<div id="tanggalProduksi" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
-									<input class="form-control" type="text" name="tanggalProduksi" value="{$data.tanggalProduksi}" data-required="true">
-									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-								</div>
-
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Nama dan Alamat Produsen</label>
-									<input type="text" name="alamat" class="form-control alamatprodusen" value="{$data.alamat}" disabled/>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-							<label for="text-input">Pernyataan "tidak ada batas aman"</label>
-									<input type="text" name="pernyataanBatas_aman" class="form-control" value="{$data.pernyataanBatas_aman}" />
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-							<label for="text-input">Pernyataan "mengandung lebih dari 4000 zat kimia …..."</label>
-									<input type="text" name="pernyataanZat_kimia" class="form-control" value="{$data.pernyataanZat_kimia}" />
-							</div>
-						</div>
-					</div>
-
-				</div>
+				
 				
 			</div>
 		</div>

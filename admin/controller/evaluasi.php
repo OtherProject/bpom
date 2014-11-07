@@ -147,7 +147,39 @@ class evaluasi extends Controller {
 		// pr($data);exit;
 		
 
-		return $this->loadView('evaluasi/evaluasi');
+		return $this->loadView('evaluasi/evaluasi-iklantv');
+
+	}
+
+	public function iklantv_detail(){
+		
+		$data = $this->contentHelper->getDataEvaluasi();
+		// pr($data);
+		if ($data){
+			
+			$this->view->assign('data',$data);
+		}
+		
+		if ($_POST['status']){
+
+			if (count($_POST['ids']>0)){
+
+				$id = implode(',', $_POST['ids']);
+
+				$status = intval($_POST['status']);
+				$approve = $this->contentHelper->validateData($id, $status);
+				if ($approve){
+					echo "<script>window.location.href='".$basedomain."evaluasi'</script>";
+					// redirect($basedomain.'evaluasi');
+				}
+			}
+			
+		}
+		
+		// pr($data);exit;
+		
+
+		return $this->loadView('evaluasi/evaluasi-iklantv-detail');
 
 	}
 
@@ -179,10 +211,41 @@ class evaluasi extends Controller {
 		// pr($data);exit;
 		
 
-		return $this->loadView('evaluasi/evaluasi');
+		return $this->loadView('evaluasi/evaluasi-phw');
 
 	}
 
+	public function iklanphw_detail(){
+		
+		$data = $this->contentHelper->getDataEvaluasi();
+		// pr($data);
+		if ($data){
+			
+			$this->view->assign('data',$data);
+		}
+		
+		if ($_POST['status']){
+
+			if (count($_POST['ids']>0)){
+
+				$id = implode(',', $_POST['ids']);
+
+				$status = intval($_POST['status']);
+				$approve = $this->contentHelper->validateData($id, $status);
+				if ($approve){
+					echo "<script>window.location.href='".$basedomain."evaluasi'</script>";
+					// redirect($basedomain.'evaluasi');
+				}
+			}
+			
+		}
+		
+		// pr($data);exit;
+		
+
+		return $this->loadView('evaluasi/evaluasi-phw-detail');
+
+	}
 	public function detail(){
 
 		global $basedomain;
