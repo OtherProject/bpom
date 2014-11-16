@@ -29,7 +29,7 @@ class home extends Controller {
 
 		global $CONFIG, $basedomain;
 
-		$getData = $this->contentHelper->getArticle();
+		// $getData = $this->contentHelper->getArticle();
     // pr($getData);
     $this->view->assign('data',$getData);	
 
@@ -61,37 +61,7 @@ class home extends Controller {
 
   }
 
-  function postToSocmed()
-  {
-    FacebookSession::setDefaultApplication($CONFIG['fb']['appId'], $CONFIG['fb']['secret']);
-        $helper = new FacebookRedirectLoginHelper($basedomain.'home/index/?get=true');
-        $session = false;
-        if(isset($_GET['get'])){
-          $session = $helper->getSessionFromRedirect();
-          
-          /* Buat posting message */
-          
-          // $post = (new FacebookRequest(
-         //      $session, 'POST', '/me/feed',array ('message' => 'This is a test message from bot',)
-         //    ))->execute()->getGraphObject();
-
-
-          $album = (new FacebookRequest(
-                      $session,'GET','/me/albums'
-                    ))->execute()->getGraphObject();
-             
-            
-            // pr($album);
-        }else{
-          $loginUrl = $helper->getLoginUrl(array('scope' => 'user_photos,publish_actions',)); 
-      $this->view->assign('accessUrlFb',$loginUrl);
-        }
-        
-
-        // pr($post);
-        
-
-  }
+  
 
 	function loginSocmed()
   {

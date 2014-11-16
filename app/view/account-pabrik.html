@@ -1,6 +1,36 @@
-<br>
+<script type="text/javascript">
 
-<form method="post" action="{$basedomain}register/save">
+  {literal}
+
+    $(document).on('change', '.pilihprov', function(){
+
+
+      var id = $(this).val();
+
+      $.post(basedomain+'account/ajax',{kode_wilayah:id}, function(data){
+
+        var html = "";
+
+        if (data.status==true){
+          $.each(data.res, function(i,val){
+
+            html += "<option value='"+val.kode_wilayah+"'>"+val.nama_wilayah+"</option>";
+
+          })
+
+          $('.pilihkab').html(html);
+        } 
+        
+      }, "JSON")  
+
+    })
+  {/literal}
+</script>
+
+<br>
+<section>
+    <div class="container">  
+<form method="post" action="{$basedomain}account/pabrik" enctype="multipart/form-data">
 
 <div class="content-container">
 <div class="row">
@@ -25,12 +55,13 @@
         
             <div class="col-sm-12">
               <div class="form-group">
-              <label for="text-input">Nama Pabrik</label>
-                  <a href="" class="form-control">Nama Pabrik 1</a><br>
-                  <a href="" class="form-control">Nama Pabrik 2</a><br>
-                  <a href="" class="form-control">Nama Pabrik 3</a><br>
-                  <a href="" class="form-control">Nama Pabrik 4</a><br>
-                  <a href="" class="form-control">Nama Pabrik 5</a><br>
+              <label for="text-input">Lokasi Pabrik</label>
+                {if $pabrik}
+                  {foreach $pabrik as $val}
+                  <a href="{$basedomain}account/pabrik/?id={$val.id}" class="form-control">{$val.alamatPabrik.nama_wilayah}</a><br>
+                  {/foreach}
+                {/if}
+                 
               </div>
             </div>  
             
@@ -57,21 +88,33 @@
             <div class="col-sm-12">
               <div class="form-group">
               <label for="text-input">Provinsi</label>
-                  <input type="text" name="merek" class="form-control" value="{$data.merek}" data-required="true" />
+                  <select class="form-control pilihprov">
+                    <option>-Pilih Provinsi-</option>
+                    {foreach $lokasi as $val}
+                    <option value="{$val.kode_wilayah}" {if $data.getCurrentProv.kode_wilayah==$val.kode_wilayah}selected{/if}>{$val.nama_wilayah}</option>
+
+                    {/foreach}
+                  </select>
               </div>
             </div>  
             
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Kabupaten</label>
-                  <input type="text" name="produsen" class="form-control" value="{$data.produsen}" />
+                  <select class="form-control pilihkab" name="provinsi">
+                    {if $data.getCurrentKab}
+                    <option value="{$data.getCurrentKab.kode_wilayah}">{$data.getCurrentKab.nama_wilayah}</option>
+                    {else}
+                    <option>-Pilih Kabupaten-</option>
+                    {/if}
+                  </select>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Kecamatan</label>
-                  <input type="text" name="jenis" class="form-control" value="{$data.jenis}" />
+                  <input type="text" name="kecamatan" class="form-control" value="{$data.kecamatan}" />
               </div>
             </div>
 
@@ -79,35 +122,37 @@
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Kelurahan</label>
-                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" />
+                  <input type="text" name="desa" class="form-control" value="{$data.desa}" />
               </div>
             </div>
             
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Kode Pos</label>
-                  <input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+                  <input type="text" name="kodePos" class="form-control" value="{$data.kodePos}" />
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">Nama Jalan</label>
-                  <input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+                  <input type="text" name="namaJalan" class="form-control" value="{$data.namaJalan}" />
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">No NPPBKC</label>
-                  <input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
+                  <input type="text" name="noNPPBKC" class="form-control" value="{$data.noNPPBKC}" />
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">Upload dokumen NPPBKC (dilampirkan fotocopy NPPBKC)</label>
-                  <input type="file" name="fileNPPBKC" class="form-control" value="{$data.evaluasiInformasi}" />
+                  <input type="file" name="fileNPPBKC" class="form-control" value="{$data.evaluasiInformasi}" /><p>Nama Dokumen : {$data.files}</p>
               </div>
             </div>
             <br>
+            <input type="hidden" name="indusrtiID" value="{$data.indusrtiID}">
+            <input type="hidden" name="id" value="{$id}">
       <button id="btn-dis" class="btn btn-info" type="submit">
       <i class="fa fa-save"></i>
       Simpan Data
@@ -125,3 +170,5 @@
 </div>
 
 </form>
+</div>
+</section>

@@ -1,55 +1,80 @@
-<div class="contentNews">
-            <div class="detailNews">
-              <div class="headDetail">
-                <div class="teksHead" align="left">News </div>
-              </div>
-              <div class="detail">
-                <table>
-                    <tr>
-                        <td style="font-weight:bold;border-bottom:3px double; font-size:17px;">Tembakau</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:justify; text-indent:30px;color:#666666;font-family:Arial, Helvetica, sans-serif;">
-                            <p>Tembakau adalah hasil bumi yang diproses dari daun tanaman yang juga dinamai sama. Tanaman tembakau terutama adalah Nicotiana tabacum dan Nicotiana rustica, meskipun beberapa anggota Nicotiana lainnya juga dipakai dalam tingkat sangat terbatas.
 
-<p>Tembakau adalah produk pertanian semusim yang bukan termasuk komoditas pangan, melainkan komoditas perkebunan. Produk ini dikonsumsi bukan untuk makanan tetapi sebagai pengisi waktu luang atau "hiburan", yaitu sebagai bahan baku rokok dan cerutu. Tembakau juga dapat dikunyah. Kandungan metabolit sekunder yang kaya juga membuatnya bermanfaat sebagai pestisida dan bahan baku obat.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;border-bottom:3px double;font-size:17px;" > Cengkeh</td>
-                    </tr><tr><td></td></tr>
-                    <tr>
-                        <td style="text-align:justify; text-indent:30px;color:#666666;font-family:Arial, Helvetica, sans-serif;">
-                            Cengkih (Syzygium aromaticum, syn. Eugenia aromaticum), dalam bahasa Inggris disebut cloves, adalah tangkai bunga kering beraroma dari keluarga pohon Myrtaceae. Cengkih adalah tanaman asli Indonesia, banyak digunakan sebagai bumbu masakan pedas di negara-negara Eropa, dan sebagai bahan utama rokok kretek khas Indonesia. Cengkih ditanam terutama di Indonesia (Kepulauan Banda) dan Madagaskar; selain itu juga dibudidayakan di Zanzibar, India, dan Sri Lanka.
-                        </td>
-                    </tr>
-                </table>
-              </div>
-            </div>
-         <div class="listNews">
-              <div class="headlist">
-                <div class="teksHead" align="left" style="color:#FFFFFF;">List News </div>
-              </div>
-              <div class="list">
-                <div class="site_list" align="left">
-                    <h1>News A</h1>
-                    <ul>
-                        <li><a href="#">News 1</a></li>
-                        <li><a href="#">News 2</a></li>
-                        <li><a href="#">News 3</a></li>
-                        <li><a href="#">News 4</a></li>
-                        <li><a href="#">News 5</a></li>
-                    </ul><br />
-                    <h1>News B</h1>
-                    <ul>
-                        <li><a href="#">News 1</a></li>
-                        <li><a href="#">News 2</a></li>
-                        <li><a href="#">News 3</a></li>
-                        <li><a href="#">News 4</a></li>
-                        <li><a href="#">News 5</a></li>
-                    </ul><br />
+<section id="blog" class="container">
+        
+        <div class="center">
+            <h2>News Update</h2>
+            
+        </div>
+
+        <div class="blog">
+            <div class="row">
+                 <div class="col-md-8">
+
                     
-                </div>
-              </div>
-         </div>
-         </div>
+                    <div class="blog-item">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-2 text-center">
+                                <div class="entry-meta">
+                                    <span id="publish_date">1 Nov 2014</span>
+                                    <span><i class="fa fa-user"></i> <a href="#">NAPZA</a></span>
+                                    
+                                </div>
+                            </div>
+                                
+                            <div class="col-xs-12 col-sm-10 blog-content" align="justify">
+                                
+                                <a href="#">
+                                    <img class="img-responsive img-blog" src="{$basedomain}public_assets/news-1.jpg" width="100%"  alt="" />
+                                </a>
+                                
+                                <h2><a href="{$basedomain}news/detailnews/?id={$val.id}">BPOM: Regulasi Rokok Elektronik, Tunggu Tanggal Mainnya</a></h2>
+                                <h3>Kini, makin banyak beredar rokok elektronik atau personal vapour. Penjualannya makin marak di internet,  dan kini mulai merambah di pusat-pusat perbelanjaan. Sehingga, saat ini makin mudah melihat orang menghisap rokok elektronik (vaping). Hingga kini, Indonesia memang belum memiliki regulasi yang mengatur tentang penggunaan rokok elektronik.</h3>
+                                <a class="btn btn-primary readmore" href="{$basedomain}news/detailnews/?id={$val.id}">Detail <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>    
+                    </div><!--/.blog-item-->
+
+                    
+                    {*}
+                    
+                    <ul class="pagination pagination-lg">
+                        <li><a href="#"><i class="fa fa-long-arrow-left"></i>Previous Page</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">Next Page<i class="fa fa-long-arrow-right"></i></a></li>
+                    </ul><!--/.pagination-->
+                      {/*} 
+                </div><!--/.col-md-8-->
+                <aside class="col-md-4">
+                    <div class="widget search">
+                        <form role="form">
+                                <input type="text" class="form-control search_box" autocomplete="off" placeholder="Search Here">
+                        </form>
+                    </div><!--/.search-->
+                    
+                
+                     
+
+                    
+                    <div class="widget archieve">
+                        <h3>Archieve</h3>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ul class="blog_archieve">
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Agustus 2014 <span class="pull-right">(97)</span></a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i> September 2014 <span class="pull-right">(32)</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i> October 2014 <span class="pull-right">(19)</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i> November 2014 <span class="pull-right">(08)</a></li>
+                                </ul>
+                            </div>
+                        </div>                     
+                    </div><!--/.archieve-->
+                    
+                </aside>  
+            </div><!--/.row-->
+        </div>
+    </section><!--/#blog-->
+

@@ -30,7 +30,7 @@ class register extends Controller {
 
 		global $CONFIG, $basedomain;
 
-		$getData = $this->contentHelper->getArticle();
+		// $getData = $this->contentHelper->getArticle();
     // pr($getData);
     $this->view->assign('data',$getData);	
 

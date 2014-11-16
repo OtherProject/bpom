@@ -1,108 +1,31 @@
+	
+    <footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12" align="center">
+                  Direktorat Pengawasan Narkotika, Psikotropika dan Zat Adiktif (NAPZA)
+                </div>
+                 <!-- <div class="col-sm-6">
+                  <ul class="pull-right">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Faq</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>&nbsp;
+                </div>-->
+            </div>
+        </div>
+    </footer><!--/#footer-->
+	
+    <script src="{$basedomain}assets/js/jquery.js"></script>
+    <script src="{$basedomain}assets/js/bootstrap.min.js"></script>
+    <script src="{$basedomain}assets/js/jquery.prettyPhoto.js"></script>
+    <script src="{$basedomain}assets/js/jquery.isotope.min.js"></script>
+    <script src="{$basedomain}assets/js/main.js"></script>
+    <script src="{$basedomain}assets/js/wow.min.js"></script>
+    <script src="{$basedomain}assets/js/bootstrap-submenu.js" defer></script>
 
-	<script src="{$basedomain}assets/js/jquery.js"></script>
-  	<!-- Bootstrap javascript -->
-  	<script src="{$basedomain}assets/js/bootstrap.min.js"></script>
-
-	<script type="text/javascript" src="{$basedomain}assets/js/jquery-1.9.0.min.js"></script>
-    <script type="text/javascript" src="{$basedomain}assets/js/jquery.nivo.slider.js"></script>
-    <script type="text/javascript" src="{$basedomain}assets/js/jquery-ui.js"></script>
-    <script src="{$basedomain}assets/js/plugins/beatpicker/js/BeatPicker.min.js"></script>
-	<script type="text/javascript">
-		{literal}
-		$(function(){
-			$('#postdate').datepicker({
-				dateFormat:'yy-mm-dd'
-			});
-			$('#postdate1').datepicker({
-				dateFormat:'yy-mm-dd'
-			});
-			$('#postdate2').datepicker({
-				dateFormat:'yy-mm-dd'
-			});
-
-			$(window).load(function() {
-                $('#slider').nivoSlider();
-            });
-
-			
-		});
-
-		function login()
-		{
-			$('.form .form-bg').fadeIn('fast', function(){
-			$('.form #form-1').show('fast');
-			});
-					
-			$('.form #form-1 .form-btn-close').click(function(){
-			$('.form #form-1').fadeOut('fast', function(){
-			$('.form .form-bg').hide('fast');
-			});
-			});
-		}
-		{/literal}
-	</script>
 
 	
-	<div id="footer" align="center">
-    	<div class="site">
-    		<a href="index.html">Home</a>
-            <a href="news.html">News</a>
-            <a href="profile.html">Profile</a>
-            <a href="contact.html">Contact Us</a>
-        </div>
-        <div class="copyright" style="padding-top:30px;color:#FFFFFF; ">
-        	COPYRIGHT © 2014 BPOM - NAPZA - INDONESIA. ALL RIGHTS RESERVE
-        </div>
-    </div>
-
-
-	<!-- FORM BUAT TAMBAH -->	
-        <div class="form">
-				<div class="form-bg">
-					<div class="form-style-1 form-wrapper" id="form-1">						
-						<div class="popup-content">
-                        	<div class="formLogin">
-                            	<div class="headLogin">
-                                	<div class="teksHead" align="center">&raquo; Sign In &laquo;</div>
-                                </div>
-                            	<div class="contentLogin" align="center">
-                                	<form method="post" action="{$basedomain}login/doLogin">
-                                        <table class="tableForm">
-                                            <tr style="margin-bottom:10px;">
-                                                <td>Email</td><td>:</td>
-                                                <td><input type="text" name="email" value="" size="20" id="username"/> 
-                                            </tr>
-                                            <tr>
-                                                <td>Password</td><td>:</td>
-                                                <td><input type="password" name="password" value="" size="20" id="password"/>
-                                            </tr>                                
-                                            <tr>
-                                                <td colspan="3" align="right">   
-                                                <button id="btn-dis" class="btn btn-info" type="submit">
-													<i class="fa fa-save"></i>
-													Login
-													</button>   
-													<a href="{$basedomain}register"><button id="btn-dis" class="btn btn-success" type="button">
-													<i class="fa fa-save"></i>
-													Register
-													</button></a>
-													<a href="{$basedomain}"><button id="btn-dis" class="btn btn-warning" type="submit">
-													<i class="fa fa-save"></i>
-													Cancel
-													</button></a>
-
-                                                </td>
-                                            </tr>
-                                        </table>
-                                     </form>
-                                </div>
-                            </div>                        						
-						</div>
-					</div>
-					<!--ENDS Popup Type 1-->
-				</div>
-				<!--ENDS Popup Background-->
-		</div>
-		
 </body>
 </html>

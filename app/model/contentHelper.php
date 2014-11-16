@@ -10,245 +10,339 @@ class contentHelper extends Database {
 
 
 
-	function getArticle($id=false, $start=0, $limit=6)
+	function saveDataIndustri($data, $debug=false)
 	{
 
-		$filter = "";
-		if ($id) $filter = "AND id = {$id}";
-
-		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE articleType = 0 AND n_status = 1 {$filter} ORDER BY posted_date DESC LIMIT {$start},{$limit}";
-		$res = $this->fetch($sql,1);
-		if ($res) return $res;
-		return false;
-	}
-
-	function getRandomArticle($id=false, $start=0, $limit=3)
-	{
-
-		$filter = "";
-		if ($id) $filter = "AND id <> {$id}";
-
-		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = 1 {$filter} ORDER BY rand() DESC LIMIT {$start},{$limit}";
-		$res = $this->fetch($sql,1);
-		if ($res) return $res;
-		return false;
-	}
-	function getNextArticle($id=false)
-	{
-
-		if(!$id) return false;
-		$sql = "SELECT id FROM {$this->prefix}_news_content
-				where (
-				        id = IFNULL((SELECT min(id) from {$this->prefix}_news_content WHERE id > {$id}),0)
-				        OR  id = IFNULL((SELECT max(id) from {$this->prefix}_news_content WHERE id < {$id}),0)
-				      ) AND n_status = 1";
-		$res = $this->fetch($sql,1);
-		// pr($res);
-		if ($res){
-
-			// logikanya dibalik (prev/next) untuk menyesuaikan dengan posted_date
-
-			if (count($res)>1){
-
-				foreach ($res as $key => $value) {
-					if ($value['id']<$id){
-						$data['next'] = intval($value['id']);
-					}
-					if ($value['id']>$id){
-						$data['prev'] = intval($value['id']);
-					}
-				}
-
-			}else{
-
-				foreach ($res as $key => $value) {
-					if ($value['id']<$id){
-						$data['next'] = intval($value['id']);
-						$data['prev'] = "#";
-					}
-
-					if ($value['id']>$id){
-						$data['next'] = "#";
-						$data['prev'] = intval($value['id']);
-					}
-				}
-			}
-
-
-			return $data;
+		foreach ($data as $key => $value) {
+			$$key = $value;
 		}
 
-		return false;
+		$sql = array(
+                    'table' =>"{$this->prefix}_industri",
+                    'field' => "npwp = '{$npwp}', namaPimpinan = '{$namaPimpinan}',noKTP = '{$noKTP}',
+                    			jenisKelamin = '{$jenisKelamin}',alamatPimpinan = '{$alamatPimpinan}',
+                    			provinsi = '{$provinsi}',kecamatan = '{$kecamatan}',desa = '{$desa}',
+                    			kodePos = '{$kodePos}',jalanRTRW = '{$jalanRTRW}',noTelepon = '{$noTelepon}',
+                    			noFax = '{$noFax}',email = '{$email}'",
+                    'condition' => "id = {$id}",
+                );
+        $result = $this->lazyQuery($sql,$debug,2);
+        if ($result) return $result;
+        return false;
 	}
 
-	function saveUserFoto($data=array())
+	function saveDataPabrik($data, $debug=false)
 	{
-
-		$useraccount = $this->user['default'];
-
-		$date = date('Y-m-d H:i:s');
-		// pr($useraccount);
-		$title = "Upload foto from local store";
-		$sql = "INSERT INTO {$this->prefix}_news_content_repo (title,typealbum, files, userid, created_date, n_status)
-				VALUES ('{$title}', 1, '{$data['full_name']}', {$useraccount['id']}, '{$date}',1)";
-		// pr($sql);
-		$res = $this->query($sql);
-		logFile('user '.$useraccount['name'].' save image to database before croping');
-		if($res) return true;
-		return false;
-	}
-
-	function getMyPhoto()
-	{
-		$userid = $this->user['default']['id'];
-		$sql = "SELECT * FROM {$this->prefix}_news_content_repo WHERE userid = {$userid}
-				AND n_status = 1 {$filter} ORDER BY created_date DESC LIMIT 1";
-		$res = $this->fetch($sql);
-		if ($res) return $res;
-		return false;
-	}
-
-	function getFrame($flag=4)
-	{
-
-		/*
-			flag 4 for facebook cover
-			flag 5 for twitter cover
-		*/
-
-		$filter = " AND typealbum IN ({$flag}) ";
-
-		$sql = "SELECT * FROM {$this->prefix}_news_content_repo WHERE gallerytype IN (1)
-				AND n_status = 1 {$filter} ORDER BY created_date DESC LIMIT 4";
-		$res = $this->fetch($sql,1);
-		if ($res){
-
-			foreach ($res as $key => $value) {
-				$sql1 = "SELECT * FROM {$this->prefix}_news_content_repo WHERE gallerytype IN (2)
-						AND n_status = 1 AND otherid = {$value['id']} {$filter} ORDER BY created_date DESC LIMIT 1";
-				$res1 = $this->fetch($sql1);
-
-				$res[$key]['cover'] = $res1;
-			}
-
-
-			return $res;
+		foreach ($data as $key => $value) {
+			$$key = $value;
 		}
-		return false;
-	}
 
-	function getCreateImage()
-	{
-		$useraccount = $this->user['default'];
-		$sql1 = "SELECT * FROM {$this->prefix}_createimage WHERE userid = {$useraccount['id']} ORDER BY created_date DESC LIMIT 1";
-		$res1 = $this->fetch($sql1);
+		$createDate = date('Y-m-d H:i;s');
+		$n_status = 1;
 
+		if ($id){
 
-		if ($res1) return $res1;
-		return false;
-	}
-
-	function updateUserFoto($id, $filename, $fromonline=false)
-	{
-
-		if ($fromonline){
-
-			$useraccount = $this->user['default'];
-
-			$date = date('Y-m-d H:i:s');
-			// pr($useraccount);
-			$title = "Upload foto from album facebook";
-			$sql = "INSERT INTO {$this->prefix}_news_content_repo (title,typealbum, files, userid, created_date, n_status)
-					VALUES ('{$title}', 1, '{$filename}', {$useraccount['id']}, '{$date}',1)";
-			// pr($sql);
-			$res = $this->query($sql);
-
+			$sql = array(
+	                    'table' =>"{$this->prefix}_industri_pabrik",
+	                    'field' => "indusrtiID = '{$indusrtiID}', provinsi = '{$provinsi}',kecamatan = '{$kecamatan}',
+	                    			desa = '{$desa}',kodePos = '{$kodePos}',
+	                    			namaJalan = '{$namaJalan}',noNPPBKC = '{$noNPPBKC}',n_status = '{$n_status}'",
+	                    'condition' => "id = {$id}",
+	                );
+	        $result = $this->lazyQuery($sql,$debug,2);
 		}else{
-			// $sql = "UPDATE {$this->prefix}_news_content_repo SET thumbnail = '{$filename}' WHERE id = {$id} LIMIT 1";
-			$sql = "UPDATE {$this->prefix}_createimage SET profil = '{$filename}' WHERE id = {$id} LIMIT 1";
-			// pr($sql);
+			$sql = array(
+	                    'table' =>"{$this->prefix}_industri_pabrik",
+	                    'field' => "indusrtiID, provinsi ,kecamatan, desa, kodePos,
+	                    			namaJalan,noNPPBKC,createDate,n_status",
+	                    'value' => "'{$indusrtiID}', '{$provinsi}', '{$kecamatan}','{$desa}','{$kodePos}','{$namaJalan}',
+	                    			'{$noNPPBKC}', '{$createDate}',$n_status ",
+	                );
+	        $result = $this->lazyQuery($sql,$debug,1);
+		}
+		
+        if ($result) return $result;
+        return false;
+	}
 
-			$res = $this->query($sql);
+	function saveDataKemasan($data, $debug=false)
+	{
+		foreach ($data as $key => $value) {
+			$$key = $value;
 		}
 
-		if ($res) return true;
-		return false;
+		$createDate = date('Y-m-d H:i;s');
+		$n_status = 1;
+
+		
+		$sql = array(
+                    'table' =>"{$this->prefix}_pelaporan_kemasan",
+                    'field' => "industriID, pabrikID, merek ,jenis, isi, bentuKemasan,
+                    			jenisGambar,tulisanPeringatan,createDate,n_status",
+                    'value' => "'{$pabrikID}','{$pabrikID}', '{$merek}', '{$jenis}','{$isi}','{$bentuKemasan}','{$jenisGambar}',
+                    			'{$tulisanPeringatan}', '{$createDate}',$n_status ",
+                );
+        $result = $this->lazyQuery($sql,$debug,1);
+		
+		
+        if ($result) return $result;
+        return false;
 	}
 
-	function updateUserFrame($data=array())
+	function saveDataNikotin($data, $debug=false)
 	{
+		foreach ($data as $key => $value) {
+			$$key = $value;
+		}
 
-		$useraccount = $this->user['default'];
+		$createDate = date('Y-m-d H:i;s');
+		$n_status = 1;
 
-		$date = date('Y-m-d H:i:s');
-
-		$sql = "INSERT INTO {$this->prefix}_createimage (userid,cover, frame, created_date, n_status)
-				VALUES ({$useraccount['id']}, '{$data['cover']}', '{$data['frame']}', '{$date}',1)";
-		// pr($sql);
-		$res = $this->query($sql);
-		if ($res) return true;
-		return false;
+		
+		$sql = array(
+                    'table' =>"{$this->prefix}_pelaporan_nikotin",
+                    'field' => "industriID, pabrikID, merek ,jenis, isiKemasan, kodeProduksi,
+                    			kodeSample,labID, noSertifikat, tanggalUji, kadarNikotin,
+                    			kadarTar, kadarKretek, createdDate,n_status",
+                    'value' => "'{$industriID}', '{$pabrikID}', '{$merek}', '{$jenis}','{$isiKemasan}',
+                    			'{$kodeProduksi}','{$kodeSample}','{$labID}','{$noSertifikat}',
+                    			'{$tanggalUji}','{$kadarNikotin}','{$kadarTar}', '{$kadarKretek}','{$createDate}',$n_status ",
+                );
+        $result = $this->lazyQuery($sql,$debug,1);
+		
+		
+        if ($result) return $result;
+        return false;
 	}
 
-	function updateCreateImageStatus()
+	function updateDataKemasan($data, $debug=false)
 	{
-		$useraccount = $this->user['default'];
+		$files = $data['full_name'];
+		$id = $data['id'];
+		if ($id) $id = $id;
+		else $id = $this->insert_id();
 
-		$user = $this->getCreateImage();
+		$fotoDepan = $data['fotoDepan']['full_name'];
+		if ($fotoDepan) $field[] = "fotoDepan = '{$fotoDepan}'";
+		$fotoBelakang = $data['fotoBelakang']['full_name'];
+		if ($fotoDepan) $field[] = "fotoBelakang = '{$fotoBelakang}'";
+		$fotoKanan = $data['fotoKanan']['full_name'];
+		if ($fotoDepan) $field[] = "fotoKanan = '{$fotoKanan}'";
+		$fotoKiri = $data['fotoKiri']['full_name'];
+		if ($fotoDepan) $field[] = "fotoKiri = '{$fotoKiri}'";
+		$fotoAtas = $data['fotoAtas']['full_name'];
+		if ($fotoDepan) $field[] = "fotoAtas = '{$fotoAtas}'";
+		$fotoBawah = $data['fotoBawah']['full_name'];
+		if ($fotoDepan) $field[] = "fotoBawah = '{$fotoBawah}'";
 
-		$sql = "UPDATE {$this->prefix}_createimage SET n_status = 2 WHERE id = {$user['id']} AND userid = {$user['userid']} LIMIT 1";
-		$res = $this->query($sql);
-		if ($res) return true;
-		return false;
+		if ($field){
+			$impF = implode(',', $field);
+			$sql = array(
+		                'table' =>"{$this->prefix}_pelaporan_kemasan",
+		                'field' => "{$impF}",
+		                'condition' => "id = {$id}",
+		            );
+		    $result = $this->lazyQuery($sql,$debug,2);
+		    if ($result) return true;
+		}
+		
+        return false;
 	}
 
-	function getCreateImageObject ($user, $id)
+	function updateDataNikotin($data, $debug=false)
 	{
-		return $this->fetch("SELECT * FROM {$this->prefix}_createimage WHERE userid = {$user['id']} AND id = $id LIMIT 1");
+		$files = $data['full_name'];
+		$id = $data['id'];
+		
+		if ($id) $id = $id;
+		else $id = $this->insert_id();
+
+		$sertifikat = $data['sertifikat']['full_name'];
+		if ($sertifikat) $field[] = "sertifikat = '{$sertifikat}'";
+		
+
+		$impF = implode(',', $field);
+		$sql = array(
+	                'table' =>"{$this->prefix}_pelaporan_nikotin",
+	                'field' => "{$impF}",
+	                'condition' => "id = {$id}",
+	            );
+	    $result = $this->lazyQuery($sql,$debug,2);
+	    if ($result) return true;
+        return false;
 	}
 
-	function setCreateImageStatus ($image, $status)
+
+	function getPelaporanKemasan($id=false, $industriID=false, $debug=false)
 	{
-		return $this->query("UPDATE {$this->prefix}_createimage SET n_status = $status WHERE id = {$image['id']}");
+
+		$filter = "";
+
+		if ($id) $filter .= "AND k.id = '{$id}'";
+		if ($industriID) $filter .= "AND k.industriID = '{$industriID}'";
+		if ($pabrikID) $filter .= "AND k.pabrikID = '{$pabrikID}'";
+
+		$sql = array(
+                    'table' =>"{$this->prefix}_pelaporan_kemasan AS k, {$this->prefix}_product AS p, 
+                    			{$this->prefix}_industri_pabrik AS i, {$this->prefix}_industri AS ind",
+                    'field' => "k.*, p.merek, p.jenis, i.noNPPBKC, i.namaJalan, ind.namaPimpinan,
+                    			ind.kodePos, ind.noFax",
+                    'condition' => "1 {$filter}",
+                    'joinmethod' => 'LEFT JOIN',
+                	'join' => 'k.merek=p.id, k.pabrikID = i.id, k.industriID = ind.id'
+                );
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result) return $result;
+        return false;
 	}
 
-	function getIndustri($id=false)
+	function getPelaporanNikotin($id=false, $industriID=false, $debug=false)
 	{
 
-		 $sql = array(
+		$filter = "";
+
+		if ($id) $filter .= "AND k.id = '{$id}'";
+		if ($industriID) $filter .= "AND k.industriID = '{$industriID}'";
+		if ($pabrikID) $filter .= "AND k.pabrikID = '{$pabrikID}'";
+
+		$sql = array(
+                    'table' =>"{$this->prefix}_pelaporan_nikotin AS k, {$this->prefix}_product AS p, 
+                    			{$this->prefix}_industri_pabrik AS i, {$this->prefix}_industri AS ind",
+                    'field' => "k.*, p.merek, p.jenis, i.noNPPBKC, i.namaJalan, ind.namaPimpinan,
+                    			ind.kodePos, ind.noFax",
+                    'condition' => "1 {$filter}",
+                    'joinmethod' => 'LEFT JOIN',
+                	'join' => 'k.merek=p.id, k.pabrikID = i.id, k.industriID = ind.id'
+                );
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result) return $result;
+        return false;
+	}
+
+	function updateDataPabrik($data, $debug=false)
+	{
+		$files = $data['full_name'];
+		$id = $data['id'];
+		if ($id) $id = $id;
+		else $id = $this->insert_id();
+
+		$sql = array(
+	                'table' =>"{$this->prefix}_industri_pabrik",
+	                'field' => "files = '{$files}'",
+	                'condition' => "id = {$id}",
+	            );
+	    $result = $this->lazyQuery($sql,$debug,2);
+	    if ($result) return true;
+        return false;
+	}
+
+	function getIndustri($id=false,$all=false, $debug=false)
+	{
+
+		$filter = "";
+
+		if ($id) $filter .= "AND id = '{$id}'";
+		
+		if ($all){
+			$sql = array(
                     'table' =>"{$this->prefix}_industri",
                     'field' => "*",
-                    'condition' => "id = {$id}",
-                    'limit' => 1
                 );
-        $result = $this->lazyQuery($sql);
-        if ($result) return $result;
-        return false;
-	}
-
-	function getLokasi($id=false)
-	{
-
-		 $sql = array(
-                    'table' =>"tbl_wilayah",
+		}else{
+			$sql = array(
+                    'table' =>"{$this->prefix}_industri",
                     'field' => "*",
-                    'condition' => 'parent = 0 ORDER BY nama_wilayah'
+                    'condition' => "1 {$filter}",
                 );
-        $result = $this->lazyQuery($sql);
+		}
+		
+        $result = $this->lazyQuery($sql,$debug);
         if ($result) return $result;
         return false;
 	}
 
-	function getKab($id=false)
+	function getPabrik($id=false, $indusrtiID=false, $debug=false)
 	{
 
-		if (!$id) return false;
+		$filter = "";
+
+		if ($id) $filter .= "AND id = '{$id}'";
+		if ($indusrtiID) $filter .= "AND indusrtiID = '{$indusrtiID}'";
+
+		$sql = array(
+                    'table' =>"{$this->prefix}_industri_pabrik",
+                    'field' => "*",
+                    'condition' => "1 {$filter}",
+                );
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getProduk($id=false, $debug=false)
+	{
+
+		$filter = "";
+
+		if ($id) $filter .= "AND id = '{$id}'";
+		
+		$sql = array(
+                    'table' =>"{$this->prefix}_product",
+                    'field' => "*",
+                    'condition' => "1 {$filter}",
+                );
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getLab($id=false, $debug=false)
+	{
+
+		$filter = "";
+
+		if ($id) $filter .= "AND id = '{$id}'";
+		
+		$sql = array(
+                    'table' =>"{$this->prefix}_lab",
+                    'field' => "*",
+                    'condition' => "1 {$filter}",
+                );
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getLokasi($id=false,$debug=false)
+	{
+
+		$filter = "";
+
+		if ($id) $filter .= "AND kode_wilayah = '{$id}'";
 		$sql = array(
                     'table' =>"tbl_wilayah",
                     'field' => "*",
-                    'condition' => "parent = '{$id}' ORDER BY nama_wilayah"
+                    'condition' => "parent = 0 {$filter} ORDER BY nama_wilayah"
                 );
-        $result = $this->lazyQuery($sql);
+        $result = $this->lazyQuery($sql, $debug);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getKab($id=false, $parent=false, $debug=false)
+	{
+
+		$filter = "";
+
+		if ($id) $filter .= "AND kode_wilayah = '{$id}'";
+		if ($parent) $filter .= "AND parent = '{$parent}'";
+
+		$sql = array(
+                    'table' =>"tbl_wilayah",
+                    'field' => "*",
+                    'condition' => " 1 {$filter} ORDER BY nama_wilayah"
+                );
+        $result = $this->lazyQuery($sql, $debug);
         if ($result) return $result;
         return false;
 	}

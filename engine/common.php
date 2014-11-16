@@ -102,6 +102,11 @@ function redirect($data) {
 
 }
 
+function reload($data) {
+	
+	echo "<script>alert('Process Complete'); window.location.href='".$data."';</script>";
+
+}
 
 function imageFrame($filename=false, $framefile=false)
 {

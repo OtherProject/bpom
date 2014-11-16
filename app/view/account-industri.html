@@ -30,7 +30,10 @@
 
 <br>
 
-<form method="post" action="{$basedomain}register/save">
+<section>
+    <div class="container">  
+
+<form method="post" action="{$basedomain}account/industri">
 
 <div class="content-container">
 <div class="row">
@@ -61,7 +64,7 @@
             <div class="col-sm-12">
               <div class="form-group">
               <label for="text-input">NPWP Perusahaan</label>
-                  <input type="text" name="namaIndustri" class="form-control" value="{$data.npwp}" data-required="true" />
+                  <input type="text" name="npwp" class="form-control" value="{$data.npwp}" data-required="true" />
               </div>
             </div>  
             <div class='span11'><hr></div>
@@ -123,7 +126,7 @@
                           <select class="form-control pilihprov">
                             <option>-Pilih Provinsi-</option>
                             {foreach $lokasi as $val}
-                            <option value="{$val.kode_wilayah}">{$val.nama_wilayah}</option>
+                            <option value="{$val.kode_wilayah}" {if $provinsi.kode_wilayah==$val.kode_wilayah}selected{/if}>{$val.nama_wilayah}</option>
 
                             {/foreach}
                           </select>
@@ -132,52 +135,55 @@
                     <div class="col-md-6">
                       <div class="form-group">
                       <label for="text-input">Kabupaten/Kotamadya</label>
-                          <select class="form-control pilihkab">
+                          <select class="form-control pilihkab" name="provinsi">
+                            {if $kabupaten}
+                            <option value="{$kabupaten.kode_wilayah}">{$kabupaten.nama_wilayah}</option>
+                            {else}
                             <option>-Pilih Kabupaten-</option>
-                            
+                            {/if}
                           </select>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                       <label for="text-input">Kecamatan</label>
-                          <input type="text" name="kataPromotif" class="form-control" value="{$data.kecamatan}" />
+                          <input type="text" name="kecamatan" class="form-control" value="{$data.kecamatan}" />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                       <label for="text-input">Kelurahan/Desa</label>
-                          <input type="text" name="kataPromotif" class="form-control" value="{$data.desa}" />
+                          <input type="text" name="desa" class="form-control" value="{$data.desa}" />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                       <label for="text-input">Kode Pos</label>
-                          <input type="text" name="kataPromotif" class="form-control" value="{$data.kodePos}" />
+                          <input type="text" name="kodePos" class="form-control" value="{$data.kodePos}" />
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
                       <label for="text-input">Nama Jalan , RT RW</label>
-                          <input type="text" name="kataPromotif" class="form-control" value="{$data.jalanRTRW}" />
+                          <input type="text" name="jalanRTRW" class="form-control" value="{$data.jalanRTRW}" />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                       <label for="text-input">No Telepon</label>
-                          <input type="text" name="kataPromotif" class="form-control" value="{$data.noTelepon}" />
+                          <input type="text" name="noTelepon" class="form-control" value="{$data.noTelepon}" />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                       <label for="text-input">No Fax</label>
-                          <input type="text" name="kataPromotif" class="form-control" value="{$data.noFax}" />
+                          <input type="text" name="noFax" class="form-control" value="{$data.noFax}" />
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
                       <label for="text-input">Alamat email</label>
-                          <input type="text" name="kataPromotif" class="form-control" value="{$data.email}" />
+                          <input type="text" name="email" class="form-control" value="{$data.email}" />
                       </div>
                     </div>
                   </div>
@@ -186,6 +192,7 @@
         </div>
 
       <br>
+      <input type="hidden" name="id" value="{$data.id}">
       <button id="btn-dis" class="btn btn-info" type="submit">
       <i class="fa fa-save"></i>
       Simpan Data
@@ -197,3 +204,5 @@
 </div>
 
 </form>
+</div>
+</section>

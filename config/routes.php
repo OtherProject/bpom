@@ -12,7 +12,8 @@ $ROUTES = array(
         'account', 
         'login',
         'register',
-        'login'
+        'login',
+        'profile'
                 
                 );
 ?>
