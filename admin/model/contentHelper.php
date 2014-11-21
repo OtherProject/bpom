@@ -83,11 +83,77 @@ class contentHelper extends Database {
 		return $result;
 	}
 
+	function getLaporanKemasan($data, $debug=false)
+	{
+		$id = $data['id'];
+		$n_status = $data['n_status'];
+
+		$filter = "";
+		
+		if ($id) $filter = " AND k.id = {$id}";
+
+		$sql = array(
+                'table'=>"{$this->prefix}_pelaporan_kemasan AS k, {$this->prefix}_industri AS i , {$this->prefix}_product AS p, {$this->prefix}_industri_pabrik AS ip",
+                'field'=>"k.*, i.namaIndustri, p.merek, ip.noNPPBKC",
+                'condition' => "k.pabrikID != 0 AND k.n_status = {$n_status} {$filter}",
+                'limit' => '100',
+                'joinmethod' => 'LEFT JOIN',
+                'join' => 'k.industriID = i.id, k.merek = p.id, k.pabrikID = ip.id'
+                );
+
+        $res = $this->lazyQuery($sql,$debug);
+        if ($res) return $res;
+		return false;
+
+	}
+
+	function getLaporanNikotin($data, $debug=false)
+	{
+		$id = $data['id'];
+		$n_status = $data['n_status'];
+
+		$filter = "";
+		
+		if ($id) $filter = " AND n.id = {$id}";
+
+		$sql = array(
+                'table'=>"	{$this->prefix}_pelaporan_nikotin AS n, 
+                			{$this->prefix}_industri AS i , 
+                			{$this->prefix}_product AS p, 
+                			{$this->prefix}_industri_pabrik AS ip,
+                			{$this->prefix}_lab AS l", 
+                'field'=>"n.*, i.namaIndustri, p.merek, ip.noNPPBKC, ip.provinsi, ip.kecamatan, ip.namaJalan,
+                		l.nama AS namaLab, l.penanggungjawab",
+                'condition' => "n.pabrikID != 0 AND n.n_status = {$n_status} {$filter}",
+                'limit' => '100',
+                'joinmethod' => 'LEFT JOIN',
+                'join' => 'n.industriID = i.id, n.merek = p.id, n.pabrikID = ip.id, n.labID = l.id'
+                );
+
+        $res = $this->lazyQuery($sql,$debug);
+        if ($res) return $res;
+		return false;
+	}
+
 	function getDataEvaluasi($id=false, $n_status=1)
 	{
 
 		$filter = "";
+		// $n_status = $data['n_status'];
+
 		if ($id) $filter = " AND e.id = {$id}";
+
+		// $sql = array(
+  //               'table'=>"{$this->prefix}_evaluasi AS e, {$this->prefix}_product AS p , {$this->prefix}_product_image_type AS i, tbl_balai AS b",
+  //               'field'=>'e.*, p.merek, p.produsen, p.alamat, p.jenis, i.typeGambar,
+		// 					i.tulisanGambar, b.namaBalai',
+  //               'condition' => "e.n_status = {$n_status} {$filter}",
+  //               'limit' => '100',
+  //               'joinmethod' => 'LEFT JOIN',
+  //               'join' => 'e.produkID = p.id, e.jenisGambar = i.id, e.balaiID = b.kodeBalai'
+  //               );
+
+        // $res = $this->lazyQuery($sql,$debug);
 
 		$query = "SELECT e.*, p.merek, p.produsen, p.alamat, p.jenis, i.typeGambar,
 					i.tulisanGambar, b.namaBalai
@@ -98,8 +164,39 @@ class contentHelper extends Database {
 					WHERE e.n_status = {$n_status} {$filter}";
 		// pr($query);
 		$result = $this->fetch($query,1);
-		
-		return $result;
+		if ($result) return $result;
+		return false;
+	}
+
+	function updateStatusKemasan($data, $debug=false)
+	{
+
+		$id = $data['id'];
+		$n_status = $data['n_status'];
+		$sql = array(
+                'table'=>"{$this->prefix}_pelaporan_kemasan ",
+                'field'=>"n_status = {$n_status}",
+                'condition' => "id = {$id}",
+                );
+
+        $res = $this->lazyQuery($sql,$debug,2);
+        if ($res) return true;
+		return false;
+	}
+
+	function updateStatusNikotin($data, $debug=false)
+	{
+		$id = $data['id'];
+		$n_status = $data['n_status'];
+		$sql = array(
+                'table'=>"{$this->prefix}_pelaporan_nikotin ",
+                'field'=>"n_status = {$n_status}",
+                'condition' => "id = {$id}",
+                );
+
+        $res = $this->lazyQuery($sql,$debug,2);
+        if ($res) return true;
+		return false;
 	}
 
 	function updateDataEvaluasi($data=array())
@@ -173,6 +270,22 @@ class contentHelper extends Database {
                     
                 );
         $result = $this->lazyQuery($sql);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getLokasi($id=false,$debug=false)
+	{
+
+		$filter = "";
+
+		if ($id) $filter .= "AND kode_wilayah = '{$id}'";
+		$sql = array(
+                    'table' =>"tbl_wilayah",
+                    'field' => "*",
+                    'condition' => "1 {$filter} ORDER BY nama_wilayah"
+                );
+        $result = $this->lazyQuery($sql, $debug);
         if ($result) return $result;
         return false;
 	}

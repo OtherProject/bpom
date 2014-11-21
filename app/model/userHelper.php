@@ -54,9 +54,13 @@ class userHelper extends Database {
         $impData = implode(',', $tmpV);
 
         $sql = "INSERT IGNORE INTO social_member ({$impField}) VALUES ({$impData})";
-        pr($sql);
+        // pr($sql);
         $res = $this->query($sql);
-        if ($res) return true;
+        if ($res){
+            
+            $data['token'] = $this->token;
+            return $data;
+        } 
         return false;
 
     }

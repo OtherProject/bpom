@@ -93,6 +93,12 @@ class home extends Controller {
 
     exit;
   }
+
+  function test()
+  {
+    $send = sendGlobalMail('ovan89@gmail.com','trinata.webmail@gmail.com','test');
+    pr($send);
+  }
 }
 
 ?>

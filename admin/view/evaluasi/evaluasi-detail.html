@@ -62,265 +62,196 @@
 		<button type="submit" class="btn btn-info" id="btn-dis"><i class="fa fa-save"></i> Simpan Data</button>
 
 		{/if}
-		<div class="row">
-			<div class="col-md-6">
-				<div class="portlet">
-				
-					<div class="portlet-header">
 
-						<h3>
-							<i class="fa fa-file"></i>
-							Form Produk
-						</h3>
+		<div class="portlet">
+			<div class="portlet-header">
 
-					</div> <!-- /.portlet-header -->
-				
-					<div class="portlet-content">
-				
-						<div class="col-sm-12">
-							<div class="form-group">
-							<label for="text-input">Nama Merek Rokok</label>
-								<select class="form-control pilihmerek">
+				<h3>
+					<i class="fa fa-file"></i>
+					Gambar Kemasan
+				</h3>
+
+			</div> <!-- /.portlet-header -->
+			<div class="portlet-content">
+				<div class="col-md-3">
+					<img src="{$basedomain}">
+				</div>
+					
+			</div>
+		</div>
+
+		<div class="row" style="margin-top:10px;">
+			<div class="col-md-12">
+				<div class="span6" style="border:1px solid #bbb;border-radius:10px;padding:10px 20px 10px 20px;">
+					<table class="table">
+						
+						<thead>
+						<tr>
+							<th>No</th>
+							<th align="center">Item</th>
+							<th align="center">Evaluasi</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>1</td>
+							<td>Nama Merek Rokok</td>
+							<td><select class="form-control pilihmerek">
 									<option>-Pilih Merek-</option>
 									{foreach $getMerek as $val}
 									<option value="{$val.id}">{$val.merek}</option>
 									{/foreach}
-								</select>
-								{*}
-									<input type="text" name="merek" class="form-control" value="{$data.merek}" data-required="true" {if !$addnew}disabled{/if}/>{/*}
-							</div>
-						</div>	
-						
-						<div class="col-md-12">
-							<div class="form-group">
-							<label for="text-input">Nama Produsen / Importir</label>
-								
-									<input type="text" name="produsen" class="form-control namaprodusen" value="{$data.produsen}" disabled/>
-							</div>
-						</div>
-
-						<div class="col-md-3">
-							<div class="form-group">
-							<label for="text-input">Jenis Rokok</label>
-									<input type="text" name="jenis" class="form-control jenisrokok" value="{$data.jenis}" disabled/>
-							</div>
-						</div>
-
-						<div class="col-md-7">
-							<div class="form-group">
-							<label for="text-input">Tanggal Pembelian</label>
-								<div id="tanggalBeli" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+								</select></td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Nama Produsen / Importir</td>
+							<td><input type="text" name="produsen" class="form-control namaprodusen" value="{$data.produsen}" disabled/></td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Jenis Rokok</td>
+							<td><input type="text" name="jenis" class="form-control jenisrokok" value="{$data.jenis}" disabled/></td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>Tanggal Pembelian</td>
+							<td><div id="tanggalBeli" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
 									<input class="form-control" type="text" name="tanggalBeli" value="{$data.tanggalBeli}" data-required="true">
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-								</div>
-							</div>
-						</div>
-
-						
-						<div class="col-sm-12">
-							<div class="form-group">
-							<label for="textarea-input">Lokasi Pembelian</label>
-								<input type="text" name="lokasiBeli" class="form-control" value="{$data.lokasiBeli}" />
-								{*}
-									<textarea name="lokasiBeli" id="isi"  cols="10" rows="20" class="form-control">{$data.lokasiBeli}</textarea>{/*}
-							</div>
-							
-							
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-							<label for="text-input">Kata promotif dan menyesatkan</label>
-									<input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" />
-							</div>
-						</div>
-						
-						<div class="col-md-12">
-							<div class="form-group">
-							<label for="text-input">Evaluasi informasi kesehatan (MK/TMK)</label>
-									<input type="text" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" />
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-							<label for="text-input">KESIMPULAN (MK/TMK)</label>
-									<input type="text" name="kesimpulan" class="form-control" value="{$data.kesimpulan}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Tahun</label>
-									<input type="text" name="tahun" class="form-control" value="{$data.tahun}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Harga</label>
-									<input type="text" name="harga" class="form-control" value="{$data.harga}" />
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		
-		
-			<div class="col-md-6">
-				<div class="portlet">
-					<div class="portlet-header">
-
-						<h3>
-							<i class="fa fa-file"></i>
-							Pencantuman Peringatan Kesehatan
-						</h3>
-
-					</div> <!-- /.portlet-header -->
-					<div class="portlet-content">
-						<div class="col-md-3">
-							<div class="form-group">
-							<label for="text-input">Jenis Gambar</label>
-									{*}<input type="text" name="jenisGambar" class="form-control" value="{$data.jenisGambar}" />{/*}
-									<select class="form-control pilihmerek">
+								</div></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Lokasi Pembelian</td>
+							<td><input type="text" name="lokasiBeli" class="form-control" value="{$data.lokasiBeli}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Kata promotif dan menyesatkan</td>
+							<td><input type="checkbox" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Evaluasi informasi kesehatan (MK/TMK)</td>
+							<td><input type="checkbox" name="evaluasiInformasi" class="form-control" value="{$data.evaluasiInformasi}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>KESIMPULAN (MK/TMK)</td>
+							<td><input type="checkbox" name="kesimpulan" class="form-control" value="{$data.kesimpulan}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Tahun</td>
+							<td><input type="checkbox" name="tahun" class="form-control" value="{$data.tahun}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Harga</td>
+							<td><input type="checkbox" name="harga" class="form-control" value="{$data.harga}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Jenis Gambar</td>
+							<td><select class="form-control pilihmerek">
 									<option>1</option>
 									{foreach $getMerek as $val}
 									<option value="{$val.id}">{$val.merek}</option>
 									{/foreach}
-								</select>
-							</div>
-						</div>
-						<div class="col-md-9">
-							<div class="form-group">
-							<label for="text-input">Tulisan Peringatan Kesehatan</label>
-									<input type="text" name="tulisanGambar" class="form-control" value="{$data.tulisanGambar}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Luas Depan (%)</label>
-									<input type="text" name="luasPeringatan_depan" class="form-control" value="{$data.luasPeringatan_depan}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Luas Belakang (%)</label>
-									<input type="text" name="luasPeringatan_belakang" class="form-control" value="{$data.luasPeringatan_belakang}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Warna dan Kejelasan Gambar</label>
-									<input type="text" name="warnaGambar" class="form-control" value="{$data.warnaGambar}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Evaluasi Kesehatan</label>
-									<input type="text" name="evaluasiPeringatan" class="form-control" value="{$data.evaluasiPeringatan}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Upload Gambar</label>
-									<input type="file" name="gambar" class="form-control" value="{$data.evaluasiPeringatan}" />
-							</div>
-						</div>
-						
-					</div>
-				</div>
-				
-				<div class="portlet">
-					<div class="portlet-header">
-
-						<h3>
-							<i class="fa fa-file"></i>
-							Kadar Nikotin dan Tar
-						</h3>
-
-					</div> <!-- /.portlet-header -->
-					<div class="portlet-content">
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Kadar Nikotin (mg)</label>
-									<input type="text" name="kadarNikotin" class="form-control" value="{$data.kadarNikotin}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Kadar Tar (mg)</label>
-									<input type="text" name="kadarTar" class="form-control" value="{$data.kadarTar}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Penulisan</label>
-									<input type="text" name="kadarPenulisan_sisi" class="form-control" value="{$data.kadarPenulisan_sisi}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Tulisan</label>
-									<input type="text" name="kadarTulisan" class="form-control" value="{$data.kadarTulisan}" />
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="portlet">
-					<div class="portlet-header">
-
-						<h3>
-							<i class="fa fa-file"></i>
-							Pencantuman Informasi Kesehatan
-						</h3>
-
-					</div> <!-- /.portlet-header -->
-					<div class="portlet-content">
-						<div class="col-md-12">
-							<div class="form-group">
-							<label for="text-input">Pernyataan "dilarang menjual atau memberi kepada anak dan  perempuan hamil"</label>
-									<input type="text" name="pernyataanUtama" class="form-control" value="{$data.pernyataanUtama}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Kode Produksi</label>
-									<input type="text" name="kodeProduksi" class="form-control" value="{$data.kodeProduksi}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Tgl Produksi</label>
-								<div id="tanggalProduksi" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+								</select></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Tulisan Peringatan Kesehatan</td>
+							<td><input type="checkbox" name="tulisanGambar" class="form-control" value="{$data.tulisanGambar}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Luas Depan (%)</td>
+							<td><input type="checkbox" name="luasPeringatan_depan" class="form-control" value="{$data.luasPeringatan_depan}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Luas Belakang (%)</td>
+							<td><input type="checkbox" name="luasPeringatan_belakang" class="form-control" value="{$data.luasPeringatan_belakang}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Warna dan Kejelasan Gambar</td>
+							<td><input type="checkbox" name="warnaGambar" class="form-control" value="{$data.warnaGambar}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Evaluasi Kesehatan</td>
+							<td><input type="checkbox" name="evaluasiPeringatan" class="form-control" value="{$data.evaluasiPeringatan}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Upload Gambar</td>
+							<td><input type="file" name="gambar" class="form-control" value="{$data.evaluasiPeringatan}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Kadar Nikotin (mg)</td>
+							<td><input type="text" name="kadarNikotin" class="form-control" value="{$data.kadarNikotin}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Kadar Tar (mg)</td>
+							<td><input type="text" name="kadarTar" class="form-control" value="{$data.kadarTar}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Penulisan</td>
+							<td><input type="text" name="kadarPenulisan_sisi" class="form-control" value="{$data.kadarPenulisan_sisi}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Tulisan</td>
+							<td><input type="text" name="kadarTulisan" class="form-control" value="{$data.kadarTulisan}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Pernyataan "dilarang menjual atau memberi kepada anak dan  perempuan hamil"</td>
+							<td><input type="text" name="pernyataanUtama" class="form-control" value="{$data.pernyataanUtama}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Kode Produksi</td>
+							<td><input type="text" name="kodeProduksi" class="form-control" value="{$data.kodeProduksi}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Tgl Produksi</td>
+							<td><div id="tanggalProduksi" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
 									<input class="form-control" type="text" name="tanggalProduksi" value="{$data.tanggalProduksi}" data-required="true">
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-								</div>
-
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">Nama dan Alamat Produsen</label>
-									<input type="text" name="alamat" class="form-control alamatprodusen" value="{$data.alamat}" disabled/>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-							<label for="text-input">Pernyataan "tidak ada batas aman"</label>
-									<input type="text" name="pernyataanBatas_aman" class="form-control" value="{$data.pernyataanBatas_aman}" />
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-							<label for="text-input">Pernyataan "mengandung lebih dari 4000 zat kimia …..."</label>
-									<input type="text" name="pernyataanZat_kimia" class="form-control" value="{$data.pernyataanZat_kimia}" />
-							</div>
-						</div>
-					</div>
-
+								</div></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Nama dan Alamat Produsen</td>
+							<td><input type="text" name="alamat" class="form-control alamatprodusen" value="{$data.alamat}" disabled/></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Pernyataan "tidak ada batas aman"</td>
+							<td><input type="text" name="pernyataanBatas_aman" class="form-control" value="{$data.pernyataanBatas_aman}" /></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Pernyataan "mengandung lebih dari 4000 zat kimia …..."</td>
+							<td><input type="text" name="pernyataanZat_kimia" class="form-control" value="{$data.pernyataanZat_kimia}" /></td>
+						</tr>
+						</tbody>
+					</table>
+					
 				</div>
-				
 			</div>
 		</div>
+
+		
 	
 	</form>
 </div>

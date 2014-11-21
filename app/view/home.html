@@ -1,21 +1,52 @@
 {include file="slider.html"}
 <section id="recent-works">
         <div class="container">
-            <div class="center wow fadeInDown">
-                <h2 align="center" >Who Are We?</h2>
-                <p class="lead" align="justify"> {*}{$val1.content}{/*}
+            <div class=" wow fadeInDown">
+
+                <div class="col-md-8">
+                    <h2 align="left" >Headline News</h2>
+                    <p class="lead" align="left"> {*}{$val1.content}{/*}</p>
+                    <table class="table" border="0">
+                    
+                            
+                        <!--    <img align="center" class="img-responsive img-blog" width="70%" height="60%" border="0" src="{$basedomain}public_assets/{$val.image}"/> -->
+                        
+                    
+                            <th bgcolor="#8bc349"  colspan="3">{$val.title}</th>
+                              <tr>
+                                <td height="140" width="236" >
+                                <img align="center" class="col-sm-12" border="0" src="{$basedomain}public_assets/news-1.jpg"/> 
+                                </td>
+                                <td>
+                                    <h2><a href="{$basedomain}news/detailnews/?id={$val.id}">BPOM: Regulasi Rokok Elektronik, Tunggu Tanggal Mainnya</a></h2>
+                                    <p>
+                                        Kini, makin banyak beredar rokok elektronik atau personal vapour. Penjualannya makin marak di internet,  dan kini mulai merambah di pusat-pusat perbelanjaan. Sehingga, saat ini makin mudah melihat orang menghisap rokok elektronik (vaping). 
+                                    </p>
+                                </td>
+                                
+                              </tr>
+                            <th bgcolor="#8bc349"  colspan="3">{$val.title}</th>
+                              <tr>
+                                <td height="140" width="236" >
+                                <img align="center" class="col-sm-12" border="0" src="{$basedomain}public_assets/news-2.jpg"/> 
+                                </td>
+                                <td>
+                                   <h2><a href="{$basedomain}news/detailnews/?id={$val.id}">Penerapan PHW Pada 31 Oktober 2014 Mencapai 67,90%</a></h2>
+                                    <p>
+                                        Peringatan Kesehatan Berbentuk Gambar dan Tulisan (Pictorial Health Warning/PHW) pada kemasan produk tembakau merupakan kebijakan tingkat nasional yang sangat dibanggakan oleh Indonesia sebagai negara yang belum mengaksesi FCTC (Framework Convention on Tobacco Control).
+                                    </p>
+                                </td>
+                                
+                              </tr>    
                 
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-                <p class="lead" align="justify"> {*}{$val1.content}{/*}
+                    </table>
+                </div>
                 
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-                <p class="lead" align="justify"> {*}{$val1.content}{/*}
-                
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-            </div>
+                <div class="col-md-4">
+                    <h2 align="center" >Statistik</h2>
+                    <p class="lead" align="justify"> {*}{$val1.content}{/*}</p>
+                    <img src="{$basedomain}assets/images/examplechart.png" width="100%">
+                </div>
 
             <div class="row">
             {*}

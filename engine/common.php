@@ -514,8 +514,8 @@ function sendGlobalMail($to,$from,$msg,$config=true){
 	
 	if (!$config){
 
-		@mail($to,"[ NOTIFICATION ] Flora Kalbar",$msg,"From: $from\n");
-
+		@mail($to,$CONFIG['email']['EMAIL_SUBJECT'],$msg,"From: $from\n");
+		logFile('status send = 1');
 		return array('message'=>'success send mail','result'=>true);
 
 	}
@@ -536,11 +536,11 @@ function sendGlobalMail($to,$from,$msg,$config=true){
 		$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
 		$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
 		$mail->Port       = 465;                   // set the SMTP port for the GMAIL server
-		$mail->Username   = $CONFIG['email']['EMAIL_FROM_DEFAULT'];  // GMAIL username
-		$mail->Password   = $CONFIG['email']['EMAIL_SMTP_PASSWORD'];            // GMAIL password
+		$mail->Username   = "trinata.webmail@gmail.com";  // GMAIL username
+		$mail->Password   = "testermail";            // GMAIL password
 		$mail->AddAddress($to);
 		$mail->SetFrom($CONFIG['email']['EMAIL_FROM_DEFAULT'], 'No Reply Account');
-		$mail->Subject = "[ NOTIFICATION ] Flora Kalbar";
+		$mail->Subject = $CONFIG['email']['EMAIL_SUBJECT']; 
 		$mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically
 		$mail->MsgHTML($msg);
 		$result = $mail->Send();

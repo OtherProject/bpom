@@ -32,7 +32,17 @@ class register extends Controller {
 
 		// $getData = $this->contentHelper->getArticle();
     // pr($getData);
-    $this->view->assign('data',$getData);	
+
+    //require_once('recaptcha/recaptchalib.php');
+    require_once(LIBS.'captcha/recaptchalib.php');
+  //  $publickey = "your_public_key"; // you got this from the signup page
+    $publickey = "6LeTiPASAAAAAFY09-K67Do3LC2AEnjkyFFdxiKO ";
+    $captcha = recaptcha_get_html($publickey, $error);
+
+    if (isset($_SESSION['tmp'])){
+      $this->view->assign('data',$_SESSION['tmp']);  
+    }
+    $this->view->assign('captcha',$captcha);	
 
   	return $this->loadView('register');
   }
@@ -42,9 +52,41 @@ class register extends Controller {
 
     global $basedomain;
 
+    require_once(LIBS.'captcha/recaptchalib.php');
+    
+    $privatekey = "6LeTiPASAAAAAOFAQGOjgfsTRcb708TzwBaxyC2r";
+    $resp = recaptcha_check_answer ($privatekey,$_SERVER["REMOTE_ADDR"],$_POST["recaptcha_challenge_field"],$_POST["recaptcha_response_field"]);
+    if (!$resp->is_valid) {
+
+      $_SESSION['tmp'] = $_POST;
+      // What happens when the CAPTCHA was entered incorrectly
+      // die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." . "(reCAPTCHA said: " . $resp->error . ")");
+      // echo "gagal";
+      echo "<script>alert('CAPTCHA Yang Anda Ketik Salah');</script>";
+      redirect($basedomain.'register');
+    }
+
+
     $token = str_shuffle(qwertyasdfgzxcvb123456789);
     $saveAccount = $this->userHelper->createAccount($_POST);
     if ($saveAccount){
+      $data = array('email'=>$saveAccount['email'], 'token'=>$saveAccount['token']);
+      $msg = encode(serialize($data));
+      logFile(serialize($data));
+      
+      
+      $this->view->assign('encode',$msg); 
+      $this->view->assign('email',$data['email']);  
+
+      $html = $this->loadView('emailTemplate');
+      $send = sendGlobalMail(trim($data['email']),'trinata.webmail@gmail.com',$html);
+      logFile($send);
+
+      // pr('send mail '.$send);
+      // exit;
+
+      unset($_SESSION['tmp']);
+
       redirect($basedomain.'register/status/?token='.$token);
     }else{
       redirect($basedomain.'register/status/?token=');
@@ -83,37 +125,7 @@ class register extends Controller {
 
   }
 
-  function postToSocmed()
-  {
-    FacebookSession::setDefaultApplication($CONFIG['fb']['appId'], $CONFIG['fb']['secret']);
-        $helper = new FacebookRedirectLoginHelper($basedomain.'home/index/?get=true');
-        $session = false;
-        if(isset($_GET['get'])){
-          $session = $helper->getSessionFromRedirect();
-          
-          /* Buat posting message */
-          
-          // $post = (new FacebookRequest(
-         //      $session, 'POST', '/me/feed',array ('message' => 'This is a test message from bot',)
-         //    ))->execute()->getGraphObject();
-
-
-          $album = (new FacebookRequest(
-                      $session,'GET','/me/albums'
-                    ))->execute()->getGraphObject();
-             
-            
-            // pr($album);
-        }else{
-          $loginUrl = $helper->getLoginUrl(array('scope' => 'user_photos,publish_actions',)); 
-      $this->view->assign('accessUrlFb',$loginUrl);
-        }
-        
-
-        // pr($post);
-        
-
-  }
+  
 
 	function validate()
   {
@@ -125,8 +137,8 @@ class register extends Controller {
         logFile($data);
         if ($data){
 
-            $coba = array('email'=>'o.pulu@yahoo.com', 'token'=>'1234');
-            $enc = encode(serialize($coba));
+            // $coba = array('email'=>'o.pulu@yahoo.com', 'token'=>'1234');
+            // $enc = encode(serialize($coba));
 
             // pr($enc);
             
