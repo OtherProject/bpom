@@ -32,10 +32,116 @@
 
 <section>
     <div class="container">  
-
+      <div class="center">
+  <h2>Preview Informasi Produsen / Importir</h2>
+            <p class="lead">&nbsp;</p>
+  </div>
 <form method="post" action="{$basedomain}account/industri">
 
 <div class="content-container">
+
+  <div class="row" style="margin-top:10px;">
+      <div class="col-md-12">
+        <div class="span6" style="border:1px solid #bbb;border-radius:10px;padding:10px 20px 10px 20px;">
+          <table class="table">
+            
+            <thead>
+            <tr>
+              <th align="center">Item</th>
+              <th align="center">Data</th>
+              
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+              
+              <td>Nama Perusahaan</td>
+              <td><input type="text" name="merek" class="form-control namaprodusen" value="{$data.namaIndustri}" disabled/></td>
+              <td></td>
+            </tr>
+            <tr>
+              
+              <td>NPWP Perusahaan</td>
+              <td><input type="text" name="produsen" class="form-control namaprodusen" value="{$data.npwp}" disabled/></td>
+              <td></td>
+            </tr>
+            <tr>
+             
+              <td>Nama Penanggungjawab</td>
+              <td><input type="text" name="jenis" class="form-control jenisrokok" value="{$data.namaPimpinan}" disabled/></td>
+              <td></td>
+            </tr>
+            <tr>
+             
+              <td>No KTP Penanggungjawab</td>
+              <td><input type="text" name="jenis" class="form-control jenisrokok" value="{$data.noKTP}" disabled/></td>
+              <td></td>
+            </tr>
+            
+            <tr>
+              
+              <td>Alamat Penanggungjawab</td>
+              <td><input type="text" name="jenis" class="form-control jenisrokok" value="{$data.alamatPimpinan}" disabled/></td>
+              <td></td>
+            </tr>
+            
+            <tr>
+              
+              <td>Kabupaten/Kotamadya</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kabupaten.nama_wilayah}" disabled/></td>
+              <td></td>
+            </tr>
+            <tr>
+             
+              <td>Kecamatan</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.kecamatan}" disabled/></td>
+              <td></td>
+            </tr>
+            <tr>
+              
+              <td>Kelurahan/Desa</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.desa}" disabled/></td>
+              <td></td>
+            </tr>
+            <tr>
+              
+              <td>Kode Pos</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.kodePos}" disabled/></td>
+              <td></td>
+            </tr>
+            <tr>
+             
+              <td>Nama Jalan , RT RW</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.jalanRTRW}" disabled/></td>
+              <td></td>
+            </tr>
+            <tr>
+              
+              <td>No Telepon</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.noTelepon}" disabled/></td>
+              <td></td>
+            </tr>
+            <tr>
+              
+              <td>No Fax</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.noFax}" disabled/></td>
+              <td></td>
+            </tr>
+            <tr>
+              
+              <td>Alamat email</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.email}" disabled/></td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+
+{*}
 <div class="row">
 
   <div class="center">
@@ -46,17 +152,13 @@
         <div class="portlet">
         
           <div class="portlet-header">
-            {*}
-            <h3>
-              <i class="fa fa-file"></i>
-              Data Perusahaan
-            </h3>
-            {/*}
+            
           </div> <!-- /.portlet-header -->
         
           <div class="portlet-content">
-        
+          
             <div class="col-sm-12">
+
               <div class="form-group">
               <label for="text-input">Nama Perusahaan</label>
                   <input type="text" name="namaIndustri" class="form-control" value="{$data.namaIndustri}" disabled />
@@ -111,12 +213,7 @@
                 <div class="portlet">
                 
                   <div class="portlet-header">
-                    {*}
-                    <h3>
-                      <i class="fa fa-file"></i>
-                      Data Perusahaan
-                    </h3>
-                    {/*}
+                    
                   </div> <!-- /.portlet-header -->
 
                 <div class="portlet-content">
@@ -191,17 +288,21 @@
                 </div>
               </div>
         </div>
-
+        {/*}
       <br>
-      <input type="hidden" name="id" value="{$data.id}">
-      <button id="btn-dis" class="btn btn-info" type="submit">
-      <i class="fa fa-save"></i>
-      Simpan Data
-      </button>
+      <a href="{$basedomain}account/industri">
       <button id="btn-dis" class="btn btn-warning" type="submit">
       <i class="fa fa-save"></i>
-      Reset
+      Kembali
       </button>
+      </a>
+      <a href="{$basedomain}account/pabrik"><input type="hidden" name="id" value="{$data.id}">
+      <button id="btn-dis" class="btn btn-info" type="button">
+      <i class="fa fa-save"></i>
+      Lanjutkan Ke Form Pabrik
+      </button></a>
+      
+      
 </div>
 
 </form>

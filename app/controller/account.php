@@ -50,8 +50,8 @@ class account extends Controller {
     $id_industri = $this->user['industri_id'];
     $getIndustri = $this->contentHelper->getIndustri($id_industri);
 
-    $getProv = $this->contentHelper->getKab();
-    // pr($getIndustri);
+    $getProv = $this->contentHelper->getLokasi();
+    // pr($getProv);
     $this->view->assign('user',$this->user);  
     $this->view->assign('data',$getIndustri[0]);  
     $this->view->assign('lokasi',$getProv); 
@@ -68,10 +68,36 @@ class account extends Controller {
       // pr($_POST);
 
       $saveData = $this->contentHelper->saveDataIndustri($_POST);
-      if ($saveData) reload($basedomain.'account/industri');
+      if ($saveData) reload($basedomain.'account/preview');
     }
      // pr($getIndustri);
     return $this->loadView('account-industri');
+  }
+
+  function preview()
+  {
+    global $CONFIG, $basedomain;
+
+   
+    
+    $id_industri = $this->user['industri_id'];
+    $getIndustri = $this->contentHelper->getIndustri($id_industri);
+
+    $getProv = $this->contentHelper->getLokasi();
+    // pr($getProv);
+    $this->view->assign('user',$this->user);  
+    $this->view->assign('data',$getIndustri[0]);  
+    $this->view->assign('lokasi',$getProv); 
+
+    $getCurrentKab = $this->contentHelper->getKab($getIndustri[0]['provinsi']);
+    $getCurrentProv = $this->contentHelper->getLokasi($getCurrentKab[0]['parent']);
+
+    if ($getCurrentKab){
+      $this->view->assign('kabupaten',$getCurrentKab[0]);  
+      $this->view->assign('provinsi',$getCurrentProv[0]);  
+    }
+    
+    return $this->loadView('account-industri-preview');
   }
 
   function pabrik()
@@ -96,7 +122,7 @@ class account extends Controller {
       $this->view->assign('pabrik',$getPabrik);  
     }
 
-    $getProv = $this->contentHelper->getKab();
+    $getProv = $this->contentHelper->getLokasi();
     // pr($getIndustri);
     $this->view->assign('user',$this->user);  
     $this->view->assign('data',$getIndustri[0]);  
@@ -143,6 +169,8 @@ class account extends Controller {
           $getPabrik[$key]['getCurrentKab'] = $tmpKab[0];
           $tmpProv = $this->contentHelper->getLokasi($tmpKab[0]['parent']);
           $getPabrik[$key]['getCurrentProv'] = $tmpProv[0];
+
+          $getPabrik[$key]['nomor_NPPBKC'] = $tmpProv[0];
         }
 
         
