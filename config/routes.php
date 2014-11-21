@@ -13,7 +13,9 @@ $ROUTES = array(
         'login',
         'register',
         'login',
-        'profile'
+        'profile',
+        'publikasi',
+        'informasi'
                 
                 );
 ?>

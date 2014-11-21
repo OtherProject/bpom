@@ -87,11 +87,27 @@
 
 						 
                         {else}
-                        <li><a href="{$basedomain}home">Home</a></li>
-                        <li><a href="{$basedomain}news">News</a></li>
-                        <li><a href="{$basedomain}profile">Profile</a></li>
+                        <li><a href="{$basedomain}home">Beranda</a></li>
+                        <li><a href="{$basedomain}profile">Profil</a></li>
+                        <li><a href="{$basedomain}news">Berita</a></li>
+                        <li class="dropdown"><a href="#"  class="dropdown-toggle" data-toggle="dropdown">Publikasi <i class="fa fa-angle-down"></i></a>
+                             <ul class="dropdown-menu">
+                                <li><a href="{$basedomain}publikasi/peraturan">Peraturan dan Kebijakan</a></li>
+                                <li><a href="{$basedomain}publikasi/penelitian">Hasil Penelitian</a></li>
+                               
+                            </ul>
                         
-                        <li><a href="{$basedomain}contact">Contact Us</a></li>
+                        </li>
+                        <li class="dropdown"><a href="#"  class="dropdown-toggle" data-toggle="dropdown">Informasi <i class="fa fa-angle-down"></i></a>
+                             <ul class="dropdown-menu">
+                                <li><a href="{$basedomain}informasi/prosedur">Alur Prosedur</a></li>
+                                <li><a href="{$basedomain}informasi/pengaduan">Saran dan Pengaduan</a></li>
+                               <li><a href="{$basedomain}informasi/petunjuk">Petunjuk Penggunaan</a></li>
+                               <li><a href="{$basedomain}informasi/faq">FAQ</a></li>
+                            </ul>
+                        
+                        </li>
+                        {*}<li><a href="{$basedomain}contact">Contact Us</a></li>{/*}
                         <li><a href="{$basedomain}login">Login</a></li>
                         {/if}                   
                     </ul>
