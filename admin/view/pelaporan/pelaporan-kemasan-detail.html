@@ -1,4 +1,4 @@
-
+<link href="{$basedomain}css/main.css" rel="stylesheet">
 <script type="text/javascript">
 
   {literal}
@@ -42,6 +42,7 @@
 	<h1>Detail Evaluasi</h1>
 </div> <!-- #content-header -->	
 
+
 <div id="content-container">
 
 	{if $status}
@@ -67,6 +68,9 @@
 			</div> <!-- /.portlet-header -->
 			<div class="portlet-content">
 				
+				{$slider}
+
+				{*}
 				<div class="col-md-4">
 					
 					<a class="preview" href="{$app_domain}public_assets/{$data.fotoDepan}" rel="prettyPhoto"><img class="img-responsive" src="{$app_domain}public_assets/{$data.fotoDepan}" alt=""></a>
@@ -92,13 +96,16 @@
 					<a class="preview" href="{$app_domain}public_assets/{$data.fotoBawah}" rel="prettyPhoto"><img class="img-responsive" src="{$app_domain}public_assets/{$data.fotoBawah}" alt=""></a>
 					
 				</div>
-					
+				{/*}
 			</div>
 		</div>
 
+		
 		<div class="row" style="margin-top:10px;">
 			<div class="col-md-12">
 				<div class="span6" style="border:1px solid #bbb;border-radius:10px;padding:10px 20px 10px 20px;">
+
+
 					<table class="table">
 						
 						<thead>
@@ -147,12 +154,7 @@
 							<td><input type="text" name="jenis" class="form-control jenisrokok" value="{$data.jenis}" disabled/></td>
 							<td><input type="checkbox" name="pelaporanKemasan[]" class="form-control namaprodusen" value=""/></td>
 						</tr>
-						<tr>
-							<td>7</td>
-							<td>Tulisan peringatan kesehatan</td>
-							<td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.d_tulisanPeringatan}" disabled/></td>
-							<td><input type="checkbox" name="pelaporanKemasan[]" class="form-control namaprodusen" value=""/></td>
-						</tr>
+						
 						
 						</tbody>
 					</table>

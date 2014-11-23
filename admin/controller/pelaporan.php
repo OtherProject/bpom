@@ -197,6 +197,10 @@ class pelaporan extends Controller {
 		
 		}
 
+		
+		$slider = $this->loadView('pelaporan/slider');
+		$this->view->assign('slider',$slider);
+
 		return $this->loadView('pelaporan/pelaporan-kemasan-detail');
 	}
 
