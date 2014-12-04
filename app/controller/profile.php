@@ -29,14 +29,77 @@ class profile extends Controller {
 
 		global $CONFIG, $basedomain;
 
-		// $getData = $this->contentHelper->getArticle();
+		$getData = $this->contentHelper->getArticle(false,0,1,1);
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+
+      
+    }
+
     // pr($getData);
     $this->view->assign('data',$getData);	
 
   	return $this->loadView('profil');
   }
 	
-	
+	function visimisi(){
+
+    global $CONFIG, $basedomain;
+
+    $getData = $this->contentHelper->getArticle(false,0,3,1);
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+
+      
+    }
+
+    // pr($getData);
+    $this->view->assign('data',$getData); 
+
+    return $this->loadView('visimisi');
+  }
+
+  function tupoksi(){
+
+    global $CONFIG, $basedomain;
+
+    $getData = $this->contentHelper->getArticle(false,0,4,1);
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+
+      
+    }
+
+    // pr($getData);
+    $this->view->assign('data',$getData); 
+
+    return $this->loadView('visimisi');
+  }
+
   function formRegister()
   {
     global $basedomain;

@@ -29,9 +29,28 @@ class home extends Controller {
 
 		global $CONFIG, $basedomain;
 
-		// $getData = $this->contentHelper->getArticle();
-    // pr($getData);
-    $this->view->assign('data',$getData);	
+    $limit = array(0,1);
+		$getData = $this->contentHelper->getArticle();
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+
+      foreach ($limit as $value) {
+        $newData[] = $getData[$value];
+      }
+    }
+
+    
+
+    // pr($newData);
+    $this->view->assign('data',$newData);	
 
   	return $this->loadView('home');
   }

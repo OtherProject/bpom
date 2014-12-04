@@ -55,6 +55,163 @@ class evaluasi extends Controller {
 
 	}
 
+	function nikotin()
+	{
+
+		$usertype = $this->admin['admin']['type'];
+		if ($usertype==1) $dataArr['n_status'] = '1,2,3';
+		if ($usertype==2) $dataArr['n_status'] = '2';
+		if ($usertype==3) $dataArr['n_status'] = '1';
+
+		$data = $this->contentHelper->getLaporanNikotin($dataArr);
+		// pr($data);
+		if ($data){
+			
+			$this->view->assign('data',$data);
+		}
+		
+		if ($_POST['status']){
+
+			if (count($_POST['ids']>0)){
+
+				$id = implode(',', $_POST['ids']);
+
+				$status = intval($_POST['status']);
+				$approve = $this->contentHelper->validateDataNikotin($id, $status);
+				if ($approve){
+					echo "<script>window.location.href='".$basedomain."evaluasi'</script>";
+					// redirect($basedomain.'evaluasi');
+				}
+			}
+			
+		}
+		
+		$this->view->assign('admin',$this->admin['admin']);
+		// pr($data);exit;
+		
+
+		return $this->loadView('evaluasi/evaluasi-nikotin');    
+	}
+
+	function label()
+	{
+		global $basedomain;
+
+		$dataArr['n_status'] = '1,2,3';
+		$data = $this->contentHelper->getLaporanKemasan($dataArr);
+		// pr($data);
+		if ($data){
+			
+			$this->view->assign('data',$data);
+		}
+		
+		if ($_POST['status']){
+
+			if (count($_POST['ids']>0)){
+
+				$id = implode(',', $_POST['ids']);
+
+				$status = intval($_POST['status']);
+				$approve = $this->contentHelper->validateData($id, $status);
+				if ($approve){
+					echo "<script>window.location.href='".$basedomain."evaluasi/label'</script>";
+					// redirect($basedomain.'evaluasi');
+				}
+			}
+			
+		}
+		
+		// pr($this->admin);exit;
+		$this->view->assign('admin',$this->admin['admin']);
+
+		return $this->loadView('evaluasi/evaluasi-label');  
+	}
+
+	function detillabel()
+	{
+		global $basedomain;
+
+		$id = _g('id');
+
+		$dataArr['id'] = $id;
+		$dataArr['n_status'] = 2;
+
+		$tulisanPeringatan = array(1 => 'Merokok Membunuhmu',
+									2 => 'Merokok dekat anak berbahayan bagi mereka',
+									3 => 'Merokok sebabkan kanker mulut',
+									);
+		$bentukKemasan = array(1 => 'Kotak persegi panjang',
+								2 => 'Kotak slop',
+								3 => 'Slinder'
+								);
+		$isiKemasan = array(1 => '10 bks/slop',
+							2 => '10 btg/bks',
+							2 => '10 slider/slop',
+							2 => '12 btg/bks',
+							2 => '50 btg/slinder',
+							);
+		$jenisRokok = array(1 => 'SKT',
+							2 => 'SKM',
+							);
+		
+		$data = $this->contentHelper->getLaporanKemasan($dataArr);
+		$getTUlisan = $this->contentHelper->getTulisanPeringatan(false);
+		$this->view->assign('tulisan',$getTUlisan);
+
+		if ($data){
+			foreach ($data as $key => $value) {
+				$data[$key]['d_tulisanPeringatan'] = $tulisanPeringatan[$value['tulisanPeringatan']];
+				$data[$key]['d_bentukKemasan'] = $bentukKemasan[$value['bentuKemasan']];
+				$data[$key]['d_isiKemasan'] = $isiKemasan[$value['isi']];
+				$data[$key]['d_jenisRokok'] = $jenisRokok[$value['jenis']];
+			}
+			$this->view->assign('data',$data[0]);
+		}
+		// pr($data);
+		$this->view->assign('id',$id);
+		
+
+		if (isset($_POST['idPelaporan'])){
+
+			// pr($_POST);
+			// exit;
+			// $checkBoxCount = count($_POST['pelaporanKemasan']);
+			// if ($checkBoxCount == 7){
+
+				$dataArr['id'] = $_POST['idPelaporan'];
+				// $dataArr['n_status'] = 2;
+				// $update = $this->contentHelper->updateStatusKemasan($dataArr);
+				$update = $this->contentHelper->evaluasiKemasan($_POST);
+				
+				if ($update){
+					echo "<script>window.location.href='".$basedomain."pelaporan/kemasan'</script>";
+					// redirect($basedomain.'evaluasi');
+				}
+			// }
+		}
+
+		if (isset($_GET['id'])){
+			
+			if (isset($_GET['act'])){
+				$dataArr['id'] = $_GET['id'];
+				$dataArr['n_status'] = 0;
+				$update = $this->contentHelper->updateStatusKemasan($dataArr);
+				if ($update){
+					echo "<script>window.location.href='".$basedomain."pelaporan/kemasan'</script>";
+					// redirect($basedomain.'evaluasi');
+				}
+			}
+
+			
+		
+		}
+
+		
+		$slider = $this->loadView('pelaporan/slider');
+		$this->view->assign('slider',$slider);
+
+		return $this->loadView('evaluasi/evaluasi-label-detail');
+	}
 	public function iklanmlr(){
 		
 		$data = $this->contentHelper->getDataEvaluasi();

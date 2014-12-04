@@ -18,6 +18,7 @@ class account extends Controller {
     $browsertype = $this->checkBrowser();
     $this->view->assign('browsertype',$browsertype);
 
+    if (!$this->isUserOnline()) {redirect($basedomain);exit;}
     }
 	
 	function loadmodule()
@@ -185,8 +186,12 @@ class account extends Controller {
     return $this->loadView('account-pabrik');
   }
 
+
+
   function pelaporan()
   {
+
+
 
     global $basedomain;
     $id_industri = $this->user['industri_id'];
@@ -219,7 +224,13 @@ class account extends Controller {
     $this->view->assign('produk',$getProduk);  
     // pr($getProduk);
 
+    $getTUlisan = $this->contentHelper->getTulisanPeringatan(false);
+    $this->view->assign('tulisan',$getTUlisan);
+
+    // pr($_POST);
     if ($_POST){
+
+      // echo 'masuk';
       // pr($_POST);
       // pr($_FILES);
 
@@ -230,7 +241,7 @@ class account extends Controller {
         if(!empty($_FILES)){
           
 
-            $foto = array('fotoDepan','fotoBelakang','fotoKanan','fotoKiri','fotoAtas','fotoBawah');
+            $foto = array('fotoDepan','fotoBelakang','fotoKanan','fotoKiri','fotoAtas','fotoBawah','suratPengantar');
             foreach ($foto as $key => $value) {
 
               if($_FILES[$value]['name'] != ''){

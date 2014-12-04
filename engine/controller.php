@@ -1,10 +1,6 @@
 <?php
 
-use Facebook\FacebookSession;
-use Facebook\FacebookRedirectLoginHelper;
-use Facebook\FacebookRequest;
-use Facebook\GraphUser;
-use Facebook\FacebookRequestException;
+
 
 class Controller extends Application{
 	
@@ -41,6 +37,12 @@ class Controller extends Application{
 		if ($this->configkey=='default')$this->view->assign('user',$this->isUserOnline());
 		if ($this->configkey=='admin')$this->view->assign('admin',$this->isAdminOnline());
 		if ($this->configkey=='mobile')$this->view->assign('user',$this->isUserOnline());
+		
+		
+		if ($this->configkey=='admin'){
+			$this->view->assign('menu',$this->menuDinamis());
+		}
+		
 		
 		// $this->inject();
 		// pr($this->isUserOnline());
@@ -282,6 +284,35 @@ class Controller extends Application{
 	}
 	
 	
+	function menuDinamis()
+	{
+		$getHelper = new helper_model;
+		
+		$adminid = $this->isAdminOnline();
+		// pr($adminid);
+
+		if ($adminid){
+			$data['userid'] = $adminid['admin']['id'];
+			$data = $getHelper->getMenu($data);
+			// pr($data);
+			$menuAkses = explode(',', $data['akses_user'][0]['menu_akses']);
+			foreach ($data['menu'] as $key => $value) {
+				
+				if ($value){
+					foreach ($value as $val) {
+						if (in_array($val['menuID'], $menuAkses)){
+							$newData[$key][] = $val;
+						}
+					}
+				}
+				
+			}
+			// pr($newData);
+			return $newData;
+		}
+		return false;
+		
+	}
 
 	function log($action='surf',$comment)
 	{

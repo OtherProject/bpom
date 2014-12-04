@@ -38,11 +38,51 @@ class publikasi extends Controller {
 	
 	function peraturan()
   {
+   
+    global $CONFIG, $basedomain;
+
+    $getData = $this->contentHelper->getArticle(false,0,5,1);
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+
+      
+    }
+
+    // pr($getData);
+    $this->view->assign('data',$getData); 
+
     return $this->loadView('publikasi/peraturan');
   }
 
   function penelitian()
   {
+    global $CONFIG, $basedomain;
+
+    $getData = $this->contentHelper->getArticle(false,0,6,1);
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+
+      
+    }
+
+    // pr($getData);
+    $this->view->assign('data',$getData); 
     return $this->loadView('publikasi/penelitian');
   }
 

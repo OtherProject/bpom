@@ -11,33 +11,26 @@
                             
                         <!--    <img align="center" class="img-responsive img-blog" width="70%" height="60%" border="0" src="{$basedomain}public_assets/{$val.image}"/> -->
                         
-                    
+                            {if $data}
+                            {foreach $data as $val}
                             <th bgcolor="#8bc349"  colspan="3">{$val.title}</th>
                               <tr>
                                 <td height="140" width="236" >
-                                <img align="center" class="col-sm-12" border="0" src="{$basedomain}public_assets/news-1.jpg"/> 
+                                {if $val.image}
+                                <img align="center" class="col-sm-12" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
+                                {/if}
                                 </td>
                                 <td>
-                                    <h2><a href="{$basedomain}news/detailnews/?id={$val.id}">BPOM: Regulasi Rokok Elektronik, Tunggu Tanggal Mainnya</a></h2>
+                                    <h2><a href="{$basedomain}news/detailnews/?id={$val.id}">{$val.title}</a></h2>
                                     <p>
-                                        Kini, makin banyak beredar rokok elektronik atau personal vapour. Penjualannya makin marak di internet,  dan kini mulai merambah di pusat-pusat perbelanjaan. Sehingga, saat ini makin mudah melihat orang menghisap rokok elektronik (vaping). 
+                                        {$val.content}
                                     </p>
                                 </td>
                                 
                               </tr>
-                            <th bgcolor="#8bc349"  colspan="3">{$val.title}</th>
-                              <tr>
-                                <td height="140" width="236" >
-                                <img align="center" class="col-sm-12" border="0" src="{$basedomain}public_assets/news-2.jpg"/> 
-                                </td>
-                                <td>
-                                   <h2><a href="{$basedomain}news/detailnews/?id={$val.id}">Penerapan PHW Pada 31 Oktober 2014 Mencapai 67,90%</a></h2>
-                                    <p>
-                                        Peringatan Kesehatan Berbentuk Gambar dan Tulisan (Pictorial Health Warning/PHW) pada kemasan produk tembakau merupakan kebijakan tingkat nasional yang sangat dibanggakan oleh Indonesia sebagai negara yang belum mengaksesi FCTC (Framework Convention on Tobacco Control).
-                                    </p>
-                                </td>
-                                
-                              </tr>    
+                            {/foreach}
+                            {/if}
+                           
                 
                     </table>
                 </div>

@@ -9,6 +9,7 @@ class helper_model extends Database {
 		$sessi = new Session;
 		$getUserSes = $sessi->get_session('login');
 		$this->user = $getUserSes['login']['login'];
+		$this->prefix = "bpom"; 
 	}
 
 	public function getData_sel($parameter){
@@ -52,6 +53,47 @@ class helper_model extends Database {
     	}
 
     	return false;
+    }
+
+    function getMenu($data=false, $debug=false)
+    {
+
+    	$sql = array(
+                'table'=>"tbl_user_menu_parent AS p",
+                'field'=>"p.*",
+                'condition' => "1 ORDER BY menuOrder",
+                );
+
+        $res = $this->lazyQuery($sql,$debug);
+        if ($res){
+
+        	foreach ($res as $key => $value) {
+        		$sql = array(
+	                'table'=>"tbl_user_menu AS m",
+	                'field'=>"m.*",
+	                'condition' => "menuStatus = 1 AND menuParent = {$value['menuParentID']}",
+	                );
+
+	        	$result[$value['menuParentDesc']] = $this->lazyQuery($sql,$debug);
+        	}
+        	// pr($result);
+
+        }
+
+        
+        $sql = array(
+                'table'=>"admin_member AS a",
+                'field'=>"a.menu_akses",
+                'condition' => "1 AND id = {$data['userid']}",
+                );
+
+        $menuuser = $this->lazyQuery($sql,$debug);
+
+        $datamenu['menu'] = $result;
+        $datamenu['akses_user'] = $menuuser;
+        // pr($datamenu);
+        if ($datamenu) return $datamenu;
+		return false;
     }
 }
 ?>

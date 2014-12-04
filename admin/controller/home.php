@@ -44,7 +44,7 @@ class home extends Controller {
 			}
 		}
 		
-		// pr($data);exit;
+		// pr($_SESSION);exit;
 		$this->view->assign('data',$data);
 
 		return $this->loadView('home');

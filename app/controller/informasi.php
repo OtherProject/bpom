@@ -38,21 +38,85 @@ class informasi extends Controller {
 	
 	function prosedur()
   {
+    $getData = $this->contentHelper->getArticle(false,0,9,1);
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+
+      
+    }
+
+    $this->view->assign('data',$getData);
     return $this->loadView('informasi/prosedur');
   }
 
   function pengaduan()
   {
+    $getData = $this->contentHelper->getArticle(false,0,8,1);
+    // pr($getData);
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+
+      
+    }
+
+    $this->view->assign('data',$getData);
     return $this->loadView('informasi/pengaduan');
   }
 
   function petunjuk()
   {
+    $getData = $this->contentHelper->getArticle(false,0,10,1);
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+
+      
+    }
+
+    $this->view->assign('data',$getData);
     return $this->loadView('informasi/petunjuk');
   }
 
   function faq()
   {
+    $getData = $this->contentHelper->getArticle(false,0,7,1);
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+
+      
+    }
+    $this->view->assign('data',$getData);
     return $this->loadView('informasi/faq');
   }
 

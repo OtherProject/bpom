@@ -55,6 +55,42 @@ class pelaporan extends Controller {
 
 	}
 
+	function ajaxGetLokasiPabrik()
+  	{
+
+	    $getIndustri = _p('idIndustri');
+	    $getPabrik = $this->contentHelper->getPabrik(false,$getIndustri);
+	    if ($getPabrik){
+
+	        foreach ($getPabrik as $key => $value) {
+	          $tmp = $this->contentHelper->getKab($value['provinsi']);
+	          $getPabrik[$key]['alamatPabrik'] = $tmp[0];
+	          $tmpKab = $this->contentHelper->getKab($value['provinsi']);
+	          $getPabrik[$key]['getCurrentKab'] = $tmpKab[0];
+	          $tmpProv = $this->contentHelper->getLokasi($tmpKab[0]['parent']);
+	          $getPabrik[$key]['getCurrentProv'] = $tmpProv[0];
+	        }
+
+	        if ($getPabrik){
+	          print( json_encode(array('status'=>true, 'res'=>$getPabrik)));
+	        }else{
+	          print( json_encode(array('status'=>false)));
+	        }
+	        
+	        exit;
+	        // $this->view->assign('listpabrik',$getPabrik);  
+	    }
+	 }
+
+	function addKemasan()
+	{
+
+		$getIndustri = $this->contentHelper->getIndustri(false);
+		// pr($getIndustri);
+	    $this->view->assign('listindustri',$getIndustri); 
+		return $this->loadView('pelaporan/pelaporan-kemasan-add');
+	}
+
 	function kemasan()
 	{
 
@@ -84,6 +120,7 @@ class pelaporan extends Controller {
 		
 		// pr($data);exit;
 		
+		$this->view->assign('admin',$this->admin['admin']);
 
 		return $this->loadView('pelaporan/pelaporan-kemasan');    
 	}
@@ -150,7 +187,8 @@ class pelaporan extends Controller {
 							);
 		
 		$data = $this->contentHelper->getLaporanKemasan($dataArr);
-		
+		$getTUlisan = $this->contentHelper->getTulisanPeringatan(false);
+		$this->view->assign('tulisan',$getTUlisan);
 
 		if ($data){
 			foreach ($data as $key => $value) {
@@ -165,20 +203,23 @@ class pelaporan extends Controller {
 		$this->view->assign('id',$id);
 		
 
-		if (isset($_POST)){
+		if (isset($_POST['idPelaporan'])){
 
 			// pr($_POST);
-			$checkBoxCount = count($_POST['pelaporanKemasan']);
-			if ($checkBoxCount == 7){
+			// exit;
+			// $checkBoxCount = count($_POST['pelaporanKemasan']);
+			// if ($checkBoxCount == 7){
 
 				$dataArr['id'] = $_POST['idPelaporan'];
-				$dataArr['n_status'] = 2;
-				$update = $this->contentHelper->updateStatusKemasan($dataArr);
+				// $dataArr['n_status'] = 2;
+				// $update = $this->contentHelper->updateStatusKemasan($dataArr);
+				$update = $this->contentHelper->evaluasiKemasan($_POST);
+				
 				if ($update){
 					echo "<script>window.location.href='".$basedomain."pelaporan/kemasan'</script>";
 					// redirect($basedomain.'evaluasi');
 				}
-			}
+			// }
 		}
 
 		if (isset($_GET['id'])){
@@ -249,11 +290,11 @@ class pelaporan extends Controller {
 		$this->view->assign('id',$id);
 		
 
-		if (isset($_POST)){
+		if (isset($_POST['idPelaporan'])){
 
 			// pr($_POST);
 			$checkBoxCount = count($_POST['pelaporanKemasan']);
-			if ($checkBoxCount == 14){
+			// if ($checkBoxCount == 14){
 
 				$dataArr['id'] = $_POST['idPelaporan'];
 				$dataArr['n_status'] = 2;
@@ -262,7 +303,7 @@ class pelaporan extends Controller {
 					echo "<script>window.location.href='".$basedomain."pelaporan/nikotin'</script>";
 					// redirect($basedomain.'evaluasi');
 				}
-			}
+			// }
 		}
 
 		if (isset($_GET['id'])){

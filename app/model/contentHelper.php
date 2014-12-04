@@ -125,15 +125,17 @@ class contentHelper extends Database {
 		$fotoDepan = $data['fotoDepan']['full_name'];
 		if ($fotoDepan) $field[] = "fotoDepan = '{$fotoDepan}'";
 		$fotoBelakang = $data['fotoBelakang']['full_name'];
-		if ($fotoDepan) $field[] = "fotoBelakang = '{$fotoBelakang}'";
+		if ($fotoBelakang) $field[] = "fotoBelakang = '{$fotoBelakang}'";
 		$fotoKanan = $data['fotoKanan']['full_name'];
-		if ($fotoDepan) $field[] = "fotoKanan = '{$fotoKanan}'";
+		if ($fotoKanan) $field[] = "fotoKanan = '{$fotoKanan}'";
 		$fotoKiri = $data['fotoKiri']['full_name'];
-		if ($fotoDepan) $field[] = "fotoKiri = '{$fotoKiri}'";
+		if ($fotoKiri) $field[] = "fotoKiri = '{$fotoKiri}'";
 		$fotoAtas = $data['fotoAtas']['full_name'];
-		if ($fotoDepan) $field[] = "fotoAtas = '{$fotoAtas}'";
+		if ($fotoAtas) $field[] = "fotoAtas = '{$fotoAtas}'";
 		$fotoBawah = $data['fotoBawah']['full_name'];
-		if ($fotoDepan) $field[] = "fotoBawah = '{$fotoBawah}'";
+		if ($fotoBawah) $field[] = "fotoBawah = '{$fotoBawah}'";
+		$suratPengantar = $data['suratPengantar']['full_name'];
+		if ($suratPengantar) $field[] = "suratPengantar = '{$suratPengantar}'";
 
 		if ($field){
 			$impF = implode(',', $field);
@@ -343,6 +345,39 @@ class contentHelper extends Database {
                     'condition' => " 1 {$filter} ORDER BY nama_wilayah"
                 );
         $result = $this->lazyQuery($sql, $debug);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getTulisanPeringatan($id=false,$debug=false)
+	{
+		$filter = "";
+
+		if ($id) $filter .= "AND kode_wilayah = '{$id}'";
+		$sql = array(
+                    'table' =>"{$this->prefix}_peringatan_kesehatan",
+                    'field' => "*",
+                    'condition' => "1 {$filter}"
+                );
+        $result = $this->lazyQuery($sql, $debug);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getArticle($id=false, $categoryid=0, $articleType=0, $limit=10, $debug=false)
+	{
+
+		$filter = "";
+
+		if ($id) $filter .= "AND id = '{$id}'";
+		
+		$sql = array(
+                    'table' =>"{$this->prefix}_news_content",
+                    'field' => "*",
+                    'condition' => "categoryid = {$categoryid} AND articleType = {$articleType} AND n_status = 1 {$filter} ORDER BY posted_date DESC",
+                    'limit' => $limit
+                );
+        $result = $this->lazyQuery($sql,$debug);
         if ($result) return $result;
         return false;
 	}

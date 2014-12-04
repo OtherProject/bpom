@@ -41,7 +41,7 @@
 <br>
 <section>
     <div class="container">  
-<form method="post" action="{$basedomain}/account/pelaporan" enctype="multipart/form-data">
+<form method="post" action="{$basedomain}account/pelaporan" enctype="multipart/form-data">
 
 <div class="content-container">
 <div class="row">
@@ -186,6 +186,9 @@
                   <select class="form-control" name="jenis">
                     <option value="1" >SKM</option>
                     <option value="2" >SKT</option>
+                    <option value="3" >SPM</option>
+                    <option value="4" >CRT</option>
+                    <option value="5" >TIS</option>
                   </select>
               </div>
             </div>
@@ -193,10 +196,13 @@
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Isi/Kemasan</label>
-                  <select class="form-control" name="isi">
-                    <option value="1" >10 bks/slop</option>
-                    <option value="2" >SKT</option>
-                  </select>
+                  <select name="isi" class="form-control" >
+                  <option {if $kemasanedit.isi==1}selected{/if} value="1">10 bks/slop</option>
+                  <option {if $kemasanedit.isi==2}selected{/if} value="2">10 btg/bks</option>
+                  <option {if $kemasanedit.isi==3}selected{/if} value="3">10 slider/slop</option>
+                  <option {if $kemasanedit.isi==4}selected{/if} value="4">12 btg/bks</option>
+                  <option {if $kemasanedit.isi==5}selected{/if} value="5">50 btg/slinder</option>
+                </select>
               </div>
             </div>
 
@@ -215,18 +221,25 @@
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Jenis Gambar</label>
-                  <select class="form-control" name="jenisGambar">
-                    <option value="1" >Gambar 1</option>
-                    <option value="2" >Gambar 2</option>
+                <select class="form-control">
+                  <option value="1" {if $data.jenisGambar==1}selected{/if}>1 (Kanker Mulut)</option>
+                  <option value="2" {if $data.jenisGambar==2}selected{/if}>2 (Kanker Tenggorokan)</option>
+                  <option value="3" {if $data.jenisGambar==3}selected{/if}>3 (Ayah dan anak)</option>
+                  <option value="4" {if $data.jenisGambar==4}selected{/if}>4</option>
+                  <option value="5" {if $data.jenisGambar==5}selected{/if}>5</option>
+                  <option value="6" {if $data.jenisGambar==6}selected{/if}>6</option>
                   </select>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">Tulisan peringatan kesehatan</label>
+                  
                   <select class="form-control" name="tulisanPeringatan">
-                    <option value="1" >Merokok membunuhmu</option>
-                    <option value="2" >Gambar 2</option>
+                      {foreach $tulisan as $val}
+                      <option value="{$val.id}" {if $data.tulisanPeringatan=={$val.id}}selected{/if}>{$val.title}</option>
+                      {/foreach}
+                       
                   </select>
               </div>
             </div>
@@ -277,6 +290,12 @@
               {if $laporankemasandetail.fotoBawah}
               <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoBawah}" width="100px">{/if}
                   <input type="file" name="fotoBawah" class="form-control" value="{$data.evaluasiInformasi}" />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+              <label for="text-input">Upload Surat Pengantar</label>
+                  <input type="file" name="suratPengantar" class="form-control" value="{$data.suratpengantar}" />
               </div>
             </div>
           </div>

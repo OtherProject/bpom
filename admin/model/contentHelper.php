@@ -94,8 +94,8 @@ class contentHelper extends Database {
 
 		$sql = array(
                 'table'=>"{$this->prefix}_pelaporan_kemasan AS k, {$this->prefix}_industri AS i , {$this->prefix}_product AS p, {$this->prefix}_industri_pabrik AS ip",
-                'field'=>"k.*, i.namaIndustri, p.merek, ip.noNPPBKC",
-                'condition' => "k.pabrikID != 0 AND k.n_status = {$n_status} {$filter}",
+                'field'=>"k.*, i.namaIndustri, i.noTelepon, i.noFax, i.namaPimpinan, p.merek, ip.noNPPBKC, ip.namaJalan",
+                'condition' => "k.pabrikID != 0 AND k.n_status IN ({$n_status}) {$filter}",
                 'limit' => '100',
                 'joinmethod' => 'LEFT JOIN',
                 'join' => 'k.industriID = i.id, k.merek = p.id, k.pabrikID = ip.id'
@@ -105,6 +105,32 @@ class contentHelper extends Database {
         if ($res) return $res;
 		return false;
 
+	}
+
+	function evaluasiKemasan($data, $debug=false)
+	{
+
+		$arrfield = array('tulisanPeringatan','jenisGambar','jenis','isi','namaDan_alamat','bentuKemasan','luasDepan','luasBelakang','kodeProduksi','tglProduksi','kadarNikotin','kadarTar',
+						'pernyataanDilarang_menjual','pernyataanTidak_aman','pernyataanZat_kimia','kesimpulan');
+		
+		foreach ($data as $key => $value) {
+			if (in_array($key, $arrfield)){
+				if ($value)$field[] = "$key = '".$value."'";
+			}
+		}
+
+		$field[] = "n_status = 2";
+		$impField = implode(',', $field);
+
+		$sql = array(
+                'table'=>"{$this->prefix}_pelaporan_kemasan",
+                'field'=>"{$impField}",
+                'condition' => "id = {$data['idPelaporan']}",
+                );
+
+        $res = $this->lazyQuery($sql,$debug,2);
+        if ($res) return $res;
+		return false;
 	}
 
 	function getLaporanNikotin($data, $debug=false)
@@ -124,7 +150,7 @@ class contentHelper extends Database {
                 			{$this->prefix}_lab AS l", 
                 'field'=>"n.*, i.namaIndustri, p.merek, ip.noNPPBKC, ip.provinsi, ip.kecamatan, ip.namaJalan,
                 		l.nama AS namaLab, l.penanggungjawab",
-                'condition' => "n.pabrikID != 0 AND n.n_status = {$n_status} {$filter}",
+                'condition' => "n.pabrikID != 0 AND n.n_status IN ({$n_status}) {$filter}",
                 'limit' => '100',
                 'joinmethod' => 'LEFT JOIN',
                 'join' => 'n.industriID = i.id, n.merek = p.id, n.pabrikID = ip.id, n.labID = l.id'
@@ -227,23 +253,76 @@ class contentHelper extends Database {
 	{
 
 		if (!$id) return false;
-		$sql = "UPDATE {$this->prefix}_evaluasi SET n_status = {$n_status} WHERE id IN ({$id})";
-		// pr($sql);
+		$sql = "UPDATE {$this->prefix}_pelaporan_kemasan SET n_status = {$n_status} WHERE id IN ({$id})";
+		// pr($sql);exit;
 		$res = $this->query($sql);
 		if ($res) return true;
 		return false;
 	}
 
-	function getIndustri($id=false)
+	function validateDataNikotin($id=false, $n_status=2)
 	{
 
+		if (!$id) return false;
+		$sql = "UPDATE {$this->prefix}_pelaporan_nikotin SET n_status = {$n_status} WHERE id IN ({$id})";
+		// pr($sql);exit;
+		$res = $this->query($sql);
+		if ($res) return true;
+		return false;
+	}
+
+	function getPabrik($id=false, $indusrtiID=false, $debug=false)
+	{
+
+		$filter = "";
+
+		if ($id) $filter .= "AND id = '{$id}'";
+		if ($indusrtiID) $filter .= "AND indusrtiID = '{$indusrtiID}'";
+
+		$sql = array(
+                    'table' =>"{$this->prefix}_industri_pabrik",
+                    'field' => "*",
+                    'condition' => "1 {$filter}",
+                );
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getKab($id=false, $parent=false, $debug=false)
+	{
+
+		$filter = "";
+
+		if ($id) $filter .= "AND kode_wilayah = '{$id}'";
+		if ($parent) $filter .= "AND parent = '{$parent}'";
+
+		$sql = array(
+                    'table' =>"tbl_wilayah",
+                    'field' => "*",
+                    'condition' => " 1 {$filter} ORDER BY nama_wilayah"
+                );
+        $result = $this->lazyQuery($sql, $debug);
+        if ($result) return $result;
+        return false;
+	}
+	
+	function getIndustri($id=false, $debug=false)
+	{
+
+		$filter = "";
+		$limit = "";
+		if ($id){
+			$filter = " AND id = {$id}";
+			$limit = 1;
+		} 
 		$sql = array(
                     'table' =>"{$this->prefix}_industri",
                     'field' => "*",
-                    'condition' => "id = {$id}",
-                    'limit' => 1
+                    'condition' => "1 {$filter}",
+                    'limit' => $limit
                 );
-        $result = $this->lazyQuery($sql);
+        $result = $this->lazyQuery($sql, $debug);
         if ($result) return $result;
         return false;
 	}
@@ -284,6 +363,21 @@ class contentHelper extends Database {
                     'table' =>"tbl_wilayah",
                     'field' => "*",
                     'condition' => "1 {$filter} ORDER BY nama_wilayah"
+                );
+        $result = $this->lazyQuery($sql, $debug);
+        if ($result) return $result;
+        return false;
+	}
+
+	function getTulisanPeringatan($id=false,$debug=false)
+	{
+		$filter = "";
+
+		if ($id) $filter .= "AND kode_wilayah = '{$id}'";
+		$sql = array(
+                    'table' =>"{$this->prefix}_peringatan_kesehatan",
+                    'field' => "*",
+                    'condition' => "1 {$filter}"
                 );
         $result = $this->lazyQuery($sql, $debug);
         if ($result) return $result;

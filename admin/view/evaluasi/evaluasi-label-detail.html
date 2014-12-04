@@ -50,11 +50,11 @@
 	{/if}
 	<form id="validate-enhanced" class="" method="post" action="" enctype="multipart/form-data">
 		
-		
+		{if $data.n_status ==1}
 		<button type="submit" class="btn btn-info" id="btn-dis"><i class="fa fa-save"></i> Evaluasi</button>
-
-		<a href="{$basedomain}pelaporan/detailkemasan/?id={$id}&act=1" ><button type="button" class="btn btn-danger" id="btn-dis"><i class="fa fa-multiply"></i> Rejected</button></a>
-
+		
+		<a href="{$basedomain}pelaporan/detailkemasan/?id={$id}&act=1" ><button type="button" class="btn btn-danger" id="btn-dis"><i class="fa fa-multiply"></i> Reject</button></a>
+		{/if}
 		<input type="hidden" name="idPelaporan" value="{$id}">
 
 		<div class="portlet">
@@ -113,7 +113,7 @@
 							
 							<th align="center">Item</th>
 							<th align="center">Hasil</th>
-							<th align="center">Verifikasi</th>
+							
 						</tr>
 						</thead>
 						<tbody>
@@ -126,58 +126,55 @@
 						<tr>
 							
 							<td>No NPPBKC </td>
-							<td><input type="text" name="noNPPBKC" class="form-control namaprodusen" value="{$data.noNPPBKC}" /></td>
-							<td><input type="checkbox" name="pelaporanKemasan[]" class="form-control namaprodusen" value=""/></td>
+							<td><input type="text" name="noNPPBKC" class="form-control namaprodusen" value="{$data.noNPPBKC}" disabled/></td>
+							
 						</tr>
 						<tr>
 							
 							<td>Alamat</td>
-							<td><input type="text" name="namaJalan" class="form-control namaprodusen" value="{$data.namaJalan}" /></td>
-							<td><input type="checkbox" name="pelaporanKemasan[]" class="form-control namaprodusen" value=""/></td>
+							<td><input type="text" name="namaJalan" class="form-control namaprodusen" value="{$data.namaJalan}" disabled/></td>
+							
 						</tr>
 						<tr>
 							
 							<td>No Telp</td>
-							<td><input type="text" name="noTelepon" class="form-control namaprodusen" value="{$data.noTelepon}" /></td>
-							<td><input type="checkbox" name="pelaporanKemasan[]" class="form-control namaprodusen" value=""/></td>
+							<td><input type="text" name="noTelepon" class="form-control namaprodusen" value="{$data.noTelepon}" disabled/></td>
+							
 						</tr>
 						<tr>
 							
 							<td>No Fax</td>
-							<td><input type="text" name="noFax" class="form-control namaprodusen" value="{$data.noFax}" /></td>
-							<td><input type="checkbox" name="pelaporanKemasan[]" class="form-control namaprodusen" value=""/></td>
+							<td><input type="text" name="noFax" class="form-control namaprodusen" value="{$data.noFax}" disabled/></td>
+							
 						</tr>
 						<tr>
 							
 							<td>Nama Pemilik / Direktur </td>
-							<td><input type="text" name="namaPimpinan" class="form-control namaprodusen" value="{$data.namaPimpinan}" /></td>
-							<td><input type="checkbox" name="pelaporanKemasan[]" class="form-control namaprodusen" value=""/></td>
+							<td><input type="text" name="namaPimpinan" class="form-control namaprodusen" value="{$data.namaPimpinan}" disabled/></td>
+							
 						</tr>
 						<tr>
 							
 							<td>Nama Merek Rokok</td>
 							<td><input type="text" name="merek" class="form-control namaprodusen" value="{$data.merek}" disabled/></td>
-							<td><input type="checkbox" name="pelaporanKemasan[]" class="form-control namaprodusen" value=""/></td>
+							
 						</tr>
 						<tr>
 							
 							<td>Jenis Rokok</td>
 							<td>
-								<select name="jenis" class="form-control">
+								<select name="jenis" class="form-control" disabled>
 									<option {if $data.jenis==1}selected{/if} value="1">SKT</option>
 									<option {if $data.jenis==2}selected{/if} value="2">SKM</option>
-									<option {if $data.jenis==3}selected{/if}value="3" >SPM</option>
-                    				<option {if $data.jenis==4}selected{/if}value="4" >CRT</option>
-                					<option {if $data.jenis==5}selected{/if}value="5" >TIS</option>
 								</select>
 							</td>
-							<td><input type="checkbox" name="pelaporanKemasan[]" class="form-control namaprodusen" value=""/></td>
+							
 						</tr>
 						<tr>
 							
 							<td>Isi Kemasan</td>
 							<td>
-								<select name="isi" class="form-control">
+								<select name="isi" class="form-control" disabled>
 									<option {if $data.isi==1}selected{/if} value="1">10 bks/slop</option>
 									<option {if $data.isi==2}selected{/if} value="2">10 btg/bks</option>
 									<option {if $data.isi==3}selected{/if} value="3">10 slider/slop</option>
@@ -186,25 +183,25 @@
 								</select>
 								{*}
 								<input type="text" name="jenis" class="form-control jenisrokok" value="{$data.d_isiKemasan}" />{/*}</td>
-							<td><input type="checkbox" name="pelaporanKemasan[]" class="form-control namaprodusen" value=""/></td>
+							
 						</tr>
 						<tr>
 							
 							<td>Bentuk Kemasan</td>
 							<td>
-								<select name="bentuKemasan" class="form-control">
+								<select name="bentuKemasan" class="form-control" disabled>
 									<option {if $data.isi==1}selected{/if} value="1">Kotak persegi panjang</option>
 									<option {if $data.isi==2}selected{/if} value="2">Kotak slop</option>
 									<option {if $data.isi==3}selected{/if} value="3">Slinder</option>
 								</select>
 								{*}
 								<input type="text" name="jenis" class="form-control jenisrokok" value="{$data.d_bentukKemasan}" />{/*}</td>
-							<td><input type="checkbox" name="" class="form-control namaprodusen" value=""/></td>
+							
 						</tr>
 						<tr>
 							
 							<td>Kesimpulan</td>
-							<td><select class="form-control" name="kesimpulan">
+							<td><select class="form-control" name="kesimpulan" disabled>
 								<option value="0">-Tentukan kesimpulan-</option>
                                 <option value="0" {if $data.kesimpulan==0}selected{/if}>TMK</option>
                                 <option value="1" {if $data.kesimpulan==1}selected{/if}>MK</option>

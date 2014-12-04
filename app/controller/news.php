@@ -29,7 +29,20 @@ class news extends Controller {
 
 		global $CONFIG, $basedomain;
 
-		// $getData = $this->contentHelper->getArticle();
+		$getData = $this->contentHelper->getArticle();
+    
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+    }
+
     // pr($getData);
     $this->view->assign('data',$getData);	
 
@@ -40,8 +53,20 @@ class news extends Controller {
 
     global $CONFIG, $basedomain;
 
-    // $getData = $this->contentHelper->getArticle();
+    $id = _g('id');
+    $getData = $this->contentHelper->getArticle($id);
     // pr($getData);
+    if ($getData){
+      foreach ($getData as $key => $value) {
+        if ($value['posted_date']){
+          $getData[$key]['changeDate'] = changeDate($value['posted_date']);
+        }
+        if ($value['content']){
+          $getData[$key]['content'] = html_entity_decode($value['content']);
+        }
+        
+      }
+    }
     $this->view->assign('data',$getData); 
 
     return $this->loadView('detail-news');

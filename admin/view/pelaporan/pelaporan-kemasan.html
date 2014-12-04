@@ -49,7 +49,9 @@
 					<button type="submit" class="btn btn-info btn-sm" id="btn-dis" disabled><i class="fa fa-check"></i> Konfirmasi</button>
 					
 					{/*}
-
+					{if $admin.type==4}
+					 <a href="{$basedomain}pelaporan/addKemasan" ><button class="btn btn-success btn-sm" id="btn-dis" type="button"><i class="fa fa-plus"></i> Add Pelaporan</button></a>
+					{/if}
 					<table 
 						class="table table-striped table-bordered table-hover table-highlight table-checkable" 
 						data-provide="datatable" 
@@ -62,9 +64,10 @@
 									<th class="checkbox-column">
 										<input type="checkbox" class="icheck-input" onchange="return AreAnyCheckboxesChecked();">
 									</th>
+									<th data-filterable="true" data-sortable="true" >Tanggal Pelaporan</th>
 									<th data-filterable="true" data-sortable="true" >Merek</th>
 									<th data-filterable="true" data-sortable="true" >Produsen</th>
-									<th data-filterable="true" data-sortable="true">No NPPBKC</th>
+									<th data-filterable="true" data-sortable="true">Status</th>
 									
 									
 								</tr>
@@ -75,9 +78,10 @@
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();">
 									</td>
+									<td>{$var.createDate}</td>
 									<td><a href="{$basedomain}pelaporan/detailkemasan/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.merek}</a></td>
 									<td style="color:{$var.status_color}">{$var.namaIndustri}</td>
-									<td>{$var.noNPPBKC}</td>
+									<td style="color:red">Pending Evaluasi</td>
 									
 								</tr>
 								{/foreach}
