@@ -386,6 +386,68 @@ class account extends Controller {
     return $this->loadView('account-pelaporan-nikotin');
   }
 
+  function pelaporanDetail()
+  {
+
+
+      $tulisanPeringatan = array(1 => 'Merokok Membunuhmu',
+                    2 => 'Merokok dekat anak berbahayan bagi mereka',
+                    3 => 'Merokok sebabkan kanker mulut',
+                    );
+      $bentukKemasan = array(1 => 'Kotak persegi panjang',
+                  2 => 'Kotak slop',
+                  3 => 'Slinder'
+                  );
+      $isiKemasan = array(1 => '10 bks/slop',
+                2 => '10 btg/bks',
+                2 => '10 slider/slop',
+                2 => '12 btg/bks',
+                2 => '50 btg/slinder',
+                );
+      $jenisRokok = array(1 => 'SKT',
+                2 => 'SKM',
+                );
+
+      $data = $this->contentHelper->getPelaporanKemasan($_GET['id']);
+      
+      if ($data){
+        foreach ($data as $key => $value) {
+          $data[$key]['d_tulisanPeringatan'] = $tulisanPeringatan[$value['tulisanPeringatan']];
+          $data[$key]['d_bentukKemasan'] = $bentukKemasan[$value['bentuKemasan']];
+          $data[$key]['d_isiKemasan'] = $isiKemasan[$value['isi']];
+          $data[$key]['d_jenisRokok'] = $jenisRokok[$value['jenis']];
+
+          if ($this->admin['admin']['type']==2){
+            $data[$key]['dataDisabled'] = 'disabled';
+          }else{
+            $data[$key]['dataDisabled'] = '';
+          }
+        }
+        $this->view->assign('kemasan',$data[0]);
+      }
+
+      // pr($data);
+      $id = $data[0]['pabrikID'];
+      $getPabrik = $this->contentHelper->getPabrik($id);
+      // pr($getPabrik);
+      // pr($data[0]['industriID']);
+
+      $getIndustri = $this->contentHelper->getIndustri($data[0]['industriID']);
+
+   
+
+      // pr($getIndustri);
+      // pr($getPabrik);
+      $this->view->assign('ind',$getIndustri[0]);
+      $this->view->assign('pabrik',$getPabrik[0]);
+
+      $id_industri = $this->user['industri_id'];
+      $getIndustri = $this->contentHelper->getIndustri($id_industri);
+
+
+    return $this->loadView('account-pelaporan-detail');
+  }
+
   function ajaxPabrik()
   {
 

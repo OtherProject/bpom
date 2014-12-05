@@ -1,0 +1,228 @@
+
+<script type="text/javascript">
+
+  {literal}
+
+    $(document).on('change', '.pilihprov', function(){
+
+
+      var id = $(this).val();
+
+      $.post(basedomain+'account/ajax',{kode_wilayah:id}, function(data){
+
+        var html = "";
+
+        if (data.status==true){
+          $.each(data.res, function(i,val){
+
+            html += "<option value='"+val.kode_wilayah+"'>"+val.nama_wilayah+"</option>";
+
+          })
+
+          $('.pilihkab').html(html);
+        } 
+        
+      }, "JSON")  
+
+    })
+  {/literal}
+</script>
+
+<br>
+
+<section>
+    <div class="container">  
+      <div class="center">
+  <h2>Preview Pelaporan</h2>
+            <p class="lead">&nbsp;</p>
+  </div>
+<form method="post" action="{$basedomain}account/industri">
+
+<div class="content-container">
+
+  <div class="row" style="margin-top:10px;">
+      <div class="col-md-12">
+        <div class="span6" style="border:1px solid #bbb;border-radius:10px;padding:10px 20px 10px 20px;">
+          <table class="table">
+            
+            <thead>
+            <tr>
+              <th align="center">Item</th>
+              <th align="center">Data</th>
+              
+            </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+              
+              <td>Nama Perusahaan</td>
+              <td><input type="text" name="merek" class="form-control namaprodusen" value="{$ind.namaIndustri}" disabled/></td>
+              
+            </tr>
+            <tr>
+              
+              <td>NPWP Perusahaan</td>
+              <td><input type="text" name="produsen" class="form-control namaprodusen" value="{$ind.npwp}" disabled/></td>
+              
+            </tr>
+            <tr>
+             
+              <td>Nama Penanggungjawab</td>
+              <td><input type="text" name="jenis" class="form-control jenisrokok" value="{$ind.namaPimpinan}" disabled/></td>
+              
+            </tr>
+            <tr>
+             
+              <td>No KTP Penanggungjawab</td>
+              <td><input type="text" name="jenis" class="form-control jenisrokok" value="{$ind.noKTP}" disabled/></td>
+              
+            </tr>
+            
+            <tr>
+              
+              <td>Alamat Penanggungjawab</td>
+              <td><input type="text" name="jenis" class="form-control jenisrokok" value="{$ind.alamatPimpinan}" disabled/></td>
+              
+            </tr>
+            
+            <tr>
+             
+              <td>Kecamatan</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$ind.kecamatan}" disabled/></td>
+              
+            </tr>
+            <tr>
+              
+              <td>Kelurahan/Desa</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$ind.desa}" disabled/></td>
+              
+            </tr>
+            <tr>
+              
+              <td>Kode Pos</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$ind.kodePos}" disabled/></td>
+              
+            </tr>
+            <tr>
+             
+              <td>Nama Jalan , RT RW</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$ind.jalanRTRW}" disabled/></td>
+              
+            </tr>
+            <tr>
+              
+              <td>No Telepon</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$ind.noTelepon}" disabled/></td>
+              
+            </tr>
+            <tr>
+              
+              <td>No Fax</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.noFax}" disabled/></td>
+              
+            </tr>
+             <tr>
+              
+              <td>Nomor NPPBKC</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.noNPPBKC}" disabled/></td>
+              
+            </tr>
+            <tr>
+              
+              <td>Merek Rokok</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.merek}" disabled/></td>
+              
+            </tr>
+            <tr>
+              
+              <td>Jenis</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.jenis}" disabled/></td>
+              
+            </tr>
+            <tr>
+              
+              <td>Isi/Kemasan</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.d_isiKemasan}" disabled/></td>
+              
+            </tr>
+            <tr>
+              
+              <td>Bentuk Kemasan</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.d_bentukKemasan}" disabled/></td>
+              
+            </tr>
+            <tr>
+              
+              <td>Jenis Gambar</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.d_jenisRokok}" disabled/></td>
+              
+            </tr>
+
+            <tr>
+              
+              <td>Tulisan peringatan kesehatan</td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.d_tulisanPeringatan}" disabled/></td>
+              
+            </tr>
+            <tr>
+              
+              <td>Surat Pengantar</td>
+              <td><div class="col-sm-12">
+
+                  <div class="col-sm-3">
+                    <img src="{$basedomain}public_assets/{$kemasan.suratPengantar}" width="100%">
+                  </div>
+                  
+                </div></td>
+              
+            </tr>
+            <tr>
+              
+              <td>Foto Kemasan</td>
+              <td>
+                <div class="col-sm-12">
+
+                  <div class="col-sm-3">
+                    <img src="{$basedomain}public_assets/{$kemasan.fotoDepan}" width="100%">
+                  </div>
+                  <div class="col-sm-3">
+                    <img src="{$basedomain}public_assets/{$kemasan.fotoBelakang}" width="100%">
+                  </div>
+                  <div class="col-sm-3">
+                    <img src="{$basedomain}public_assets/{$kemasan.fotoKiri}" width="100%">
+                  </div>
+                  <div class="col-sm-3">
+                    <img src="{$basedomain}public_assets/{$kemasan.fotoKanan}" width="100%">
+                  </div>
+
+                </div>
+                <div class="col-sm-12">
+
+                  <div class="col-sm-3">
+                    <img src="{$basedomain}public_assets/{$kemasan.fotoAtas}" width="100%">
+                  </div>
+                  <div class="col-sm-3">
+                    <img src="{$basedomain}public_assets/{$kemasan.fotoBawah}" width="100%">
+                  </div>
+                  
+                  
+                </div>
+              </td>
+              
+            </tr>
+
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+
+
+      
+</div>
+
+</form>
+</div>
+</section>
