@@ -79,7 +79,7 @@ class contentHelper extends Database {
                     'table' =>"{$this->prefix}_pelaporan_kemasan",
                     'field' => "industriID, pabrikID, merek ,jenis, isi, bentuKemasan,
                     			jenisGambar,tulisanPeringatan,createDate,n_status",
-                    'value' => "'{$pabrikID}','{$pabrikID}', '{$merek}', '{$jenis}','{$isi}','{$bentuKemasan}','{$jenisGambar}',
+                    'value' => "'{$industriID}','{$pabrikID}', '{$merek}', '{$jenis}','{$isi}','{$bentuKemasan}','{$jenisGambar}',
                     			'{$tulisanPeringatan}', '{$createDate}',$n_status ",
                 );
         $result = $this->lazyQuery($sql,$debug,1);

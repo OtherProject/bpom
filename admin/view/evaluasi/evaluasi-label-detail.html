@@ -70,33 +70,7 @@
 				<div class="col-md-12">
 				{$slider}
 				</div>
-				{*}
-				<div class="col-md-4">
-					
-					<a class="preview" href="{$app_domain}public_assets/{$data.fotoDepan}" rel="prettyPhoto"><img class="img-responsive" src="{$app_domain}public_assets/{$data.fotoDepan}" alt=""></a>
-                        
-				</div>
-				<div class="col-md-4">
-					<a class="preview" href="{$app_domain}public_assets/{$data.fotoBelakang}" rel="prettyPhoto"><img class="img-responsive" src="{$app_domain}public_assets/{$data.fotoBelakang}" alt=""></a>
-					
-				</div>
-				<div class="col-md-4">
-					<a class="preview" href="{$app_domain}public_assets/{$data.fotoKiri}" rel="prettyPhoto"><img class="img-responsive" src="{$app_domain}public_assets/{$data.fotoKiri}" alt=""></a>
-					
-				</div>
-				<div class="col-md-4">
-					<a class="preview" href="{$app_domain}public_assets/{$data.fotoKanan}" rel="prettyPhoto"><img class="img-responsive" src="{$app_domain}public_assets/{$data.fotoKanan}" alt=""></a>
-					
-				</div>
-				<div class="col-md-4">
-					<a class="preview" href="{$app_domain}public_assets/{$data.fotoAtas}" rel="prettyPhoto"><img class="img-responsive" src="{$app_domain}public_assets/{$data.fotoAtas}" alt=""></a>
-					
-				</div>
-				<div class="col-md-4">
-					<a class="preview" href="{$app_domain}public_assets/{$data.fotoBawah}" rel="prettyPhoto"><img class="img-responsive" src="{$app_domain}public_assets/{$data.fotoBawah}" alt=""></a>
-					
-				</div>
-				{/*}
+				
 			</div>
 		</div>
 
@@ -126,31 +100,31 @@
 						<tr>
 							
 							<td>No NPPBKC </td>
-							<td><input type="text" name="noNPPBKC" class="form-control namaprodusen" value="{$data.noNPPBKC}" disabled/></td>
+							<td><input type="text" name="noNPPBKC" class="form-control namaprodusen" value="{$data.noNPPBKC}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
 							
 							<td>Alamat</td>
-							<td><input type="text" name="namaJalan" class="form-control namaprodusen" value="{$data.namaJalan}" disabled/></td>
+							<td><input type="text" name="namaJalan" class="form-control namaprodusen" value="{$data.namaJalan}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
 							
 							<td>No Telp</td>
-							<td><input type="text" name="noTelepon" class="form-control namaprodusen" value="{$data.noTelepon}" disabled/></td>
+							<td><input type="text" name="noTelepon" class="form-control namaprodusen" value="{$data.noTelepon}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
 							
 							<td>No Fax</td>
-							<td><input type="text" name="noFax" class="form-control namaprodusen" value="{$data.noFax}" disabled/></td>
+							<td><input type="text" name="noFax" class="form-control namaprodusen" value="{$data.noFax}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
 							
 							<td>Nama Pemilik / Direktur </td>
-							<td><input type="text" name="namaPimpinan" class="form-control namaprodusen" value="{$data.namaPimpinan}" disabled/></td>
+							<td><input type="text" name="namaPimpinan" class="form-control namaprodusen" value="{$data.namaPimpinan}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
@@ -163,7 +137,7 @@
 							
 							<td>Jenis Rokok</td>
 							<td>
-								<select name="jenis" class="form-control" disabled>
+								<select name="jenis" class="form-control" {$data.dataDisabled}>
 									<option {if $data.jenis==1}selected{/if} value="1">SKT</option>
 									<option {if $data.jenis==2}selected{/if} value="2">SKM</option>
 								</select>
@@ -174,7 +148,7 @@
 							
 							<td>Isi Kemasan</td>
 							<td>
-								<select name="isi" class="form-control" disabled>
+								<select name="isi" class="form-control" {$data.dataDisabled}>
 									<option {if $data.isi==1}selected{/if} value="1">10 bks/slop</option>
 									<option {if $data.isi==2}selected{/if} value="2">10 btg/bks</option>
 									<option {if $data.isi==3}selected{/if} value="3">10 slider/slop</option>
@@ -189,7 +163,7 @@
 							
 							<td>Bentuk Kemasan</td>
 							<td>
-								<select name="bentuKemasan" class="form-control" disabled>
+								<select name="bentuKemasan" class="form-control" {$data.dataDisabled}>
 									<option {if $data.isi==1}selected{/if} value="1">Kotak persegi panjang</option>
 									<option {if $data.isi==2}selected{/if} value="2">Kotak slop</option>
 									<option {if $data.isi==3}selected{/if} value="3">Slinder</option>
@@ -201,7 +175,7 @@
 						<tr>
 							
 							<td>Kesimpulan</td>
-							<td><select class="form-control" name="kesimpulan" disabled>
+							<td><select class="form-control" name="kesimpulan" {$data.dataDisabled}>
 								<option value="0">-Tentukan kesimpulan-</option>
                                 <option value="0" {if $data.kesimpulan==0}selected{/if}>TMK</option>
                                 <option value="1" {if $data.kesimpulan==1}selected{/if}>MK</option>

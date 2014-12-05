@@ -6,6 +6,8 @@
                 <div class="col-md-8">
                     <h2 align="left" >Headline News</h2>
                     <p class="lead" align="left"> {*}{$val1.content}{/*}</p>
+
+
                     <table class="table" border="0">
                     
                             
@@ -15,15 +17,15 @@
                             {foreach $data as $val}
                             <th bgcolor="#8bc349"  colspan="3">{$val.title}</th>
                               <tr>
-                                <td height="140" width="236" >
+                                <td height="230" width="250" >
                                 {if $val.image}
-                                <img align="center" class="col-sm-12" border="0" src="{$basedomain}public_assets/{$val.image}"/> 
+                                <img align="center" class="col-sm-12" border="0" src="{$basedomain}public_assets/{$val.image}" width="100%" height="100%"/> 
                                 {/if}
                                 </td>
                                 <td>
                                     <h2><a href="{$basedomain}news/detailnews/?id={$val.id}">{$val.title}</a></h2>
                                     <p>
-                                        {$val.content}
+                                        {$val.brief}
                                     </p>
                                 </td>
                                 

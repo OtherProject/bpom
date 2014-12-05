@@ -94,8 +94,12 @@ class pelaporan extends Controller {
 	function kemasan()
 	{
 
-		$dataArr['n_status'] = 1;
-		$data = $this->contentHelper->getLaporanKemasan($dataArr);
+		// pr($this->admin);
+		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
+		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '2';
+		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '1';
+
+		$data = $this->contentHelper->getLaporanKemasanList($dataArr);
 		// pr($data);
 		if ($data){
 			
@@ -128,7 +132,9 @@ class pelaporan extends Controller {
 	function nikotin()
 	{
 
-		$dataArr['n_status'] = 1;
+		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
+		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '2';
+		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '1';
 		$data = $this->contentHelper->getLaporanNikotin($dataArr);
 		// pr($data);
 		if ($data){
@@ -166,7 +172,16 @@ class pelaporan extends Controller {
 		$id = _g('id');
 
 		$dataArr['id'] = $id;
-		$dataArr['n_status'] = 1;
+		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
+		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '2';
+		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '1';
+
+		if (isset($_GET['view'])){
+			if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '3';
+			if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '2';
+
+			$this->view->assign('disableData',true);
+		}
 
 		$tulisanPeringatan = array(1 => 'Merokok Membunuhmu',
 									2 => 'Merokok dekat anak berbahayan bagi mereka',
@@ -196,6 +211,12 @@ class pelaporan extends Controller {
 				$data[$key]['d_bentukKemasan'] = $bentukKemasan[$value['bentuKemasan']];
 				$data[$key]['d_isiKemasan'] = $isiKemasan[$value['isi']];
 				$data[$key]['d_jenisRokok'] = $jenisRokok[$value['jenis']];
+
+				if ($this->admin['admin']['type']==2){
+					$data[$key]['dataDisabled'] = 'disabled';
+				}else{
+					$data[$key]['dataDisabled'] = '';
+				}
 			}
 			$this->view->assign('data',$data[0]);
 		}
@@ -211,8 +232,20 @@ class pelaporan extends Controller {
 			// if ($checkBoxCount == 7){
 
 				$dataArr['id'] = $_POST['idPelaporan'];
+
+				if (isset($_POST['reject'])){
+					if ($this->admin['admin']['type']==2) $_POST['n_status'] = '1';
+				}else{
+					if ($this->admin['admin']['type']==2) $_POST['n_status'] = '3';
+					if ($this->admin['admin']['type']==3) $_POST['n_status'] = '2';
+				}
+				
+
 				// $dataArr['n_status'] = 2;
 				// $update = $this->contentHelper->updateStatusKemasan($dataArr);
+
+				// pr($_POST);
+				
 				$update = $this->contentHelper->evaluasiKemasan($_POST);
 				
 				if ($update){
@@ -241,6 +274,8 @@ class pelaporan extends Controller {
 		
 		$slider = $this->loadView('pelaporan/slider');
 		$this->view->assign('slider',$slider);
+
+		$this->view->assign('admin',$this->admin['admin']);
 
 		return $this->loadView('pelaporan/pelaporan-kemasan-detail');
 	}

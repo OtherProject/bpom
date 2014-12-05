@@ -396,7 +396,7 @@ class account extends Controller {
       if ($getPabrik){
         $getIndustri = $this->contentHelper->getIndustri($getPabrik[0]['indusrtiID']);
         
-
+        // pr($getIndustri);
         $data['ind'] = $getIndustri[0];
         $data['pabrik'] = $getPabrik[0];
         // pr($data);

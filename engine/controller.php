@@ -45,7 +45,7 @@ class Controller extends Application{
 		
 		
 		// $this->inject();
-		// pr($this->isUserOnline());
+		// pr($this->isAdminOnline());
 
 		// detection browser
 		// pr($CONFIG);

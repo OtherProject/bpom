@@ -97,8 +97,10 @@ class evaluasi extends Controller {
 	{
 		global $basedomain;
 
-		$dataArr['n_status'] = '1,2,3';
-		$data = $this->contentHelper->getLaporanKemasan($dataArr);
+		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
+		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '3';
+		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '2';
+		$data = $this->contentHelper->getLaporanKemasanList($dataArr);
 		// pr($data);
 		if ($data){
 			
@@ -164,6 +166,9 @@ class evaluasi extends Controller {
 				$data[$key]['d_bentukKemasan'] = $bentukKemasan[$value['bentuKemasan']];
 				$data[$key]['d_isiKemasan'] = $isiKemasan[$value['isi']];
 				$data[$key]['d_jenisRokok'] = $jenisRokok[$value['jenis']];
+
+				$data[$key]['dataDisabled'] = 'disabled';
+				
 			}
 			$this->view->assign('data',$data[0]);
 		}

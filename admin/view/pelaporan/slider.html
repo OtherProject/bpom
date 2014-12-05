@@ -38,6 +38,88 @@
         
     })
 
+    /* auto input text N&T */
+    $(document).on('blur','.kadarNikotin_1', function(){
+
+        var nilai = $(this).val();
+        $('.kadarNikotin_2').val(nilai);
+        if (nilai) $('.kadarNikotin_2').attr('disabled','disabled');
+        else $('.kadarNikotin_2').removeAttr('disabled');
+    })
+
+    $(document).on('blur','.kadarNikotin_2', function(){
+
+        var nilai = $(this).val();
+        $('.kadarNikotin_1').val(nilai);
+        if (nilai) $('.kadarNikotin_1').attr('disabled','disabled');
+        else $('.kadarNikotin_1').removeAttr('disabled');
+       
+    })
+
+    $(document).on('blur','.kadarTar_1', function(){
+
+        var nilai = $(this).val();
+        $('.kadarTar_2').val(nilai);
+        if (nilai) $('.kadarTar_2').attr('disabled','disabled');
+        else $('.kadarTar_2').removeAttr('disabled');
+    })
+
+    $(document).on('blur','.kadarTar_2', function(){
+
+        var nilai = $(this).val();
+        $('.kadarTar_1').val(nilai);
+        if (nilai) $('.kadarTar_1').attr('disabled','disabled');
+        else $('.kadarTar_1').removeAttr('disabled');
+       
+    })
+
+    $(document).on('click','.pernyataanDilarang_menjual_1', function(){
+
+        var nilai = $(this).is(":checked");
+        if (nilai) $('.pernyataanDilarang_menjual_2').attr('disabled','disabled');
+        else $('.pernyataanDilarang_menjual_2').removeAttr('disabled');
+       
+    })
+
+    $(document).on('click','.pernyataanDilarang_menjual_2', function(){
+
+        var nilai = $(this).is(":checked");
+        if (nilai) $('.pernyataanDilarang_menjual_1').attr('disabled','disabled');
+        else $('.pernyataanDilarang_menjual_1').removeAttr('disabled');
+       
+    })
+
+    $(document).on('click','.pernyataanTidak_aman_1', function(){
+
+        var nilai = $(this).is(":checked");
+        if (nilai) $('.pernyataanTidak_aman_2').attr('disabled','disabled');
+        else $('.pernyataanTidak_aman_2').removeAttr('disabled');
+       
+    })
+
+    $(document).on('click','.pernyataanTidak_aman_2', function(){
+
+        var nilai = $(this).is(":checked");
+        if (nilai) $('.pernyataanTidak_aman_1').attr('disabled','disabled');
+        else $('.pernyataanTidak_aman_1').removeAttr('disabled');
+       
+    })
+
+    $(document).on('click','.pernyataanZat_kimia_1', function(){
+
+        var nilai = $(this).is(":checked");
+        if (nilai) $('.pernyataanZat_kimia_2').attr('disabled','disabled');
+        else $('.pernyataanZat_kimia_2').removeAttr('disabled');
+       
+    })
+
+    $(document).on('click','.pernyataanZat_kimia_2', function(){
+
+        var nilai = $(this).is(":checked");
+        if (nilai) $('.pernyataanZat_kimia_1').attr('disabled','disabled');
+        else $('.pernyataanZat_kimia_1').removeAttr('disabled');
+       
+    })
     
 {/literal}
 </script>
@@ -72,7 +154,7 @@
                         
                         <td>Jenis Gambar</td>
                         <td>
-                            <select class="form-control" name="jenisGambar">
+                            <select class="form-control" name="jenisGambar" {$data.dataDisabled}>
                                 <option value="1" {if $data.jenisGambar==1}selected{/if}>1</option>
                                 <option value="2" {if $data.jenisGambar==2}selected{/if}>2</option>
                                 <option value="3" {if $data.jenisGambar==3}selected{/if}>3</option>
@@ -86,7 +168,7 @@
                     <tr>
                         
                         <td>Tulisan peringatan kesehatan</td>
-                        <td><select class="form-control" name="tulisanPeringatan">
+                        <td><select class="form-control" name="tulisanPeringatan" {$data.dataDisabled}>
                             {foreach $tulisan as $val}
                             <option value="{$val.id}" {if $data.tulisanPeringatan=={$val.id}}selected{/if}>{$val.title}</option>
                             {/foreach}
@@ -97,7 +179,7 @@
                     <tr>
                         
                         <td>Luas Depan (%)</td>
-                        <td><input type="text" name="luasDepan" class="form-control jenisrokok" value="{$data.luasDepan}" /></td>
+                        <td><input type="text" name="luasDepan" class="form-control jenisrokok" value="{$data.luasDepan}" {$data.dataDisabled}/></td>
                         
                     </tr>
                     
@@ -114,7 +196,7 @@
                         
                         <td>Jenis Gambar</td>
                         <td>
-                            <select class="form-control" name="jenisGambar">
+                            <select class="form-control" name="jenisGambar" {$data.dataDisabled}>
                                 <option value="1" {if $data.jenisGambar==1}selected{/if}>1</option>
                                 <option value="2" {if $data.jenisGambar==2}selected{/if}>2</option>
                                 <option value="3" {if $data.jenisGambar==3}selected{/if}>3</option>
@@ -129,7 +211,7 @@
                         
                         <td>Tulisan peringatan kesehatan</td>
                         <td>
-                            <select class="form-control" name="tulisanPeringatan">
+                            <select class="form-control" name="tulisanPeringatan" {$data.dataDisabled}>
                             {foreach $tulisan as $val}
                             <option value="{$val.id}">{$val.title}</option>
                             {/foreach}
@@ -139,7 +221,7 @@
                     <tr>
                         
                         <td>Luas Belakang (%)</td>
-                        <td><input type="text" name="luasBelakang" class="form-control jenisrokok" value="{$data.luasBelakang}" /></td>
+                        <td><input type="text" name="luasBelakang" class="form-control jenisrokok" value="{$data.luasBelakang}" {$data.dataDisabled}/></td>
                        
                     </tr>
                     
@@ -149,13 +231,18 @@
 
             <div class="news-content">
                 <img src="{$app_domain}public_assets/{$data.fotoAtas}">
+                
+            </div><!-- .news-content -->
+
+            <div class="news-content">
+            <img src="{$app_domain}public_assets/{$data.fotoBawah}">
                 <table class="table">
                                                         
                     <tr>
                         
                         <td>Nama dan Alamat Produsen</td>
                         <td>
-                            <select name="namaDan_alamat" class="form-control">
+                            <select name="namaDan_alamat" class="form-control" {$data.dataDisabled}>
                                 <option value="0">Tidak Ada</option>
                                 <option value="1">Ada</option>
                                
@@ -166,7 +253,7 @@
                     <tr>
                         
                         <td>Kode Produksi</td>
-                        <td><input type="text" name="kodeProduksi" class="form-control jenisrokok" value="{$data.kodeProduksi}" /></td>
+                        <td><input type="text" name="kodeProduksi" class="form-control jenisrokok" value="{$data.kodeProduksi}" {$data.dataDisabled}/></td>
                         
                     </tr>
                     <tr>
@@ -174,7 +261,7 @@
                         <td>Tanggal dan Tahun Produksi</td>
                         <td>
                             <div id="postdate" class="input-group date" data-auto-close="true" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
-                                <input class="form-control" type="text" name="tglProduksi" value="{$data.tglProduksi}" data-required="true">
+                                <input class="form-control" type="text" name="tglProduksi" value="{$data.tglProduksi}" data-required="true" {$data.dataDisabled}>
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                             </div>
                         </td>
@@ -182,11 +269,6 @@
                     </tr>
                     
                 </table>
-            </div><!-- .news-content -->
-
-            <div class="news-content">
-            <img src="{$app_domain}public_assets/{$data.fotoBawah}">
-            
             </div><!-- .news-content -->
 
             <div class="news-content">
@@ -199,26 +281,26 @@
                     <tr>
                         
                         <td>Kadar Nikotin (mg)</td>
-                        <td><input type="text" name="kadarNikotin" class="form-control jenisrokok" value="{$data.kadarNikotin}" /></td>
+                        <td><input type="text" name="kadarNikotin" class="form-control kadarNikotin_1" value="{$data.kadarNikotin}" {$data.dataDisabled}/></td>
                        
                     </tr>
                     <tr>
                         
                         <td>Kadar TAR (mg)</td>
-                        <td><input type="text" name="kadarTar" class="form-control jenisrokok" value="{$data.kadarTar}" /></td>
+                        <td><input type="text" name="kadarTar" class="form-control kadarTar_1" value="{$data.kadarTar}" {$data.dataDisabled}/></td>
                        
                     </tr>
                     <tr>
                         
                         <td>Pernyataan "dilarang menjual atau memberi kepada anak dan  perempuan hamil"</td>
                         <td>&nbsp;</td>
-                        <td><input type="checkbox" name="pernyataanDilarang_menjual" class="form-control namaprodusen" value="1"/></td>
+                        <td><input type="checkbox" name="pernyataanDilarang_menjual" class="form-control pernyataanDilarang_menjual_1" value="1" {$data.dataDisabled}/></td>
                     </tr>
                     <tr>
                         
                         <td>Pernyataan "tidak ada batas aman"</td>
                         <td>&nbsp;</td>
-                        <td><input type="checkbox" name="pernyataanTidak_aman" class="form-control namaprodusen" value="1"/></td>
+                        <td><input type="checkbox" name="pernyataanTidak_aman" class="form-control pernyataanTidak_aman_1" value="1" {$data.dataDisabled}/></td>
                     </tr>
                     <tr>
                         
@@ -226,7 +308,7 @@
                         <td>
                             &nbsp;{*}<input type="text" name="pernyataanZat_kimia" class="form-control jenisrokok" value="" />{/*}
                         </td>
-                        <td><input type="checkbox" name="pernyataanZat_kimia" class="form-control namaprodusen" value="1"/></td>
+                        <td><input type="checkbox" name="pernyataanZat_kimia" class="form-control pernyataanZat_kimia_1" value="1" {$data.dataDisabled}/></td>
                     </tr>
                     
                 </table>
@@ -243,34 +325,34 @@
                     <tr>
                         
                         <td>Kadar Nikotin (mg)</td>
-                        <td><input type="text" name="kadarNikotin" class="form-control jenisrokok" value="{$data.kadarNikotin}" /></td>
+                        <td><input type="text" name="kadarNikotin" class="form-control kadarNikotin_2" value="{$data.kadarNikotin}" {$data.dataDisabled}/></td>
                        
                     </tr>
                     <tr>
                         
                         <td>Kadar TAR (mg)</td>
-                        <td><input type="text" name="kadarTar" class="form-control jenisrokok" value="{$data.kadarTar}" /></td>
+                        <td><input type="text" name="kadarTar" class="form-control kadarTar_2" value="{$data.kadarTar}" {$data.dataDisabled}/></td>
                         
                     </tr>
                     <tr>
                         
                         <td>Pernyataan "dilarang menjual atau memberi kepada anak dan  perempuan hamil"</td>
                         <td>&nbsp;</td>
-                        <td><input type="checkbox" name="pernyataanDilarang_menjual" class="form-control namaprodusen" value="1"/></td>
+                        <td><input type="checkbox" name="pernyataanDilarang_menjual" class="form-control pernyataanDilarang_menjual_2" value="1" {$data.dataDisabled}/></td>
                     </tr>
                     <tr>
                         
                         <td>Pernyataan "tidak ada batas aman"</td>
                         <td>&nbsp;</td>
-                        <td><input type="checkbox" name="pernyataanTidak_aman" class="form-control namaprodusen" value="1"/></td>
+                        <td><input type="checkbox" name="pernyataanTidak_aman" class="form-control pernyataanTidak_aman_2" value="1" {$data.dataDisabled}/></td>
                     </tr>
                     <tr>
                         
                         <td>Pernyataan "mengandung lebih dari 4000 zat kimia …..."</td>
                         <td>&nbsp;{*}
-                            <input type="text" name="kataPromotif" class="form-control jenisrokok" value="" />{/*}
+                            <input type="text" name="kataPromotif" class="form-control jenisrokok" value="" {$data.dataDisabled} />{/*}
                         </td>
-                        <td><input type="checkbox" name="pernyataanZat_kimia" class="form-control namaprodusen" value="1"/></td>
+                        <td><input type="checkbox" name="pernyataanZat_kimia" class="form-control pernyataanZat_kimia_2" value="1" {$data.dataDisabled}/></td>
                     </tr>
                     
                 </table>

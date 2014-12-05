@@ -107,11 +107,50 @@ class contentHelper extends Database {
 
 	}
 
+	function getLaporanKemasanList($data, $debug=false)
+	{
+		$id = $data['id'];
+		$n_status = $data['n_status'];
+
+		$filter = "";
+		
+		if ($id) $filter = " AND k.id = {$id}";
+
+		$sql = array(
+                'table'=>"{$this->prefix}_pelaporan_kemasan AS k, {$this->prefix}_industri AS i ",
+                'field'=>"k.industriID, i.namaIndustri, i.noTelepon, i.noFax, i.namaPimpinan",
+                'condition' => "k.pabrikID != 0 AND k.n_status IN ({$n_status}) {$filter} GROUP BY k.industriID",
+                'joinmethod' => 'LEFT JOIN',
+                'join' => 'k.industriID = i.id'
+                );
+
+        $res = $this->lazyQuery($sql,$debug);
+        if ($res){
+        	foreach ($res as $key => $value) {
+        		
+        		$sql = array(
+		                'table'=>"{$this->prefix}_pelaporan_kemasan AS k, {$this->prefix}_industri AS i , {$this->prefix}_product AS p, {$this->prefix}_industri_pabrik AS ip",
+		                'field'=>"k.*, i.namaIndustri, i.noTelepon, i.noFax, i.namaPimpinan, p.merek, ip.noNPPBKC, ip.namaJalan",
+		                'condition' => "k.pabrikID != 0 AND k.n_status IN ({$n_status}) AND k.industriID = {$value['industriID']} {$filter}",
+		                'joinmethod' => 'LEFT JOIN',
+		                'join' => 'k.industriID = i.id, k.merek = p.id, k.pabrikID = ip.id'
+		                );
+
+		        $res[$key]['merek'] = $this->lazyQuery($sql,$debug);
+
+        	}
+        }
+       
+        if ($res) return $res;
+		return false;
+
+	}
+
 	function evaluasiKemasan($data, $debug=false)
 	{
 
 		$arrfield = array('tulisanPeringatan','jenisGambar','jenis','isi','namaDan_alamat','bentuKemasan','luasDepan','luasBelakang','kodeProduksi','tglProduksi','kadarNikotin','kadarTar',
-						'pernyataanDilarang_menjual','pernyataanTidak_aman','pernyataanZat_kimia','kesimpulan');
+						'pernyataanDilarang_menjual','pernyataanTidak_aman','pernyataanZat_kimia','kesimpulan','n_status','catatanDitolak');
 		
 		foreach ($data as $key => $value) {
 			if (in_array($key, $arrfield)){
@@ -119,7 +158,6 @@ class contentHelper extends Database {
 			}
 		}
 
-		$field[] = "n_status = 2";
 		$impField = implode(',', $field);
 
 		$sql = array(

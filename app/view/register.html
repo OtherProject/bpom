@@ -26,26 +26,26 @@
             <div class="col-sm-6">
               <div class="form-group">
               <label for="text-input">Nama Depan</label>
-                  <input type="text" name="name" class="form-control" value="{$data.name}" data-required="true" />
+                  <input type="text" name="name" class="form-control" value="{$data.name}" data-required="true" required/>
               </div>
             </div>  
             <div class="col-sm-6">
               <div class="form-group">
               <label for="text-input">Nama Belakang</label>
-                  <input type="text" name="last_name" class="form-control" value="{$data.last_name}" data-required="true" />
+                  <input type="text" name="last_name" class="form-control" value="{$data.last_name}" data-required="true" required />
               </div>
             </div>  
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">Jabatan</label>
-                  <input type="text" name="description" class="form-control" value="{$data.description}" />
+                  <input type="text" name="description" class="form-control" value="{$data.description}" required/>
               </div>
             </div>
 
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">Alamat</label>
-                  <input type="text" name="StreetName" class="form-control" value="{$data.StreetName}" />
+                  <input type="text" name="StreetName" class="form-control" value="{$data.StreetName}" required/>
               </div>
             </div>
 
@@ -53,14 +53,14 @@
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">No Telepon</label>
-                  <input type="text" name="phone_number" class="form-control" value="{$data.phone_number}" />
+                  <input type="text" name="phone_number" class="form-control" value="{$data.phone_number}" required/>
               </div>
             </div>
             
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">Alamat Email</label>
-                  <input type="text" name="email" class="form-control" value="{$data.email}" />
+                  <input type="text" name="email" class="form-control" value="{$data.email}" required/>
               </div>
             </div>
             
@@ -153,7 +153,7 @@
             <div class="col-sm-12">
               <div class="form-group">
               <label for="text-input">Nama Perusahaan</label>
-                  <input type="text" name="namaIndustri" class="form-control" value="{$data.namaIndustri}" data-required="true" />
+                  <input type="text" name="namaIndustri" class="form-control" value="{$data.namaIndustri}" data-required="true" required/>
               </div>
             </div>  
             <div class='span5'><hr></div>
@@ -161,19 +161,19 @@
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">Nama</label>
-                  <input type="text" name="namaPimpinan" class="form-control" value="{$data.namaPimpinan}" />
+                  <input type="text" name="namaPimpinan" class="form-control" value="{$data.namaPimpinan}" required/>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">No KTP</label>
-                  <input type="text" name="noKTP" class="form-control" value="{$data.noKTP}" />
+                  <input type="text" name="noKTP" class="form-control" value="{$data.noKTP}" required/>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Jenis Kelamin</label>
-                  <select class="form-control" name="jenisKelamin">
+                  <select class="form-control" name="jenisKelamin" required>
                     <option value="1">Laki - Laki</option>
                     <option value="2">Perempuan</option>
                   </select>
@@ -182,7 +182,7 @@
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">Alamat</label>
-                  <input type="text" name="alamatPimpinan" class="form-control" value="{$data.alamatPimpinan}" />
+                  <input type="text" name="alamatPimpinan" class="form-control" value="{$data.alamatPimpinan}" required/>
               </div>
             </div>
             {*}
@@ -191,31 +191,31 @@
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">Provinsi</label>
-                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" />
+                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" required/>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Kabupaten/Kotamadya</label>
-                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" />
+                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" required/>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Kecamatan</label>
-                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" />
+                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" required/>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Kelurahan/Desa</label>
-                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" />
+                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" required/>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Kode Pos</label>
-                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" />
+                  <input type="text" name="kataPromotif" class="form-control" value="{$data.kataPromotif}" required/>
               </div>
             </div>
             <div class="col-md-12">
