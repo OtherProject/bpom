@@ -59,29 +59,61 @@
 					>
 							<thead>
 								<tr>
+									{*}
 									<th class="checkbox-column">
 										<input type="checkbox" class="icheck-input" onchange="return AreAnyCheckboxesChecked();">
-									</th>
+									</th>{/*}
+									<th data-filterable="true" data-sortable="true" >No</th>
+									<th data-filterable="true" data-sortable="true" >Produsen</th>
 									<th data-filterable="true" data-sortable="true" >Tanggal Buat</th>
 									<th data-filterable="true" data-sortable="true" >Merek</th>
-									<th data-filterable="true" data-sortable="true" >Produsen</th>
 									<th data-filterable="true" data-sortable="true">No NPPBKC</th>
 									<th data-filterable="true" data-sortable="true">Status</th>
 									
 								</tr>
 							</thead>
 							<tbody>
+								{$no=1}
 								{foreach $data as $var}
 								<tr>
+									{*}
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();">
-									</td>
-									<td>{$var.createdDate}</td>
-									<td><a href="{$basedomain}pelaporan/detailnikotin/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.merek}</a></td>
+									</td>{/*}
+									<td>{$no++}</td>
 									<td style="color:{$var.status_color}">{$var.namaIndustri}</td>
-									<td>{$var.noNPPBKC}</td>
-									<td style="color:red">
-										Pending Evaluasi
+									<td>
+										{foreach $var.nikotin as $val}
+										{$val.createdDate}<br>
+										{/foreach}
+									</td>
+									<td>
+										{foreach $var.nikotin as $val}
+										<a href="{$basedomain}pelaporan/detailnikotin/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$val.merek}</a><br>
+										{/foreach}
+
+										</td>
+									
+									<td>
+										{foreach $var.nikotin as $val}
+										{$val.noNPPBKC}<br>
+										{/foreach}
+									</td>
+									<td>
+										{foreach $var.nikotin as $val}
+										{if $val.n_status == 1}
+											{if $val.catatanDitolak}
+											<span style="color:black">Pelaporan Ditolak Verifikator</span>
+											{else}
+											<span style="color:red">Pending Evaluasi</span>
+											{/if}
+											
+										{/if}
+										{if $val.n_status == 2}<span style="color:blue">Pending Verifikasi</span>{/if}
+										{if $val.n_status == 3}<span style="color:green">Sudah Verifikasi</span>{/if}
+										<br>
+										
+										{/foreach}
 									</td>
 								</tr>
 								{/foreach}

@@ -51,7 +51,7 @@
 	<form id="validate-enhanced" class="" method="post" action="" enctype="multipart/form-data">
 		
 		{if !$disableData}
-		<button type="submit" class="btn btn-info" id="btn-dis"><i class="fa fa-save"></i> {if $admin.type==2}Verifikasi{elseif $admin.type==3}Evaluasi{/if}
+		<button type="submit" class="btn btn-info" id="btn-dis"><i class="fa fa-save"></i> {if $admin.type==2}Verifikasi{elseif $admin.type==3 or $admin.type==4}Evaluasi{/if}
 
 		</button>
 		{if $admin.type==2}

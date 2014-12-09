@@ -171,6 +171,31 @@ class contentHelper extends Database {
 		return false;
 	}
 
+	function evaluasiNikotin($data, $debug=false)
+	{
+
+		$arrfield = array('jenis','kodeSample','isiKemasan','catatanDitolak',
+							'noSertifikat','tanggalUji','kadarNikotin','kadarTar','kadarKretek','n_status');
+		
+		foreach ($data as $key => $value) {
+			if (in_array($key, $arrfield)){
+				if ($value)$field[] = "$key = '".$value."'";
+			}
+		}
+
+		$impField = implode(',', $field);
+
+		$sql = array(
+                'table'=>"{$this->prefix}_pelaporan_nikotin",
+                'field'=>"{$impField}",
+                'condition' => "id = {$data['idPelaporan']}",
+                );
+
+        $res = $this->lazyQuery($sql,$debug,2);
+        if ($res) return $res;
+		return false;
+	}
+
 	function getLaporanNikotin($data, $debug=false)
 	{
 		$id = $data['id'];
@@ -195,6 +220,50 @@ class contentHelper extends Database {
                 );
 
         $res = $this->lazyQuery($sql,$debug);
+        if ($res) return $res;
+		return false;
+	}
+
+	function getLaporanNikotinList($data, $debug=false)
+	{
+		$id = $data['id'];
+		$n_status = $data['n_status'];
+
+		$filter = "";
+		
+		if ($id) $filter = " AND n.id = {$id}";
+
+		$sql = array(
+                'table'=>"	{$this->prefix}_pelaporan_nikotin AS n, 
+                			{$this->prefix}_industri AS i", 
+                'field'=>"n.*, i.namaIndustri",
+                'condition' => "n.pabrikID != 0 AND n.n_status IN ({$n_status}) {$filter} GROUP BY n.industriID",
+                'joinmethod' => 'LEFT JOIN',
+                'join' => 'n.industriID = i.id'
+		                
+                );
+
+        $res = $this->lazyQuery($sql,$debug);
+        if ($res){
+        	foreach ($res as $key => $value) {
+        		$sql = array(
+		                'table'=>"	{$this->prefix}_pelaporan_nikotin AS n, 
+		                			{$this->prefix}_industri AS i , 
+		                			{$this->prefix}_product AS p, 
+		                			{$this->prefix}_industri_pabrik AS ip,
+		                			{$this->prefix}_lab AS l", 
+		                'field'=>"n.*, i.namaIndustri, p.merek, ip.noNPPBKC, ip.provinsi, ip.kecamatan, ip.namaJalan,
+		                		l.nama AS namaLab, l.penanggungjawab",
+		                'condition' => "n.pabrikID != 0 AND n.n_status IN ({$n_status}) AND n.industriID = {$value['industriID']} {$filter}",
+		                'joinmethod' => 'LEFT JOIN',
+		                'join' => 'n.industriID = i.id, n.merek = p.id, n.pabrikID = ip.id, n.labID = l.id'
+		                );
+
+		        $res[$key]['nikotin'] = $this->lazyQuery($sql,$debug);
+        	}
+        }
+
+        // pr($res);
         if ($res) return $res;
 		return false;
 	}
@@ -357,7 +426,7 @@ class contentHelper extends Database {
 		$sql = array(
                     'table' =>"{$this->prefix}_industri",
                     'field' => "*",
-                    'condition' => "1 {$filter}",
+                    'condition' => "1 AND namaIndustri != '' {$filter}",
                     'limit' => $limit
                 );
         $result = $this->lazyQuery($sql, $debug);
@@ -421,5 +490,85 @@ class contentHelper extends Database {
         if ($result) return $result;
         return false;
 	}
+
+	function getProduk($id=false, $debug=false)
+	{
+
+		$filter = "";
+
+		if ($id) $filter .= "AND id = '{$id}'";
+		
+		$sql = array(
+                    'table' =>"{$this->prefix}_product",
+                    'field' => "*",
+                    'condition' => "1 {$filter}",
+                );
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result) return $result;
+        return false;
+	}
+
+	function saveDataKemasan($data, $debug=false)
+	{
+		foreach ($data as $key => $value) {
+			$$key = $value;
+		}
+
+		$createDate = date('Y-m-d H:i;s');
+		$n_status = 7;
+
+		
+		$sql = array(
+                    'table' =>"{$this->prefix}_pelaporan_kemasan",
+                    'field' => "industriID, pabrikID, merek ,jenis, isi, bentuKemasan,
+                    			jenisGambar,tulisanPeringatan,createDate,n_status,kodeProduksi,tglProduksi,
+                    			lokasiBeli,tglBeli,tahunCukai,hargaBungkus,hargaBatang",
+                    'value' => "'{$industriID}','{$pabrikID}', '{$merek}', '{$jenis}','{$isi}','{$bentuKemasan}','{$jenisGambar}',
+                    			'{$tulisanPeringatan}', '{$createDate}',$n_status, '{$kodeProduksi}', '{$tglProduksi}',
+                    			'{$lokasiBeli}','{$tglBeli}','{$tahunCukai}','{$hargaBungkus}', '{$hargaBatang}' ",
+                );
+        $result = $this->lazyQuery($sql,$debug,1);
+		
+		
+        if ($result) return $result;
+        return false;
+	}
+
+	function updateDataKemasan($data, $debug=false)
+	{
+		$files = $data['full_name'];
+		$id = $data['id'];
+		if ($id) $id = $id;
+		else $id = $this->insert_id();
+
+		$fotoDepan = $data['fotoDepan']['full_name'];
+		if ($fotoDepan) $field[] = "fotoDepan = '{$fotoDepan}'";
+		$fotoBelakang = $data['fotoBelakang']['full_name'];
+		if ($fotoBelakang) $field[] = "fotoBelakang = '{$fotoBelakang}'";
+		$fotoKanan = $data['fotoKanan']['full_name'];
+		if ($fotoKanan) $field[] = "fotoKanan = '{$fotoKanan}'";
+		$fotoKiri = $data['fotoKiri']['full_name'];
+		if ($fotoKiri) $field[] = "fotoKiri = '{$fotoKiri}'";
+		$fotoAtas = $data['fotoAtas']['full_name'];
+		if ($fotoAtas) $field[] = "fotoAtas = '{$fotoAtas}'";
+		$fotoBawah = $data['fotoBawah']['full_name'];
+		if ($fotoBawah) $field[] = "fotoBawah = '{$fotoBawah}'";
+		$suratPengantar = $data['suratPengantar']['full_name'];
+		if ($suratPengantar) $field[] = "suratPengantar = '{$suratPengantar}'";
+
+		if ($field){
+			$impF = implode(',', $field);
+			$sql = array(
+		                'table' =>"{$this->prefix}_pelaporan_kemasan",
+		                'field' => "{$impF}",
+		                'condition' => "id = {$id}",
+		            );
+		    $result = $this->lazyQuery($sql,$debug,2);
+		    if ($result) return true;
+		}
+		
+        return false;
+	}
+
 }
 ?>

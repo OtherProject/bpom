@@ -49,11 +49,15 @@
 	{/if}
 	<form id="validate-enhanced" class="form parsley-form" method="post" action="" enctype="multipart/form-data">
 		
-		
+		{if !$disableData}
 		<button type="submit" class="btn btn-info" id="btn-dis"><i class="fa fa-save"></i> Approved</button>
 
-		<a href="{$basedomain}pelaporan/detailnikotin/?id={$id}&act=1" ><button type="button" class="btn btn-danger" id="btn-dis"><i class="fa fa-multiply"></i> Rejected</button></a>
-
+		{if $admin.type==2}
+		<button type="submit" class="btn btn-danger" id="btn-dis" name="reject" value="1"><i class="fa fa-multiply"></i>Rejected</button>
+			{*}
+		<a href="{$basedomain}pelaporan/detailnikotin/?id={$id}&act=1" ><button type="button" class="btn btn-danger" id="btn-dis"><i class="fa fa-multiply"></i> Rejected</button></a>{/*}
+		{/if}
+		{/if}
 		<input type="hidden" name="idPelaporan" value="{$id}">
 
 		<div class="portlet">
@@ -67,7 +71,7 @@
 						
 						<thead>
 						<tr>
-							<th>No</th>
+							
 							<th align="center">Item</th>
 							<th align="center">Hasil</th>
 							
@@ -76,85 +80,85 @@
 						<tbody>
 						
 						<tr>
-							<td>1</td>
+							
 							<td>Nama Merek Rokok</td>
 							<td><input type="text" name="merek" class="form-control namaprodusen" value="{$data.merek}" disabled/></td>
 							
 						</tr>
 						<tr>
-							<td>2</td>
+							
 							<td>Nama Produsen / Importir</td>
 							<td><input type="text" name="produsen" class="form-control namaprodusen" value="{$data.namaIndustri}" disabled/></td>
 							
 						</tr>
 						<tr>
-							<td>3</td>
+							
 							<td>Lokasi</td>
 							<td><input type="text" name="produsen" class="form-control namaprodusen" value="{$data.namaProvinsi[0].nama_wilayah}" disabled/></td>
 							
 						</tr>
 						<tr>
-							<td>4</td>
+							
 							<td>Jenis Rokok</td>
-							<td><input type="text" name="jenis" class="form-control jenisrokok" value="{$data.d_jenisRokok}" /></td>
+							<td><input type="text" name="jenis" class="form-control jenisrokok" value="{$data.d_jenisRokok}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
-							<td>5</td>
+							
 							<td>Nomor/Kode Sampel</td>
-							<td><input type="text" name="jenis" class="form-control jenisrokok" value="{$data.kodeSample}" /></td>
+							<td><input type="text" name="kodeSample" class="form-control jenisrokok" value="{$data.kodeSample}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
-							<td>6</td>
+							
 							<td>Isi Kemasan</td>
-							<td><input type="text" name="jenis" class="form-control jenisrokok" value="{$data.d_isiKemasan}" /></td>
+							<td><input type="text" name="isiKemasan" class="form-control jenisrokok" value="{$data.d_isiKemasan}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
-							<td>7</td>
+							
 							<td>Nama Laboratorium</td>
-							<td><input type="text" name="jenis" class="form-control jenisrokok" value="{$data.namaLab}" /></td>
+							<td><input type="text" name="namaLab" class="form-control jenisrokok" value="{$data.namaLab}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
-							<td>8</td>
+							
 							<td>Penanggungjawab Laboratorium</td>
-							<td><input type="text" name="jenis" class="form-control jenisrokok" value="{$data.penanggungjawab}" /></td>
+							<td><input type="text" name="penanggungjawab" class="form-control jenisrokok" value="{$data.penanggungjawab}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
-							<td>9</td>
+							
 							<td>Nomor Lap Hasil Uji/Sertifikat</td>
-							<td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.noSertifikat}" /></td>
+							<td><input type="text" name="noSertifikat" class="form-control jenisrokok" value="{$data.noSertifikat}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
-							<td>10</td>
+							
 							<td>Tanggal pengujian</td>
-							<td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.tanggalUji}" /></td>
+							<td><input type="text" name="tanggalUji" class="form-control jenisrokok" value="{$data.tanggalUji}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
-							<td>11</td>
+							
 							<td>Kadar Nikotin</td>
-							<td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.kadarNikotin}" /></td>
+							<td><input type="text" name="kadarNikotin" class="form-control jenisrokok" value="{$data.kadarNikotin}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
-							<td>12</td>
+							
 							<td>Kadar Tar Coresta/Tar ISO</td>
-							<td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.kadarTar}" /></td>
+							<td><input type="text" name="kadarTar" class="form-control jenisrokok" value="{$data.kadarTar}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
-							<td>13</td>
+							
 							<td>Kadar Tar SNI/ Tar Kretek</td>
-							<td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$data.kadarKretek}" /></td>
+							<td><input type="text" name="kadarKretek" class="form-control jenisrokok" value="{$data.kadarKretek}" {$data.dataDisabled}/></td>
 							
 						</tr>
 						<tr>
-							<td>14</td>
+							
 							<td>Sertifikat pengujian</td>
 							<td>
 								<div class="col-xs-11 col-sm-4 col-md-3" style="{if $key==4}clear:both{/if}">
@@ -176,6 +180,23 @@
 								</td>
 							
 						</tr>
+						{if $admin.type==2}
+						<tr>
+							
+							<td>Catatan Jika Ditolak</td>
+							<td><input type="text" name="catatanDitolak" class="form-control namaprodusen" value="{$data.catatanDitolak}" /></td>
+							
+						</tr>
+						{/if}
+
+						{if $admin.type==3 and $data.catatanDitolak!=''}
+						<tr>
+							
+							<td>Catatan Jika Ditolak</td>
+							<td><input type="text" name="catatanDitolak" class="form-control namaprodusen" value="{$data.catatanDitolak}" disabled/></td>
+							
+						</tr>
+						{/if}
 						</tbody>
 					</table>
 					

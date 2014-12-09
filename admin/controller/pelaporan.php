@@ -71,10 +71,11 @@ class pelaporan extends Controller {
 	          $getPabrik[$key]['getCurrentProv'] = $tmpProv[0];
 	        }
 
+	        // pr($getPabrik);
 	        if ($getPabrik){
-	          print( json_encode(array('status'=>true, 'res'=>$getPabrik)));
+	          print json_encode(array('status'=>true, 'res'=>$getPabrik));
 	        }else{
-	          print( json_encode(array('status'=>false)));
+	          print json_encode(array('status'=>false));
 	        }
 	        
 	        exit;
@@ -91,13 +92,105 @@ class pelaporan extends Controller {
 		return $this->loadView('pelaporan/pelaporan-kemasan-add');
 	}
 
+	function ajaxIndustri()
+	{
+		if (isset($_POST['get_pabrik'])){
+
+			$id = _p('kode_wilayah');
+		    if ($id){
+		      $getPabrik = $this->contentHelper->getPabrik($id);
+		      // pr($getPabrik);
+		      if ($getPabrik){
+		        $getIndustri = $this->contentHelper->getIndustri($getPabrik[0]['indusrtiID']);
+		        
+		        // pr($getIndustri);
+		        $data['ind'] = $getIndustri[0];
+		        $data['pabrik'] = $getPabrik[0];
+		        // pr($data);
+		        print json_encode(array('status'=>true, 'res'=>$data));
+		      }else{
+		        print json_encode(array('status'=>false));
+		      }
+		    }else{
+		      print json_encode(array('status'=>false));
+		    }
+		}
+
+		exit;
+	}
+
+	function buatlaporan()
+	{
+
+		if ($this->admin['admin']['type']==4){
+			if ($this->admin['admin']['type']==4) $dataArr['n_status'] = '7';
+
+			//get produsen
+			$getIndustri = $this->contentHelper->getIndustri();
+			$getProduk = $this->contentHelper->getProduk();
+			$getTUlisan = $this->contentHelper->getTulisanPeringatan(false);
+    		
+			$this->view->assign('listindustri',$getIndustri); 
+			$this->view->assign('produk',$getProduk);  
+			$this->view->assign('tulisan',$getTUlisan);
+			if ($_POST['addLaporan']){
+
+				
+
+		     	// echo 'masuk';
+		      	pr($_POST);
+		      	// pr($_FILES);
+
+			    $saveData = $this->contentHelper->saveDataKemasan($_POST);
+			    if ($saveData){
+
+			        // pr($_FILES);
+			        if(!empty($_FILES)){
+			          
+
+			            $foto = array('fotoDepan','fotoBelakang','fotoKanan','fotoKiri','fotoAtas','fotoBawah','suratPengantar');
+			            foreach ($foto as $key => $value) {
+
+			              if($_FILES[$value]['name'] != ''){
+			                $image = uploadFile($value,null,'image');
+			                // pr($image);
+			                // exit;
+			                if ($image){
+			                  $dataImage[$value] =  $image;
+			                }
+			              }
+			            }
+			          // pr($dataImage);
+			          
+			          $dataImage['pabrikID'] = $_POST['pabrikID'];
+			          $updateData = $this->contentHelper->updateDataKemasan($dataImage);
+			          if ($updateData) reload($basedomain.'account/pelaporan');
+
+
+			        }
+			        reload($basedomain.'pelaporan/kemasan');
+		      	}
+			   
+			}
+
+			return $this->loadView('pelaporan/pelaporan-kemasan-add');
+			exit;
+		}
+	}
+
 	function kemasan()
 	{
+
+
+		// pelaporan balai 
+		
+
 
 		// pr($this->admin);
 		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
 		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '2';
 		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '1';
+		if ($this->admin['admin']['type']==4) $dataArr['n_status'] = '7';
 
 		$data = $this->contentHelper->getLaporanKemasanList($dataArr);
 		// pr($data);
@@ -106,6 +199,9 @@ class pelaporan extends Controller {
 			$this->view->assign('data',$data);
 		}
 		
+
+
+
 		if ($_POST['status']){
 
 			if (count($_POST['ids']>0)){
@@ -122,6 +218,7 @@ class pelaporan extends Controller {
 			
 		}
 		
+
 		// pr($data);exit;
 		
 		$this->view->assign('admin',$this->admin['admin']);
@@ -135,7 +232,7 @@ class pelaporan extends Controller {
 		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
 		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '2';
 		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '1';
-		$data = $this->contentHelper->getLaporanNikotin($dataArr);
+		$data = $this->contentHelper->getLaporanNikotinList($dataArr);
 		// pr($data);
 		if ($data){
 			
@@ -149,7 +246,7 @@ class pelaporan extends Controller {
 				$id = implode(',', $_POST['ids']);
 
 				$status = intval($_POST['status']);
-				$approve = $this->contentHelper->validateData($id, $status);
+				$approve = $this->contentHelper->validateDataNikotin($id, $status);
 				if ($approve){
 					echo "<script>window.location.href='".$basedomain."evaluasi'</script>";
 					// redirect($basedomain.'evaluasi');
@@ -159,7 +256,7 @@ class pelaporan extends Controller {
 		}
 		
 		// pr($data);exit;
-		
+		$this->view->assign('admin',$this->admin['admin']);
 
 		return $this->loadView('pelaporan/pelaporan-nikotin');    
 	}
@@ -175,10 +272,12 @@ class pelaporan extends Controller {
 		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
 		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '2';
 		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '1';
+		if ($this->admin['admin']['type']==4) $dataArr['n_status'] = '7';
 
 		if (isset($_GET['view'])){
 			if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '3';
 			if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '2';
+			if ($this->admin['admin']['type']==4) $dataArr['n_status'] = '2';
 
 			$this->view->assign('disableData',true);
 		}
@@ -193,9 +292,9 @@ class pelaporan extends Controller {
 								);
 		$isiKemasan = array(1 => '10 bks/slop',
 							2 => '10 btg/bks',
-							2 => '10 slider/slop',
-							2 => '12 btg/bks',
-							2 => '50 btg/slinder',
+							3 => '10 slider/slop',
+							4 => '12 btg/bks',
+							5 => '50 btg/slinder',
 							);
 		$jenisRokok = array(1 => 'SKT',
 							2 => 'SKM',
@@ -215,7 +314,12 @@ class pelaporan extends Controller {
 				if ($this->admin['admin']['type']==2){
 					$data[$key]['dataDisabled'] = 'disabled';
 				}else{
-					$data[$key]['dataDisabled'] = '';
+					if (isset($_GET['view'])){
+						$data[$key]['dataDisabled'] = 'disabled';
+					}else{
+						$data[$key]['dataDisabled'] = '';
+					}
+
 				}
 			}
 			$this->view->assign('data',$data[0]);
@@ -238,6 +342,7 @@ class pelaporan extends Controller {
 				}else{
 					if ($this->admin['admin']['type']==2) $_POST['n_status'] = '3';
 					if ($this->admin['admin']['type']==3) $_POST['n_status'] = '2';
+					if ($this->admin['admin']['type']==4) $_POST['n_status'] = '2';
 				}
 				
 
@@ -287,7 +392,16 @@ class pelaporan extends Controller {
 		$id = _g('id');
 
 		$dataArr['id'] = $id;
-		$dataArr['n_status'] = 1;
+		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
+		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '2';
+		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '1';
+
+		if (isset($_GET['view'])){
+			if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '3';
+			if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '2';
+
+			$this->view->assign('disableData',true);
+		}
 
 		$tulisanPeringatan = array(1 => 'Merokok Membunuhmu',
 									2 => 'Merokok dekat anak berbahayan bagi mereka',
@@ -299,9 +413,9 @@ class pelaporan extends Controller {
 								);
 		$isiKemasan = array(1 => '10 bks/slop',
 							2 => '10 btg/bks',
-							2 => '10 slider/slop',
-							2 => '12 btg/bks',
-							2 => '50 btg/slinder',
+							3 => '10 slider/slop',
+							4 => '12 btg/bks',
+							5 => '50 btg/slinder',
 							);
 		$jenisRokok = array(1 => 'SKT',
 							2 => 'SKM',
@@ -318,10 +432,23 @@ class pelaporan extends Controller {
 				$data[$key]['d_bentukKemasan'] = $bentukKemasan[$value['bentuKemasan']];
 				$data[$key]['d_isiKemasan'] = $isiKemasan[$value['isiKemasan']];
 				$data[$key]['d_jenisRokok'] = $jenisRokok[$value['jenis']];
+
+				if ($this->admin['admin']['type']==2){
+					$data[$key]['dataDisabled'] = 'disabled';
+				}else{
+					if (isset($_GET['view'])){
+						$data[$key]['dataDisabled'] = 'disabled';
+					}else{
+						$data[$key]['dataDisabled'] = '';
+					}
+					
+				}
+
 			}
+			// pr($data);
 			$this->view->assign('data',$data[0]);
 		}
-		// pr($data);
+		
 		$this->view->assign('id',$id);
 		
 
@@ -331,9 +458,23 @@ class pelaporan extends Controller {
 			$checkBoxCount = count($_POST['pelaporanKemasan']);
 			// if ($checkBoxCount == 14){
 
+				$dataArr = array();
 				$dataArr['id'] = $_POST['idPelaporan'];
-				$dataArr['n_status'] = 2;
-				$update = $this->contentHelper->updateStatusNikotin($dataArr);
+				if (isset($_POST['reject'])){
+					if ($this->admin['admin']['type']==2) $_POST['n_status'] = '1';
+				}else{
+					if ($this->admin['admin']['type']==2) $_POST['n_status'] = '3';
+					if ($this->admin['admin']['type']==3) $_POST['n_status'] = '2';
+				}
+
+				if ($_POST['jenis']) $_POST['jenis'] = array_search($_POST['jenis'], $jenisRokok) ;
+				if ($_POST['isiKemasan']) $_POST['isiKemasan'] = array_search($_POST['isiKemasan'], $isiKemasan) ;
+
+				// pr($dataArr);
+				// $update = $this->contentHelper->updateStatusNikotin($_POST,1);
+
+				$update = $this->contentHelper->evaluasiNikotin($_POST);
+				
 				if ($update){
 					echo "<script>window.location.href='".$basedomain."pelaporan/nikotin'</script>";
 					// redirect($basedomain.'evaluasi');
@@ -347,6 +488,7 @@ class pelaporan extends Controller {
 				$dataArr['id'] = $_GET['id'];
 				$dataArr['n_status'] = 0;
 				$update = $this->contentHelper->updateStatusKemasan($dataArr);
+
 				if ($update){
 					echo "<script>window.location.href='".$basedomain."pelaporan/nikotin'</script>";
 					// redirect($basedomain.'evaluasi');
@@ -356,6 +498,8 @@ class pelaporan extends Controller {
 			
 		
 		}
+
+		$this->view->assign('admin',$this->admin['admin']);
 
 		return $this->loadView('pelaporan/pelaporan-nikotin-detail');
 	}

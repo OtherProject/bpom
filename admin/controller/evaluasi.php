@@ -60,10 +60,10 @@ class evaluasi extends Controller {
 
 		$usertype = $this->admin['admin']['type'];
 		if ($usertype==1) $dataArr['n_status'] = '1,2,3';
-		if ($usertype==2) $dataArr['n_status'] = '2';
-		if ($usertype==3) $dataArr['n_status'] = '1';
+		if ($usertype==2) $dataArr['n_status'] = '3';
+		if ($usertype==3) $dataArr['n_status'] = '2';
 
-		$data = $this->contentHelper->getLaporanNikotin($dataArr);
+		$data = $this->contentHelper->getLaporanNikotinList($dataArr);
 		// pr($data);
 		if ($data){
 			
@@ -100,6 +100,7 @@ class evaluasi extends Controller {
 		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
 		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '3';
 		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '2';
+		if ($this->admin['admin']['type']==4) $dataArr['n_status'] = '2';
 		$data = $this->contentHelper->getLaporanKemasanList($dataArr);
 		// pr($data);
 		if ($data){
