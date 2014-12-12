@@ -9,7 +9,8 @@
                 <div class="col-md-2"></div>
             
             <div class="col-md-8">
-                <img src="{$basedomain}public_assets/{$val.image}" width="100%">
+                {if $val.image}
+                <img src="{$basedomain}public_assets/{$val.image}" width="100%"> {/if}
             </div>
             <div class="col-md-2"></div>
                 

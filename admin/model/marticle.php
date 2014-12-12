@@ -10,6 +10,8 @@ class marticle extends Database {
 		$datetime = array();
 		$data['content'] = addslashes($data['content']);
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d",strtotime($data['postdate'])); 
+		
+
 
 		if($data['action'] == 'insert'){
 			
@@ -23,7 +25,9 @@ class marticle extends Database {
 							,'".$data['authorid']."','".$data['n_status']."')";
 
 		} else {
-			$query = "UPDATE {$this->prefix}_news_content
+
+			if ($data['image']){
+				$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '{$data['title']}',
 							brief = '{$data['brief']}',
@@ -35,6 +39,19 @@ class marticle extends Database {
 							n_status = {$data['n_status']}
 						WHERE
 							id = '{$data['id']}'";
+			}else{
+				$query = "UPDATE {$this->prefix}_news_content
+						SET 
+							title = '{$data['title']}',
+							brief = '{$data['brief']}',
+							content = '{$data['content']}',
+							posted_date = '".$date."',
+							authorid = '{$data['authorid']}',
+							n_status = {$data['n_status']}
+						WHERE
+							id = '{$data['id']}'";
+			}
+			
 		}
 // pr($query);
 		$result = $this->query($query);
