@@ -8,7 +8,7 @@ class marticle extends Database {
 		
 		$date = date('Y-m-d H:i:s');
 		$datetime = array();
-		
+		$data['content'] = addslashes($data['content']);
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d",strtotime($data['postdate'])); 
 
 		if($data['action'] == 'insert'){

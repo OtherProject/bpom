@@ -1,8 +1,8 @@
 <section id="contact-info">
-        <div class="center">  
+        <div class="">  
         {if $data}
             {foreach $data as $val}              
-            <h2>{$val.title}</h2>
+            <div class="center"><h2>{$val.title}</h2></div>
             <p class="lead">&nbsp;</p>
 
             <div class="row">
@@ -10,6 +10,17 @@
             
             <div class="col-md-8">
             	<img src="{$basedomain}public_assets/{$val.image}" width="100%">
+            </div>
+            <div class="col-md-2"></div>
+                
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-2"></div>
+            
+            <div class="col-md-8">
+                
+                <p>{$val.content}</p>
             </div>
             <div class="col-md-2"></div>
             
