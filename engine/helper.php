@@ -20,9 +20,22 @@ function vd($data)
 	echo '</pre>';
 }
 
-function _p($data)
+function _p($data=false)
 {
-	return clean($_POST[$data]);
+	if (isset($_POST)){
+
+		if ($data) {
+			if (isset($_POST[$data])){
+				if (is_array($_POST[$data])) return $_POST[$data];
+				else return clean($_POST[$data]);
+			}
+			return false;
+		} else {
+			return $_POST;
+		}
+	} 
+
+	return false;
 }
 
 function _g($data)

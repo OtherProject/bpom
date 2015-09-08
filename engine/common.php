@@ -760,5 +760,16 @@ function strReplaceAssoc(array $replace, $subject) {
    return str_replace(array_keys($replace), array_values($replace), $subject);   
 } 
 
+function openFile($filePath)
+{
+
+	if(file_exists($filePath)) {
+		$handle = fopen($filePath, "r");
+		$fileContents = fread($handle, filesize($filePath));
+		fclose($handle);
+		return $fileContents;
+	}
+	return false;
+}
 
 ?>

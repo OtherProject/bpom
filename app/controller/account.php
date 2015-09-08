@@ -35,10 +35,15 @@ class account extends Controller {
 		
     $id_industri = $this->user['industri_id'];
     $getIndustri = $this->contentHelper->getIndustri($id_industri);
-    $this->view->assign('user',$this->user);	
+    $getUserData = $this->userHelper->getUserData();
+    $this->view->assign('user',$getUserData);	
     $this->view->assign('data',$getIndustri[0]);  
 
-     // pr($getIndustri);
+    // $saveData = $this->userHelper->saveAccount();
+    if (_p('submit')){
+      $saveData = $this->userHelper->saveAccount();
+    }
+     // pr($getUserData);
   	return $this->loadView('account');
   }
 	
