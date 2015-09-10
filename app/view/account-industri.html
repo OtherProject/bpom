@@ -34,41 +34,47 @@
     <div class="container">  
       
       <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-7" align="center">
-      <div class="grey-container shortcut-wrapper">
-        <a class="shortcut-link active" href="<?=$url_rewrite?>/module/perolehan/kontrak_simbada.php">
-          <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-inverse fa-stack-1x">1</i>
-            </span>
-          <span class="text">Data Industri</span>
-        </a>
-        <a class="shortcut-link" href="<?=$url_rewrite?>/module/perolehan/kontrak_rincian.php">
-          <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-inverse fa-stack-1x">2</i>
-            </span>
-          <span class="text">Alamat Pabrik</span>
-        </a>
-        <a class="shortcut-link" href="<?=$url_rewrite?>/module/perolehan/kontrak_sp2d.php">
-          <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-inverse fa-stack-1x">3</i>
-            </span>
-          <span class="text">Pelaporan Kemasan</span>
-        </a>
-        <a class="shortcut-link" href="<?=$url_rewrite?>/module/perolehan/kontrak_penunjang.php">
-          <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-inverse fa-stack-1x">4</i>
-            </span>
-          <span class="text">Pelaporan Nikotin</span>
-        </a>
+
+        <div class="col-md-1"></div>
+          <div class="col-md-10" align="center">
+            <!-- STEP WIZARD -->
+            <div id="wizard" class="swMain">
+            <ul class="anchor">
+              <li><a href="#step-1" class="selected">
+                    <label class="stepNumber">1</label>
+                    <span class="stepDesc">
+                       Step 1<br />
+                       <small>Informasi Produsen / Importir</small>
+                    </span>
+                </a></li>
+              <li><a href="#step-2" class="disabled">
+                    <label class="stepNumber">2</label>
+                    <span class="stepDesc">
+                       Step 2<br />
+                       <small>Informasi Lokasi Pabrik</small>
+                    </span>
+                </a></li>
+              <li><a href="#step-3" class="disabled">
+                    <label class="stepNumber">3</label>
+                    <span class="stepDesc">
+                       Step 3<br />
+                       <small>Step 3 description</small>
+                    </span>                   
+                 </a></li>
+              <li><a href="#step-4" class="disabled">
+                    <label class="stepNumber">4</label>
+                    <span class="stepDesc">
+                       Step 4<br />
+                       <small>Step 4 description</small>
+                    </span>                   
+                </a></li>
+            </ul>
+            </div>
+            
+          </div>
         
-      </div> 
-      </div>  
-      <div class="col-md-2"></div>
+
+      <div class="col-md-1"></div>
        </div>  
        <br>
 </div> <form method="post" action="{$basedomain}account/industri">
@@ -235,11 +241,11 @@
       <button id="btn-dis" class="btn btn-info" type="submit">
       <i class="fa fa-save"></i>
       Simpan Data
-      </button>
-      <button id="btn-dis" class="btn btn-warning" type="submit">
+      </button>{*}
+      <button id="btn-dis" class="btn btn-warning" type="button">
       <i class="fa fa-save"></i>
       Reset
-      </button>
+      </button>{/*}
 </div>
 
 </form>

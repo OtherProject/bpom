@@ -35,7 +35,58 @@
       }, "JSON")  
 
     })
+
+    $(document).on('click', '.tambah_data_kemasan', function(){
+      
+        $('#info_produsen').css('display','block');
+        $('#info_produk').css('display','block');
+        
+    }) 
+    $(document).on('click', '.cancel_kemasan', function(){
+        $('#info_produsen').css('display','none');
+          $('#info_produk').css('display','none');
+    }) 
+
   {/literal}
+</script>
+
+<style>
+{literal}
+
+
+#country-list{float:left;list-style:none;margin:0;padding:0;width:190px;}
+#country-list li{padding: 10px; background:#FAFAFA;border-bottom:#F0F0F0 1px solid;}
+#country-list li:hover{background:#F0F0F0;}
+#search-box{padding: 10px;border: #F0F0F0 1px solid;}
+{/literal}
+</style>
+
+<script>
+{literal}
+$(document).ready(function(){
+  $("#search-box").keyup(function(){
+    $.ajax({
+    type: "POST",
+    url: basedomain+"account/ajax_getMerek",
+    data:'keyword='+$(this).val(),
+    beforeSend: function(){
+      $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+    },
+    success: function(data){
+      $("#suggesstion-box").show();
+      $("#suggesstion-box").html(data);
+      $("#search-box").css("background","#FFF");
+    }
+    });
+  });
+});
+
+function selectCountry(data, val) {
+$("#hiddendata").val(val);
+$("#search-box").val(data);
+$("#suggesstion-box").hide();
+}
+{/literal}
 </script>
 
 <br>
@@ -46,10 +97,49 @@
 <div class="content-container">
 <div class="row">
 
+  <div class="col-md-1"></div>
+          <div class="col-md-10" align="center">
+            <!-- STEP WIZARD -->
+            <div id="wizard" class="swMain">
+            <ul class="anchor">
+              <li><a href="{$basedomain}account/industri" class="done">
+                    <label class="stepNumber">1</label>
+                    <span class="stepDesc">
+                       Step 1<br />
+                       <small>Informasi Produsen / Importir</small>
+                    </span>
+                </a></li>
+              <li><a href="{$basedomain}account/pabrik" class="done">
+                    <label class="stepNumber">2</label>
+                    <span class="stepDesc">
+                       Step 2<br />
+                       <small>Informasi Lokasi Pabrik</small>
+                    </span>
+                </a></li>
+              <li><a href="{$basedomain}account/pelaporan" class="selected">
+                    <label class="stepNumber">3</label>
+                    <span class="stepDesc">
+                       Step 3<br />
+                       <small>Pelaporan Kemasan</small>
+                    </span>                   
+                 </a></li>
+              <li><a href="{$basedomain}account/pelaporan_nikotin" class="disabled">
+                    <label class="stepNumber">4</label>
+                    <span class="stepDesc">
+                       Step 4<br />
+                       <small>Pelaporan Nikotin & TAR</small>
+                    </span>                   
+                </a></li>
+            </ul>
+            </div>
+            
+          </div>
   
   
-    
-      <h3>Form Pelaporan Kemasan</h3>
+    <div class="center">
+  <h2>Pelaporan Kemasan</h2>
+            <p class="lead">&nbsp;</p>
+  </div>
       <div class="col-md-12">
         <div class="portlet">
         
@@ -75,9 +165,14 @@
           </div>
         </div>
       </div>
+      <button id="btn-dis" class="btn btn-info tambah_data_kemasan" type="button">
+      <i class="fa fa-save"></i>
+      Tambah Data
+      </button>
     <div class="clearfix"></div>
     <br>
-      <div class="col-md-6">
+
+      <div class="col-md-6" style="display:none" id="info_produsen">
         
         <div class="portlet">
         
@@ -152,7 +247,7 @@
       </div>
       
 
-      <div class="col-md-6">
+      <div class="col-md-6" style="display:none" id="info_produk">
         <div class="portlet">
         
           <div class="portlet-header">
@@ -169,6 +264,11 @@
             <div class="col-sm-12">
               <div class="form-group">
               <label for="text-input">Merek Rokok</label>
+
+                <input type="text" id="search-box" placeholder="Country Name" />
+                <div id="suggesstion-box"></div>
+                <input type="hidden" name="merek" value="" id="hiddendata">
+                {*}
                   <select class="form-control" name="merek">
                     {if $produk}
                     {foreach $produk as $val}
@@ -177,6 +277,7 @@
                     {/foreach}
                     {/if}
                   </select>
+                {/*}
               </div>
             </div>  
             
@@ -300,23 +401,20 @@
             </div>
           </div>
         </div>
+        <br>
+          <input type="hidden" name="industriID" value="" class="industriID">
+          <input type="hidden" name="pabrikID" value="" class="pabrikID">
+          <button id="btn-dis" class="btn btn-info" type="submit">
+              <i class="fa fa-save"></i>Simpan Data</button>
+          <button id="btn-dis" class="btn btn-warning cancel_kemasan" type="button">
+          <i class="fa fa-save"></i>Cancel</button>
       </div>
 
 
       </div>
       
 </div>
-<br>
-<input type="hidden" name="industriID" value="" class="industriID">
-<input type="hidden" name="pabrikID" value="" class="pabrikID">
-<button id="btn-dis" class="btn btn-info" type="submit">
-      <i class="fa fa-save"></i>
-      Simpan Data
-      </button>
-      <button id="btn-dis" class="btn btn-warning" type="submit">
-      <i class="fa fa-save"></i>
-      Reset
-      </button>
+
 </form>
 
 </div>

@@ -1,4 +1,6 @@
 <script type="text/javascript">
+  
+  var idpabrik = {$id};
 
   {literal}
 
@@ -24,6 +26,23 @@
       }, "JSON")  
 
     })
+
+    $(document).on('click', '.tambah_alamat_pabrik', function(){
+      
+        if (idpabrik){
+          window.location.href=basedomain+'account/pabrik';
+        } else {
+
+          $('#pabrik_content').css('display','block');
+        }
+        
+        
+    }) 
+
+    $(document).on('click', '.cancel_tambah_pabrik', function(){
+        $('#pabrik_content').css('display','none');
+    }) 
+    
   {/literal}
 </script>
 
@@ -34,7 +53,43 @@
 
 <div class="content-container">
 <div class="row">
-
+  <div class="col-md-1"></div>
+          <div class="col-md-10" align="center">
+            <!-- STEP WIZARD -->
+            <div id="wizard" class="swMain">
+            <ul class="anchor">
+              <li><a href="#step-1" class="done">
+                    <label class="stepNumber">1</label>
+                    <span class="stepDesc">
+                       Step 1<br />
+                       <small>Informasi Produsen / Importir</small>
+                    </span>
+                </a></li>
+              <li><a href="#step-2" class="selected">
+                    <label class="stepNumber">2</label>
+                    <span class="stepDesc">
+                       Step 2<br />
+                       <small>Informasi Lokasi Pabrik</small>
+                    </span>
+                </a></li>
+              <li><a href="#step-3" class="disabled">
+                    <label class="stepNumber">3</label>
+                    <span class="stepDesc">
+                       Step 3<br />
+                       <small>Pelaporan Kemasan</small>
+                    </span>                   
+                 </a></li>
+              <li><a href="#step-4" class="disabled">
+                    <label class="stepNumber">4</label>
+                    <span class="stepDesc">
+                       Step 4<br />
+                       <small>Pelaporan Nikotin & TAR</small>
+                    </span>                   
+                </a></li>
+            </ul>
+            </div>
+            
+          </div>
   
   
     <div class="center">
@@ -71,6 +126,11 @@
             
           </div>
         </div>
+        <a href="{$basedomain}account/pelaporan">
+        <button id="btn-dis" class="btn btn-success" type="button">
+      <i class="fa fa-save"></i>
+      Lanjutkan Pelaporan Kemasan
+      </button></a>
       </div>
       
 
@@ -81,17 +141,19 @@
 
             <h3>
               <i class="fa fa-file"></i>
-              Tambah Alamat Pabrik
+              <button id="btn-dis" class="btn btn-info tambah_alamat_pabrik" type="button">
+                <i class="fa fa-save"></i> Tambah Alamat Pabrik 
+              </button>
             </h3>
 
           </div> <!-- /.portlet-header -->
         
-          <div class="portlet-content">
+          <div class="portlet-content" id="pabrik_content" style="{if !$id}display:none{/if}">
         
             <div class="col-sm-12">
               <div class="form-group">
               <label for="text-input">Provinsi</label>
-                  <select class="form-control pilihprov">
+                  <select class="form-control pilihprov" {if $id}disabled{/if}>
                     <option>-Pilih Provinsi-</option>
                     {foreach $lokasi as $val}
                     <option value="{$val.kode_wilayah}" {if $data.getCurrentProv.kode_wilayah==$val.kode_wilayah}selected{/if}>{$val.nama_wilayah}</option>
@@ -99,12 +161,13 @@
                     {/foreach}
                   </select>
               </div>
+
             </div>  
             
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Kabupaten</label>
-                  <select class="form-control pilihkab" name="provinsi">
+                  <select class="form-control pilihkab" name="provinsi" {if $id}disabled{/if}>
                     {if $data.getCurrentKab}
                     <option value="{$data.getCurrentKab.kode_wilayah}">{$data.getCurrentKab.nama_wilayah}</option>
                     {else}
@@ -160,11 +223,12 @@
       <i class="fa fa-save"></i>
       Simpan Data
       </button>
-      <button id="btn-dis" class="btn btn-warning" type="submit">
+      <button id="btn-dis" class="btn btn-warning cancel_tambah_pabrik" type="button">
       <i class="fa fa-save"></i>
-      Reset
+      Cancel
       </button>
           </div>
+
         </div>
       </div>
 

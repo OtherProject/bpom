@@ -13,6 +13,9 @@ class contentHelper extends Database {
 	function saveDataIndustri($data, $debug=false)
 	{
 
+		
+		// pr($_POST);
+		// exit;
 		foreach ($data as $key => $value) {
 			$$key = $value;
 		}
@@ -281,13 +284,14 @@ class contentHelper extends Database {
         return false;
 	}
 
-	function getProduk($id=false, $debug=false)
+	function getProduk($id=false, $keyword=false, $debug=false)
 	{
 
 		$filter = "";
 
 		if ($id) $filter .= "AND id = '{$id}'";
-		
+		if ($keyword) $filter .= "AND merek LIKE '%{$keyword}%'";
+
 		$sql = array(
                     'table' =>"{$this->prefix}_product",
                     'field' => "*",

@@ -39,12 +39,11 @@ class account extends Controller {
     $this->view->assign('user',$getUserData);	
     $this->view->assign('data',$getIndustri[0]);  
 
-    // $saveData = $this->userHelper->saveAccount();
     if (_p('submit')){
       $saveData = $this->userHelper->saveAccount();
+      if ($saveData)redirect($basedomain . 'account');
     }
-     // pr($getUserData);
-  	return $this->loadView('account');
+    return $this->loadView('account');
   }
 	
 	function industri(){
@@ -57,7 +56,6 @@ class account extends Controller {
     $getIndustri = $this->contentHelper->getIndustri($id_industri);
 
     $getProv = $this->contentHelper->getLokasi();
-    // pr($getProv);
     $this->view->assign('user',$this->user);  
     $this->view->assign('data',$getIndustri[0]);  
     $this->view->assign('lokasi',$getProv); 
@@ -71,12 +69,10 @@ class account extends Controller {
     }
     
     if ($_POST){
-      // pr($_POST);
-
+    
       $saveData = $this->contentHelper->saveDataIndustri($_POST);
       if ($saveData) reload($basedomain.'account/preview');
     }
-     // pr($getIndustri);
     return $this->loadView('account-industri');
   }
 
@@ -90,7 +86,6 @@ class account extends Controller {
     $getIndustri = $this->contentHelper->getIndustri($id_industri);
 
     $getProv = $this->contentHelper->getLokasi();
-    // pr($getProv);
     $this->view->assign('user',$this->user);  
     $this->view->assign('data',$getIndustri[0]);  
     $this->view->assign('lokasi',$getProv); 
@@ -114,9 +109,7 @@ class account extends Controller {
     $id_industri = $this->user['industri_id'];
     $getIndustri = $this->contentHelper->getIndustri($id_industri);
     $this->view->assign('datapabrik',$getIndustri[0]); 
-    // pr($getIndustri);
     $getPabrik = $this->contentHelper->getPabrik(false,$getIndustri[0]['id']);
-    // pr($getPabrik);
     if ($getPabrik){
 
       foreach ($getPabrik as $key => $value) {
@@ -124,48 +117,47 @@ class account extends Controller {
         $getPabrik[$key]['alamatPabrik'] = $tmp[0];
       }
 
-      // pr($getPabrik);
       $this->view->assign('pabrik',$getPabrik);  
     }
 
+
     $getProv = $this->contentHelper->getLokasi();
-    // pr($getIndustri);
     $this->view->assign('user',$this->user);  
-    $this->view->assign('data',$getIndustri[0]);  
+    // $this->view->assign('data',$getIndustri[0]);  
     $this->view->assign('lokasi',$getProv); 
 
     if ($_POST){
-      // pr($_POST);
-
+      
+      $_POST['indusrtiID'] = $getIndustri[0]['id'];
       $saveData = $this->contentHelper->saveDataPabrik($_POST);
       if ($saveData){
 
-        // pr($_FILES);
         if(!empty($_FILES)){
           if($_FILES['fileNPPBKC']['name'] != ''){
             $image = uploadFile('fileNPPBKC',null,'document');
-            // pr($image);
-            // exit;
-            if ($image){
+            if ($image['status']){
               $image['id'] = $_POST['id'];
               $updateData = $this->contentHelper->updateDataPabrik($image);
               if ($updateData) reload($basedomain.'account/pabrik');
+            }else{
+              echo "<script>alert('File type not allowed');</script>";
+              reload($basedomain.'account/pabrik');
             }
           }
 
         }
+
         reload($basedomain.'account/pabrik');
       }
 
     }
 
+    $this->view->assign('id',0);  
     if (isset($_GET['id'])){
 
       $getIndustri = $this->contentHelper->getIndustri($id_industri);
       $this->view->assign('datapabrik',$getIndustri[0]); 
-      // pr($getIndustri);
       $getPabrik = $this->contentHelper->getPabrik($_GET['id']);
-      // pr($getPabrik);
       if ($getPabrik){
 
         foreach ($getPabrik as $key => $value) {
@@ -180,7 +172,6 @@ class account extends Controller {
         }
 
         
-        // pr($getPabrik);
         $this->view->assign('data',$getPabrik[0]);  
       }
 
@@ -195,9 +186,6 @@ class account extends Controller {
 
   function pelaporan()
   {
-
-
-
     global $basedomain;
     $id_industri = $this->user['industri_id'];
     $getIndustri = $this->contentHelper->getIndustri($id_industri);
@@ -205,7 +193,6 @@ class account extends Controller {
     $this->view->assign('listindustri',$getIndustri); 
     
     $getPelaporanKemasan = $this->contentHelper->getPelaporanKemasan(false,$getIndustri[0]['id']);
-    // pr($getPelaporanKemasan);
     $this->view->assign('laporankemasan',$getPelaporanKemasan); 
 
     $getPabrik = $this->contentHelper->getPabrik(false,$getIndustri[0]['id']);
@@ -227,22 +214,15 @@ class account extends Controller {
 
     $getProduk = $this->contentHelper->getProduk();
     $this->view->assign('produk',$getProduk);  
-    // pr($getProduk);
-
+    
     $getTUlisan = $this->contentHelper->getTulisanPeringatan(false);
     $this->view->assign('tulisan',$getTUlisan);
 
-    // pr($_POST);
     if ($_POST){
-
-      // echo 'masuk';
-      // pr($_POST);
-      // pr($_FILES);
 
       $saveData = $this->contentHelper->saveDataKemasan($_POST);
       if ($saveData){
 
-        // pr($_FILES);
         if(!empty($_FILES)){
           
 
@@ -251,15 +231,11 @@ class account extends Controller {
 
               if($_FILES[$value]['name'] != ''){
                 $image = uploadFile($value,null,'image');
-                // pr($image);
-                // exit;
                 if ($image){
                   $dataImage[$value] =  $image;
                 }
               }
             }
-          // pr($dataImage);
-          
           $dataImage['pabrikID'] = $_POST['pabrikID'];
           $updateData = $this->contentHelper->updateDataKemasan($dataImage);
           if ($updateData) reload($basedomain.'account/pelaporan');
@@ -273,7 +249,6 @@ class account extends Controller {
     if (isset($_GET['id'])){
 
       $getPabrik = $this->contentHelper->getPabrik($id);
-      // pr($getPabrik);
       if ($getPabrik){
         $getIndustri = $this->contentHelper->getIndustri($getPabrik[0]['indusrtiID']);
         
@@ -285,9 +260,7 @@ class account extends Controller {
       $id_industri = $this->user['industri_id'];
       $getIndustri = $this->contentHelper->getIndustri($id_industri);
 
-      // exit;
       $getPelaporanKemasan = $this->contentHelper->getPelaporanKemasan($_GET['id']);
-      // pr($getPelaporanKemasan);
       $this->view->assign('laporankemasandetail',$getPelaporanKemasan[0]); 
     }
 
@@ -304,11 +277,9 @@ class account extends Controller {
     $this->view->assign('listindustri',$getIndustri); 
     
     $getPelaporanNikotin = $this->contentHelper->getPelaporanNikotin(false,$getIndustri[0]['id']);
-    // pr($getPelaporanNikotin);
     $this->view->assign('laporannikotin',$getPelaporanNikotin); 
 
     $getLab = $this->contentHelper->getLab();
-    // pr($getLab);
     $this->view->assign('lab',$getLab); 
 
     $getPabrik = $this->contentHelper->getPabrik(false,$getIndustri[0]['id']);
@@ -330,16 +301,11 @@ class account extends Controller {
 
     $getProduk = $this->contentHelper->getProduk();
     $this->view->assign('produk',$getProduk);  
-    // pr($getProduk);
-
+    
     if ($_POST){
-      // pr($_POST);
-      // pr($_FILES);
-      // exit;
       $saveData = $this->contentHelper->saveDataNikotin($_POST);
       if ($saveData){
 
-        // pr($_FILES);
         if(!empty($_FILES)){
           
 
@@ -348,14 +314,11 @@ class account extends Controller {
 
               if($_FILES[$value]['name'] != ''){
                 $image = uploadFile($value,null,'image');
-                // pr($image);
-                // exit;
                 if ($image){
                   $dataImage[$value] =  $image;
                 }
               }
             }
-          // pr($dataImage);
           
           $dataImage['pabrikID'] = $_POST['pabrikID'];
           $dataImage['industriID'] = $_POST['industriID'];
@@ -371,7 +334,6 @@ class account extends Controller {
     if (isset($_GET['id'])){
 
       $getPabrik = $this->contentHelper->getPabrik($id);
-      // pr($getPabrik);
       if ($getPabrik){
         $getIndustri = $this->contentHelper->getIndustri($getPabrik[0]['indusrtiID']);
         
@@ -383,9 +345,7 @@ class account extends Controller {
       $id_industri = $this->user['industri_id'];
       $getIndustri = $this->contentHelper->getIndustri($id_industri);
 
-      // exit;
       $getPelaporanNikotin = $this->contentHelper->getPelaporanNikotin($_GET['id']);
-      // pr($getPelaporanNikotin);
       $this->view->assign('kemasanedit',$getPelaporanNikotin[0]); 
     }
     return $this->loadView('account-pelaporan-nikotin');
@@ -431,18 +391,12 @@ class account extends Controller {
         $this->view->assign('kemasan',$data[0]);
       }
 
-      // pr($data);
       $id = $data[0]['pabrikID'];
       $getPabrik = $this->contentHelper->getPabrik($id);
-      // pr($getPabrik);
-      // pr($data[0]['industriID']);
-
       $getIndustri = $this->contentHelper->getIndustri($data[0]['industriID']);
 
    
 
-      // pr($getIndustri);
-      // pr($getPabrik);
       $this->view->assign('ind',$getIndustri[0]);
       $this->view->assign('pabrik',$getPabrik[0]);
 
@@ -459,14 +413,11 @@ class account extends Controller {
     $id = _p('kode_wilayah');
     if ($id){
       $getPabrik = $this->contentHelper->getPabrik($id);
-      // pr($getPabrik);
       if ($getPabrik){
         $getIndustri = $this->contentHelper->getIndustri($getPabrik[0]['indusrtiID']);
         
-        // pr($getIndustri);
         $data['ind'] = $getIndustri[0];
         $data['pabrik'] = $getPabrik[0];
-        // pr($data);
         print json_encode(array('status'=>true, 'res'=>$data));
       }else{
         print json_encode(array('status'=>false));
@@ -485,10 +436,8 @@ class account extends Controller {
     $id = _p('kode_wilayah');
     if ($id){
       $getLab = $this->contentHelper->getLab($id);
-      // pr($getPabrik);
       if ($getLab){
         
-        // pr($data);
         print json_encode(array('status'=>true, 'res'=>$getLab[0]));
       }else{
         print json_encode(array('status'=>false));
@@ -506,6 +455,7 @@ class account extends Controller {
 
     $id = _p('kode_wilayah');
     $getKab = $this->contentHelper->getKab(false, $id);
+
     if ($getKab){
       print json_encode(array('status'=>true, 'res'=>$getKab));
     }else{
@@ -515,47 +465,21 @@ class account extends Controller {
     exit;
   }
 
-  function formRegister()
+  function ajax_getMerek()
   {
-    global $basedomain;
-   
-   if(!$this->user) {redirect($basedomain."home/connect");exit;} 
-    $getUserInfo = $this->loginHelper->getUserInfo();
-    if ($getUserInfo['verified']>0){
-      redirect($basedomain.'uploadfoto/pilihframe');
+    $keyword = _p('keyword');
+    $getProduk = $this->contentHelper->getProduk(false, $keyword);
+    // pr($getProduk);exit;
+    if ($getProduk){
+      echo '<ul id="country-list">';
+      foreach ($getProduk as $key => $value) {
+        ?>
+        <li onClick="selectCountry('<?php echo $value["merek"]; ?>', '<?php echo $value["id"]; ?>');"><?php echo $value["merek"]; ?></li>
+        <?php
+      }
+      echo '</ul>';
     }
-
-    $this->view->assign('user',$this->user);
-    return $this->loadView('form');
-  }
-
-  function inputForm()
-  {
-
-    global $basedomain;
-
-    $inputData=$this->contentHelper->registerUser($_POST); 
-    if ($inputData)redirect($basedomain.'uploadfoto/pilihframe');
-
-  }
-
-  
-
-	function loginSocmed()
-  {
-
-    global $CONFIG, $basedomain;
-
-    
-  }
-  function thanks(){
-    return $this->loadView('thanks');
-
-  }
-
-  function privacy(){
-     return $this->loadView('privacy');
-
+    exit;
   }
 
   function debuging()
