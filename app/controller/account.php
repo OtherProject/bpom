@@ -39,13 +39,31 @@ class account extends Controller {
     $this->view->assign('user',$getUserData);	
     $this->view->assign('data',$getIndustri[0]);  
 
+    /*
     if (_p('submit')){
       $saveData = $this->userHelper->saveAccount();
       if ($saveData)redirect($basedomain . 'account');
-    }
+    }*/
     return $this->loadView('account');
   }
 	
+  function profile()
+  {
+    global $basedomain;
+
+    $id_industri = $this->user['industri_id'];
+    $getIndustri = $this->contentHelper->getIndustri($id_industri);
+    $getUserData = $this->userHelper->getUserData();
+    $this->view->assign('user',$getUserData); 
+    $this->view->assign('data',$getIndustri[0]);  
+
+    if (_p('submit')){
+      $saveData = $this->userHelper->saveAccount();
+      if ($saveData)redirect($basedomain . 'account/industri');
+    }
+    return $this->loadView('account-profil');
+  }
+
 	function industri(){
 
     global $CONFIG, $basedomain;
@@ -116,7 +134,7 @@ class account extends Controller {
         $tmp = $this->contentHelper->getKab($value['provinsi']);
         $getPabrik[$key]['alamatPabrik'] = $tmp[0];
       }
-
+      // pr($getPabrik);
       $this->view->assign('pabrik',$getPabrik);  
     }
 
@@ -161,6 +179,9 @@ class account extends Controller {
       if ($getPabrik){
 
         foreach ($getPabrik as $key => $value) {
+          $unserial = unserialize($value['data']);
+          $getPabrik[$key]['origFile'] = $unserial['origFile'];
+
           $tmp = $this->contentHelper->getKab($value['provinsi']);
           $getPabrik[$key]['alamatPabrik'] = $tmp[0];
           $tmpKab = $this->contentHelper->getKab($value['provinsi']);
@@ -172,6 +193,7 @@ class account extends Controller {
         }
 
         
+        $this->view->assign('currentid',_g('id'));
         $this->view->assign('data',$getPabrik[0]);  
       }
 
@@ -208,7 +230,7 @@ class account extends Controller {
         }
 
         
-        
+        // pr($getPabrik);
         $this->view->assign('listpabrik',$getPabrik);  
     }
 

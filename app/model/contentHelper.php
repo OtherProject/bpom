@@ -231,9 +231,11 @@ class contentHelper extends Database {
 		if ($id) $id = $id;
 		else $id = $this->insert_id();
 
+		// pr($data);exit;
+		$serial = serialize(array('origFile'=>$data['real_name']));
 		$sql = array(
 	                'table' =>"{$this->prefix}_industri_pabrik",
-	                'field' => "files = '{$files}'",
+	                'field' => "files = '{$files}', data = '{$serial}'",
 	                'condition' => "id = {$id}",
 	            );
 	    $result = $this->lazyQuery($sql,$debug,2);

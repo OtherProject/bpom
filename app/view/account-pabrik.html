@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
   
   var idpabrik = {$id};
@@ -43,6 +44,10 @@
         $('#pabrik_content').css('display','none');
     }) 
     
+    jQuery(function($){
+      $("#fileNPPBKC").mask("9999.9.9.9999");
+    });
+
   {/literal}
 </script>
 
@@ -116,7 +121,7 @@
               <label for="text-input">Lokasi Pabrik</label>
                 {if $pabrik}
                   {foreach $pabrik as $val}
-                  <a href="{$basedomain}account/pabrik/?id={$val.id}" class="form-control">{$val.alamatPabrik.nama_wilayah}</a><br>
+                  <a href="{$basedomain}account/pabrik/?id={$val.id}" class="form-control" {if $val.id==$currentid}disabled{/if}>{$val.alamatPabrik.nama_wilayah}, {$val.namaJalan}</a><br>
                   {/foreach}
                 {/if}
                  
@@ -126,11 +131,21 @@
             
           </div>
         </div>
+        {if $pabrik}
         <a href="{$basedomain}account/pelaporan">
         <button id="btn-dis" class="btn btn-success" type="button">
       <i class="fa fa-save"></i>
       Lanjutkan Pelaporan Kemasan
-      </button></a>
+      </button></a><br><br>
+        <a href="{$basedomain}account/pelaporan_nikotin">
+        <button id="btn-dis" class="btn btn-info" type="button">
+          <i class="fa fa-save"></i>
+          Lanjutkan Pelaporan Pengujian Nikotin & Tar
+          </button>
+        </a>
+      {else}
+      <h3>Alamat pabrik masih kosong</h3>
+      {/if}
       </div>
       
 
@@ -207,13 +222,13 @@
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">No NPPBKC</label>
-                  <input type="text" name="noNPPBKC" class="form-control" value="{$data.noNPPBKC}" />
+                  <input type="text" name="noNPPBKC" class="form-control" value="{$data.noNPPBKC}" id="fileNPPBKC"/>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-              <label for="text-input">Upload dokumen NPPBKC (dilampirkan fotocopy NPPBKC)</label>
-                  <input type="file" name="fileNPPBKC" class="form-control" value="{$data.evaluasiInformasi}" /><p>Nama Dokumen : {$data.files}</p>
+              <label for="text-input">Upload dokumen NPPBKC (dilampirkan fotocopy NPPBKC, <b style="color:red">format PDF max: 2MB</b>)</label>
+                  <input type="file" name="fileNPPBKC" class="form-control" value="{$data.evaluasiInformasi}" /><p>Nama Dokumen : {$data.origFile}</p>
               </div>
             </div>
             <br>
