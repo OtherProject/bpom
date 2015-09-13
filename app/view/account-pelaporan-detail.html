@@ -33,19 +33,19 @@
 <section>
     <div class="container">  
       <div class="center">
-  <h2>Preview Pelaporan</h2>
+  <h2>Preview Pelaporan Kemasan</h2>
             <p class="lead">&nbsp;</p>
   </div>
 <form method="post" action="{$basedomain}account/industri">
 <div class="container">  
         <button id="btn-dis" class="btn btn-info" type="button" onclick="history.back()">
         <i class="fa fa-save"></i>
-        Kembali ke Pelaporan
+        Kembali ke daftar Pelaporan
         </button>
-        <button id="btn-dis" class="btn btn-warning" type="button" onclick="">
+        <a href="{$basedomain}account/pelaporan/?id={$id}"><button id="btn-dis" class="btn btn-warning" type="button" onclick="">
         <i class="fa fa-save"></i>
         Edit data
-        </button>
+        </button></a>
   </div>
 <div class="content-container">
 
@@ -146,13 +146,13 @@
             <tr>
               
               <td>Jenis</td>
-              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.jenis}" disabled/></td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.d_jenisRokok}" disabled/></td>
               
             </tr>
             <tr>
               
               <td>Isi/Kemasan</td>
-              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.d_isiKemasan}" disabled/></td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.isi} / {$kemasan.d_isiKemasan}" disabled/></td>
               
             </tr>
             <tr>
@@ -164,14 +164,14 @@
             <tr>
               
               <td>Jenis Gambar</td>
-              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.d_jenisRokok}" disabled/></td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.d_jenisGambar}" disabled/></td>
               
             </tr>
 
             <tr>
               
               <td>Tulisan peringatan kesehatan</td>
-              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.d_tulisanPeringatan}" disabled/></td>
+              <td><input type="text" name="kataPromotif" class="form-control jenisrokok" value="{$kemasan.title}" disabled/></td>
               
             </tr>
             <tr>

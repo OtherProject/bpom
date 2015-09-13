@@ -1,4 +1,6 @@
 <script type="text/javascript">
+  
+  var idpabrik = {$idpabrik};
 
   {literal}
 
@@ -16,7 +18,7 @@
           var hasil = data.res;
           $('.noNPPBKC').val(hasil.pabrik.noNPPBKC);
           $('.namaJalan').val(hasil.pabrik.namaJalan);
-          $('.noTelepon').val(hasil.ind.noTelepon);
+          $('.kecamatan').val(hasil.ind.kecamatan);
           $('.noFax').val(hasil.ind.noFax);
           $('.namaPimpinan').val(hasil.ind.namaPimpinan);
           $('.industriID').val(hasil.ind.id);
@@ -25,7 +27,7 @@
         }else{
           $('.noNPPBKC').val('');
           $('.namaJalan').val('');
-          $('.noTelepon').val('');
+          $('.kecamatan').val('');
           $('.noFax').val('');
           $('.namaPimpinan').val('');
           $('.industriID').val('');
@@ -92,7 +94,7 @@ $("#suggesstion-box").hide();
 <br>
 <section>
     <div class="container">  
-<form method="post" action="{$basedomain}account/pelaporan" enctype="multipart/form-data">
+<form method="post" action="{$basedomain}account/pelaporan" enctype="multipart/form-data" onsubmit="return submit_confirm()">
 
 <div class="content-container">
 <div class="row">
@@ -153,11 +155,20 @@ $("#suggesstion-box").hide();
           </div>
           <div class="portlet-content">
         
-            <div class="col-sm-12">
+            <div class="col-sm-10">
               <div class="form-group">
                 {if $laporankemasan}
                 {foreach $laporankemasan as $val}
-              <a href="{$basedomain}account/pelaporanDetail/?id={$val.id}" class="form-control">{$val.merek}</a><br>
+              <a href="{$basedomain}account/pelaporanDetail/?id={$val.id}" class="form-control" {if $idpabrik==$val.id}disabled{/if}>{$val.merek}</a><br>
+                {/foreach}
+                {/if}
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group">
+                {if $laporankemasan}
+                {foreach $laporankemasan as $val}
+              <a href="{$basedomain}account/delkemasan/?id={$val.id}" class="form-control" onclick="return submit_confirm('Hapus data ?')">Delete</a><br>
                 {/foreach}
                 {/if}
               </div>
@@ -165,14 +176,21 @@ $("#suggesstion-box").hide();
           </div>
         </div>
       </div>
+      {if !$idpabrik}
       <button id="btn-dis" class="btn btn-info tambah_data_kemasan" type="button">
       <i class="fa fa-save"></i>
       Tambah Data
       </button>
+      <a href="{$basedomain}account/pelaporan_nikotin">
+      <button id="btn-dis" class="btn btn-info" type="button">
+      <i class="fa fa-save"></i>
+      Pelaporan Pengujian Nikotin & TAR
+      </button></a>
+      {/if}
     <div class="clearfix"></div>
     <br>
 
-      <div class="col-md-6" style="display:none" id="info_produsen">
+      <div class="col-md-6" style="{if !$idpabrik}display:none{/if}" id="info_produsen">
         
         <div class="portlet">
         
@@ -190,7 +208,7 @@ $("#suggesstion-box").hide();
             <div class="col-sm-6">
               <div class="form-group">
               <label for="text-input">Nama Produsen / Importir</label>
-                  <select class="form-control" name="jenisKelamin">
+                  <select class="form-control" name="industriID" {if $idpabrik}disabled{/if}>
                     {if $listindustri}
                     {foreach $listindustri as $val}
                     <option value="{$val.id}">{$val.namaIndustri}</option>
@@ -202,11 +220,11 @@ $("#suggesstion-box").hide();
             <div class="col-sm-6">
               <div class="form-group">
               <label for="text-input">Lokasi Pabrik</label>
-                  <select class="form-control" name="lokasi" id="lokasipabrik">
+                  <select class="form-control" name="pabrikID" id="lokasipabrik" {if $idpabrik}disabled{/if}>
                     <option value="" >-Pilih Pabrik-</option>
                     {if $listpabrik}
                     {foreach $listpabrik as $val}
-                    <option value="{$val.id}" >{$val.alamatPabrik.nama_wilayah} -  {$val.namaJalan}</option>
+                    <option value="{$val.id}" {if $val.id == $laporankemasandetail.pabrikID}selected{/if}>{$val.alamatPabrik.nama_wilayah} -  {$val.namaJalan}</option>
                     {/foreach}
                     {/if}
                   </select>
@@ -215,31 +233,31 @@ $("#suggesstion-box").hide();
             <div class="col-sm-12">
               <div class="form-group">
               <label for="text-input">No NPPBKC</label>
-                  <input type="text" name="noNPPBKC" class="form-control noNPPBKC" value="{$kemasanedit.noNPPBKC}" data-required="true" disabled/>
+                  <input type="text" name="noNPPBKC" class="form-control noNPPBKC" value="{$laporankemasandetail.noNPPBKC}" data-required="true" disabled/>
               </div>
             </div> 
             <div class="col-sm-12">
               <div class="form-group">
               <label for="text-input">Alamat</label>
-                  <input type="text" name="namaJalan" class="form-control namaJalan" value="{$kemasanedit.namaJalan}" data-required="true" disabled/>
+                  <input type="text" name="namaJalan" class="form-control namaJalan" value="{$laporankemasandetail.namaJalan}" data-required="true" disabled/>
               </div>
             </div> 
             <div class="col-sm-12">
               <div class="form-group">
-              <label for="text-input">No Telp</label>
-                  <input type="text" name="noTelepon" class="form-control noTelepon" value="{$kemasanedit.noTelepon}" data-required="true" disabled/>
+              <label for="text-input">Kecamatan</label>
+                  <input type="text" name="kecamatan" class="form-control kecamatan" value="{$laporankemasandetail.kecamatan}" data-required="true" disabled/>
               </div>
             </div> 
             <div class="col-sm-12">
               <div class="form-group">
               <label for="text-input">No Fax</label>
-                  <input type="text" name="noFax" class="form-control noFax" value="{$kemasanedit.noFax}" data-required="true" disabled />
+                  <input type="text" name="noFax" class="form-control noFax" value="{$laporankemasandetail.noFax}" data-required="true" disabled />
               </div>
             </div> 
             <div class="col-sm-12">
               <div class="form-group">
               <label for="text-input">Nama Pemilik/Direktur</label>
-                  <input type="text" name="namaPimpinan" class="form-control namaPimpinan" value="{$kemasanedit.namaPimpinan}" data-required="true" disabled/>
+                  <input type="text" name="namaPimpinan" class="form-control namaPimpinan" value="{$laporankemasandetail.namaPimpinan}" data-required="true" disabled/>
               </div>
             </div> 
           </div>
@@ -247,7 +265,7 @@ $("#suggesstion-box").hide();
       </div>
       
 
-      <div class="col-md-6" style="display:none" id="info_produk">
+      <div class="col-md-6" style="{if !$idpabrik}display:none{/if}" id="info_produk">
         <div class="portlet">
         
           <div class="portlet-header">
@@ -265,9 +283,9 @@ $("#suggesstion-box").hide();
               <div class="form-group">
               <label for="text-input">Merek Rokok</label>
 
-                <input type="text" id="search-box" placeholder="Ketik Merek Rokok" class="form-control"/>
+                <input type="text" id="search-box" placeholder="Ketik Merek Rokok" class="form-control"  {if $laporankemasandetail.merek}value="{$laporankemasandetail.merek}" disabled {/if}/>
                 <div id="suggesstion-box"></div>
-                <input type="hidden" name="merek" value="" id="hiddendata">
+                <input type="hidden" name="merek" value="{$laporankemasandetail.merek}" id="hiddendata" {if $idpabrik}disabled{/if}>
                 {*}
                   <select class="form-control" name="merek">
                     {if $produk}
@@ -285,12 +303,12 @@ $("#suggesstion-box").hide();
               <div class="form-group">
               <label for="text-input">Jenis</label>
                   <select class="form-control" name="jenis">
-                    <option value="1" >SKM</option>
-                    <option value="2" >SKT</option>
-                    <option value="3" >SPM</option>
-                    <option value="4" >CRT</option>
-                    <option value="5" >TIS</option>
-                    <option value="6" >KLM</option>
+                    <option value="1" {if $laporankemasandetail.jenis==1}selected{/if}>SKM</option>
+                    <option value="2" {if $laporankemasandetail.jenis==2}selected{/if}>SKT</option>
+                    <option value="3" {if $laporankemasandetail.jenis==3}selected{/if}>SPM</option>
+                    <option value="4" {if $laporankemasandetail.jenis==4}selected{/if}>CRT</option>
+                    <option value="5" {if $laporankemasandetail.jenis==5}selected{/if}>TIS</option>
+                    <option value="6" {if $laporankemasandetail.jenis==6}selected{/if}>KLM</option>
                   </select>
               </div>
             </div>
@@ -298,13 +316,13 @@ $("#suggesstion-box").hide();
             <div class="col-md-3">
               <div class="form-group">
               <label for="text-input">Isi</label>
-                <input type="text" class="form-control" name="isi"/>
+                <input type="text" class="form-control" name="isi" value="{$laporankemasandetail.isi}"/>
                 {*}
                   <select name="isi" class="form-control" >
-                    <option {if $kemasanedit.isi==1}selected{/if} value="1">10</option>
-                  <option {if $kemasanedit.isi==1}selected{/if} value="1">10</option>
-                  <option {if $kemasanedit.isi==2}selected{/if} value="2">12 </option>
-                  <option {if $kemasanedit.isi==3}selected{/if} value="3">50</option>
+                    <option {if $laporankemasandetail.isi==1}selected{/if} value="1">10</option>
+                  <option {if $laporankemasandetail.isi==1}selected{/if} value="1">10</option>
+                  <option {if $laporankemasandetail.isi==2}selected{/if} value="2">12 </option>
+                  <option {if $laporankemasandetail.isi==3}selected{/if} value="3">50</option>
                   
                 </select>{/*}
               </div>
@@ -312,12 +330,12 @@ $("#suggesstion-box").hide();
             <div class="col-md-3">
               <div class="form-group">
               <label for="text-input">Satuan</label>
-                  <select name="kemasan" class="form-control" >
-                  <option {if $kemasanedit.isi==1}selected{/if} value="1">bgks/slop</option>
-                  <option {if $kemasanedit.isi==2}selected{/if} value="2">slider/slop</option>
-                  <option {if $kemasanedit.isi==3}selected{/if} value="3">btg/bgks</option>
-                  <option {if $kemasanedit.isi==4}selected{/if} value="4">btg/slinder</option>
-                   <option {if $kemasanedit.isi==5}selected{/if} value="5">gram/bgks</option>
+                  <select name="satuan" class="form-control" >
+                  <option {if $laporankemasandetail.satuan==1}selected{/if} value="1">bgks/slop</option>
+                  <option {if $laporankemasandetail.satuan==2}selected{/if} value="2">slider/slop</option>
+                  <option {if $laporankemasandetail.satuan==3}selected{/if} value="3">btg/bgks</option>
+                  <option {if $laporankemasandetail.satuan==4}selected{/if} value="4">btg/slinder</option>
+                   <option {if $laporankemasandetail.satuan==5}selected{/if} value="5">gram/bgks</option>
                 </select>
               </div>
             </div>
@@ -327,10 +345,10 @@ $("#suggesstion-box").hide();
               <div class="form-group">
               <label for="text-input">Bentuk Kemasan</label>
                   <select class="form-control" name="bentuKemasan">
-                    <option value="1" >Persegi Panjang</option>
-                    <option value="2" >Slop</option>
-                    <option value="3" >Slinder</option>
-                    <option value="3" >Bungkus TIS</option>
+                    <option value="1" {if $laporankemasandetail.bentuKemasan==1}selected{/if}>Persegi Panjang</option>
+                    <option value="2" {if $laporankemasandetail.bentuKemasan==2}selected{/if}>Slop</option>
+                    <option value="3" {if $laporankemasandetail.bentuKemasan==3}selected{/if}>Slinder</option>
+                    <option value="3" {if $laporankemasandetail.bentuKemasan==4}selected{/if}>Bungkus TIS</option>
                   </select>
               </div>
             </div>
@@ -338,13 +356,13 @@ $("#suggesstion-box").hide();
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Jenis Gambar</label>
-                <select class="form-control">
-                  <option value="1" {if $data.jenisGambar==1}selected{/if}>1 (Kanker Mulut)</option>
-                  <option value="2" {if $data.jenisGambar==2}selected{/if}>2 (Asap Membentuk Tengkorak)</option>
-                  <option value="3" {if $data.jenisGambar==3}selected{/if}>3 (Kanker Tenggorokan)</option>
-                  <option value="4" {if $data.jenisGambar==4}selected{/if}>4 (Ayah Menggendong Anak)</option>
-                  <option value="5" {if $data.jenisGambar==5}selected{/if}>5 (Kanker Paru-Paru)</option>
-                  <option value="6" {if $data.jenisGambar==6}selected{/if}>(Semua Jenis Gambar)</option>
+                <select class="form-control" name="jenisGambar">
+                  <option value="1" {if $laporankemasandetail.jenisGambar==1}selected{/if}>1 (Kanker Mulut)</option>
+                  <option value="2" {if $laporankemasandetail.jenisGambar==2}selected{/if}>2 (Asap Membentuk Tengkorak)</option>
+                  <option value="3" {if $laporankemasandetail.jenisGambar==3}selected{/if}>3 (Kanker Tenggorokan)</option>
+                  <option value="4" {if $laporankemasandetail.jenisGambar==4}selected{/if}>4 (Ayah Menggendong Anak)</option>
+                  <option value="5" {if $laporankemasandetail.jenisGambar==5}selected{/if}>5 (Kanker Paru-Paru)</option>
+                  <option value="6" {if $laporankemasandetail.jenisGambar==6}selected{/if}>(Semua Jenis Gambar)</option>
                   </select>
               </div>
             </div>
@@ -354,7 +372,7 @@ $("#suggesstion-box").hide();
                   
                   <select class="form-control" name="tulisanPeringatan">
                       {foreach $tulisan as $val}
-                      <option value="{$val.id}" {if $data.tulisanPeringatan=={$val.id}}selected{/if}>{$val.title}</option>
+                      <option value="{$val.id}" {if $laporankemasandetail.tulisanPeringatan=={$val.id}}selected{/if}>{$val.title}</option>
                       {/foreach}
                        
                   </select>
@@ -418,8 +436,9 @@ $("#suggesstion-box").hide();
           </div>
         </div>
         <br>
-          <input type="hidden" name="industriID" value="" class="industriID">
-          <input type="hidden" name="pabrikID" value="" class="pabrikID">
+          <!-- <input type="hidden" name="industriID" value="{$laporankemasandetail.industriID}" class="industriID">
+          <input type="hidden" name="pabrikID" value="" class="pabrikID"> -->
+          <input type="hidden" name="id" value="{$laporankemasandetail.id}">
           <button id="btn-dis" class="btn btn-info" type="submit">
               <i class="fa fa-save"></i> Simpan Data</button>
           <button id="btn-dis" class="btn btn-warning cancel_kemasan" type="button">

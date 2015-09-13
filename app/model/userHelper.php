@@ -133,7 +133,7 @@ class userHelper extends Database {
     function saveAccount()
     {
         
-        $run = $this->save("update", "social_member", $_POST, "id = {$_POST['id']}");
+        $run = $this->save('update', "social_member", $_POST, "id = {$_POST['id']}");
         if ($run) return true;
         return false;
     }

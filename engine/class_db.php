@@ -404,6 +404,7 @@ class Database
 				$value = $data['value'];
 
 				$sql = "INSERT INTO {$table} ({$field}) VALUES ({$value})";
+				logFile($sql);
 				if ($debug){
 					if ($debug>1){
 						pr($sql);
@@ -432,6 +433,7 @@ class Database
 				else $limit = "";
 
 				$sql = "UPDATE {$table} SET {$field} WHERE {$condition} {$limit}";
+				logFile($sql);
 				if ($debug){
 					if ($debug>1){
 						pr($sql);
@@ -503,8 +505,12 @@ class Database
 		
 	}
 
-	function save($method = 'insert', $table=false, $data=false, $condition=false, $debug=false)
+	function save($method = "insert", $table=false, $data=false, $condition=false, $debug=false)
 	{
+
+		// $method = $param['method'];
+		// $action = $param['action'];
+
 		$filepath = CACHE . 'table/';
 		
 		if ($table){

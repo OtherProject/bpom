@@ -204,7 +204,30 @@ class account extends Controller {
     return $this->loadView('account-pabrik');
   }
 
+  function delpabrik()
+  {
+    global $basedomain;
+    $del = $this->contentHelper->delPabrik();
+    
+    redirect($basedomain . 'account/pabrik');
+    
+  }
 
+  function delkemasan()
+  {
+    global $basedomain;
+    $del = $this->contentHelper->delKemasan();
+    
+    redirect($basedomain . 'account/pelaporan');
+  }
+
+  function delnikotin()
+  {
+    global $basedomain;
+    $del = $this->contentHelper->delNikotin();
+    
+    redirect($basedomain . 'account/pelaporan_nikotin');
+  }
 
   function pelaporan()
   {
@@ -213,7 +236,8 @@ class account extends Controller {
     $getIndustri = $this->contentHelper->getIndustri($id_industri);
 
     $this->view->assign('listindustri',$getIndustri); 
-    
+    $this->view->assign('idpabrik',0);
+
     $getPelaporanKemasan = $this->contentHelper->getPelaporanKemasan(false,$getIndustri[0]['id']);
     $this->view->assign('laporankemasan',$getPelaporanKemasan); 
 
@@ -259,6 +283,7 @@ class account extends Controller {
               }
             }
           $dataImage['pabrikID'] = $_POST['pabrikID'];
+          $dataImage['id'] = $_POST['id'];
           $updateData = $this->contentHelper->updateDataKemasan($dataImage);
           if ($updateData) reload($basedomain.'account/pelaporan');
 
@@ -279,10 +304,12 @@ class account extends Controller {
         $data['pabrik'] = $getPabrik[0];
       }
 
+      $this->view->assign('idpabrik',_g('id')); 
       $id_industri = $this->user['industri_id'];
       $getIndustri = $this->contentHelper->getIndustri($id_industri);
 
       $getPelaporanKemasan = $this->contentHelper->getPelaporanKemasan($_GET['id']);
+      // pr($getPelaporanKemasan);
       $this->view->assign('laporankemasandetail',$getPelaporanKemasan[0]); 
     }
 
@@ -303,6 +330,8 @@ class account extends Controller {
 
     $getLab = $this->contentHelper->getLab();
     $this->view->assign('lab',$getLab); 
+
+    $this->view->assign('idnikotin',false);
 
     $getPabrik = $this->contentHelper->getPabrik(false,$getIndustri[0]['id']);
     if ($getPabrik){
@@ -344,6 +373,7 @@ class account extends Controller {
           
           $dataImage['pabrikID'] = $_POST['pabrikID'];
           $dataImage['industriID'] = $_POST['industriID'];
+          $dataImage['id'] = $_POST['id'];
           $updateData = $this->contentHelper->updateDataNikotin($dataImage);
           if ($updateData) reload($basedomain.'account/pelaporan_nikotin');
 
@@ -364,6 +394,8 @@ class account extends Controller {
         $data['pabrik'] = $getPabrik[0];
       }
 
+      $this->view->assign('idnikotin',$_GET['id']);  
+
       $id_industri = $this->user['industri_id'];
       $getIndustri = $this->contentHelper->getIndustri($id_industri);
 
@@ -377,32 +409,45 @@ class account extends Controller {
   {
 
 
-      $tulisanPeringatan = array(1 => 'Merokok Membunuhmu',
-                    2 => 'Merokok dekat anak berbahayan bagi mereka',
-                    3 => 'Merokok sebabkan kanker mulut',
+      $jenisGambar = array(
+                    1 => '1 (Kanker Mulut)',
+                    2 => '2 (Asap Membentuk Tengkorak)',
+                    3 => '3 (Kanker Tenggorokan)',
+                    4 => '4 (Ayah Menggendong Anak)',
+                    5 => '5 (Kanker Paru-Paru)',
+                    6 => '(Semua Jenis Gambar)'
                     );
-      $bentukKemasan = array(1 => 'Kotak persegi panjang',
-                  2 => 'Kotak slop',
-                  3 => 'Slinder'
+      
+      $bentukKemasan = array(
+                  1 => 'Persegi panjang',
+                  2 => 'Slop',
+                  3 => 'Slinder',
+                  4 => 'Bungkus TIS'
                   );
-      $isiKemasan = array(1 => '10 bks/slop',
-                2 => '10 btg/bks',
-                2 => '10 slider/slop',
-                2 => '12 btg/bks',
-                2 => '50 btg/slinder',
+      $isiKemasan = array(
+                1 => 'bgks/slop',
+                2 => 'slider/slop',
+                3 => 'btg/bgks',
+                4 => 'btg/slinder',
+                5 => 'gram/bgks',
                 );
-      $jenisRokok = array(1 => 'SKT',
+      $jenisRokok = array(
+                1 => 'SKT',
                 2 => 'SKM',
-                );
+                3 => 'SPM',
+                4 => 'CRT',
+                5 => 'TIS',
+                6 => 'KLM');
 
       $data = $this->contentHelper->getPelaporanKemasan($_GET['id']);
       
       if ($data){
         foreach ($data as $key => $value) {
-          $data[$key]['d_tulisanPeringatan'] = $tulisanPeringatan[$value['tulisanPeringatan']];
+          // $data[$key]['d_tulisanPeringatan'] = $tulisanPeringatan[$value['tulisanPeringatan']];
           $data[$key]['d_bentukKemasan'] = $bentukKemasan[$value['bentuKemasan']];
-          $data[$key]['d_isiKemasan'] = $isiKemasan[$value['isi']];
+          $data[$key]['d_isiKemasan'] = $isiKemasan[$value['satuan']];
           $data[$key]['d_jenisRokok'] = $jenisRokok[$value['jenis']];
+          $data[$key]['d_jenisGambar'] = $jenisGambar[$value['jenisGambar']];
 
           if ($this->admin['admin']['type']==2){
             $data[$key]['dataDisabled'] = 'disabled';
@@ -412,13 +457,13 @@ class account extends Controller {
         }
         $this->view->assign('kemasan',$data[0]);
       }
-
+      
       $id = $data[0]['pabrikID'];
       $getPabrik = $this->contentHelper->getPabrik($id);
       $getIndustri = $this->contentHelper->getIndustri($data[0]['industriID']);
 
    
-
+      $this->view->assign('id',$_GET['id']);
       $this->view->assign('ind',$getIndustri[0]);
       $this->view->assign('pabrik',$getPabrik[0]);
 
@@ -427,6 +472,74 @@ class account extends Controller {
 
 
     return $this->loadView('account-pelaporan-detail');
+  }
+
+  function nikotinDetail()
+  {
+
+
+      $jenisGambar = array(
+                    1 => '1 (Kanker Mulut)',
+                    2 => '2 (Asap Membentuk Tengkorak)',
+                    3 => '3 (Kanker Tenggorokan)',
+                    4 => '4 (Ayah Menggendong Anak)',
+                    5 => '5 (Kanker Paru-Paru)',
+                    6 => '(Semua Jenis Gambar)'
+                    );
+      
+      $bentukKemasan = array(
+                  1 => 'Persegi panjang',
+                  2 => 'Slop',
+                  3 => 'Slinder',
+                  4 => 'Bungkus TIS'
+                  );
+      $isiKemasan = array(
+                1 => 'bgks/slop',
+                2 => 'slider/slop',
+                3 => 'btg/bgks',
+                4 => 'btg/slinder',
+                5 => 'gram/bgks',
+                );
+      $jenisRokok = array(
+                1 => 'SKT',
+                2 => 'SKM',
+                3 => 'SPM',
+                4 => 'CRT',
+                5 => 'TIS',
+                6 => 'KLM');
+
+      $data = $this->contentHelper->getPelaporanNikotin($_GET['id']);
+      if ($data){
+        foreach ($data as $key => $value) {
+          // $data[$key]['d_tulisanPeringatan'] = $tulisanPeringatan[$value['tulisanPeringatan']];
+          $data[$key]['d_bentukKemasan'] = $bentukKemasan[$value['bentuKemasan']];
+          $data[$key]['d_isiKemasan'] = $isiKemasan[$value['satuan']];
+          $data[$key]['d_jenisRokok'] = $jenisRokok[$value['jenis']];
+          $data[$key]['d_jenisGambar'] = $jenisGambar[$value['jenisGambar']];
+
+          if ($this->admin['admin']['type']==2){
+            $data[$key]['dataDisabled'] = 'disabled';
+          }else{
+            $data[$key]['dataDisabled'] = '';
+          }
+        }
+        $this->view->assign('kemasan',$data[0]);
+      }
+      
+      $id = $data[0]['pabrikID'];
+      $getPabrik = $this->contentHelper->getPabrik($id);
+      $getIndustri = $this->contentHelper->getIndustri($data[0]['industriID']);
+
+   
+      $this->view->assign('id',$_GET['id']);
+      $this->view->assign('ind',$getIndustri[0]);
+      $this->view->assign('pabrik',$getPabrik[0]);
+
+      $id_industri = $this->user['industri_id'];
+      $getIndustri = $this->contentHelper->getIndustri($id_industri);
+
+
+    return $this->loadView('account-nikotin-detail');
   }
 
   function ajaxPabrik()

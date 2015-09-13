@@ -47,7 +47,7 @@ class contentHelper extends Database {
 
 			$sql = array(
 	                    'table' =>"{$this->prefix}_industri_pabrik",
-	                    'field' => "indusrtiID = '{$indusrtiID}', provinsi = '{$provinsi}',kecamatan = '{$kecamatan}',
+	                    'field' => "industriID = '{$industriID}', provinsi = '{$provinsi}',kecamatan = '{$kecamatan}',
 	                    			desa = '{$desa}',kodePos = '{$kodePos}',
 	                    			namaJalan = '{$namaJalan}',noNPPBKC = '{$noNPPBKC}',n_status = '{$n_status}'",
 	                    'condition' => "id = {$id}",
@@ -56,9 +56,9 @@ class contentHelper extends Database {
 		}else{
 			$sql = array(
 	                    'table' =>"{$this->prefix}_industri_pabrik",
-	                    'field' => "indusrtiID, provinsi ,kecamatan, desa, kodePos,
+	                    'field' => "industriID, provinsi ,kecamatan, desa, kodePos,
 	                    			namaJalan,noNPPBKC,createDate,n_status",
-	                    'value' => "'{$indusrtiID}', '{$provinsi}', '{$kecamatan}','{$desa}','{$kodePos}','{$namaJalan}',
+	                    'value' => "'{$industriID}', '{$provinsi}', '{$kecamatan}','{$desa}','{$kodePos}','{$namaJalan}',
 	                    			'{$noNPPBKC}', '{$createDate}',$n_status ",
 	                );
 	        $result = $this->lazyQuery($sql,$debug,1);
@@ -70,6 +70,23 @@ class contentHelper extends Database {
 
 	function saveDataKemasan($data, $debug=false)
 	{
+
+		$id = _p('id');
+		$_POST['n_status'] = 1;
+		
+
+		if ($id){
+
+			$run = $this->save("update", "{$this->prefix}_pelaporan_kemasan", $_POST, "id = {$id}");
+
+		}else{
+			$_POST['createDate'] = date('Y-m-d H:i;s');
+			$run = $this->save("insert", "{$this->prefix}_pelaporan_kemasan", $_POST);
+	
+		}
+		if ($run) return true;
+        return false;
+		exit;
 		foreach ($data as $key => $value) {
 			$$key = $value;
 		}
@@ -94,6 +111,23 @@ class contentHelper extends Database {
 
 	function saveDataNikotin($data, $debug=false)
 	{
+
+		$id = _p('id');
+		$_POST['n_status'] = 1;
+		
+		if ($id){
+
+			$run = $this->save("update", "{$this->prefix}_pelaporan_nikotin", $_POST, "id = {$id}");
+
+		}else{
+			$_POST['createDate'] = date('Y-m-d H:i;s');
+			$run = $this->save("insert", "{$this->prefix}_pelaporan_nikotin", $_POST);
+	
+		}
+		if ($run) return true;
+        return false;
+
+		exit;
 		foreach ($data as $key => $value) {
 			$$key = $value;
 		}
@@ -162,18 +196,22 @@ class contentHelper extends Database {
 		if ($id) $id = $id;
 		else $id = $this->insert_id();
 
+		$field =  array();
 		$sertifikat = $data['sertifikat']['full_name'];
 		if ($sertifikat) $field[] = "sertifikat = '{$sertifikat}'";
 		
+		if (count($field)>0){
+			$impF = implode(',', $field);
 
-		$impF = implode(',', $field);
-		$sql = array(
-	                'table' =>"{$this->prefix}_pelaporan_nikotin",
-	                'field' => "{$impF}",
-	                'condition' => "id = {$id}",
-	            );
-	    $result = $this->lazyQuery($sql,$debug,2);
-	    if ($result) return true;
+			$sql = array(
+		                'table' =>"{$this->prefix}_pelaporan_nikotin",
+		                'field' => "{$impF}",
+		                'condition' => "id = {$id}",
+		            );
+		    $result = $this->lazyQuery($sql,$debug,2);
+		    if ($result) return true;
+		}
+		
         return false;
 	}
 
@@ -189,12 +227,13 @@ class contentHelper extends Database {
 
 		$sql = array(
                     'table' =>"{$this->prefix}_pelaporan_kemasan AS k, {$this->prefix}_product AS p, 
-                    			{$this->prefix}_industri_pabrik AS i, {$this->prefix}_industri AS ind",
-                    'field' => "k.*, p.merek, p.jenis, i.noNPPBKC, i.namaJalan, ind.namaPimpinan,
-                    			ind.kodePos, ind.noFax",
-                    'condition' => "1 {$filter}",
+                    			{$this->prefix}_industri_pabrik AS i, {$this->prefix}_industri AS ind,
+                    			{$this->prefix}_peringatan_kesehatan AS pk",
+                    'field' => "k.*, p.merek, i.noNPPBKC, i.namaJalan, ind.namaPimpinan, i.kecamatan,
+                    			ind.kodePos, ind.noFax, pk.title",
+                    'condition' => "k.n_status != 0 {$filter}",
                     'joinmethod' => 'LEFT JOIN',
-                	'join' => 'k.merek=p.id, k.pabrikID = i.id, k.industriID = ind.id'
+                	'join' => 'k.merek=p.id, k.pabrikID = i.id, k.industriID = ind.id, k.tulisanPeringatan = pk.id'
                 );
         $result = $this->lazyQuery($sql,$debug);
         if ($result) return $result;
@@ -212,12 +251,13 @@ class contentHelper extends Database {
 
 		$sql = array(
                     'table' =>"{$this->prefix}_pelaporan_nikotin AS k, {$this->prefix}_product AS p, 
-                    			{$this->prefix}_industri_pabrik AS i, {$this->prefix}_industri AS ind",
-                    'field' => "k.*, p.merek, p.jenis, i.noNPPBKC, i.namaJalan, ind.namaPimpinan,
-                    			ind.kodePos, ind.noFax",
-                    'condition' => "1 {$filter}",
+                    			{$this->prefix}_industri_pabrik AS i, {$this->prefix}_industri AS ind,
+                    			{$this->prefix}_lab AS l",
+                    'field' => "k.*, p.merek, i.noNPPBKC, i.namaJalan, ind.namaPimpinan,
+                    			ind.kodePos, ind.noFax, l.nama AS lab_nama, l.alamat AS lab_alamat, l.penanggungjawab AS lab_account",
+                    'condition' => "k.n_status != 0 {$filter}",
                     'joinmethod' => 'LEFT JOIN',
-                	'join' => 'k.merek=p.id, k.pabrikID = i.id, k.industriID = ind.id'
+                	'join' => 'k.merek=p.id, k.pabrikID = i.id, k.industriID = ind.id, k.labID = l.id'
                 );
         $result = $this->lazyQuery($sql,$debug);
         if ($result) return $result;
@@ -268,18 +308,18 @@ class contentHelper extends Database {
         return false;
 	}
 
-	function getPabrik($id=false, $indusrtiID=false, $debug=false)
+	function getPabrik($id=false, $industriID=false, $debug=false)
 	{
 
 		$filter = "";
 
 		if ($id) $filter .= "AND id = '{$id}'";
-		if ($indusrtiID) $filter .= "AND indusrtiID = '{$indusrtiID}'";
+		if ($industriID) $filter .= "AND industriID = '{$industriID}'";
 
 		$sql = array(
                     'table' =>"{$this->prefix}_industri_pabrik",
                     'field' => "*",
-                    'condition' => "1 {$filter}",
+                    'condition' => "n_status = 1 {$filter}",
                 );
         $result = $this->lazyQuery($sql,$debug);
         if ($result) return $result;
@@ -385,6 +425,35 @@ class contentHelper extends Database {
                 );
         $result = $this->lazyQuery($sql,$debug);
         if ($result) return $result;
+        return false;
+	}
+
+	function delPabrik()
+	{
+
+		$data['n_status'] = 2;
+		$id = _g('id');
+		$run = $this->save("update", "{$this->prefix}_industri_pabrik", $data, "id = {$id}");
+        if ($run) return true;
+        return false;
+	
+	}
+
+	function delKemasan()
+	{
+		$data['n_status'] = 0;
+		$id = _g('id');
+		$run = $this->save("update", "{$this->prefix}_pelaporan_kemasan", $data, "id = {$id}");
+        if ($run) return true;
+        return false;
+	}
+
+	function delNikotin()
+	{
+		$data['n_status'] = 0;
+		$id = _g('id');
+		$run = $this->save("update", "{$this->prefix}_pelaporan_nikotin", $data, "id = {$id}");
+        if ($run) return true;
         return false;
 	}
 }
