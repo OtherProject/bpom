@@ -91,8 +91,8 @@ class import extends Controller {
 		if ($_FILES){
 			
 			$numberOfSheet = 1;
-			$startRowData = 12;
-			$startColData = 2;
+			$startRowData = 4;
+			$startColData = 1;
 			$formNametmp = array_keys($_FILES);
 			$formName = $formNametmp[0];
 			
@@ -136,7 +136,7 @@ class import extends Controller {
 					
 				}
 				
-				
+				pr($newData);exit;
 				/* here begin process */
 				if ($newData){
 					

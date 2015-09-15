@@ -7,7 +7,7 @@
  * Class Desc : Kumpulan fungsi database (db helper)
  */
 
-class Database  
+class engine_mysql extends Database 
 {
 	
 	var $dbserver;
