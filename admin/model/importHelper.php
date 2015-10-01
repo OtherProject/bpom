@@ -13,17 +13,110 @@ class importHelper extends Database {
 	function insertTmpData($data=array())
 	{
 		
+		$fieldalias = array('No'=>'no',
+			  'Merek Rokok'=>'merek',
+			  'Nama Produsen/importir'=>'produsen',
+			  'No NPPBKC'=>'nppbkc',
+			  'Kode Status Impor/Lokal'=>'kode_status',
+			  'Alamat'=>'alamat',
+			  'Kota/Kab'=>'kota',
+			  'Provinsi'=>'prov',
+			  'No Telp'=>'telp',
+			  'No Fax'=>'fax',
+			  'Nama Pemilik/Direktur/Kuasa Hukum'=>'pemilik',
+			  'Jenis Rokok (SKM/ SKT/ CRT/ TIS)'=>'jenis_rokok',
+			  'Isi'=>'isi',
+			  'Satuan Kemasan (btg/bgks; bgks/slop; btg/slinder; gram/bgks)'=>'satuan_kemasan',
+			  'Bentuk Kemasan (persegi panjang; slop; slinder; bungkus TIS)'=>'bentuk_kemasan',
+			  'Jenis Gambar'=>'jenis_gambar',
+			  'Tulisan peringatan kesehatan '=>'tulisan_peringatan',
+			  'Panjang PHW Depan'=>'phw_depan',
+			  'Panjang Kemasan Depan'=>'kemasan_depan',
+			  'Luas PHW Pada Label Depan (%)'=>'luas_phw_depan',
+			  'Panjang PHW Belakang'=>'phw_belakang',
+			  'Panjang Kemasan Belakang'=>'kemasan_belakang',
+			  'Luas PHW Pada Label Belakang (%)'=>'luas_phw_belakang',
+			  'Kadar Nikotin Label (mg)'=>'nikotin',
+			  'Kadar Tar Label (mg)'=>'tar',
+			  'Sisi samping/atas'=>'sisi',
+			  'Tulisan'=>'tulisan',
+			  'Pernyataan "dilarang menjual atau memberi kepada anak dan  perempuan hamil"'=>'dilarang_menjual',
+			  'Kode Produksi'=>'kode_produksi',
+			  'Tgl/Bln/Thn Produksi'=>'tgl_produksi',
+			  'Nama dan Alamat Produsen Pada Label'=>'alamat_produsen',
+			  'Pernyataan "tidak ada batas aman"'=>'tidak_aman',
+			  'Pernyataan "mengandung lebih dari 4000 zat kimia"'=>'zat_kimia',
+			  'Kata promotif dan menyesatkan'=>'kata_promotif',
+			  'Jenis Kata promotif dan menyesatkan'=>'jenis_kata_promotif',
+			  'Evaluasi Informasi Kesehatan MK/TMK'=>'evaluasi',
+			  'Kesimpulan Contoh Label MK/TMK'=>'kesimpulan_label',
+			  'Nama Laboratorium Pengujian'=>'lab',
+			  'Alamat Laboratorium'=>'alamat_lab',
+			  'No Telp Laboratorium'=>'telp_lab',
+			  'No Fax Laboratorium'=>'fax_lab',
+			  'Penanggungjawab Laboraturium'=>'account_lab',
+			  'Kode Produksi'=>'kode_produksi_lab',
+			  'Nomor/Kode Sampel'=>'kode_sampel',
+			  'Nomor Lap Hasil Uji/Sertifikat'=>'nomor_lab',
+			  'Tanggal pengujian'=>'tgl_uji',
+			  'Kadar Nikotin Pengujian (mg)'=>'nikotin_uji',
+			  'Kadar Tar Coresta/Tar ISO Pengujian (mg)'=>'tar_uji',
+			  'Kadar Tar SNI/ Tar Kretek Pengujian (mg)'=>'tar_sni_uji',
+			  'Jenis PHW yang Ditemukan di Peredaran'=>'phw_ditemukan'
+			);
+		$fieldaliasLK=array('nppbkc'=>'industriID',
+				'produsen'=>'pabrikID',
+				'merek'=>'merek',
+				'jenis_rokok'=>'jenis',
+				'isi'=>'isi',
+				'satuan_kemasan'=>'satuan',
+				'bentuk_kemasan'=>'bentuKemasan',
+				'jenis_gambar'=>'jenisGambar',
+				'tulisan_peringatan'=>'tulisanPeringatan',
+				'luas_phw_depan'=>'luasDepan',
+				'luas_phw_belakang'=>'luasBelakang',
+				'tulisan'=>'suratPengantar',
+				'pemilik'=>'namaDan_alamat',
+				'kode_produksi'=>'kodeProduksi',
+				'tgl_produksi'=>'tglProduksi',
+				'nikotin'=>'kadarNikotin',
+				'tar'=>'kadarTar',
+				'dilarang_menjual'=>'pernyataanDilarang_menjual',
+				'tidak_aman'=>'pernyataanTidak_aman',
+				'zat_kimia'=>'pernyataanZat_kimia',
+				'gambar_depan'=>'fotoDepan',
+				'gambar_belakang'=>'fotoBelakang',
+				'gambar_kiri'=>'fotoKiri',
+				'gambar_kanan'=>'fotoKanan',
+				'gambar_atas'=>'fotoAtas',
+				'gambar_bawah'=>'fotoBawah',
+				'keterangan'=>'kesimpulan',
+				'evaluasi'=>'catatanDitolak',
+				'alamat_produsen'=>'lokasiBeli',
+				'tgl_uji'=>'tglBeli',
+				'tahun_pengawsan'=>'tahunCukai',
+				'harga_bungkus'=>'hargaBungkus',
+				'harga_batang'=>'hargaBatang'
+				);
+
+		 // pr($data);
+		 // exit;
 		$index = 1;
+		$aliasindex = array_keys($fieldalias);
 		foreach ($data as $val) {
+			// pr($val);
 			$tmpField = array();
 			$tmpData = array();
 			foreach ($val as $key => $value) {
-				if ($index<=27){
-					$tmpField[] = "`".$key."`";
-					$tmpData[] = "'".$value."'";	
+				// pr($value);
+				if (in_array($key, $aliasindex)){
+					$tmpField[] = "`".$fieldalias[$key]."`";
+					$tmpData[] = "'".$value."'";
+					$dataku[$fieldalias[$key]]=	"'".$value."'";
+					$index++;
 				}
-				$index++;
-			}	
+				
+			}	$dataLK[]=$dataku;
 			
 			$index = 1;
 			$tmpField[] = "`session`";
@@ -36,20 +129,81 @@ class importHelper extends Database {
 
 		}
 
+		$indexLK = 1;
+		$aliasindexLK = array_keys($fieldaliasLK);
+		foreach ($dataLK as $valLK) {
+			// pr($val);
+			$tmpFieldLK = array();
+			$tmpDataLK = array();
+			foreach ($valLK as $keyLK => $valueLK) {
+				// pr($value);
+				if (in_array($keyLK, $aliasindexLK)){
+					$tmpFieldLK[] = "`".$fieldaliasLK[$keyLK]."`";
+					$tmpDataLK[] = $valueLK;
+					$indexLK++;
+				}
+				
+			}	
+			
+			$indexLK = 1;
+			// $tmpFieldLK[] = "`session`";
+			// $tmpDataLK[] = "'".session_id()."'";
+
+			$fieldLK = implode(',', $tmpFieldLK);
+			$valueLK = implode(',', $tmpDataLK);
+
+			$sqlLK[] = "INSERT INTO bpom_pelaporan_kemasan ({$fieldLK}) VALUES ({$valueLK})";
+
+		}
+		// pr($sqlLK);
+		// pr($fieldaliasLK);
+		// pr($dataLK);
+		// pr($fieldalias);
+		// pr($aliasindex);
+		// pr($tmpField);
+		// pr($tmpData);
+		// pr($sql);exit;
 		$success = true;
 		if ($sql){
+			$no = 1;
 			foreach ($sql as $value) {
 				// pr($value);
 				$res = $this->query($value);
 				if (!$res) $success = false;
+
+				if ($no == 100){
+					sleep(1);
+					$no = 0;
+				}else{
+					$no++;	
+				}
+				
+			}
+		}
+
+		$successLK = true;
+		if ($sqlLK){
+			$noLK = 1;
+			foreach ($sqlLK as $valueLK) {
+				// pr($value);
+				$resLK = $this->query($valueLK);
+				if (!$resLK) $successLK = false;
+
+				if ($noLK == 100){
+					sleep(1);
+					$noLK = 0;
+				}else{
+					$noLK++;	
+				}
+				
 			}
 		}
 		// pr($sql);
 
-		if ($success) return true;
+		if ($successLK) return true;
 		return false;
 
-		exit;
+		// exit;
 
 	}
 
