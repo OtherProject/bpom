@@ -136,11 +136,17 @@ class import extends Controller {
 					
 				}
 				
-				pr($newData);exit;
 				/* here begin process */
 				if ($newData){
-					
-					$emptyTmptable = $this->importHelper->insertTmpData($newData[0]['data']);
+					// pr($newData);exit;
+					foreach ($newData[0]['data'] as $key => $value) {
+						
+						foreach ($value as $k => $val) {
+							if ($k) $dataArr[$key][$k] = $val;
+						}
+					}
+					// pr($dataArr);
+					$emptyTmptable = $this->importHelper->insertTmpData($dataArr);
 					
 					if ($emptyTmptable) redirect($basedomain.'import/previewData');
 					exit;
