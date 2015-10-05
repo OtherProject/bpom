@@ -147,9 +147,11 @@ class import extends Controller {
 					}
 					// pr($dataArr);
 					$emptyTmptable = $this->importHelper->insertTmpData($dataArr);
-					
+
+					// exit;
+
 					if ($emptyTmptable) redirect($basedomain.'import/previewData');
-					exit;
+					// exit;
 					
 					
 

@@ -65,32 +65,96 @@ class importHelper extends Database {
 			  'Jenis PHW yang Ditemukan di Peredaran'=>'phw_ditemukan'
 			);
 
-		// pr($data);exit;
+		$fieldaliasLK=array('nppbkc'=>'industriID',
+				'produsen'=>'pabrikID',
+				'merek'=>'merek',
+				'jenis_rokok'=>'jenis',
+				'isi'=>'isi',
+				'satuan_kemasan'=>'satuan',
+				'bentuk_kemasan'=>'bentuKemasan',
+				'jenis_gambar'=>'jenisGambar',
+				'tulisan_peringatan'=>'tulisanPeringatan',
+				'luas_phw_depan'=>'luasDepan',
+				'luas_phw_belakang'=>'luasBelakang',
+				'tulisan'=>'suratPengantar',
+				'pemilik'=>'namaDan_alamat',
+				'kode_produksi'=>'kodeProduksi',
+				'tgl_produksi'=>'tglProduksi',
+				'nikotin'=>'kadarNikotin',
+				'tar'=>'kadarTar',
+				'dilarang_menjual'=>'pernyataanDilarang_menjual',
+				'tidak_aman'=>'pernyataanTidak_aman',
+				'zat_kimia'=>'pernyataanZat_kimia',
+				'gambar_depan'=>'fotoDepan',
+				'gambar_belakang'=>'fotoBelakang',
+				'gambar_kiri'=>'fotoKiri',
+				'gambar_kanan'=>'fotoKanan',
+				'gambar_atas'=>'fotoAtas',
+				'gambar_bawah'=>'fotoBawah',
+				'keterangan'=>'kesimpulan',
+				'evaluasi'=>'catatanDitolak',
+				'alamat_produsen'=>'lokasiBeli',
+				'tgl_uji'=>'tglBeli',
+				'tahun_pengawsan'=>'tahunCukai',
+				'harga_bungkus'=>'hargaBungkus',
+				'harga_batang'=>'hargaBatang'
+				);
+
+		 // pr($data);
+		 // exit;
+
 		$index = 1;
 		$aliasindex = array_keys($fieldalias);
 		foreach ($data as $val) {
+			// pr($val);
 			$tmpField = array();
 			$tmpData = array();
 			foreach ($val as $key => $value) {
-				
+
+				// pr($value);
 				if (in_array($key, $aliasindex)){
 					$tmpField[] = "`".$fieldalias[$key]."`";
-					$tmpData[] = "'".$value."'";	
+					$tmpData[] = "'".$value."'";
+					$dataku[$fieldalias[$key]]=	"'".$value."'";
 					$index++;
+				}
+				
+			}	$dataLK[]=$dataku;
+
+
+		$indexLK = 1;
+		$aliasindexLK = array_keys($fieldaliasLK);
+		foreach ($dataLK as $valLK) {
+			// pr($val);
+			$tmpFieldLK = array();
+			$tmpDataLK = array();
+			foreach ($valLK as $keyLK => $valueLK) {
+				// pr($value);
+				if (in_array($keyLK, $aliasindexLK)){
+					$tmpFieldLK[] = "`".$fieldaliasLK[$keyLK]."`";
+					$tmpDataLK[] = $valueLK;
+					$indexLK++;
 				}
 				
 			}	
 			
-			$index = 1;
-			$tmpField[] = "`session`";
-			$tmpData[] = "'".session_id()."'";
+			$indexLK = 1;
+			// $tmpFieldLK[] = "`session`";
+			// $tmpDataLK[] = "'".session_id()."'";
 
-			$field = implode(',', $tmpField);
-			$value = implode(',', $tmpData);
+			$fieldLK = implode(',', $tmpFieldLK);
+			$valueLK = implode(',', $tmpDataLK);
 
-			$sql[] = "INSERT INTO tmp_import ({$field}) VALUES ({$value})";
+			$sqlLK[] = "INSERT INTO bpom_pelaporan_kemasan ({$fieldLK}) VALUES ({$valueLK})";
 
 		}
+		// pr($sqlLK);
+		// pr($fieldaliasLK);
+		// pr($dataLK);
+		// pr($fieldalias);
+		// pr($aliasindex);
+		// pr($tmpField);
+		// pr($tmpData);
 
 		// pr($sql);exit;
 		$success = true;
@@ -108,14 +172,34 @@ class importHelper extends Database {
 					$no++;	
 				}
 				
+
+			}
+		}
+
+		$successLK = true;
+		if ($sqlLK){
+			$noLK = 1;
+			foreach ($sqlLK as $valueLK) {
+				// pr($value);
+				$resLK = $this->query($valueLK);
+				if (!$resLK) $successLK = false;
+
+				if ($noLK == 100){
+					sleep(1);
+					$noLK = 0;
+				}else{
+					$noLK++;	
+				}
+				
+
 			}
 		}
 		// pr($sql);
 
-		if ($success) return true;
+		if ($successLK) return true;
 		return false;
 
-		exit;
+		// exit;
 
 	}
 
