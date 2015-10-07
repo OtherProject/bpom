@@ -8,9 +8,10 @@
                     <div class="form-style-1 form-wrapper" id="form-1">                     
                         <div class="popup-content">
                             <div class="formLogin">
-                                
+                                <span class="loginStatus" style="color:red"></span>
                                 <div class="contentLogin" align="center">
-                                    <form method="post" action="{$basedomain}login/doLogin">
+                                    <form method="post" action="{$basedomain}login/doLogin" id="loginForm">
+                                        
                                         <table class="tableForm">
                                             <tr style="margin-bottom:10px;">
                                                 <td>Email</td><td>:</td>

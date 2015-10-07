@@ -40,16 +40,18 @@ class login extends Controller {
 
         global $basedomain;
         //query data
+        
         $getUserappData = $this->loginHelper->goLogin();
         // pr($getUserappData);
         if ($getUserappData){
             
             if ($getUserappData['verified']>0){
-                redirect($basedomain.'account');    
+                
+                print json_encode(array('status'=>true));
             }
             
         }else{
-            redirect($basedomain);
+            print json_encode(array('status'=>false));
         }
 
         exit;
