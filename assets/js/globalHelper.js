@@ -1,21 +1,25 @@
 
 $(document).ready(function() {
 
+
     var uploadoptions = {
             dataType:  'json',  
             beforeSubmit: function(data) { 
                 
-                var loading = "<img src='"+basedomain+"assets/images/loading.gif' width='50px'/>";
+                var loading = "<img src='"+basedomain+"assets/images/loading.gif' width='50%'/>";
+                 loading += "<p>Please Wait ...</p>";
                 // $('#imgupload').css('height','100%');
-                // $('#imgupload').html(loading);
+                $('.popuptext').html(loading);
+                $(".cd-popup-trigger").trigger('click');
                 
             },
-            success : function(data) {      
+            success : function(data) {
 
                 if(data.status==true){
-                    redirect(basedomain);                
+                    redirect(basedomain);            
                 } else {
-                    $(".loginStatus").html("Username atau Password salah");
+                    $('.popuptext').html("Username atau Password salah");
+                    
                 }
                          
             }
