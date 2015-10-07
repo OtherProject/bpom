@@ -100,7 +100,10 @@ class excelHelper extends Database {
 					$countRow = $excel->rowcount($sheet_index=$i);
 					if ($countColl>0){
 						for ($a=$startColData; $a<=$countColl; $a++){
-							$data[$i]['field_name'][] = $excel->val($startRowData, ($a), $i);
+							if ($excel->val($startRowData, ($a), $i)){
+								$data[$i]['field_name'][] = $excel->val($startRowData, ($a), $i); 	
+							}
+							
 						}
 					}
 					
@@ -114,8 +117,10 @@ class excelHelper extends Database {
 							for ($b=$startColData; $b<=$countColl; $b++){
 								
 								$fieldName = $excel->val($startRowData, ($b), $i);
+								if ($excel->val($a+1, ($b), $i)){
+									$data[$i]['data'][$a][] = $excel->val($a+1, ($b), $i);
+								}
 								
-								$data[$i]['data'][$a][] = $excel->val($a+1, ($b), $i);
 								// $data[$i]['data'][$a][0][$fieldName] = $excel->val($a+1, ($b), $i);
 								
 							}

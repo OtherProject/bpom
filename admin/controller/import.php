@@ -59,6 +59,12 @@ class import extends Controller {
 		$getWilayah = $this->contentHelper->getWilayah();
 		$getBalai = $this->contentHelper->getBalai();
 
+
+		$data['table'] = "bpom_industri";
+		$data['field'] = "namaIndustri, namaPimpinan";
+		
+
+		$lookupTable = $this->importHelper->lookupTable($data);
 		// pr($getData);
 		$this->view->assign('data',$getData);
 		$this->view->assign('wilayah',$getWilayah);
@@ -123,6 +129,8 @@ class import extends Controller {
 						
 							foreach ($value as $k => $v){
 								$data[$val['field_name'][$k]] = $v;
+								
+								
 							}
 							
 							$newData[$val['sheet']]['data'][] = $data; 
