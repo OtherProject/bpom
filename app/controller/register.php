@@ -37,7 +37,7 @@ class register extends Controller {
     require_once(LIBS.'captcha/recaptchalib.php');
   //  $publickey = "your_public_key"; // you got this from the signup page
     $publickey = "6LeTiPASAAAAAFY09-K67Do3LC2AEnjkyFFdxiKO ";
-    $captcha = recaptcha_get_html($publickey, $error);
+    $captcha = recaptcha_get_html($publickey, $error=0);
 
     if (isset($_SESSION['tmp'])){
       $this->view->assign('data',$_SESSION['tmp']);  
@@ -77,6 +77,8 @@ class register extends Controller {
       
       $this->view->assign('encode',$msg); 
       $this->view->assign('email',$data['email']);  
+      $this->view->assign('name',$_POST['name']);  
+      $this->view->assign('text',"pembuatan akun"); 
 
       $html = $this->loadView('emailTemplate');
       $send = sendGlobalMail(trim($data['email']),'trinata.webmail@gmail.com',$html);

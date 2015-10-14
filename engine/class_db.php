@@ -343,17 +343,17 @@ class Database
 			case '0':
 				
 				$condition = $data['condition'];
-				$limit = intval($data['limit']);
+				$limit = intval(@$data['limit']);
 				if ($limit>0) $limit = " LIMIT {$limit}";
 				else $limit = "";
 				$where = "";
 				if ($condition) $whereCondition = " {$condition} ";
 				else $whereCondition = " 1 ";
 
-				$jointmp = $data['join'];
+				$jointmp = @$data['join'];
 				$join = explode(',', $jointmp);
 
-				$joinmethod = $data['joinmethod'];
+				$joinmethod = @$data['joinmethod'];
 				if ($joinmethod){
 					$tmpTable = explode(',', $table);
 					$length = count($tmpTable);

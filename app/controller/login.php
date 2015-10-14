@@ -28,7 +28,12 @@ class login extends Controller {
 
         global $CONFIG, $basedomain;
 
+        // $datalogin['flagFirstLogin']=1;
+
+        // $tes = json_encode(serialize($datalogin));
         
+        // echo $tes;
+            
         return $this->loadView('login');
     }
 	
@@ -47,7 +52,10 @@ class login extends Controller {
             
             if ($getUserappData['verified']>0){
                 
-                print json_encode(array('status'=>true));
+                if ($getUserappData['data']>0) $flag = true;
+                else $flag = false;
+
+                print json_encode(array('status'=>true, 'flag'=>$flag));
             }
             
         }else{
@@ -57,7 +65,40 @@ class login extends Controller {
         exit;
     }
     
+    function forgot()
+    {
+        global $basedomain;
 
+        if (isset($_POST['submit'])){
+
+            $dataform['email'] = _p('email');
+            $datareset = $this->userHelper->forgotPassword($dataform);
+            // $datareset = 1;
+            if ($datareset){
+
+                $data = array('email'=>$datareset['email'], 'token'=>$datareset['token']);
+                $msg = encode(serialize($data));
+                logFile(serialize($data));
+              
+              
+                $this->view->assign('encode',$msg); 
+                $this->view->assign('email',$datareset['email']);  
+                $this->view->assign('name',$datareset['name']);  
+                $this->view->assign('text',"reset akun"); 
+
+                $html = $this->loadView('emailTemplate');
+                $send = sendGlobalMail(trim($data['email']),'trinata.webmail@gmail.com',$html);
+                logFile($send);
+
+                print json_encode(array('status'=>true));
+            }else{
+                print json_encode(array('status'=>false));  
+            }
+
+            exit;
+        }
+        return $this->loadView('forgot-password');
+    }
 
 }
 

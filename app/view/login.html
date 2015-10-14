@@ -4,12 +4,17 @@
     
     <script src="{$basedomain}assets/js/modernizr.js"></script> <!-- Modernizr -->
 <!--Popup-->
-<section id="contact-info">
+<div class="container">
+<section id="contact-info"><p class="lead" align="left"> </p>
+    <div class="col-md-8">
+        <p>Kini,makin banyak beredar rokok elektronik atau personal vapour.Penjualannya makin marak di internet, dan kini mulai merambah dipusat-pusat perbelanjaan. Sehingga, saat ini makin mudah melihatorang menghisap rokok elektronik (vaping). Hingga kini, Indonesiamemang belum memiliki regulasi yang mengatur tentang penggunaan rokokelektronik</p>
+    </div>
+    <div class="col-md-4">
         <div class="center">                
             <h2>Login Form</h2>
             <p class="lead">&nbsp;</p>
             <!-- FORM BUAT TAMBAH -->   
-        <div class="form">
+            <div class="form">
                 <div class="form-bg">
                     <div class="form-style-1 form-wrapper" id="form-1">                     
                         <div class="popup-content">
@@ -21,7 +26,7 @@
                                         <table class="tableForm">
                                             <tr style="margin-bottom:10px;">
                                                 <td>Email</td><td>:</td>
-                                                <td><input type="text" name="email" class="form-control" value="" size="20" id="username"placeholder="Type your Email"/> 
+                                                <td><input type="text" name="email" class="form-control" value="" size="20" id="username" placeholder="Type your Email"/></td>
                                             </tr>
                                             <tr>
                                                 <td>Password</td><td>:</td>
@@ -37,7 +42,7 @@
                                                     <i class="fa fa-save"></i>
                                                     Register
                                                     </button></a>
-                                                    <a href="{$basedomain}"><button id="btn-dis" class="btn btn-warning cd-popup-trigger" type="submit">
+                                                    <a href="{$basedomain}"><button id="btn-dis" class="btn btn-warning cd-popup-trigger" type="button">
                                                     <i class="fa fa-save"></i>
                                                     Cancel
                                                     </button></a>
@@ -55,10 +60,15 @@
                     <!--ENDS Popup Type 1-->
                 </div>
                 <!--ENDS Popup Background-->
+            </div>
+        <div class="col-sm-12">
+            <a href="{$basedomain}login/forgot">Lupa Password ?</a>
         </div>
         </div>
+    </div>
         
+        
+
     </section>
 
-
-        
+</div>

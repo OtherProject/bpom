@@ -40,16 +40,16 @@ class loginHelper extends Database {
             $isnewuser = $res['verified'];
             $loginCount = intval($res['login_count'] +1);
             $lastLogin = date('Y-m-d H:i:s');
-
+            $flagFirstLogin = intval($res['data'] +1);
             // pr($salt);
             // exit;
             if ($res['password'] == $salt){
                 
-
+                // $newCred['flagFirstLogin'] = $res['flagFirstLogin'];
                 
                 $sql = array(
                             'table' =>'social_member',
-                            'field' => "last_login = '{$lastLogin}' ,login_count = {$loginCount}",
+                            'field' => "last_login = '{$lastLogin}' ,login_count = {$loginCount}, data = {$flagFirstLogin}",
                             'condition' => "id = {$res['id']}",
                             'limit' => 1
                         );

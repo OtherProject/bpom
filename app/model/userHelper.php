@@ -35,12 +35,15 @@ class userHelper extends Database {
             }
         }
 
+        // $datalogin['flagFirstLogin']=1;
+        // $flagFirstLogin = json_encode(serialize($datalogin));
         $tmpF[] = "industri_id";
         $tmpF[] = "register_date";
         $tmpF[] = "usertype";
         $tmpF[] = "email_token";
         $tmpF[] = "salt";
         $tmpF[] = "password";
+        // $tmpF[] = "data";
 
         $tmpV[] = $saveIndustri;
         $tmpV[] = "'".$this->date."'";
@@ -48,7 +51,7 @@ class userHelper extends Database {
         $tmpV[] = "'".$this->token."'";
         $tmpV[] = "'".$this->salt."'";
         $tmpV[] = "'YOUR PASSWORD'";
-
+        // $tmpV[] = 1;
 
         $impField = implode(',', $tmpF);
         $impData = implode(',', $tmpV);
@@ -135,6 +138,57 @@ class userHelper extends Database {
         
         $run = $this->save('update', "social_member", $_POST, "id = {$_POST['id']}");
         if ($run) return true;
+        return false;
+    }
+
+    function forgotPassword($data=false, $debug=false)
+    {
+
+        // if reset password update status to -1
+        $email = $data['email'];
+
+        $filter = "";
+        if ($email) $filter .= " AND email = '{$email}'";
+
+        $sql = array(
+                    'table' =>"social_member",
+                    'field' => "*",
+                    'condition' => "n_status NOT IN (0) {$filter}",
+                    'limit' => 1
+                );
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result){
+
+            $id = $result[0]['id'];
+
+            $sql = array(
+                        'table' =>"social_member",
+                        'field' => "n_status = -1",
+                        'condition' => "id = {$id}",
+                        'limit' => 1
+                    );
+            $res = $this->lazyQuery($sql,$debug,2);
+            if ($res){
+                return $result;
+            }
+        } 
+        return false;
+    }
+
+    function getNotification($data=false, $debug=false)
+    {
+
+        $userid = $data['userid'];
+
+        $filter = "";
+        if ($userid) $filter .= " AND userid = '{$userid}'";
+        $sql = array(
+                    'table' =>"{$this->prefix}_news_content_comment",
+                    'field' => "*",
+                    'condition' => "n_status NOT IN (-1) {$filter}",
+                );
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result) return $result;
         return false;
     }
 }

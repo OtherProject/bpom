@@ -199,7 +199,7 @@ $("#suggesstion-box").hide();
               <div class="form-group">
                 {if $laporannikotin}
                 {foreach $laporannikotin as $val}
-              <a href="{$basedomain}account/delnikotin/?id={$val.id}" class="form-control" onclick="return submit_confirm('Hapus data ?')">Delete</a><br>
+              {*}<a href="{$basedomain}account/delnikotin/?id={$val.id}" class="form-control" onclick="return submit_confirm('Hapus data ?')">Delete</a><br>{/*}
                 {/foreach}
                 {/if}
               </div>
@@ -325,7 +325,15 @@ $("#suggesstion-box").hide();
                   <input type="text" name="penanggungjawab" class="form-control penanggungjawab" value="{$kemasanedit.lab_account}" data-required="true" />
               </div>
             </div>
-
+            <div class="col-md-12">
+              <div class="form-group">
+              <label for="text-input">Upload sertifikat akreditasi laboratorium yang berlaku</label>
+                  <input type="file" name="sertifikatlab" class="form-control" value="{$kemasanedit.sertifikatlab}" />
+                  
+              </div>
+              {if $kemasanedit.sertifikat}
+                    <img src="{$basedomain}public_assets/{$kemasanedit.sertifikat}" width="100px">{/if}
+            </div>
           </div>
         </div>
       </div>
