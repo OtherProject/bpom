@@ -142,6 +142,7 @@ class profile extends Controller {
      return $this->loadView('privacy');
 
   }
+  
 
   function debuging()
   {

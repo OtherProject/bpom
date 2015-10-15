@@ -36,7 +36,7 @@ class import extends Controller {
 
 	function simpanData()
 	{
-
+		// pr($_POST);exit;
 		$countID = count($_POST['ids']);
 		if ($countID>0){
 			$save = $this->importHelper->saveData($_POST);

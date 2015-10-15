@@ -616,6 +616,11 @@ class account extends Controller {
     }
     exit;
   }
+  
+  function notifikasi(){
+
+     return $this->loadView('notif');
+  }
 
   function debuging()
   {

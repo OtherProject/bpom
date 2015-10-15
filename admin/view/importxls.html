@@ -89,9 +89,10 @@
 								{foreach $data as $key => $var}
 								<tr>
 									<td class="checkbox-column">
-										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();">
+										<input type="checkbox" class="icheck-input" name="ids[]" value="{foreach $var as $keys => $value}{if $keys!=0},{/if}{$value.no}{/foreach}" onchange="return AreAnyCheckboxesChecked();">
 									</td>
 									<td>
+
 										{foreach $var as $keys => $value}
 											{$value.no} -
 										{/foreach}

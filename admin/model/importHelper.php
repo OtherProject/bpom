@@ -219,9 +219,11 @@ class importHelper extends Database {
 		}
 		$sesID = session_id();
 		$impID = implode(',', $id);
-		$sql = "SELECT * FROM tmp_import WHERE session = '{$sesID}' AND id IN ({$impID})";
-		// pr($sql);
+		pr($impID);
+		$sql = "SELECT * FROM tmp_import WHERE session = '{$sesID}' AND no IN ({$impID})";
+		pr($sql);
 		$res = $this->fetch($sql,1);
+		// pr($res);exit;
 		if ($res){
 			
 			$impField = array();
@@ -229,15 +231,18 @@ class importHelper extends Database {
 			
 			// pr($res);exit;
 			$indexArr = array_keys($arrayField);
+			pr($arrayField);
+			pr($indexArr);
 			foreach ($res as $value) {
-				
-				
+				pr($value);
+				// exit;
 
 				$tmpField = array();
 				$tmpData = array();
 
 				foreach ($value as $key => $value) {
-
+					pr($value);
+					// exit;
 					if ($key==2){
 						$produsen = $this->checkData('bpom_product','merek',$value);
 						if ($produsen){
@@ -281,7 +286,6 @@ class importHelper extends Database {
 					}
 					
 				}
-
 				$tmpField[] = "tanggalEvaluasi";
 				$tmpField[] = "userid";
 				$tmpField[] = "balaiID";
@@ -294,12 +298,17 @@ class importHelper extends Database {
 				$tmpData[] = "'".$data['provinsi']."'";
 				$tmpData[] = 1;
 
-				// pr($tmpField);
-				$impField = implode(',', $tmpField);
+				$mergeTmpField=array_merge($tmpField,$arrayField);
+				
+				pr($tmpData);
+				pr($tmpField);
+				pr($mergeTmpField);
+				$impField = implode(',', $mergeTmpField);
 				$impData = implode(',', $tmpData);
 
 				$query[] = "INSERT INTO {$this->prefix}_evaluasi ({$impField}) VALUES ({$impData})";
-				
+				pr($query);
+				exit;
 
 			}
 
