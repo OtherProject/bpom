@@ -92,7 +92,7 @@
                     </span>                   
                  </a></li>
               <li><a href="#step-4" class="disabled">
-                    <label class="stepNumber">4</label>
+                    <label class="stepNumber">3</label>
                     <span class="stepDesc">
                        Step 3.b<br />
                        <small>Pelaporan Nikotin & TAR</small>
@@ -128,12 +128,13 @@
               <label for="text-input">Lokasi Pabrik</label>
                 {if $pabrik}
                   {foreach $pabrik as $val}
-                  <a href="{$basedomain}account/pabrik/?id={$val.id}" class="form-control" {if $val.id==$currentid}disabled{/if}>{$val.alamatPabrik.nama_wilayah}, {$val.namaJalan}</a><br>
+                  <a href="{$basedomain}account/pabrik/?id={$val.id}" class="form-control" {if $val.id==$currentid}disabled{/if}>[{$val.alamatPabrik.nama_wilayah}] , {$val.namaJalan}</a><br>
                   {/foreach}
                 {/if}
                  
               </div>
             </div>  
+            {*}
             <div class="col-sm-2">
               <div class="form-group">
               <label for="text-input">&nbsp;</label>
@@ -145,7 +146,7 @@
                  
               </div>
             </div>  
-            
+            {/*}
           </div>
         </div>
         {if $pabrik}
@@ -173,7 +174,7 @@
 
             <h3>
               <i class="fa fa-file"></i>
-              <button id="btn-dis" class="btn btn-info tambah_alamat_pabrik" type="button">
+              <button id="btn-dis" class="btn btn-success tambah_alamat_pabrik" type="button">
                 <i class="fa fa-save"></i> Tambah Alamat Pabrik 
               </button>
             </h3>
@@ -185,7 +186,7 @@
             <div class="col-sm-12">
               <div class="form-group">
               <label for="text-input">Provinsi</label>
-                  <select class="form-control pilihprov" {if $id}disabled{/if}>
+                  <select class="form-control pilihprov" {if $id}readonly{/if}>
                     <option>-Pilih Provinsi-</option>
                     {foreach $lokasi as $val}
                     <option value="{$val.kode_wilayah}" {if $data.getCurrentProv.kode_wilayah==$val.kode_wilayah}selected{/if}>{$val.nama_wilayah}</option>
@@ -199,7 +200,7 @@
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Kabupaten</label>
-                  <select class="form-control pilihkab" name="provinsi" {if $id}disabled{/if}>
+                  <select class="form-control pilihkab" name="provinsi" {if $id}readonly{/if}>
                     {if $data.getCurrentKab}
                     <option value="{$data.getCurrentKab.kode_wilayah}">{$data.getCurrentKab.nama_wilayah}</option>
                     {else}

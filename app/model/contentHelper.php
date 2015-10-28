@@ -199,6 +199,9 @@ class contentHelper extends Database {
 		$field =  array();
 		$sertifikat = $data['sertifikat']['full_name'];
 		if ($sertifikat) $field[] = "sertifikat = '{$sertifikat}'";
+
+		$sertifikatlab = $data['sertifikatlab']['full_name'];
+		if ($sertifikatlab) $field[] = "sertifikatlab = '{$sertifikatlab}'";
 		
 		if (count($field)>0){
 			$impF = implode(',', $field);

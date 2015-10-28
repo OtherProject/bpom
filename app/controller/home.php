@@ -80,7 +80,11 @@ class home extends Controller {
 
   }
 
-  
+  function dashboard()
+  {
+
+    return $this->loadView('dashboard');
+  }
 
 	function loginSocmed()
   {

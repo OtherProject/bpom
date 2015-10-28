@@ -97,6 +97,9 @@
 <script>
 {literal}
 $(document).ready(function(){
+
+  $('#postdate').datepicker ();
+
   $("#search-box").keyup(function(){
     $.ajax({
     type: "POST",
@@ -331,8 +334,8 @@ $("#suggesstion-box").hide();
                   <input type="file" name="sertifikatlab" class="form-control" value="{$kemasanedit.sertifikatlab}" />
                   
               </div>
-              {if $kemasanedit.sertifikat}
-                    <img src="{$basedomain}public_assets/{$kemasanedit.sertifikat}" width="100px">{/if}
+              {if $kemasanedit.sertifikatlab}
+                    <img src="{$basedomain}public_assets/{$kemasanedit.sertifikatlab}" width="100px">{/if}
             </div>
           </div>
         </div>
@@ -440,7 +443,12 @@ $("#suggesstion-box").hide();
             <div class="col-md-6">
               <div class="form-group">
               <label for="text-input">Tanggal pengujian</label>
-                  <input type="text" name="tanggalUji" class="form-control" value="{$kemasanedit.tanggalUji}" />
+                  {*}<input type="text" name="tanggalUji" class="form-control" value="{$kemasanedit.tanggalUji}" />{/*}
+
+                  <div id="postdate" class="input-group date" data-auto-close="true" data-date-format="yyyy-mm-yy" data-date-autoclose="true">
+                    <input class="form-control" type="text" name="tanggalUji" value="{$data.tanggalUji}" data-required="true">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                  </div>
               </div>
             </div>  
             <div class="col-md-6">

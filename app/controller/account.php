@@ -146,7 +146,7 @@ class account extends Controller {
 
     if ($_POST){
       
-      $_POST['indusrtiID'] = $getIndustri[0]['id'];
+      $_POST['industriID'] = $getIndustri[0]['id'];
       $saveData = $this->contentHelper->saveDataPabrik($_POST);
       if ($saveData){
 
@@ -360,7 +360,7 @@ class account extends Controller {
         if(!empty($_FILES)){
           
 
-            $foto = array('sertifikat');
+            $foto = array('sertifikat','sertifikatlab');
             foreach ($foto as $key => $value) {
 
               if($_FILES[$value]['name'] != ''){

@@ -177,7 +177,7 @@ $("#suggesstion-box").hide();
         </div>
       </div>
       {if !$idpabrik}
-      <button id="btn-dis" class="btn btn-info tambah_data_kemasan" type="button">
+      <button id="btn-dis" class="btn btn-success tambah_data_kemasan" type="button">
       <i class="fa fa-save"></i>
       Tambah Data
       </button>
@@ -380,57 +380,86 @@ $("#suggesstion-box").hide();
             </div>
             <div class="col-md-12">
               <div class="form-group">
-              <label for="text-input">Foto Kemasan Depan <b style="color:red">(Format JPG, Max 2MB)</b></label>
-              {if $laporankemasandetail.fotoDepan}
-              <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoDepan}" width="100px">{/if}
-                  <input type="file" name="fotoDepan" class="form-control" value="{$data.evaluasiInformasi}" />
-
+              <label for="text-input">Foto Kemasan Depan <b style="color:red">(Format JPG, Max 2MB)</b></label><br>
+              <div class="col-md-3">
+                {if $laporankemasandetail.fotoDepan}
+                <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoDepan}" width="100px">{else}<img src="{$basedomain}assets/images/no-image.jpeg" width="100px">{/if}
+              </div>
+              <div class="col-md-9">
+                <input type="file" name="fotoDepan" class="form-control" value="{$data.evaluasiInformasi}" />
+              </div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-              <label for="text-input">Foto Kemasan Belakang <b style="color:red">(Format JPG, Max 2MB)</b></label>
+              <label for="text-input">Foto Kemasan Belakang <b style="color:red">(Format JPG, Max 2MB)</b></label><br>
+              <div class="col-md-3">
               {if $laporankemasandetail.fotoBelakang}
-              <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoBelakang}" width="100px">{/if}
+              <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoBelakang}" width="100px">{else}<img src="{$basedomain}assets/images/no-image.jpeg" width="100px">{/if}
+            </div>
+              <div class="col-md-9">
                   <input type="file" name="fotoBelakang" class="form-control" value="{$data.evaluasiInformasi}" />
+                </div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-              <label for="text-input">Foto Kemasan samping Kanan <b style="color:red">(Format JPG, Max 2MB)</b></label>
+              <label for="text-input">Foto Kemasan samping Kanan <b style="color:red">(Format JPG, Max 2MB)</b></label><br>
+              <div class="col-md-3">
               {if $laporankemasandetail.fotoKanan}
-              <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoKanan}" width="100px">{/if}
+              <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoKanan}" width="100px">{else}<img src="{$basedomain}assets/images/no-image.jpeg" width="100px">{/if}
+              </div>
+              <div class="col-md-9">
                   <input type="file" name="fotoKanan" class="form-control" value="{$data.evaluasiInformasi}" />
+                </div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-              <label for="text-input">Foto Kemasan samping kiri <b style="color:red">(Format JPG, Max 2MB)</b></label>
+              <label for="text-input">Foto Kemasan samping kiri <b style="color:red">(Format JPG, Max 2MB)</b></label><br>
+              <div class="col-md-3">
               {if $laporankemasandetail.fotoKiri}
-              <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoKiri}" width="100px">{/if}
+              <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoKiri}" width="100px">{else}<img src="{$basedomain}assets/images/no-image.jpeg" width="100px">{/if}
+            </div>
+            <div class="col-md-9">
                   <input type="file" name="fotoKiri" class="form-control" value="{$data.evaluasiInformasi}" />
+            </div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-              <label for="text-input">Foto Kemasan atas <b style="color:red">(Format JPG, Max 2MB)</b></label>
+              <label for="text-input">Foto Kemasan atas <b style="color:red">(Format JPG, Max 2MB)</b></label><br>
+              <div class="col-md-3">
               {if $laporankemasandetail.fotoAtas}
-              <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoAtas}" width="100px">{/if}
+              <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoAtas}" width="100px">{else}<img src="{$basedomain}assets/images/no-image.jpeg" width="100px">{/if}
+            </div>
+            <div class="col-md-9">
                   <input type="file" name="fotoAtas" class="form-control" value="{$data.evaluasiInformasi}" />
+                </div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-              <label for="text-input">Foto Kemasan bawah <b style="color:red">(Format JPG, Max 2MB)</b></label>
+              <label for="text-input">Foto Kemasan bawah <b style="color:red">(Format JPG, Max 2MB)</b></label><br>
+              <div class="col-md-3">
               {if $laporankemasandetail.fotoBawah}
-              <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoBawah}" width="100px">{/if}
+              <img src="{$basedomain}public_assets/{$laporankemasandetail.fotoBawah}" width="100px">{else}<img src="{$basedomain}assets/images/no-image.jpeg" width="100px">{/if}
+            </div>
+            <div class="col-md-9">
                   <input type="file" name="fotoBawah" class="form-control" value="{$data.evaluasiInformasi}" />
+                </div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-              <label for="text-input">Upload Surat Pengantar <b style="color:red">(Format JPG, Max 2MB)</b></label>
+              <label for="text-input">Upload Surat Pengantar <b style="color:red">(Format JPG, Max 2MB)</b></label><br>
+              <div class="col-md-3">
+              {if $laporankemasandetail.suratPengantar}
+              <img src="{$basedomain}public_assets/{$laporankemasandetail.suratPengantar}" width="100px">{else}<img src="{$basedomain}assets/images/no-image.jpeg" width="100px">{/if}
+            </div>
+            <div class="col-md-9">
                   <input type="file" name="suratPengantar" class="form-control" value="{$data.suratpengantar}" />
+                </div>
               </div>
             </div>
           </div>

@@ -6,8 +6,8 @@ $(document).ready(function() {
             dataType:  'json',  
             beforeSubmit: function(data) { 
                 
-                var loading = "<img src='"+basedomain+"assets/images/loading.gif' width='50%'/>";
-                 loading += "<p>Please Wait ...</p>";
+                var loading = "<img src='"+basedomain+"assets/images/loading.gif' width='40%'/>";
+                 // loading += "<p>Please Wait ...</p>";
                 // $('#imgupload').css('height','100%');
                 $('.popuptext').html(loading);
                 $(".cd-popup-trigger").trigger('click');
