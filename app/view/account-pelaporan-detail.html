@@ -180,7 +180,11 @@
               <td><div class="col-sm-12">
 
                   <div class="col-sm-3">
+                    {if $kemasan.suratPengantar}
                     <img src="{$basedomain}public_assets/{$kemasan.suratPengantar}" width="100%">
+                    {else}
+                    <img src="{$basedomain}assets/images/no-image.jpeg" width="100%">
+                    {/if}
                   </div>
                   
                 </div></td>
@@ -194,19 +198,35 @@
                   
                   <div class="col-sm-3">
                     Foto depan
+                    {if $kemasan.fotoDepan}
                     <img src="{$basedomain}public_assets/{$kemasan.fotoDepan}" width="100%">
+                    {else}
+                    <img src="{$basedomain}assets/images/no-image.jpeg" width="100%">
+                    {/if}
                   </div>
                   <div class="col-sm-3">
                     Foto belakang
+                    {if $kemasan.fotoBelakang}
                     <img src="{$basedomain}public_assets/{$kemasan.fotoBelakang}" width="100%">
+                    {else}
+                    <img src="{$basedomain}assets/images/no-image.jpeg" width="100%">
+                    {/if}
                   </div>
                   <div class="col-sm-3">
                     Foto Kiri
+                    {if $kemasan.fotoKiri}
                     <img src="{$basedomain}public_assets/{$kemasan.fotoKiri}" width="100%">
+                    {else}
+                    <img src="{$basedomain}assets/images/no-image.jpeg" width="100%">
+                    {/if}
                   </div>
                   <div class="col-sm-3">
                     Foto Kanan
+                    {if $kemasan.fotoKanan}
                     <img src="{$basedomain}public_assets/{$kemasan.fotoKanan}" width="100%">
+                    {else}
+                    <img src="{$basedomain}assets/images/no-image.jpeg" width="100%">
+                    {/if}
                   </div>
 
                 </div>
@@ -214,11 +234,19 @@
 
                   <div class="col-sm-3">
                     Foto Atas
+                    {if $kemasan.fotoAtas}
                     <img src="{$basedomain}public_assets/{$kemasan.fotoAtas}" width="100%">
+                    {else}
+                    <img src="{$basedomain}assets/images/no-image.jpeg" width="100%">
+                    {/if}
                   </div>
                   <div class="col-sm-3">
                     Foto Bawah
+                    {if $kemasan.fotoBawah}
                     <img src="{$basedomain}public_assets/{$kemasan.fotoBawah}" width="100%">
+                    {else}
+                    <img src="{$basedomain}assets/images/no-image.jpeg" width="100%">
+                    {/if}
                   </div>
                   
                   

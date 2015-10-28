@@ -93,12 +93,12 @@ class contentHelper extends Database {
 		if ($id) $filter = " AND k.id = {$id}";
 
 		$sql = array(
-                'table'=>"{$this->prefix}_pelaporan_kemasan AS k, {$this->prefix}_industri AS i , {$this->prefix}_product AS p, {$this->prefix}_industri_pabrik AS ip",
-                'field'=>"k.*, i.namaIndustri, i.noTelepon, i.noFax, i.namaPimpinan, p.merek, ip.noNPPBKC, ip.namaJalan",
+                'table'=>"{$this->prefix}_pelaporan_kemasan AS k, {$this->prefix}_industri AS i , {$this->prefix}_product AS p, {$this->prefix}_industri_pabrik AS ip, social_member AS sm",
+                'field'=>"k.*, i.namaIndustri, i.noTelepon, i.noFax, i.namaPimpinan, p.merek, ip.noNPPBKC, ip.namaJalan, sm.id AS userid",
                 'condition' => "k.pabrikID != 0 AND k.n_status IN ({$n_status}) {$filter}",
                 'limit' => '100',
                 'joinmethod' => 'LEFT JOIN',
-                'join' => 'k.industriID = i.id, k.merek = p.id, k.pabrikID = ip.id'
+                'join' => 'k.industriID = i.id, k.merek = p.id, k.pabrikID = ip.id, k.industriID = sm.industri_id'
                 );
 
         $res = $this->lazyQuery($sql,$debug);
@@ -570,5 +570,22 @@ class contentHelper extends Database {
         return false;
 	}
 
+	function comment($data)
+	{
+		$id = $data['id'];
+		
+		// pr($data);exit;
+		if ($id){
+
+			$run = $this->save("update", "{$this->prefix}_news_content_comment", $data, "id = {$id}");
+
+		}else{
+			$data['date'] = date('Y-m-d H:i;s');
+			$run = $this->save("insert", "{$this->prefix}_news_content_comment", $data);
+	
+		}
+		if ($run) return true;
+        return false;
+	}
 }
 ?>

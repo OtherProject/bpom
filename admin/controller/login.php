@@ -42,7 +42,7 @@ class login extends Controller {
 			// pr($basedomain);
 			// exit;
 			if ($getUser){
-				redirect($basedomain.$CONFIG['admin']['default_view']);
+				redirect($basedomain . "pelaporan/kemasan");
 			}else{
 				redirect($basedomain.$CONFIG['admin']['login']);
 			}

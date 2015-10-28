@@ -459,5 +459,15 @@ class contentHelper extends Database {
         if ($run) return true;
         return false;
 	}
+
+	function getNotif()
+	{	
+		$data['n_status'] = 1;
+		$data['receiptid'] = $this->user['default']['id'];
+
+		$getNotif = $this->fetchSingleTable("{$this->prefix}_news_content_comment", $data);
+		if ($getNotif) return $getNotif;
+		return false;
+	}
 }
 ?>

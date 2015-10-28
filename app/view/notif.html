@@ -16,9 +16,9 @@
                     </div>
                      <div class="box-body no-padding">
                       <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">12</span></a></li>
-                        <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-                        <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+                        <li class="active"><a href="{$basedomain}account/notifikasi"><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">{$notif|count}</span></a></li>
+                        {*}<li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
+                        <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>{/*}
                       </ul>
                     </div><!-- /.box-body -->
                  </div>
@@ -38,11 +38,11 @@
                 <div class="box-body no-padding">
                   <div class="mailbox-controls">
                     <!-- Check all button --> 
-                    <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
+                    {*}<button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
                     <div class="btn-group">
-                        <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                      <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
                       <button class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                      <button class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+                      <button class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>{/*}
                     </div><!-- /.btn-group -->
                     <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
                     <div class="pull-right">
@@ -56,18 +56,22 @@
                   <div class="table-responsive mailbox-messages">
                     <table class="table table-hover table-striped">
                       <tbody class="accordion_example2">
+
+                        {if $notif}
+                        {foreach $notif as $val}
                         <tr class="unread">
-                          <td><input type="checkbox"></td>
-                          <td class="mailbox-name">Ovan Sunarto Pulu
+                          {*}<td><input type="checkbox"></td>{/*}
+                          <td class="mailbox-name">{$user.name}
                              <div class="accordion_in">
-                                <div class="acc_head">subjek Notifikasi</div>
-                                <div class="acc_content">
-                                    Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Fusce aliquet neque et accumsan fermentum. Aliquam lobortis neque in nulla  tempus, molestie fermentum purus euismod.
-                                </div>
+                                <div class="acc_head">{$val.subject}</div>
+                                <div class="acc_content">{$val.comment}</div>
                             </div>
                           </td>
-                          <td class="mailbox-date">5 mins ago</td>
+                          <td class="mailbox-date">{$val.changeDate}</td>
                         </tr>
+                        {/foreach}
+                        {/if}
+                        {*}
                          <tr >
                           <td><input type="checkbox"></td>
                           <td class="mailbox-name">Iswandi
@@ -118,7 +122,7 @@
                           <td class="mailbox-date">45 mins ago</td>
                         </tr>
 
-
+                        {/*}
                        
                       </tbody>
                     </table><!-- /.table -->
@@ -127,12 +131,12 @@
                 <div class="box-footer no-padding">
                   <div class="mailbox-controls">
                     <!-- Check all button -->
-                    <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
+                    {*}<button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
                     <div class="btn-group">
                       <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
                       <button class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
                       <button class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-                    </div><!-- /.btn-group -->
+                    </div><!-- /.btn-group -->{/*}
                     <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
                     <div class="pull-right">
                       1-50/200

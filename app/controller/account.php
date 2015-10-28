@@ -440,7 +440,7 @@ class account extends Controller {
                 6 => 'KLM');
 
       $data = $this->contentHelper->getPelaporanKemasan($_GET['id']);
-      
+      // pr($data);
       if ($data){
         foreach ($data as $key => $value) {
           // $data[$key]['d_tulisanPeringatan'] = $tulisanPeringatan[$value['tulisanPeringatan']];
@@ -606,10 +606,10 @@ class account extends Controller {
     $getProduk = $this->contentHelper->getProduk(false, $keyword);
     // pr($getProduk);exit;
     if ($getProduk){
-      echo '<ul id="country-list">';
+      echo '<ul id="merek-list">';
       foreach ($getProduk as $key => $value) {
         ?>
-        <li onClick="selectCountry('<?php echo $value["merek"]; ?>', '<?php echo $value["id"]; ?>');"><?php echo $value["merek"]; ?></li>
+        <li onClick="selectProduct('<?php echo $value["merek"]; ?>', '<?php echo $value["id"]; ?>', '<?php echo $value["jenis"]; ?>');"><?php echo $value["merek"]; ?></li>
         <?php
       }
       echo '</ul>';
@@ -619,7 +619,15 @@ class account extends Controller {
   
   function notifikasi(){
 
-     return $this->loadView('notif');
+    $notif = $this->contentHelper->getNotif();
+    if ($notif){
+      foreach ($notif as $key => $value) {
+        if ($value['date']) $notif[$key]['changeDate'] = changeDate($value['date']);
+      }
+    }
+    $this->view->assign('notif',$notif);
+    $this->view->assign('user',$this->user);  
+    return $this->loadView('notif');
   }
 
   function debuging()

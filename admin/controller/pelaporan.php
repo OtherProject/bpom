@@ -654,6 +654,18 @@ class pelaporan extends Controller {
 
 		exit;
 	}
+
+	function comment()
+	{
+		global $basedomain;
+
+		$_POST['userid'] = $this->admin['admin']['id'];
+		$_POST['subject'] = "Message from admin";
+		$approve = $this->contentHelper->comment($_POST);
+		
+		redirect($basedomain.'pelaporan/kemasan');
+		
+	}
 }
 
 ?>

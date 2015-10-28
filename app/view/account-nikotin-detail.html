@@ -128,7 +128,11 @@
               <td><div class="col-sm-12">
 
                   <div class="col-sm-3">
+                    {if $kemasan.sertifikatlab}
                     <img src="{$basedomain}public_assets/{$kemasan.sertifikatlab}" width="100%">
+                    {else}
+                    <img src="{$basedomain}assets/images/no-image.jpeg" width="100%">
+                    {/if}
                   </div>
                   
                 </div></td>
@@ -157,7 +161,11 @@
               <td><div class="col-sm-12">
 
                   <div class="col-sm-3">
+                    {if $kemasan.sertifikat}
                     <img src="{$basedomain}public_assets/{$kemasan.sertifikat}" width="100%">
+                    {else}
+                    <img src="{$basedomain}assets/images/no-image.jpeg" width="100%">
+                    {/if}
                   </div>
                   
                 </div></td>

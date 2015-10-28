@@ -480,7 +480,9 @@ class Database
 	function cacheTable()
 	{
 		$pathcache = CACHE . 'table/';
-
+		if (!file_exists($pathcache)) {
+			mkdir($pathcache);
+		}
 		$getTableList = $this->getTableList();
 		if ($getTableList){
 
@@ -568,6 +570,37 @@ class Database
 			return $dataArr;
 		}
 		return false;
+	}
+
+	function fetchSingleTable($table=false, $condition=array(), $debug=false)
+	{
+
+		/*$a['id'] = 1;
+		$a['n_status'] = 1;
+		*/
+
+		$imp = 1;
+		if ($condition){
+			foreach ($condition as $key => $value) {
+				if ($value){
+
+					$field[] = "`{$key}` = '{$value}'";
+					
+				}
+				
+			}
+			$imp = implode('AND', $field);
+		}
+
+		$sql = array(
+                'table'=>"{$table}",
+                'field'=>"*",
+                'condition' => "{$imp}"
+                );
+
+        $res = $this->lazyQuery($sql,$debug);
+        if ($res) return $res;
+        return false;
 	}
 }
 
