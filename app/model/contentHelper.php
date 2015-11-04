@@ -72,7 +72,7 @@ class contentHelper extends Database {
 	{
 
 		$id = _p('id');
-		$_POST['n_status'] = 1;
+		$_POST['n_status'] = 0;
 		
 
 		if ($id){
@@ -86,34 +86,14 @@ class contentHelper extends Database {
 		}
 		if ($run) return true;
         return false;
-		exit;
-		foreach ($data as $key => $value) {
-			$$key = $value;
-		}
-
-		$createDate = date('Y-m-d H:i;s');
-		$n_status = 1;
-
 		
-		$sql = array(
-                    'table' =>"{$this->prefix}_pelaporan_kemasan",
-                    'field' => "industriID, pabrikID, merek ,jenis, isi, bentuKemasan,
-                    			jenisGambar,tulisanPeringatan,createDate,n_status",
-                    'value' => "'{$industriID}','{$pabrikID}', '{$merek}', '{$jenis}','{$isi}','{$bentuKemasan}','{$jenisGambar}',
-                    			'{$tulisanPeringatan}', '{$createDate}',$n_status ",
-                );
-        $result = $this->lazyQuery($sql,$debug,1);
-		
-		
-        if ($result) return $result;
-        return false;
 	}
 
 	function saveDataNikotin($data, $debug=false)
 	{
 
 		$id = _p('id');
-		$_POST['n_status'] = 1;
+		$_POST['n_status'] = 0;
 		
 		if ($id){
 
@@ -127,30 +107,28 @@ class contentHelper extends Database {
 		if ($run) return true;
         return false;
 
-		exit;
-		foreach ($data as $key => $value) {
-			$$key = $value;
-		}
-
-		$createDate = date('Y-m-d H:i;s');
-		$n_status = 1;
-
 		
-		$sql = array(
-                    'table' =>"{$this->prefix}_pelaporan_nikotin",
-                    'field' => "industriID, pabrikID, merek ,jenis, isiKemasan, kodeProduksi,
-                    			kodeSample,labID, noSertifikat, tanggalUji, kadarNikotin,
-                    			kadarTar, kadarKretek, createdDate,n_status",
-                    'value' => "'{$industriID}', '{$pabrikID}', '{$merek}', '{$jenis}','{$isiKemasan}',
-                    			'{$kodeProduksi}','{$kodeSample}','{$labID}','{$noSertifikat}',
-                    			'{$tanggalUji}','{$kadarNikotin}','{$kadarTar}', '{$kadarKretek}','{$createDate}',$n_status ",
-                );
-        $result = $this->lazyQuery($sql,$debug,1);
-		
-		
-        if ($result) return $result;
-        return false;
 	}
+
+	function saveData($data, $table="_pelaporan_kemasan", $debug=false)
+	{
+
+		$id = $data['id'];
+		
+		if ($id){
+
+			$run = $this->save("update", "{$this->prefix}{$table}", $data, "id = {$id}", $debug);
+
+		}else{
+			$_POST['createDate'] = date('Y-m-d H:i;s');
+			$run = $this->save("insert", "{$this->prefix}{$table}", $data, false, $debug);
+	
+		}
+		if ($run) return true;
+        return false;
+
+	}
+
 
 	function updateDataKemasan($data, $debug=false)
 	{
@@ -219,7 +197,7 @@ class contentHelper extends Database {
 	}
 
 
-	function getPelaporanKemasan($id=false, $industriID=false, $debug=false)
+	function getPelaporanKemasan($id=false, $industriID=false, $n_status = 0, $debug=false)
 	{
 
 		$filter = "";
@@ -227,6 +205,7 @@ class contentHelper extends Database {
 		if ($id) $filter .= "AND k.id = '{$id}'";
 		if ($industriID) $filter .= "AND k.industriID = '{$industriID}'";
 		if ($pabrikID) $filter .= "AND k.pabrikID = '{$pabrikID}'";
+		if ($n_status) $filter .= "AND k.n_status IN ({$n_status})";
 
 		$sql = array(
                     'table' =>"{$this->prefix}_pelaporan_kemasan AS k, {$this->prefix}_product AS p, 
@@ -234,7 +213,7 @@ class contentHelper extends Database {
                     			{$this->prefix}_peringatan_kesehatan AS pk",
                     'field' => "k.*, p.merek, i.noNPPBKC, i.namaJalan, ind.namaPimpinan, i.kecamatan,
                     			ind.kodePos, ind.noFax, pk.title",
-                    'condition' => "k.n_status != 0 {$filter}",
+                    'condition' => "1 {$filter}",
                     'joinmethod' => 'LEFT JOIN',
                 	'join' => 'k.merek=p.id, k.pabrikID = i.id, k.industriID = ind.id, k.tulisanPeringatan = pk.id'
                 );
@@ -243,7 +222,7 @@ class contentHelper extends Database {
         return false;
 	}
 
-	function getPelaporanNikotin($id=false, $industriID=false, $debug=false)
+	function getPelaporanNikotin($id=false, $industriID=false, $n_status = 0, $debug=false)
 	{
 
 		$filter = "";
@@ -251,6 +230,7 @@ class contentHelper extends Database {
 		if ($id) $filter .= "AND k.id = '{$id}'";
 		if ($industriID) $filter .= "AND k.industriID = '{$industriID}'";
 		if ($pabrikID) $filter .= "AND k.pabrikID = '{$pabrikID}'";
+		if ($n_status) $filter .= "AND k.n_status IN ({$n_status})";
 
 		$sql = array(
                     'table' =>"{$this->prefix}_pelaporan_nikotin AS k, {$this->prefix}_product AS p, 
@@ -258,7 +238,7 @@ class contentHelper extends Database {
                     			{$this->prefix}_lab AS l",
                     'field' => "k.*, p.merek, i.noNPPBKC, i.namaJalan, ind.namaPimpinan,
                     			ind.kodePos, ind.noFax, l.nama AS lab_nama, l.alamat AS lab_alamat, l.penanggungjawab AS lab_account",
-                    'condition' => "k.n_status != 0 {$filter}",
+                    'condition' => "1 {$filter}",
                     'joinmethod' => 'LEFT JOIN',
                 	'join' => 'k.merek=p.id, k.pabrikID = i.id, k.industriID = ind.id, k.labID = l.id'
                 );
@@ -465,9 +445,36 @@ class contentHelper extends Database {
 		$data['n_status'] = 1;
 		$data['receiptid'] = $this->user['default']['id'];
 
-		$getNotif = $this->fetchSingleTable("{$this->prefix}_news_content_comment", $data);
+		$getNotif = $this->fetchSingleTable("{$this->prefix}_news_content_comment", $data, 'id DESC');
 		if ($getNotif) return $getNotif;
 		return false;
 	}
+
+	function fetchData($data=array(), $debug=false)
+	{
+
+		$table = $data['table'];
+		$condition = $data['condition'];
+
+		$filter = "";
+		if ($condition){
+			foreach ($condition as $key => $value) {
+				$tmp[] = "`{$key}` = '{$value}'";
+			}
+
+			$filter = implode(' AND ', $tmp);
+		}
+
+		$sql = array(
+                    'table' =>"{$this->prefix}{$table}",
+                    'field' => "*",
+                    'condition' => "{$filter}",
+                );
+		
+		
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result) return $result;
+        return false;
+	} 
 }
 ?>

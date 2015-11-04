@@ -572,7 +572,7 @@ class Database
 		return false;
 	}
 
-	function fetchSingleTable($table=false, $condition=array(), $debug=false)
+	function fetchSingleTable($table=false, $condition=array(), $order='ASC', $debug=false)
 	{
 
 		/*$a['id'] = 1;
@@ -595,7 +595,7 @@ class Database
 		$sql = array(
                 'table'=>"{$table}",
                 'field'=>"*",
-                'condition' => "{$imp}"
+                'condition' => "{$imp} ORDER BY {$order}"
                 );
 
         $res = $this->lazyQuery($sql,$debug);

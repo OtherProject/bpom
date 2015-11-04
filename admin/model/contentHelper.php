@@ -587,5 +587,24 @@ class contentHelper extends Database {
 		if ($run) return true;
         return false;
 	}
+
+	function saveData($data, $table="_pelaporan_kemasan", $debug=false)
+	{
+
+		$id = $data['id'];
+		
+		if ($id){
+
+			$run = $this->save("update", "{$this->prefix}{$table}", $data, "id = {$id}", $debug);
+
+		}else{
+			$_POST['createDate'] = date('Y-m-d H:i;s');
+			$run = $this->save("insert", "{$this->prefix}{$table}", $data, false, $debug);
+	
+		}
+		if ($run) return true;
+        return false;
+
+	}
 }
 ?>

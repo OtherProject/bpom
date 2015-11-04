@@ -189,7 +189,7 @@ class pelaporan extends Controller {
 		// pr($this->admin);
 		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
 		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '2';
-		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '1';
+		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '10';
 		if ($this->admin['admin']['type']==4) $dataArr['n_status'] = '7';
 
 		$data = $this->contentHelper->getLaporanKemasanList($dataArr);
@@ -271,7 +271,7 @@ class pelaporan extends Controller {
 		$dataArr['id'] = $id;
 		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
 		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '2';
-		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '1';
+		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '10';
 		if ($this->admin['admin']['type']==4) $dataArr['n_status'] = '7';
 
 		if (isset($_GET['view'])){
@@ -662,7 +662,15 @@ class pelaporan extends Controller {
 		$_POST['userid'] = $this->admin['admin']['id'];
 		$_POST['subject'] = "Message from admin";
 		$approve = $this->contentHelper->comment($_POST);
-		
+		if ($approve){
+			$fromwho = $_POST['fromwho'];
+			if ($fromwho == 1){
+				// kembalikan data ke produsen dari evaluator
+				$data['id'] = $_POST['contentid'];
+			    $data['n_status'] = 0;
+			    $save = $this->contentHelper->saveData($data);
+			}
+		}
 		redirect($basedomain.'pelaporan/kemasan');
 		
 	}

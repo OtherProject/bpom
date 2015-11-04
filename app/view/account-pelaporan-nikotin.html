@@ -33,29 +33,29 @@ $(document).ready(function(){
               <li><a href="{$basedomain}account/industri" class="done">
                     <label class="stepNumber">1</label>
                     <span class="stepDesc">
-                       Step 1<br />
+                       Produsen<br />
                        <small>Informasi Produsen / Importir</small>
                     </span>
                 </a></li>
               <li><a href="{$basedomain}account/pabrik" class="done">
                     <label class="stepNumber">2</label>
                     <span class="stepDesc">
-                       Step 2<br />
+                       Pabrik<br />
                        <small>Informasi Lokasi Pabrik</small>
                     </span>
                 </a></li>
-              <li><a href="{$basedomain}account/pelaporan" class="done">
+              <li><a href="{$basedomain}account/pelaporan" class="selected">
                     <label class="stepNumber">3</label>
                     <span class="stepDesc">
-                       Step 3.a<br />
-                       <small>Pelaporan Kemasan</small>
+                       Pelaporan<br />
+                       <small>Kemasan, Nikotin & TAR</small>
                     </span>                   
                  </a></li>
-              <li><a href="{$basedomain}account/pelaporan_nikotin" class="selected">
-                    <label class="stepNumber">3</label>
+              <li><a href="{$basedomain}account/posting" class="disabled">
+                    <label class="stepNumber">4</label>
                     <span class="stepDesc">
-                       Step 3.b<br />
-                       <small>Pelaporan Nikotin & TAR</small>
+                       Posting<br />
+                       <small>Posting Pelaporan ke BPOM</small>
                     </span>                   
                 </a></li>
             </ul>
@@ -103,7 +103,7 @@ $(document).ready(function(){
         </div>
       </div>
 
-      <button id="btn-dis" class="btn btn-info tambah_data_kemasan" type="button">
+      <button id="btn-dis" class="btn btn-success tambah_data_kemasan" type="button">
       <i class="fa fa-save"></i>
       Tambah Data
       </button>

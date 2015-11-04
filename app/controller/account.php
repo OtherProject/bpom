@@ -221,6 +221,15 @@ class account extends Controller {
     redirect($basedomain . 'account/pelaporan');
   }
 
+  function postingKemasan()
+  {
+    global $basedomain;
+    $data['id'] = _g('id');
+    $data['n_status'] = 10;
+    $save = $this->contentHelper->saveData($data);
+    redirect($basedomain . 'account/posting');
+  }
+
   function delnikotin()
   {
     global $basedomain;
@@ -295,6 +304,14 @@ class account extends Controller {
 
     if (isset($_GET['id'])){
 
+      // cek apakah sudah posting atau belum
+      $dataKemasan['table'] = '_pelaporan_kemasan';
+      $dataKemasan['condition'] = array('id'=>_g('id'), 'n_status'=>0);
+      $isPosting = $this->contentHelper->fetchData($dataKemasan);
+      if (!$isPosting){
+        echo "<script>alert('Data sudah diposting'); window.location.href='{$basedomain}account/pelaporanDetail/?id={$_GET[id]}';</script>";
+        exit;
+      }
       $getPabrik = $this->contentHelper->getPabrik($id);
       if ($getPabrik){
         $getIndustri = $this->contentHelper->getIndustri($getPabrik[0]['indusrtiID']);
@@ -470,6 +487,13 @@ class account extends Controller {
       $id_industri = $this->user['industri_id'];
       $getIndustri = $this->contentHelper->getIndustri($id_industri);
 
+      $dataKemasan['table'] = '_pelaporan_kemasan';
+      $dataKemasan['condition'] = array('id'=>_g('id'), 'n_status'=>0);
+      $isPosting = $this->contentHelper->fetchData($dataKemasan);
+      if (!$isPosting){
+        $this->view->assign('isposting',1);
+      }
+
 
     return $this->loadView('account-pelaporan-detail');
   }
@@ -540,6 +564,23 @@ class account extends Controller {
 
 
     return $this->loadView('account-nikotin-detail');
+  }
+
+  function posting()
+  {
+
+    global $basedomain;
+    $id_industri = $this->user['industri_id'];
+    $getIndustri = $this->contentHelper->getIndustri($id_industri);
+
+    $this->view->assign('listindustri',$getIndustri); 
+    $this->view->assign('idpabrik',0);
+
+    $getPelaporanKemasan = $this->contentHelper->getPelaporanKemasan(false,$getIndustri[0]['id'], '0,10');
+    $this->view->assign('laporankemasan',$getPelaporanKemasan); 
+
+    
+    return $this->loadView('account-posting');
   }
 
   function ajaxPabrik()

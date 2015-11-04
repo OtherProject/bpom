@@ -1,0 +1,119 @@
+<script type="text/javascript">
+  
+  var idpabrik = {$idpabrik};
+
+</script>
+
+<style>
+{literal}
+
+
+#merek-list{float:left;list-style:none;margin:0;padding:0;width:100%;}
+#merek-list li{padding: 10px; background:#FAFAFA;border-bottom:#F0F0F0 1px solid;}
+#merek-list li:hover{background:#F0F0F0;}
+#search-box{padding: 10px;border: #F0F0F0 1px solid;}
+{/literal}
+</style>
+
+
+
+<br>
+<section>
+    <div class="container">  
+<form method="post" action="{$basedomain}account/pelaporan" enctype="multipart/form-data" onsubmit="return submit_confirm()">
+
+<div class="content-container">
+<div class="row">
+
+  <div class="col-md-1"></div>
+          <div class="col-md-10" align="center">
+            <!-- STEP WIZARD -->
+            <div id="wizard" class="swMain">
+            <ul class="anchor">
+              <li><a href="{$basedomain}account/industri" class="done">
+                    <label class="stepNumber">1</label>
+                    <span class="stepDesc">
+                       Produsen<br />
+                       <small>Informasi Produsen / Importir</small>
+                    </span>
+                </a></li>
+              <li><a href="{$basedomain}account/pabrik" class="done">
+                    <label class="stepNumber">2</label>
+                    <span class="stepDesc">
+                       Pabrik<br />
+                       <small>Informasi Lokasi Pabrik</small>
+                    </span>
+                </a></li>
+              <li><a href="{$basedomain}account/pelaporan" class="done">
+                    <label class="stepNumber">3</label>
+                    <span class="stepDesc">
+                       Pelaporan<br />
+                       <small>Kemasan, Nikotin & TAR</small>
+                    </span>                   
+                 </a></li>
+              <li><a href="{$basedomain}account/posting" class="selected">
+                    <label class="stepNumber">4</label>
+                    <span class="stepDesc">
+                       Posting<br />
+                       <small>Posting Pelaporan ke BPOM</small>
+                    </span>                   
+                </a></li>
+
+            </ul>
+            </div>
+            
+          </div>
+  
+  
+    <div class="center">
+  <h2>Pelaporan Kemasan</h2>
+            <p class="lead">&nbsp;</p>
+  </div>
+      <div class="col-md-12">
+        <div class="portlet">
+        
+          <div class="portlet-header">
+
+            <h3>
+              <i class="fa fa-file"></i>
+              List Pelaporan
+            </h3>
+
+          </div>
+          <div class="portlet-content">
+        
+            <div class="col-sm-10">
+              <div class="form-group">
+                {if $laporankemasan}
+                {foreach $laporankemasan as $val}
+              <a href="{$basedomain}account/pelaporanDetail/?id={$val.id}" class="form-control" {if $idpabrik==$val.id}disabled{/if}>{$val.merek}</a><br>
+                {/foreach}
+                {/if}
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group">
+                {if $laporankemasan}
+                {foreach $laporankemasan as $val}
+              
+                {if $val.n_status == 10}
+                 <a href="{$basedomain}account/postingKemasan/?id={$val.id}" class="form-control btn-success" onclick="">Sudah Posting</a><br>
+                {else}
+                 <a href="{$basedomain}account/postingKemasan/?id={$val.id}" class="form-control" onclick="return submit_confirm('Kirim data ke BPOM ?')">Posting</a><br>
+                {/if}
+     
+                {/foreach}
+                {/if}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+</div>
+
+</form>
+
+</div>
+</section>
