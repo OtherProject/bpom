@@ -9,14 +9,15 @@ $ROUTES = array(
 		'home',
 		'contact',
 		'news',
-        'account', 
-        'login',
-        'register',
-        'login',
-        'profile',
-        'publikasi',
-        'informasi',
-        'api'
+                'account', 
+                'login',
+                'register',
+                'login',
+                'profile',
+                'publikasi',
+                'api',
+                'informasi',
+                'gallery'
                 
                 );
 ?>
