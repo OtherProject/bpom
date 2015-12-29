@@ -21,6 +21,7 @@ class home extends Controller {
 	{
 		
 		$this->models = $this->loadModel('marticle');
+		$this->contentHelper = $this->loadModel('contentHelper');
 	}
 	
 	public function index(){
@@ -74,6 +75,41 @@ class home extends Controller {
 		}
 
 		exit;
+	}
+
+	function add()
+	{
+		if ($_POST['submit']){
+
+			if ($_POST['n_status']) $_POST['n_status'] = 1;
+
+			$save = $this->contentHelper->saveData($_POST,"_news_content");
+		}
+		return $this->loadView('home/add');
+	}
+
+	function addFoto()
+	{
+		if ($_POST['submit']){
+
+			if ($_POST['n_status']) $_POST['n_status'] = 1;
+
+			$save = $this->contentHelper->saveData($_POST,"_news_content");
+		}
+		return $this->loadView('home/add');
+	}
+
+	function slideshow()
+	{
+
+		$slideshow['table'] = 'bpom_news_content';
+      	$slideshow['condition'] = array('n_status'=>1, 'categoryid'=>1);
+      	$getData = $this->contentHelper->fetchData($slideshow);
+		if ($getData){
+			$this->view->assign('data',$getData);
+		}
+
+		return $this->loadView('home/slideshow');
 	}
 }
 

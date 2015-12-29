@@ -19,7 +19,7 @@ $(function () {
 		<div class="alert alert-success" role="alert">Akun berhasil dibuat</div>
 		<a href="{$basedomain}user"><button type="submit" class="btn btn-alert" id="btn-dis">Kembali</button></a>
 	{else}
-	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}user/add" enctype="multipart/form-data">
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}user/addAdmin" enctype="multipart/form-data">
 		
 		<div class="row">
 			<div class="col-md-12">
@@ -37,52 +37,57 @@ $(function () {
 					<div class="portlet-content">
 						<div class="col-sm-12">
 							<div class="form-group">
-							<label for="text-input">Nama Perusahaan</label>
-									<input type="text" name="name" class="form-control" value="{$data.perusahaan.namaIndustri}" data-required="true" />
+							<label for="text-input">Nama</label>
+									<input type="text" name="name" class="form-control" value="{$data.name}" data-required="true" />
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-							<label for="text-input">Nama Depan</label>
-									<input type="text" name="name" class="form-control" value="{$data.name}" data-required="true" />
+							<label for="text-input">Username</label>
+									<input type="text" name="username" class="form-control" value="{$data.username}" data-required="true" />
 							</div>
 						</div>	
 						<div class="col-sm-6">
 							<div class="form-group">
-							<label for="text-input">Nama Belakang</label>
-									<input type="text" name="name" class="form-control" value="{$data.last_name}" data-required="true" />
+							<label for="text-input">email</label>
+									<input type="text" name="email" class="form-control" value="{$data.email}" data-required="true" />
 							</div>
 						</div>	
 						<div class="col-md-6">
 							<div class="form-group">
-							<label for="text-input">Email</label>
-									<input type="text" name="email" class="form-control" value="{$data.email}" />
+							<label for="text-input">Type</label>
+									<select class="form-control" name="type">
+										<option value="3">Evaluator</option>
+										<option value="4">Balai</option>
+										<option value="2">Verifikator</option>
+										<option value="1">Admin</option>
+									</select>
 							</div>
 						</div>
 
 						<div class="col-md-6">
 							<div class="form-group">
-							<label for="text-input">Jabatan</label>
-									<input type="text" name="description" class="form-control" value="{$data.description}" />
+							<label for="text-input">Password</label>
+									<input type="text" name="pass" class="form-control" value="" />
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-3">
 							<div class="form-group">
-							<label for="text-input">Alamat</label>
-									<input type="text" name="StreetName" class="form-control" value="{$data.StreetName}" />
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-							<label for="text-input">No Telpon</label>
-									<input type="text" name="phone_number" class="form-control" value="{$data.phone_number}" />
+							<label for="text-input">Menu Akses</label><br>
+								{if $menu}
+								{foreach $menu as $val}
+								<input type="checkbox" name="menuDesc[]" class="form-control1" value="{$val.menuID}" {if in_array($val.menuID, $data.menu)}checked{/if}/> {$val.menuDesc}<br>
+								{/foreach}
+								{/if}	
 							</div>
 						</div>
 						
 					</div>
 				</div>
-				{*}
-				<button type="submit" class="btn btn-info" id="btn-dis"><i class="fa fa-save"></i> Simpan Data</button>{/*}
+				
+				<input type="hidden" name="id" value="{$data.id}">
+				<input type="hidden" name="token" value="1">
+				<button type="submit" class="btn btn-info" id="btn-dis" value="1"><i class="fa fa-save"></i> Simpan Data</button>
 			</div>
 		
 		

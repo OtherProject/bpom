@@ -25,11 +25,11 @@
                             <div class="col-xs-12 col-sm-10 blog-content" align="justify">
                                 {if $val.image}
                                 <a href="#">
-                                    <img class="img-responsive img-blog" src="{$basedomain}public_assets/{$val.image}" width="100%"  alt="" />
+                                    <img class="img-responsive img-blog" src="{$basedomain}public_assets/{$val.image}" width="50%"  alt="" />
                                 </a>
                                 {/if}
                                 <h2><a href="{$basedomain}news/detailnews/?id={$val.id}">{$val.title}</a></h2>
-                                <h3>{$val.content}</h3>
+                                <h3>{$val.brief}</h3>
                                 <a class="btn btn-primary readmore" href="{$basedomain}news/detailnews/?id={$val.id}">Detail <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>    

@@ -181,27 +181,16 @@ class pelaporan extends Controller {
 	function kemasan()
 	{
 
-
-		// pelaporan balai 
-		
-
-
-		// pr($this->admin);
 		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
 		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '2';
 		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '10';
 		if ($this->admin['admin']['type']==4) $dataArr['n_status'] = '7';
 
 		$data = $this->contentHelper->getLaporanKemasanList($dataArr);
-		// pr($data);
-		if ($data){
-			
-			$this->view->assign('data',$data);
-		}
 		
-
-
-
+		// pr($data);
+		if ($data)$this->view->assign('data',$data);
+		
 		if ($_POST['status']){
 
 			if (count($_POST['ids']>0)){
@@ -219,8 +208,6 @@ class pelaporan extends Controller {
 		}
 		
 
-		// pr($data);exit;
-		
 		$this->view->assign('admin',$this->admin['admin']);
 
 		return $this->loadView('pelaporan/pelaporan-kemasan');    
@@ -394,7 +381,7 @@ class pelaporan extends Controller {
 		$dataArr['id'] = $id;
 		if ($this->admin['admin']['type']==1) $dataArr['n_status'] = '1,2,3';
 		if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '2';
-		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '1';
+		if ($this->admin['admin']['type']==3) $dataArr['n_status'] = '10';
 
 		if (isset($_GET['view'])){
 			if ($this->admin['admin']['type']==2) $dataArr['n_status'] = '3';
@@ -667,7 +654,7 @@ class pelaporan extends Controller {
 			if ($fromwho == 1){
 				// kembalikan data ke produsen dari evaluator
 				$data['id'] = $_POST['contentid'];
-			    $data['n_status'] = 0;
+			    $data['n_status'] = 1;
 			    $save = $this->contentHelper->saveData($data);
 			}
 		}

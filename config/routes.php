@@ -15,7 +15,8 @@ $ROUTES = array(
         'login',
         'profile',
         'publikasi',
-        'informasi'
+        'informasi',
+        'api'
                 
                 );
 ?>

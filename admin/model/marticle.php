@@ -238,5 +238,18 @@ class marticle extends Database {
 		if ($result) return $result;
 		return false;
 	}
+
+	function updateData($data, $debug=false){
+
+		$sql = array(
+                'table'=>"{$this->prefix}_news_content",
+                'field'=>"image = '', file=''",
+                'condition' => "id = {$data[id]}",
+                );
+
+        $res = $this->lazyQuery($sql,$debug,2);
+        if ($res) return $res;
+		return false;
+	}
 }
 ?>

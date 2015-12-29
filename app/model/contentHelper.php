@@ -93,7 +93,7 @@ class contentHelper extends Database {
 	{
 
 		$id = _p('id');
-		$_POST['n_status'] = 0;
+		$_POST['n_status'] = 10;
 		
 		if ($id){
 

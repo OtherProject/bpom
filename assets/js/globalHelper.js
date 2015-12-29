@@ -241,3 +241,51 @@ $(document).on('change', '#lab', function(){
       $('#info_sample').css('display','none');
       $('#info_pengujian').css('display','none');
     }) 
+
+$(document).on('click', '.tambah_lab', function(){
+  
+  var html = "";
+  html += "<div class=''>";
+  html += "   <div class='form-group'>";
+  html += "      <label for='text-input'>Nama Lab</label>";
+  html += "      <input type='text' name='nama' class='nama_lab_baru' value='' data-required='true' />";
+  html += "   </div>";
+  html += "</div>";
+  html += "<div class=''>";
+  html += "   <div class='form-group'>";
+  html += "      <label for='text-input'>Alamat Lab</label>";
+  html += "      <input type='text' name='alamat' class='alamat_lab_baru' value='' data-required='true' />";
+  html += "   </div>";
+  html += "</div>";
+  html += "<div class=''>";
+  html += "   <div class='form-group'>";
+  html += "      <label for='text-input'>Penanggung Jawab Lab</label>";
+  html += "      <input type='text' name='penanggungjawab' class='penanggungjawab_lab_baru' value='' data-required='true' />";
+  html += "      <input type='button' name='submit' value='Simpan' class='btn btn-save simpan_lab_baru'/>";
+  html += "   </div>";
+  html += "</div>";
+
+  $('.popupcontent').html(html);
+  $(".cd-popup-trigger").trigger('click'); 
+  
+})
+
+$(document).on('click', '.simpan_lab_baru', function(){
+  
+  var nama = $('.nama_lab_baru').val();
+  var alamat = $('.alamat_lab_baru').val();
+  var pj = $('.penanggungjawab_lab_baru').val();
+  $.post(basedomain+'account/ajaxLab',{param:1, nama:nama, alamat:alamat, penanggungjawab:pj}, function(data){
+
+        var html = "";
+
+        if (data.status==true){
+          $('.popuptext').html("Data lab sudah ditambahkan");
+        }else{
+          $('.popuptext').html("Gagal menyimpan data");
+        }
+        setTimeout(function(){ redirect(basedomain + "account/pelaporan_nikotin"); }, 2000); 
+        
+      }, "JSON")  
+  
+})

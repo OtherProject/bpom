@@ -487,6 +487,26 @@ class evaluasi extends Controller {
 	    
 	    exit;
 	}
+
+	function status()
+	{
+
+		$fetchData['table'] = 'bpom_pelaporan_kemasan';
+		$fetchData['condition'] = array('n_status'=>1);
+
+		$reject = $this->contentHelper->fetchData($fetchData);
+		if ($reject){
+
+			foreach ($reject as $key => $value) {
+				$merek['table'] = 'bpom_product';
+				$merek['condition'] = array('id'=>$value['merek']);
+				$reject[$key]['merek'] = $this->contentHelper->fetchData($merek);
+			}
+		}
+		if ($reject)$this->view->assign('data',$reject);
+		// pr($reject);
+		return $this->loadView('pelaporan/status-pelaporan'); 
+	}
 }
 
 ?>

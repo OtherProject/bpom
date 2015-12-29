@@ -50,17 +50,7 @@
 	{/if}
 	<form id="validate-enhanced" class="" method="post" action="" enctype="multipart/form-data">
 		
-		{if !$disableData}
-		<button type="submit" class="btn btn-info" id="btn-dis"><i class="fa fa-save"></i> {if $admin.type==2}Verifikasi{elseif $admin.type==3 or $admin.type==4}Evaluasi{/if}
-
-		</button>
-		{if $admin.type==2}
-		<button type="submit" class="btn btn-danger" id="btn-dis" name="reject" value="1"><i class="fa fa-multiply"></i>
-			Rejected</button>
-		{*} 
-		<a href="{$basedomain}pelaporan/detailkemasan/?id={$id}&act=1" ><button type="button" class="btn btn-danger" id="btn-dis"><i class="fa fa-multiply"></i> Rejected</button></a>{/*}
-		{/if}
-		{/if}
+		
 		<input type="hidden" name="idPelaporan" value="{$id}">
 
 		<div class="portlet">
@@ -244,7 +234,17 @@
 			</div>
 		</div>
 
-		
+		{if !$disableData}
+		<button type="submit" class="btn btn-success" id="btn-dis"><i class="fa fa-save"></i> {if $admin.type==2}Verifikasi{elseif $admin.type==3 or $admin.type==4}Simpan / Lanjutkan ke Verifikator{/if}
+
+		</button>
+		{if $admin.type==2}
+		<button type="submit" class="btn btn-danger" id="btn-dis" name="reject" value="1"><i class="fa fa-multiply"></i>
+			Rejected</button>
+		{*} 
+		<a href="{$basedomain}pelaporan/detailkemasan/?id={$id}&act=1" ><button type="button" class="btn btn-danger" id="btn-dis"><i class="fa fa-multiply"></i> Rejected</button></a>{/*}
+		{/if}
+		{/if}
 	</form>
 	
 		<div class="row" style="margin-top:10px;">
@@ -257,7 +257,7 @@
 						<thead>
 						<tr>
 							
-							<th align="center">Komentar ke Produsen</th>
+							<th align="center">Informasi ke Produsen (Jika data belum lengkap)</th>
 							<th align="center">&nbsp;</th>
 							
 						</tr>
@@ -267,8 +267,10 @@
 							<input type="hidden" name="receiptid" value="{$data.userid}">
 							<input type="hidden" name="contentid" value="{$data.id}">
 							<input type="hidden" name="fromwho" value="1">
-							<td><input type="text" name="comment" class="form-control" value="" /></td>
-							<td><button type="submit" class="btn btn-info" id="btn-dis" name="submit" value="1"><i class="fa fa-multiply"></i>Comment</button></td>
+							<td>
+								<textarea name="comment" class="form-control"></textarea>
+								{*}<input type="text" name="comment" class="form-control" value="" /></td>{/*}
+							<td><button type="submit" class="btn btn-warning" id="btn-dis" name="submit" value="1"><i class="fa fa-multiply"></i>Comment</button></td>
 						</tr>
 						</tbody>
 					</table>

@@ -27,3 +27,21 @@ function autoLocation(name,dest){
 				}, "JSON");
 			}
     }
+
+$(document).on('click', '.deleteImageArticle', function(){
+
+	var iddata = $(this).attr('data-value');
+
+	$.post(
+		basedomain+'article/updateImage',
+		{param:1, id:iddata}, 
+		function(data){
+
+			if (data.status==true){
+				alert('Sukses update data');
+			} else {
+				alert('Gagal update data');
+			}
+			location.reload();
+	},"JSON")
+})

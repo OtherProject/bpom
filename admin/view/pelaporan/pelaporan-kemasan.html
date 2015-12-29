@@ -67,6 +67,7 @@
 									<th data-filterable="true" data-sortable="true" >Produsen</th>
 									<th data-filterable="true" data-sortable="true" >Tanggal Pelaporan</th>
 									<th data-filterable="true" data-sortable="true" >Merek</th>
+									<th data-filterable="true" data-sortable="true" >Nikotin</th>
 									<th data-filterable="true" data-sortable="true">Status</th>
 									
 									
@@ -96,7 +97,16 @@
 									</td>
 									<td>
 										{foreach $var.merek as $val}
-										{if $val.n_status == 1 or $val.n_status == 7}
+										{if $val.nikotin}
+										<a href="{$basedomain}pelaporan/detailnikotin/?id={$val.nikotin.0.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$val.merek}</a>
+										{else}Tidak ada laporan{/if}
+										<br>
+										{/foreach}
+									</td>
+									
+									<td>
+										{foreach $var.merek as $val}
+										{if $val.n_status == 10 or $val.n_status == 7}
 											{if $val.catatanDitolak}
 											<span style="color:black">Pelaporan Ditolak Verifikator</span>
 											{else}

@@ -610,18 +610,32 @@ class account extends Controller {
   {
 
     $id = _p('kode_wilayah');
-    if ($id){
-      $getLab = $this->contentHelper->getLab($id);
-      if ($getLab){
-        
-        print json_encode(array('status'=>true, 'res'=>$getLab[0]));
+    $param = _p('param');
+    
+    if ($param){
+      if ($param==1){
+        $data['nama'] = _p('nama');
+        $data['alamat'] = _p('alamat');
+        $data['penanggungjawab'] = _p('penanggungjawab');
+        $data['n_status'] = 2;
+        $save = $this->contentHelper->saveData($data,"_lab");
+        if ($save) print json_encode(array('status'=>true));
+        else print json_encode(array('status'=>false));
+      }
+    }else{
+
+      if ($id){
+        $getLab = $this->contentHelper->getLab($id);
+        if ($getLab){
+          
+          print json_encode(array('status'=>true, 'res'=>$getLab[0]));
+        }else{
+          print json_encode(array('status'=>false));
+        }
       }else{
         print json_encode(array('status'=>false));
       }
-    }else{
-      print json_encode(array('status'=>false));
     }
-    
     
     exit;
   }

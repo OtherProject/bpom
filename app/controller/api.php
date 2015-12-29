@@ -1,7 +1,7 @@
 <?php
 
 
-class home extends Controller {
+class api extends Controller {
 	
 	var $models = FALSE;
 	var $view;
@@ -29,7 +29,7 @@ class home extends Controller {
 
 		global $CONFIG, $basedomain;
 
-    $limit = array(0,1,2);
+    $limit = array(0,1);
 		$getData = $this->contentHelper->getArticle();
     if ($getData){
       foreach ($getData as $key => $value) {
@@ -56,51 +56,13 @@ class home extends Controller {
   }
 	
 	
-  function formRegister()
-  {
-    global $basedomain;
-   
-   if(!$this->user) {redirect($basedomain."home/connect");exit;} 
-    $getUserInfo = $this->loginHelper->getUserInfo();
-    if ($getUserInfo['verified']>0){
-      redirect($basedomain.'uploadfoto/pilihframe');
-    }
-
-    $this->view->assign('user',$this->user);
-    return $this->loadView('form');
-  }
-
-  function inputForm()
+  function getIndustri()
   {
 
-    global $basedomain;
-
-    $inputData=$this->contentHelper->registerUser($_POST); 
-    if ($inputData)redirect($basedomain.'uploadfoto/pilihframe');
-
-  }
-
-  function dashboard()
-  {
-
-    return $this->loadView('dashboard');
-  }
-
-	function loginSocmed()
-  {
-
-    global $CONFIG, $basedomain;
-
-    
-  }
-  function thanks(){
-    return $this->loadView('thanks');
-
-  }
-
-  function privacy(){
-     return $this->loadView('privacy');
-
+    $getIndustri = $this->contentHelper->getIndustri();
+    // pr($getIndustri);
+    echo json_encode(array('status'=>1, 'data'=>$getIndustri));
+    exit;
   }
 
   function debuging()

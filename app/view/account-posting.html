@@ -97,7 +97,7 @@
                 {foreach $laporankemasan as $val}
               
                 {if $val.n_status == 10}
-                 <a href="{$basedomain}account/postingKemasan/?id={$val.id}" class="form-control btn-success" onclick="">Sudah Posting</a><br>
+                 <a href="#" class="form-control btn-success" onclick="">Sudah Posting</a><br>
                 {else}
                  <a href="{$basedomain}account/postingKemasan/?id={$val.id}" class="form-control" onclick="return submit_confirm('Kirim data ke BPOM ?')">Posting</a><br>
                 {/if}

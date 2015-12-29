@@ -56,6 +56,42 @@ class user extends Controller {
 
 	}
 	
+	function listAdmin()
+	{
+		$fetchData['table'] = 'admin_member';
+		$fetchData['condition'] = array('n_status'=>1);
+
+		$admin = $this->contentHelper->fetchData($fetchData);
+		$this->view->assign('data',$admin);
+		return $this->loadView('user');
+	}
+
+	function addAdmin()
+	{
+
+		global $basedomain;
+
+		if ($_POST['token']){
+			// pr($_POST);
+			if ($_POST['pass']){
+				$_POST['salt'] = str_shuffle('ABCDEFGHIJKLMNO');
+				$_POST['password'] = $_POST['pass'] . $_POST['salt'];
+			}
+
+			if ($_POST['menuDesc']) $_POST['menu_akses'] = implode(',', $_POST['menuDesc']);
+
+			$admin = $this->contentHelper->saveData($_POST, 'admin_member', 1);
+			if ($admin) redirect($basedomain . 'user/listAdmin');
+			exit;
+		}
+		// $fetchData['table'] = 'admin_member';
+		// $fetchData['condition'] = array('n_status'=>1);
+
+		// $admin = $this->contentHelper->fetchData($fetchData);
+		// pr($admin);
+		return $this->loadView('user-detail');
+	}
+
 	function add(){
        
 		global $basedomain;
@@ -90,7 +126,34 @@ class user extends Controller {
 
 	}
 	
-	
+	function editAdmin()
+	{
+
+		$id = _g('id');
+		$fetchData['table'] = 'admin_member';
+		$fetchData['condition'] = array('n_status'=>1, 'id'=>$id);
+
+		$admin = $this->contentHelper->fetchData($fetchData);
+		
+		if ($admin){
+			foreach ($admin as $key => $value) {
+				if ($value['menu_akses']) $admin[$key]['menu'] = explode(',', $value['menu_akses']);
+			}
+		}
+
+		// pr($admin);
+
+		$menu['table'] = 'tbl_user_menu';
+		$menu['condition'] = array('menuStatus'=>1);
+
+		$getMenu = $this->contentHelper->fetchData($menu);
+		// pr($getMenu);
+		$this->view->assign('data',$admin[0]);
+		$this->view->assign('menu',$getMenu);
+
+		return $this->loadView('user-detail');
+	}
+
 	function edit()
 	{
 		global $basedomain, $app_domain;;

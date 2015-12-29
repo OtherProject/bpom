@@ -646,6 +646,19 @@ class article extends Controller {
 		return $this->loadView('kontak');
 	}
 
+	function updateImage()
+	{
+		$idData = _p('id');
+
+		$dataArr['id'] = $idData;
+		$update = $data = $this->models->updateData($dataArr);
+		if ($update){
+			print json_encode(array('status'=>true));
+		}else{
+			print json_encode(array('status'=>false));
+		}
+		exit;
+	}
 }
 
 ?>

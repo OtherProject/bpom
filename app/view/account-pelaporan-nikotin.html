@@ -193,7 +193,7 @@ $(document).ready(function(){
         
           <div class="portlet-content">
         
-            <div class="col-sm-12">
+            <div class="col-sm-10">
               <div class="form-group">
               <label for="text-input">Nama Laboratorium</label>
                   <select class="form-control" name="labID" id="lab">
@@ -206,18 +206,23 @@ $(document).ready(function(){
                   </select>
               </div>
             </div>  
-            
+            <div class="col-md-2">
+              <div class="form-group cd-popup-trigger">
+                  <button class="btn btn-success tambah_lab" type="button"><i class="fa fa-info"></i> Tambah Lab</button>
+              </div>
+            </div>
+
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">Alamat</label>
-                  <input type="text" name="alamat" class="form-control alamat" value="{$kemasanedit.lab_alamat}" data-required="true" />
+                  <input type="text" name="alamat" class="form-control alamat" value="{$kemasanedit.lab_alamat}" data-required="true" readonly/>
               </div>
             </div>
 
             <div class="col-md-12">
               <div class="form-group">
               <label for="text-input">Penanggungjawab</label>
-                  <input type="text" name="penanggungjawab" class="form-control penanggungjawab" value="{$kemasanedit.lab_account}" data-required="true" />
+                  <input type="text" name="penanggungjawab" class="form-control penanggungjawab" value="{$kemasanedit.lab_account}" data-required="true" readonly />
               </div>
             </div>
             <div class="col-md-12">

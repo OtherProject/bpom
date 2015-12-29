@@ -14,11 +14,11 @@ $(function () {
 </script>
 
 <div id="content-header">
-	<h1>Profile</h1>
+	<h1>Slideshow</h1>
 </div> <!-- #content-header -->	
 
 <div id="content-container">
-	<form id="validate-enhanced" class="form parsley-form" method="post" action="" enctype="multipart/form-data">
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}home/add" enctype="multipart/form-data">
 
 		<div class="row">
 			<div class="col-md-9">
@@ -44,21 +44,25 @@ $(function () {
 						
 						<div class="col-md-6">
 							<div class="form-group">
-							<label for="text-input">Brief</label>
-									<input type="text" name="brief" class="form-control" value="{$data.brief}" />
+							<label for="text-input">Kategori</label>
+								<select name="categoryid" class="form-control">
+									<option value="1">Slideshow</option>
+								</select>
 							</div>
 						</div>
 
 						<div class="col-sm-12">
+							{*}
 							<div class="form-group">
 							<label for="textarea-input">Deskripsi</label>
 									<textarea name="content" id="isi"  cols="10" rows="20" class="form-control">{$data.content}</textarea>
 							</div>
+							{/*}
 							
+							<!-- hidden -->
+							<input type="hidden" name="id" value="{$data.id}" />
+							<input type="hidden" name="authorid" value="{$admin.id}" />
 							
-									<!-- hidden -->
-									<input type="hidden" name="id" value="{$data.id}" />
-									
 							
 						</div>
 					</div>
@@ -80,8 +84,8 @@ $(function () {
 					<div class="portlet-content">
 						<div class="form-group">
 							<label for="select-input">Postdate</label>
-							<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
-								<input class="form-control" type="text" name="postdate" value="{$data.posted_date}" data-required="true">
+							<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
+								<input class="form-control" type="text" name="posted_date" value="{$data.posted_date}" data-required="true">
 								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 							</div>
 							
@@ -96,11 +100,12 @@ $(function () {
 								</div>
 						</div>
 						
-						<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
+						<input type="submit" class="btn btn-primary" value="Submit" id="submit" name="submit"/>
 					</div>
 				</div>
 				
 				<div class="portlet">
+					{*}
 					<div class="portlet-header">
 
 						<h3>
@@ -109,19 +114,17 @@ $(function () {
 						</h3>
 
 					</div> <!-- /.portlet-header -->
+					
 					<div class="portlet-content">
 						<div class="fileupload fileupload-new" data-provides="fileupload">
 						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{$data.file}" alt="{$data.image}" /></div>
 						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
 						  <div>
 							<span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="file_image"/></span>
-							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Reset</a>
-							{if $data.image}
-							<a href="javascript:void(0)" class="btn btn-default deleteImageArticle" data-value="{$data.id}">Delete Image</a>
-							{/if}
+							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
 						  </div>
 						</div>
-					</div>
+					</div>{/*}
 				</div>
 				
 			</div>

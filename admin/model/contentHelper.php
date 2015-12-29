@@ -126,18 +126,28 @@ class contentHelper extends Database {
 
         $res = $this->lazyQuery($sql,$debug);
         if ($res){
+
+        	$dataMerek = array();
+
         	foreach ($res as $key => $value) {
         		
         		$sql = array(
 		                'table'=>"{$this->prefix}_pelaporan_kemasan AS k, {$this->prefix}_industri AS i , {$this->prefix}_product AS p, {$this->prefix}_industri_pabrik AS ip",
-		                'field'=>"k.*, i.namaIndustri, i.noTelepon, i.noFax, i.namaPimpinan, p.merek, ip.noNPPBKC, ip.namaJalan",
+		                'field'=>"k.*, i.namaIndustri, i.noTelepon, i.noFax, i.namaPimpinan, p.id AS merekid, p.merek, ip.noNPPBKC, ip.namaJalan",
 		                'condition' => "k.pabrikID != 0 AND k.n_status IN ({$n_status}) AND k.industriID = {$value['industriID']} {$filter}",
 		                'joinmethod' => 'LEFT JOIN',
 		                'join' => 'k.industriID = i.id, k.merek = p.id, k.pabrikID = ip.id'
 		                );
 
-		        $res[$key]['merek'] = $this->lazyQuery($sql,$debug);
-
+		        $dataMerek = $this->lazyQuery($sql,$debug);
+		        
+		        foreach ($dataMerek as $k => $val) {
+		        	$nikotin['table'] = "{$this->prefix}_pelaporan_nikotin";
+					$nikotin['condition'] = array('merek'=>$val['merekid'], 'n_status'=>10);
+					$getNikotin = $this->fetchData($nikotin);
+					$dataMerek[$k]['nikotin'] = $getNikotin;
+		        }
+		        $res[$key]['merek'] = $dataMerek;
         	}
         }
        
@@ -588,11 +598,16 @@ class contentHelper extends Database {
         return false;
 	}
 
-	function saveData($data, $table="_pelaporan_kemasan", $debug=false)
+	function saveData($data, $table="_pelaporan_kemasan", $prefix=false, $debug=false)
 	{
 
 		$id = $data['id'];
 		
+		if ($prefix){
+			if ($prefix==1) $this->prefix = "";
+			else $this->prefix = $prefix;	
+		} 
+
 		if ($id){
 
 			$run = $this->save("update", "{$this->prefix}{$table}", $data, "id = {$id}", $debug);
@@ -606,5 +621,17 @@ class contentHelper extends Database {
         return false;
 
 	}
+
+	function fetchData($data=array(),$debug=false)
+    {
+
+        $table = $data['table'];
+        $condition = $data['condition'];
+        $oderby = $data['oderby'];
+
+        $fetch = $this->fetchSingleTable($table, $condition, $oderby, $debug);
+        if ($fetch) return $fetch;
+        return false;
+    }
 }
 ?>
