@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 15, 2015 at 04:32 PM
+-- Generation Time: Dec 29, 2015 at 10:43 AM
 -- Server version: 5.5.40-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.11
+-- PHP Version: 5.5.9-1ubuntu4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -141,9 +141,9 @@ CREATE TABLE IF NOT EXISTS `admin_member` (
 --
 
 INSERT INTO `admin_member` (`id`, `name`, `nickname`, `email`, `register_date`, `menu_akses`, `username`, `type`, `salt`, `password`, `n_status`) VALUES
-(1, 'admin', 'admin', 'admin@example.com', '2014-08-07 22:56:36', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24', 'admin', 1, 'codekir v3.0', 'b2e982d12c95911b6abeacad24e256ff3fa47fdb', 1),
+(1, 'admin', 'admin', 'admin@example.com', '2014-08-07 22:56:36', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,70', 'admin', 1, 'codekir v3.0', 'b2e982d12c95911b6abeacad24e256ff3fa47fdb', 1),
 (2, 'verifikator', 'admin', 'admin@example.com', '2014-08-07 22:56:36', '3,7,8,16', 'verifikator', 2, 'codekir v3.0', 'b2e982d12c95911b6abeacad24e256ff3fa47fdb', 1),
-(3, 'evaluator', 'admin', 'admin@example.com', '2014-08-07 22:56:36', '7,8', 'evaluator', 3, 'codekir v3.0', 'b2e982d12c95911b6abeacad24e256ff3fa47fdb', 1),
+(3, 'evaluator', 'admin', 'admin@example.com', '2014-08-07 22:56:36', '3,7,69', 'evaluator', 3, 'codekir v3.0', '94119818d09a4bfb49a39730ea998ab9e7ce58c2', 1),
 (4, 'balai', 'admin', 'admin@example.com', '2014-08-07 22:56:36', '3,7,8,16,25', 'balai', 4, 'codekir v3.0', 'b2e982d12c95911b6abeacad24e256ff3fa47fdb', 1);
 
 -- --------------------------------------------------------
@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `bpom_evaluasi` (
   `provinsi` varchar(10) DEFAULT NULL,
   `n_status` int(11) DEFAULT NULL COMMENT '1:import, 2:approve_balai, 3:reject, 4:approve_bpom',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
 
 --
 -- Dumping data for table `bpom_evaluasi`
@@ -259,7 +259,17 @@ INSERT INTO `bpom_evaluasi` (`id`, `produkID`, `tanggalBeli`, `lokasiBeli`, `jen
 (41, 0, '2014-07-04', 'DKI Jakarta', 2, '40.22', '39.78', 'S', NULL, 'MK', '1.1', '18', 'S', 'S', 'Ada', '\n(ED44416046)', '2014-06-13', 'Tidak Ada', 'Tidak Ada', 'Tidak Ada', 'MK', 'MK', NULL, '2014', '13,475', '2014-10-23 12:22:17', 1, 1, '01', 1),
 (42, 0, '2014-07-04', 'DKI Jakarta', 3, '40.22', '40.22', 'S', NULL, 'MK', '1.1', '18', 'S', 'S', 'Ada', '\n(ED44416604)', '2014-06-15', 'Tidak Ada', 'Tidak Ada', 'Tidak Ada', 'MK', 'MK', NULL, '2014', '13,475', '2014-10-23 12:22:17', 1, 1, '01', 1),
 (43, 0, '2014-07-04', 'DKI Jakarta', 4, '40.22', '39.78', 'S', NULL, 'MK', '1.1', '18', 'S', 'S', 'Ada', '\n(ED44416406)', '2014-06-13', 'Tidak Ada', 'Tidak Ada', 'Tidak Ada', 'MK', 'MK', NULL, '2014', '13,475', '2014-10-23 12:22:17', 1, 1, '01', 1),
-(44, 0, '2014-07-04', 'DKI Jakarta', 5, '40.22', '40.22', 'S', NULL, 'MK', '1.1', '18', 'S', 'S', 'Ada', '\n(ED44416406)', '2014-06-13', 'Tidak Ada', 'Tidak Ada', 'Tidak Ada', 'MK', 'MK', NULL, '2014', '13,475', '2014-10-23 12:22:17', 1, 1, '01', 1);
+(44, 0, '2014-07-04', 'DKI Jakarta', 5, '40.22', '40.22', 'S', NULL, 'MK', '1.1', '18', 'S', 'S', 'Ada', '\n(ED44416406)', '2014-06-13', 'Tidak Ada', 'Tidak Ada', 'Tidak Ada', 'MK', 'MK', NULL, '2014', '13,475', '2014-10-23 12:22:17', 1, 1, '01', 1),
+(45, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-10-05 14:29:33', 1, 1, '01', 1),
+(46, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-10-05 14:29:33', 1, 1, '01', 1),
+(47, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-10-05 14:29:33', 1, 1, '01', 1),
+(48, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-10-05 14:29:33', 1, 1, '01', 1),
+(49, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-10-05 14:29:33', 1, 1, '01', 1),
+(50, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-10-05 14:29:33', 1, 1, '01', 1),
+(51, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-10-05 14:29:33', 1, 1, '01', 1),
+(52, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-10-05 14:29:33', 1, 1, '01', 1),
+(53, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-10-05 14:29:33', 1, 1, '01', 1),
+(54, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-10-05 14:29:33', 1, 1, '01', 1);
 
 -- --------------------------------------------------------
 
@@ -270,6 +280,7 @@ INSERT INTO `bpom_evaluasi` (`id`, `produkID`, `tanggalBeli`, `lokasiBeli`, `jen
 CREATE TABLE IF NOT EXISTS `bpom_industri` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `namaIndustri` varchar(100) DEFAULT NULL,
+  `badan` varchar(100) DEFAULT NULL,
   `namaPimpinan` varchar(100) DEFAULT NULL,
   `noKTP` varchar(30) DEFAULT NULL,
   `jenisKelamin` int(11) DEFAULT NULL,
@@ -288,32 +299,15 @@ CREATE TABLE IF NOT EXISTS `bpom_industri` (
   `n_status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `namaIndustri` (`namaIndustri`,`namaPimpinan`,`noKTP`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `bpom_industri`
 --
 
-INSERT INTO `bpom_industri` (`id`, `namaIndustri`, `namaPimpinan`, `noKTP`, `jenisKelamin`, `alamatPimpinan`, `alamatPerusanaan`, `provinsi`, `kecamatan`, `desa`, `kodePos`, `jalanRTRW`, `noTelepon`, `noFax`, `email`, `npwp`, `createDate`, `n_status`) VALUES
-(1, 'csacac', 'ovan pulu', '11111', 1, 'pondok cina', NULL, '0402', 'kecamatan', 'desa', '12312', 'nama jalan', '000111', '121010', 'alamatemail@yahoo.com', '123-1111-3456-9089', '2014-11-04 12:15:09', 1),
-(2, '', 'sacasa', 'cascascac', 1, 'ascsaca', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-13 18:44:01', 1),
-(3, 'casca', 'csaca', '131', 1, 'acscaca', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-19 15:42:22', 1),
-(4, 'dwqdwq', 'dwqdwq', 'dwqd', 1, 'dwqd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-19 15:47:29', 1),
-(6, 'casca', 'csacas', 'csac', 1, 'caca', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-19 15:50:00', 1),
-(7, 'casca', 'csacas', 'csacsa', 1, 'csacas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-19 15:50:49', 1),
-(8, 'csacsa', 'csaca', 'cacsa', 1, 'csacsa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-19 15:52:42', 1),
-(9, 'casca', 'csaca', 'cascas', 1, 'casc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-19 15:54:23', 1),
-(11, 'dsadas', 'dsadas', 'dsadas', 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-19 15:55:33', 1),
-(12, 'caca', 'cacas', 'casca', 1, 'caca', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-19 16:03:35', 1),
-(13, 'csaca', 'csaca', 'csaca', 1, 'casca', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-19 16:11:24', 1),
-(14, 'cascac', 'cacas', 'cacas', 1, 'caca', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-19 16:42:00', 1),
-(15, 'PT ABC', 'Lana', '1231321', 1, 'asada', NULL, '0151', 'Kecamatan Kramat', 'senen', '111', 'Jl. Kramat', '111', '111', 'submit.ovan@gmail.com', '123131', '2014-11-21 15:09:16', 1),
-(16, 'Trinata Teknologi', 'Ovan', '111', 1, 'depok', NULL, '0154', 'Pasar Minggu', 'Pejaten', '12345', 'Jalan Pejaten', '081234', '12345678', 'o.pulu@yahoo.com', '123131', '2014-12-03 11:43:50', 1),
-(17, '', '', '', 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-12-04 10:11:56', 1),
-(18, 'PT. maju mundur', 'Iswandi', '13214125314616', 1, 'jl percetajkan', NULL, '0601', 'testes', 'coba', '123345', 'Jl. raya', '08891503992', '', 'iswandizen@gmail.com', '563653546455644', '2015-09-10 14:32:22', 1),
-(19, 'csasa', 'csaca', 'csacas', 1, 'casas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-09-10 14:34:28', 1),
-(20, 'pt nusantara', 'sugeng riyadi', '123456789012345', 1, 'jl. percetakan negara 23', NULL, '0151', 'gambir', 'duri pulo', '13910', 'jl. kh zainul arifin', '021 4244356', '0214244356', 'nusantara@gmail.com', '1237891234', '2015-09-10 14:36:29', 1),
-(22, 'PT Napa', 'Direktur', '33503253734291112', 1, 'Johar Baru', NULL, '0151', 'cempaka putih', 'Rawasari', '10560', 'Percetakan negara 23', '0212422530', '0212422530', 'email@gmail.com', '', '2015-09-10 14:45:53', 1);
+INSERT INTO `bpom_industri` (`id`, `namaIndustri`, `badan`, `namaPimpinan`, `noKTP`, `jenisKelamin`, `alamatPimpinan`, `alamatPerusanaan`, `provinsi`, `kecamatan`, `desa`, `kodePos`, `jalanRTRW`, `noTelepon`, `noFax`, `email`, `npwp`, `createDate`, `n_status`) VALUES
+(1, 'Trinata Teknologi', NULL, 'Ovan Cop', '1234', 1, 'Jakarta', NULL, '1705', 'Beo Utara', 'Lobbo', '95881', 'Jl. Raya Beo essang', '12345', '54321', 'o.pulu@yahoo.com', '123-1111-3456-9089', '2015-10-28 09:45:37', 1),
+(2, 'PT. Ambaratan', NULL, 'Cop', '1211212', 1, 'depok', NULL, '2414', 'Ndao', 'Rote', '1111', 'Jl. raya rote-ndao', '2222', '3333', 'rote-ndao@ambaratan.com', '123131-11-1231-412131', '2015-11-16 09:06:01', 1);
 
 -- --------------------------------------------------------
 
@@ -335,37 +329,15 @@ CREATE TABLE IF NOT EXISTS `bpom_industri_pabrik` (
   `createDate` datetime DEFAULT NULL,
   `n_status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `bpom_industri_pabrik`
 --
 
 INSERT INTO `bpom_industri_pabrik` (`id`, `industriID`, `provinsi`, `kecamatan`, `desa`, `kodePos`, `namaJalan`, `noNPPBKC`, `files`, `data`, `createDate`, `n_status`) VALUES
-(1, 1, '', 'dasdad', 'dsada', 'dsadada', 'dsadsasd', '1231.3.1.3132', '13f0621d6a5475d1cbfcb42d68fbaf7d.pdf', 'a:1:{s:8:"origFile";s:10:"pkti2a.pdf";}', '2014-11-13 19:44:36', 2),
-(2, 1, '3002', 'sadasa', 'sada', 'dsadsa', 'dsada', 'dsada', '8c873177388d90479cd2a0840bff69b1.pdf', NULL, '2014-11-13 19:46:35', 1),
-(3, 3, '3002', '0', '0', 'dsadsa', 'dsada', 'dsada', '1049749dafdeb51962334f26400dd454.pdf', NULL, '2014-11-13 19:50:43', 1),
-(4, 4, '3002', 'saca', 'saca', 'dsadsa', 'dsada', 'dsada', '', NULL, '2014-11-13 19:51:55', 1),
-(5, 0, '0252', 'bogor', 'bogor selatan', '111', ' jalan jalan', '0606130395', NULL, NULL, '2014-11-21 16:14:08', 1),
-(6, 15, '0214', 'Kecamatan Kramat', 'casca', '2221321', 'cacacsa', '1231321311', NULL, NULL, '2014-11-21 16:20:07', 1),
-(7, 15, '3003', 'Kecamatan Kramat', 'dsada', 'dsada', 'dsada', 'ewqeadw', NULL, NULL, '2014-11-21 16:38:40', 1),
-(8, 16, '0154', 'Pasar Minggu', 'Pejaten', '12345', 'jalan pasar minggu', '123456', '', NULL, '2014-12-03 11:48:30', 1),
-(9, 9, '2207', 'dasda', 'dsada', 'acsac', 'dsasada', '231312', '32b983ef956a32367f71f138ef5b2416.pdf', NULL, '2015-07-07 11:15:14', 1),
-(10, 1, '', 'ada', 'dsada', 'acsac', 'aa', 'aaa', NULL, NULL, '2015-07-07 11:46:34', 2),
-(11, 0, '1406', 'katingan', 'kel katingan', '111', 'jalan katingan', '12121212121', '', NULL, '2015-09-09 17:38:21', 1),
-(12, 0, '0509', 'kecamatan', 'kel katingan', '12312', 'jalan katingan', '12121212121', NULL, NULL, '2015-09-09 17:39:09', 1),
-(13, 0, '0509', 'kecamatan', 'kel katingan', '12312', 'jalan katingan', '12121212121', '', NULL, '2015-09-09 17:40:39', 1),
-(14, 0, '0509', 'kecamatan', 'kel katingan', '12312', 'jalan katingan', '12121212121', '', NULL, '2015-09-09 17:41:04', 1),
-(15, 0, '0509', 'kecamatan', 'kel katingan', '12312', 'jalan katingan', '12121212121', NULL, NULL, '2015-09-09 17:41:27', 1),
-(16, 0, '0509', 'kecamatan', 'kel katingan', '12312', 'jalan katingan', '12121212121', NULL, NULL, '2015-09-09 17:42:34', 1),
-(17, 0, '0318', 'kecamatan', 'kel katingan', '12312', 'jalan katingan', '12121212121', '8b48c2c8663714b8decd66f4e7b6c6a5.pdf', NULL, '2015-09-09 17:43:29', 1),
-(18, 1, '0401', 'kecamatan', 'kel katingan', '12312', 'dsasada', '1111111111', '8d17cf4e8848df260e531a987fb8c160.pdf', NULL, '2015-09-09 17:47:12', 1),
-(19, 18, '', 'ksadnjhd', 'jkdfjf', '13654', 'jl. hghdhvf', '3726.5.8.1258', '10e42d02cfb203ffd2b3a07f27381798.pdf', 'a:1:{s:8:"origFile";s:16:"boardingPass.pdf";}', '2015-09-10 15:14:20', 1),
-(20, 18, '', 'hgghdghg', 'hdfsgfhsdgf', '1426257', 'jl.kjkhsjgjfh', '6567.5.6.7657', '159efa3dc00613f140a8049039b61e2b.pdf', 'a:1:{s:8:"origFile";s:16:"boardingPass.pdf";}', '2015-09-10 15:31:45', 1),
-(21, 1, '-Pilih Kab', '', '', '', '', '1213.1.2.3131', NULL, NULL, '2015-09-10 15:36:17', 2),
-(22, 1, '-Pilih Kab', '', '', '', '', '1213.1.2.3131', '75863dd367651cebd92b91398029ab17.pdf', 'a:1:{s:8:"origFile";s:10:"pkti2a.pdf";}', '2015-09-10 15:36:41', 2),
-(23, 20, '0322', 'banyurip', 'sukowaten', '11112', 'jl. sekar wengi', '1234.1.3.2345', '389de6c7b9e5ce8666e30ad2399ca753.pdf', 'a:1:{s:8:"origFile";s:17:"Note Tambahan.pdf";}', '2015-09-10 15:36:45', 1),
-(24, 1, '', 'aaaaa', 'aaacc', '212311231', 'nama jalan baru', '1213.1.2.3121', 'c0e7656e48b8c2a711b515eb58d05a7c.pdf', 'a:1:{s:8:"origFile";s:10:"pkti2a.pdf";}', '2015-09-11 14:47:28', 1);
+(1, 1, '1751', 'Paal dua', 'Singkil', '111112', 'Jl. Pasar 45', '1212.1.2.1212', '0943e5e39c27b978af0bad9dbb43d818.pdf', 'a:1:{s:8:"origFile";s:10:"pkti2a.pdf";}', '2015-10-28 09:52:45', 1),
+(2, 2, '2409', 'kec ngada', 'rote', '1111', 'jl. ngada-rote', '1231.2.1.2312', '0056dbce1250df9346de2ec4c5c87f4b.pdf', 'a:1:{s:8:"origFile";s:23:"booking-tiket-kreta.pdf";}', '2015-11-16 09:10:45', 1);
 
 -- --------------------------------------------------------
 
@@ -380,14 +352,98 @@ CREATE TABLE IF NOT EXISTS `bpom_lab` (
   `penanggungjawab` varchar(100) DEFAULT NULL,
   `n_status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `bpom_lab`
 --
 
 INSERT INTO `bpom_lab` (`id`, `nama`, `alamat`, `penanggungjawab`, `n_status`) VALUES
-(1, 'UPT Pengujian Sertifikasi Mutu Barang - Lembaga Tembakau', 'Jakarta', 'Lana', 1);
+(1, 'UPT Pengujian Sertifikasi Mutu Barang - Lembaga Tembakau', 'Jakarta', 'Lana', 1),
+(2, 'lab baru', NULL, NULL, 2),
+(3, 'Lab Gundar', NULL, NULL, 2),
+(4, 'baru lagi', NULL, NULL, 2),
+(5, 'coba', NULL, NULL, 2),
+(6, 'ada', 'sss', 'ddd', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bpom_log_pelaporan_kemasan`
+--
+
+CREATE TABLE IF NOT EXISTS `bpom_log_pelaporan_kemasan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `industriID` int(11) NOT NULL DEFAULT '0',
+  `pabrikID` int(11) NOT NULL DEFAULT '0',
+  `merek` int(11) NOT NULL DEFAULT '0',
+  `jenis` int(11) NOT NULL DEFAULT '0',
+  `isi` int(11) NOT NULL DEFAULT '0',
+  `satuan` int(11) NOT NULL DEFAULT '0',
+  `bentuKemasan` int(11) NOT NULL DEFAULT '0',
+  `jenisGambar` int(11) NOT NULL DEFAULT '0',
+  `tulisanPeringatan` int(11) NOT NULL DEFAULT '0',
+  `luasDepan` varchar(10) DEFAULT NULL,
+  `luasBelakang` varchar(10) DEFAULT NULL,
+  `suratPengantar` varchar(100) DEFAULT NULL,
+  `namaDan_alamat` int(11) NOT NULL DEFAULT '0',
+  `kodeProduksi` varchar(50) DEFAULT NULL,
+  `tglProduksi` date DEFAULT NULL,
+  `kadarNikotin` varchar(10) DEFAULT NULL,
+  `kadarTar` varchar(10) DEFAULT NULL,
+  `pernyataanDilarang_menjual` varchar(50) DEFAULT NULL,
+  `pernyataanTidak_aman` varchar(50) DEFAULT NULL,
+  `pernyataanZat_kimia` varchar(50) DEFAULT NULL,
+  `fotoDepan` varchar(100) DEFAULT NULL,
+  `fotoBelakang` varchar(100) DEFAULT NULL,
+  `fotoKiri` varchar(100) DEFAULT NULL,
+  `fotoKanan` varchar(100) DEFAULT NULL,
+  `fotoAtas` varchar(100) DEFAULT NULL,
+  `fotoBawah` varchar(100) DEFAULT NULL,
+  `kesimpulan` int(11) NOT NULL DEFAULT '0',
+  `catatanDitolak` varchar(300) DEFAULT NULL,
+  `lokasiBeli` varchar(100) DEFAULT NULL,
+  `tglBeli` date DEFAULT NULL,
+  `tahunCukai` varchar(4) DEFAULT NULL,
+  `hargaBungkus` varchar(15) DEFAULT NULL,
+  `hargaBatang` varchar(15) DEFAULT NULL,
+  `createDate` datetime NOT NULL,
+  `evaluator` int(11) NOT NULL DEFAULT '0',
+  `verifikator` int(11) NOT NULL DEFAULT '0',
+  `updateDate` datetime DEFAULT NULL,
+  `n_status` int(11) NOT NULL DEFAULT '0' COMMENT '1: evaluasi, 2:verifikasi, 3:approved, 7:evaluasi balai, 10:posting',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bpom_log_pelaporan_nikotin`
+--
+
+CREATE TABLE IF NOT EXISTS `bpom_log_pelaporan_nikotin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `industriID` int(11) NOT NULL DEFAULT '0',
+  `pabrikID` int(11) NOT NULL DEFAULT '0',
+  `merek` int(11) NOT NULL DEFAULT '0',
+  `jenis` int(11) NOT NULL DEFAULT '0',
+  `isiKemasan` int(11) NOT NULL DEFAULT '0',
+  `satuan` int(11) NOT NULL DEFAULT '0',
+  `kodeProduksi` varchar(50) DEFAULT NULL,
+  `kodeSample` varchar(50) DEFAULT NULL,
+  `labID` int(11) NOT NULL DEFAULT '0',
+  `noSertifikat` varchar(100) DEFAULT NULL,
+  `tanggalUji` date DEFAULT NULL,
+  `kadarNikotin` int(20) DEFAULT NULL,
+  `kadarTar` int(20) DEFAULT NULL,
+  `kadarKretek` varchar(20) DEFAULT NULL,
+  `sertifikat` varchar(100) DEFAULT NULL,
+  `sertifikatlab` varchar(100) DEFAULT NULL,
+  `catatanDitolak` varchar(300) DEFAULT NULL,
+  `createdDate` datetime DEFAULT NULL,
+  `n_status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -441,31 +497,26 @@ CREATE TABLE IF NOT EXISTS `bpom_news_content` (
   KEY `topcontent` (`topcontent`),
   KEY `sourceurl_2` (`sourceurl`),
   KEY `can_save` (`can_save`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `bpom_news_content`
 --
 
 INSERT INTO `bpom_news_content` (`id`, `parentid`, `lid`, `title`, `brief`, `content`, `image`, `thumbnail_image`, `slider_image`, `categoryid`, `articleType`, `url`, `sourceurl`, `file`, `created_date`, `expired_date`, `posted_date`, `fromwho`, `filesize`, `can_save`, `tags`, `authorid`, `n_status`, `topcontent`) VALUES
-(1, 0, 0, '1 Tips si kecil tidur nyenyak hingga lelap dan lahap sampai selamanya', '', '&lt;span class=&quot;brief&quot;&gt;Usia Balita merupakan periode emas tumbuh kembang Si Kecil. Untuk mendukung pertumbuhansi kecil secara&lt;/span&gt;', '7f97ab29b00bc87ba72226b1f13cc4b3.jpg', '', '', 0, 0, '', '', 'http://localhost/nestle/nestle/public_assets/7f97ab29b00bc87ba72226b1f13cc4b3.jpg', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:17', 0, 0, 0, '', 1, 1, 0),
-(2, 0, 0, '2 Tips si kecil tidur nyenyak hingga lelap dan lahap sampai selamanya', '', '&lt;span class=&quot;brief&quot;&gt;Usia Balita merupakan periode emas tumbuh kembang Si Kecil. Untuk mendukung pertumbuhansi kecil secara&lt;/span&gt;', '1d15a439732ff4756b0ea121e05ffa81.jpg', '', '', 0, 0, '', '', 'http://localhost/nestle/nestle/public_assets/1d15a439732ff4756b0ea121e05ffa81.jpg', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:25', 0, 0, 0, '', 1, 1, 0),
-(3, 0, 0, '3 Tips si kecil tidur nyenyak hingga lelap dan lahap sampai selamanya', '', '&lt;span class=&quot;brief&quot;&gt;Usia Balita merupakan periode emas tumbuh kembang Si Kecil. Untuk mendukung pertumbuhansi kecil secara&lt;/span&gt;', '83badbf45943ed06a978e79baf77224a.jpg', '', '', 0, 0, '', '', 'http://localhost/nestle/nestle/public_assets/83badbf45943ed06a978e79baf77224a.jpg', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:33', 0, 0, 0, '', 1, 1, 0),
-(4, 0, 0, '4 Tips si kecil tidur nyenyak hingga lelap dan lahap sampai selamanya', '', '&lt;span class=&quot;brief&quot;&gt;Usia Balita merupakan periode emas tumbuh kembang Si Kecil. Untuk mendukung pertumbuhansi kecil secara&lt;/span&gt;', 'db5086d7fa346198edea68b2d72f0d1f.jpg', '', '', 0, 0, '', '', 'http://localhost/nestle/nestle/public_assets/db5086d7fa346198edea68b2d72f0d1f.jpg', '2014-08-10 15:47:02', '0000-00-00 00:00:00', '2014-09-01 22:23:41', 0, 0, 0, '', 1, 1, 0),
-(5, 0, 0, 'testing', 'csacsa', 'cascsasacac', '', '', '', 0, 0, '', '', '', '2014-10-22 14:19:15', '0000-00-00 00:00:00', '2014-10-21 00:00:00', 0, 0, 0, '', 1, 1, 0),
-(6, 0, 0, 'adadadada mantab', 'csasacsa', 'csacaascas', '874dd9d3d522bea86dab39f580d818d8.png', '', '', 0, 1, '', '', 'http://localhost/bpom/public_assets/874dd9d3d522bea86dab39f580d818d8.png', '2014-10-22 14:35:57', '0000-00-00 00:00:00', '2014-12-04 07:42:58', 0, 0, 0, '', 0, 1, 0),
-(7, 0, 0, 'kontak', 'kontak', 'kontak', '', '', '', 0, 0, '', '', '', '2014-10-22 14:42:30', '0000-00-00 00:00:00', '2014-10-14 00:00:00', 0, 0, 0, '', 0, 0, 0),
-(8, 0, 0, 'aaa', 'aaa', 'aaa', '', '', '', 0, 0, '', '', '', '2014-10-22 14:43:41', '0000-00-00 00:00:00', '2014-10-15 00:00:00', 0, 0, 0, '', 0, 0, 0),
-(9, 0, 0, 'b', 'bbbbbbbbbbb', 'bbbb', '', '', '', 0, 2, '', '', '', '2014-10-22 14:45:23', '0000-00-00 00:00:00', '2014-10-22 14:46:50', 0, 0, 0, '', 0, 1, 0),
-(10, 0, 0, 'test input', 'Kini, makin banyak beredar rokok elektronik atau personal vapour. Penjualannya makin marak di internet, dan kini mulai merambah di pusat-pusat perbelanjaan. Sehingga, saat ini makin mudah melihat orang menghisap rokok elektronik (vaping). Hingga kini, Indonesia memang belum memiliki regulasi yang mengatur tentang penggunaan rokok elektronik.', '&lt;style type=&quot;text/css&quot;&gt;p { margin-bottom: 0.1in; direction: ltr; line-height: 120%; text-align: left; widows: 2; orphans: 2; }&lt;/style&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;Kini,makin banyak beredar rokok elektronik atau personal vapour.Penjualannya makin marak di internet,  dan kini mulai merambah dipusat-pusat perbelanjaan. Sehingga, saat ini makin mudah melihatorang menghisap rokok elektronik (vaping). Hingga kini, Indonesiamemang belum memiliki regulasi yang mengatur tentang penggunaan rokokelektronik.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;BadanPengawas Obat dan Makanan (BPOM) sudah mendiskusikan hal ini bersamadengan Kementerian Kesehatan dalam beberapa waktu terakhirmembicarakan apa risiko serta manfaatnya. &quot;Kita tunggu aturanatau regulasi hal ini dari Kementerian Kesehatan. Tunggu tanggalmainnya saja,&quot; terang Kepala BPOM Dr. Ir. Roy AlexanderSparringa, M.App.Sc saat dihubungi oleh Health-Liputan6.com padaKamis (16/10/2014).&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;&quot;Nantijika sudah ada regulasinya kami akan bergerak sesuai regulasitersebut,&quot; terang Roy.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;Bukanhanya Indonesia saja yang belum memiliki aturan jelas tentangpenggunaan vaping, negara-negara di Eropa umumnya belum memilikinya.Namun, Roy menjelaskan, bahwa negara tetangga seperti Australia,Singapura, dan Thailand dengan tegas melarang penggunaan rokokelektronik.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;&quot;Bahkan,di negeri asalnya yakni Tiongkok dilarang,&quot; ujar pria kelahiranSidoarjo, 1 Mei 1962 ini.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;Menurutnya,tak lama lagi Indonesia pun sudah akan mengeluarkan kejelasan tentangkeberadaan rokok elektronik ini. &lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;(Sumber: Liputan6.com Jakarta 17 Oktober 2014)&lt;/p&gt;', '1a0687b834920126dd003a90319f52c1.png', '', '', 0, 0, '', '', 'http://localhost/bpom/public_assets/1a0687b834920126dd003a90319f52c1.png', '2014-12-04 06:56:27', '0000-00-00 00:00:00', '2014-12-04 10:29:22', 0, 0, 0, '', 1, 1, 0),
-(11, 0, 0, 'visi misi', 'visi misi', 'visi misi', '6ba36484347032639da43649a4659693.jpg', '', '', 0, 3, '', '', 'http://localhost/bpom/public_assets/6ba36484347032639da43649a4659693.jpg', '2014-12-04 07:53:19', '0000-00-00 00:00:00', '2014-12-04 00:00:00', 0, 0, 0, '', 0, 1, 0),
-(12, 0, 0, 'Tugas pokok', 'Tugas pokok', 'Tugas pokok', '4d455bdafcb2fe4789eac4bef3d71019.jpg', '', '', 0, 4, '', '', 'http://localhost/bpom/public_assets/4d455bdafcb2fe4789eac4bef3d71019.jpg', '2014-12-04 08:01:46', '0000-00-00 00:00:00', '2014-12-04 00:00:00', 0, 0, 0, '', 0, 1, 0),
-(13, 0, 0, 'Publikasi peraturan', 'Publikasi peraturan', '&lt;b&gt;Lorem Ipsum&lt;/b&gt; is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&lt;br&gt;&lt;br&gt;Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.&lt;br&gt;', '2ca5f98729d8f92c8e08c7decfa03914.png', '', '', 0, 5, '', '', 'http://localhost/bpom/public_assets/2ca5f98729d8f92c8e08c7decfa03914.png', '2014-12-04 08:11:50', '0000-00-00 00:00:00', '2014-12-12 11:23:38', 0, 0, 0, '', 0, 1, 0),
-(14, 0, 0, 'publikasi penelitian', 'publikasi penelitian', 'publikasi penelitian', 'c1ac25fac592429cd0506668b875109a.pdf', '', '', 0, 6, '', '', 'http://localhost/bpom/public_assets/c1ac25fac592429cd0506668b875109a.pdf', '2014-12-04 08:12:24', '0000-00-00 00:00:00', '2014-12-12 16:59:23', 0, 0, 0, '', 0, 1, 0),
-(15, 0, 0, 'Data pengaduan', 'Data pengaduan', 'Data pengaduan', '', '', '', 0, 8, '', '', '', '2014-12-04 08:28:20', '0000-00-00 00:00:00', '2014-12-04 00:00:00', 0, 0, 0, '', 0, 1, 0),
-(16, 0, 0, 'data faq', 'data faq', 'data faq', '', '', '', 0, 7, '', '', '', '2014-12-04 08:34:31', '0000-00-00 00:00:00', '2014-12-04 00:00:00', 0, 0, 0, '', 0, 1, 0),
+(11, 0, 0, 'Visi Misi', '', '&lt;style type=&quot;text/css&quot;&gt;p { margin-bottom: 0.1in; direction: ltr; line-height: 120%; text-align: left; widows: 2; orphans: 2; }&lt;/style&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;font style=&quot;font-size: 14pt&quot; size=&quot;4&quot;&gt;&lt;b&gt;Visi&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Menjadi Institusi Pengawas Obat dan Makanan yang Inovatif, Kredibel dan Diakui Secara Internasional untuk Melindungi Masyarakat&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;font style=&quot;font-size: 14pt&quot; size=&quot;4&quot;&gt;&lt;b&gt;Misi&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Melakukan pengawasan &lt;/span&gt;&lt;span lang=&quot;en-US&quot;&gt;&lt;i&gt;pre-market&lt;/i&gt;&lt;/span&gt;&lt;span lang=&quot;en-US&quot;&gt; dan &lt;/span&gt;&lt;span lang=&quot;en-US&quot;&gt;&lt;i&gt;post-market&lt;/i&gt;&lt;/span&gt;&lt;span lang=&quot;en-US&quot;&gt; berstandar internasional &lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Menerapkan sistem manajemen mutu secara konsisten&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Mengoptimalkan kemitraan dengan pemangku kepentingan di berbagai lini&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Memberdayakan masyarakat agar mampu melindungi diri dari obat dan makanan yang berisiko terhadap kesehatan&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Membangun organisasi pembelajar (&lt;/span&gt;&lt;span lang=&quot;en-US&quot;&gt;&lt;i&gt;learning organization&lt;/i&gt;&lt;/span&gt;&lt;span lang=&quot;en-US&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;', '', '', '', 0, 3, '', '', 'http://localhost/bpom/public_assets/6ba36484347032639da43649a4659693.jpg', '2014-12-04 07:53:19', '0000-00-00 00:00:00', '2015-12-11 13:45:40', 0, 0, 0, '', 0, 1, 0),
+(12, 0, 0, 'Tugas dan Fungsi', '', '&lt;style type=&quot;text/css&quot;&gt;p { margin-bottom: 0.1in; direction: ltr; line-height: 120%; text-align: left; widows: 2; orphans: 2; }&lt;/style&gt;&lt;ol&gt;&lt;li&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;font style=&quot;font-size: 12pt&quot; size=&quot;3&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;TugasPokok:&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p style=&quot;margin-left: 0.3in; margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;font style=&quot;font-size: 12pt&quot; size=&quot;3&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Penyiapanperumusan kebijakan teknis dan penyusunan pedoman, standar, kriteriadan prosedur, serta pelaksanaan pengendalian, bimbingan teknis danevaluasi di bidang pengawasan narkotika, psikotropika dan zatadiktif.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;ol start=&quot;2&quot;&gt;&lt;li&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;font style=&quot;font-size: 12pt&quot; size=&quot;3&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Fungsi:&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;ul&gt;&lt;li&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;font style=&quot;font-size: 12pt&quot; size=&quot;3&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Penyusunanrencana dan program pengawasan narkotika, psikotropika dan zatadiktif.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;font style=&quot;font-size: 12pt&quot; size=&quot;3&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Koordinasikegiatan fungsional pelaksanaan kebijakan teknis di bidangpengawasan narkotika, psikotropika dan zat adiktif.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;font style=&quot;font-size: 12pt&quot; size=&quot;3&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Pelaksanaanpenyiapan bahan perumusan kebijakan teknis, penyusunan pedoman,standar, kriteria dan prosedur, serta pelaksanaan di bidangpengawasan narkotika, psikotropika, prekursor dan rokok.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;&lt;font style=&quot;font-size: 12pt&quot; size=&quot;3&quot;&gt;&lt;span lang=&quot;en-US&quot;&gt;Evaluasidan penyusunan laporan di bidang pengawasan narkotika, psikotropikadan zat adiktif.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;', '', '', '', 0, 4, '', '', 'http://localhost/bpom/public_assets/4d455bdafcb2fe4789eac4bef3d71019.jpg', '2014-12-04 08:01:46', '0000-00-00 00:00:00', '2015-12-11 14:02:24', 0, 0, 0, '', 0, 1, 0),
+(13, 0, 0, 'Peraturan dan Kebijakan', '', '', '', '', '', 0, 5, '', '', 'http://localhost/bpom/public_assets/2ca5f98729d8f92c8e08c7decfa03914.png', '2014-12-04 08:11:50', '0000-00-00 00:00:00', '2015-12-11 14:06:05', 0, 0, 0, '', 0, 1, 0),
+(14, 0, 0, 'Hasil Penelitian', '', '', '', '', '', 0, 6, '', '', 'http://localhost/bpom/public_assets/c1ac25fac592429cd0506668b875109a.pdf', '2014-12-04 08:12:24', '0000-00-00 00:00:00', '2015-12-11 14:08:01', 0, 0, 0, '', 0, 1, 0),
+(15, 0, 0, 'Saran dan Pengaduan', '', 'Jika ada aduan terkait sistem ini silahkan diadukan lewat :&lt;br&gt;Telp / Fax : 021-4245523/4244691 (ext. 1075)&lt;br&gt;Email : wasnapza@pom.go.id; wasnapza@gmail.com&lt;br&gt;', '', '', '', 0, 8, '', '', '', '2014-12-04 08:28:20', '0000-00-00 00:00:00', '2015-12-11 14:15:13', 0, 0, 0, '', 0, 1, 0),
+(16, 0, 0, 'FAQ', '', '&lt;ol&gt;&lt;li&gt;&amp;nbsp;Bagaimana caranya untuk membuat pelaporan ?&amp;nbsp;&lt;/li&gt;&lt;li&gt;&amp;nbsp;Bagaimana cara mendaftar ?&lt;/li&gt;&lt;li&gt;&amp;nbsp;Dimana tombol loginnya ?&lt;/li&gt;&lt;li&gt;&amp;nbsp;Apa yang harus disiapkan untuk melakukan pelaporan ?&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;', '', '', '', 0, 7, '', '', '', '2014-12-04 08:34:31', '0000-00-00 00:00:00', '2015-12-13 22:17:27', 0, 0, 0, '', 0, 1, 0),
 (17, 0, 0, 'data prosedur', 'data prosedur', 'data prosedur', '', '', '', 0, 9, '', '', '', '2014-12-04 08:34:58', '0000-00-00 00:00:00', '2014-12-04 00:00:00', 0, 0, 0, '', 0, 1, 0),
-(18, 0, 0, 'What is lorem ipsum 1', 'What is lorem ipsum 1', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.', '', '', '', 0, 10, '', '', '', '2014-12-12 11:30:09', '0000-00-00 00:00:00', '2014-12-12 00:00:00', 0, 0, 0, '', 0, 1, 0);
+(18, 0, 0, 'Petunjuk Penggunaan', '', 'Buku panduan penggunaan sistem ini bisa didownload pada link dibawah ini&lt;br&gt;', '', '', '', 0, 10, '', '', '', '2014-12-12 11:30:09', '0000-00-00 00:00:00', '2015-12-13 22:18:57', 0, 0, 0, '', 0, 1, 0),
+(19, 0, 0, 'BPOM: Regulasi Rokok Elektronik, Tunggu Tanggal Mainnya', 'Kini, makin banyak beredar rokok elektronik atau personal vapour. Penjualannya makin marak di internet,  dan kini mulai merambah di pusat-pusat perbelanjaan. Sehingga, saat ini makin mudah melihat orang menghisap rokok elektronik (vaping). Hingga kini, Indonesia memang belum memiliki regulasi yang mengatur tentang penggunaan rokok elektronik.', '&lt;style type=&quot;text/css&quot;&gt;p { margin-bottom: 0.1in; direction: ltr; line-height: 120%; text-align: left; widows: 2; orphans: 2; }&lt;/style&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;Kini,makin banyak beredar rokok elektronik atau personal vapour.Penjualannya makin marak di internet,  dan kini mulai merambah dipusat-pusat perbelanjaan. Sehingga, saat ini makin mudah melihatorang menghisap rokok elektronik (vaping). Hingga kini, Indonesiamemang belum memiliki regulasi yang mengatur tentang penggunaan rokokelektronik.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;BadanPengawas Obat dan Makanan (BPOM) sudah mendiskusikan hal ini bersamadengan Kementerian Kesehatan dalam beberapa waktu terakhirmembicarakan apa risiko serta manfaatnya. &quot;Kita tunggu aturanatau regulasi hal ini dari Kementerian Kesehatan. Tunggu tanggalmainnya saja,&quot; terang Kepala BPOM Dr. Ir. Roy AlexanderSparringa, M.App.Sc saat dihubungi oleh Health-Liputan6.com padaKamis (16/10/2014).&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;&quot;Nantijika sudah ada regulasinya kami akan bergerak sesuai regulasitersebut,&quot; terang Roy.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;Bukanhanya Indonesia saja yang belum memiliki aturan jelas tentangpenggunaan vaping, negara-negara di Eropa umumnya belum memilikinya.Namun, Roy menjelaskan, bahwa negara tetangga seperti Australia,Singapura, dan Thailand dengan tegas melarang penggunaan rokokelektronik.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;&quot;Bahkan,di negeri asalnya yakni Tiongkok dilarang,&quot; ujar pria kelahiranSidoarjo, 1 Mei 1962 ini.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;Menurutnya,tak lama lagi Indonesia pun sudah akan mengeluarkan kejelasan tentangkeberadaan rokok elektronik ini. &lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;(Sumber: Liputan6.com Jakarta 17 Oktober 2014)&lt;/p&gt;', '3043c44e4d5a03f3a3dd49fe979a8b62.jpg', '', '', 0, 0, '', '', 'http://localhost/bpom/public_assets/3043c44e4d5a03f3a3dd49fe979a8b62.jpg', '2015-12-11 13:26:29', '0000-00-00 00:00:00', '2015-12-11 13:27:55', 0, 0, 0, '', 1, 1, 0),
+(20, 0, 0, 'Kerugian Akibat Merokok Rp 254,41 Trilyun', 'Pendapatan negara dari cukai rokok, ternyata tak sebanding dengan nilai kerugian yang ditimbulkan karena merokok. Pada 2012, pendapatan negara dari cukai, hanya sebesar Rp 55 triliun. Namun, kerugiannya mencapai Rp 254,41 triliun.', '&lt;style type=&quot;text/css&quot;&gt;p { margin-bottom: 0.1in; direction: ltr; line-height: 120%; text-align: left; widows: 2; orphans: 2; }&lt;/style&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;Pendapatan negara dari cukai rokok, ternyata tak sebanding dengannilai kerugian yang ditimbulkan karena merokok. Pada 2012, pendapatannegara dari cukai, hanya sebesar Rp 55 triliun. Namun, kerugiannyamencapai Rp 254,41 triliun. &lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;Kerugiantersebut, rinciannya adalah uang yang dikeluarkan untuk pembelianrokok Rp 138 triliun, biaya perawatan medis rawat inap dan jalan Rp2,11 triliun, kehilangan produktivitas akibat kematian prematur danmorbiditas maupun disabilitas Rp 105,3 triliun.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;''''Kami sedangmemikirkan, saat pemberlakuan BPJS nanti, penyakit akibat rokok inidicover atau tidak,'''' ujar Wakil Menteri Kesehatan, Ali Gufron Mukti,di acara Focus Group Discussion dengan tema Dilema APBN untukMembiayai Penyakit Terkait Rokok dalam Perspektif Asas Keadilan,Kamis (19/9). &lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;Menurut Ali,untuk tahun ini masyarakat yang sakit karena rokok masih dibiayaioleh pemerintah. Namun, mulai 1 januari 2014, pemerintah masihmembahas apakah penyakit yang disebabkan merokok tersebut akandijamin juga atau tidak. ''''Jadi, kami menerima input. Yang kitainginkan pembiayaannya secara adil dan tidak membebani APBN,''''katanya.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;Ali mengatakan,dalam diskusi sempat muncul wacana sin tex atau pajak penghapusandosa dengan menaikkan cukai rokok. Konsep ini, sudah diberlakukan diluar negeri seperti Filipina dan Thailand. ''''Apa pun nantikeputusannya, yang penting ada jalan keluar untuk penyakit akibatrokok ini,'''' katanya. &lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;Sementara menurutAnggota DPR Komisi IX yang juga anggota Badan Anggaran, Surya ChandraSurapaty, pendapatan dari cukai rokok sebesar Rp 55 triliun, seolahtak ada artinya. Karena, biaya kesehatan yang harus dikeluarkankarena penyakit rokok nilainya mencapai Rp 107 triliun. &lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;Kalau programBPJS sudah berjalan, pemerintah harus menanggung biaya jaminankesehatan masyarakat (Jamkesmas) sebesar Rp 52 triliun dari biayapengobatan. '''' Ini sangat timpang, sudah masyarakat sakit, negarakita juga tekor besar-besaran karena rokok,'''' katanya. &lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;Harga rokok diIndonesia, kata dia, memang sangat murah bila dibandingkan hargarokok di negara lain. Di Malaysia harga rokok perbungkusnya mencapaiRp 30 ribu. Sedangkan di Singapura, harga rokok perbungkusnyamencapai Rp 80-90 ribu. ''''Permintaan terhadap rokok, hanya bisaberkurang secara signifikan kalau kenaikan rokok dilakukan secararadikal,''''katanya.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot;&gt;(Sumber:Republika, Kamis, 19 September 2013)&lt;/p&gt;', 'de35b67b3b75c9290b578919e84b44cf.jpg', '', '', 0, 0, '', '', 'http://localhost/bpom/public_assets/de35b67b3b75c9290b578919e84b44cf.jpg', '2015-12-11 13:28:57', '0000-00-00 00:00:00', '2015-12-11 13:39:59', 0, 0, 0, '', 1, 1, 0),
+(21, 0, 0, 'Penerapan PHW Pada 31 Oktober 2014 Mencapai 67,90%', 'Peringatan Kesehatan Berbentuk Gambar dan Tulisan (Pictorial Health Warning/PHW) pada kemasan produk tembakau merupakan kebijakan tingkat nasional yang sangat dibanggakan oleh Indonesia sebagai negara yang belum mengaksesi FCTC (Framework Convention on Tobacco Control).', '&lt;style type=&quot;text/css&quot;&gt;p { margin-bottom: 0.1in; direction: ltr; line-height: 120%; text-align: left; widows: 2; orphans: 2; }&lt;/style&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;PeringatanKesehatan Berbentuk Gambar dan Tulisan (Pictorial Health Warning/PHW)pada kemasan produk tembakau merupakan kebijakan tingkat nasionalyang sangat dibanggakan oleh Indonesia sebagai negara yang belummengaksesi FCTC (Framework Convention on Tobacco Control). &lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;BadanPOM yang mendapatkan amanah untuk mengawal implementasi kebijakanini, secara kontinyu dan gradual terus melakukan monitoringpengawasan penerapan PHW di seluruh Indonesia.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;Secara kumulatif, monitoring PHW produk tembakau sejak 24 Juni 2014sampai dengan 31 Oktober 2014 mencakup 13.070 item produk di 648sarana. Terdapat  311 merk rokok yang beredar sudah mencantumkan PHWyang diproduksi/diimpor oleh 81 industri/importir rokok. (lihat disini).  &lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;Padabulan Oktober 2014, hasil monitoring  penerapan pencantuman  PHW padakemasan rokok rata-rata sebesar 67,90%, berdasarkan laporan dariBalai Besar/Balai POM di seluruh Indonesia. Ada kenaikan yang cukupsignifikan terkait penerapan PHW sejak pemberlakuan kebijakan tanggal24 Juni 2014, dimana hasil monitoring pada awal penerapan hanyamencapai 13,44%.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;Peningkatan hasil monitoring pencantuman PHW tersebut menunjukkantingkat kepatuhan pelaku usaha yang semakin membaik. Diharapkandengan partisispasi dan komitmen berbagai pihak terutama dari pihakprodusen, kebijakan nasional penerapan PHW benar-benar dipatuhi,sehingga seluruh produk tembakau yang beredar  sudah mencantumkanPHW.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;Badan POM terus meningkatkan koordinasi lintas sektor dalampengawasan produk tembakau agar mandat kepada Badan POM dapatdilaksanakan secara optimal.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt; &lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;SATUTINDAKAN UNTUK MASA DEPAN&lt;/p&gt;&lt;p style=&quot;margin-bottom: 0.11in; line-height: 108%&quot; align=&quot;justify&quot;&gt;DirektoratPengawasan Napza&lt;/p&gt;', 'fcc75cab773face58a0f8c06cea12256.jpg', '', '', 0, 0, '', '', 'http://localhost/bpom/public_assets/fcc75cab773face58a0f8c06cea12256.jpg', '2015-12-11 13:30:37', '0000-00-00 00:00:00', '2015-12-11 00:00:00', 0, 0, 0, '', 1, 1, 0),
+(22, 0, 0, 'Struktur Organisasi', '', '', '', '', '', 0, 1, '', '', '', '2015-12-11 13:56:30', '0000-00-00 00:00:00', '2015-12-11 00:00:00', 0, 0, 0, '', 0, 1, 0),
+(23, 0, 0, 'tes', '', '', '', '', '', 1, 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2015-12-28 00:00:00', 0, 0, 0, '', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -476,15 +527,31 @@ INSERT INTO `bpom_news_content` (`id`, `parentid`, `lid`, `title`, `brief`, `con
 CREATE TABLE IF NOT EXISTS `bpom_news_content_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
+  `receiptid` int(11) NOT NULL,
   `contentid` int(11) NOT NULL,
+  `subject` varchar(100) DEFAULT NULL,
   `comment` text NOT NULL,
   `date` datetime NOT NULL,
   `n_status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `date` (`date`),
   KEY `userid` (`userid`),
-  KEY `contentid` (`contentid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `contentid` (`receiptid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `bpom_news_content_comment`
+--
+
+INSERT INTO `bpom_news_content_comment` (`id`, `userid`, `receiptid`, `contentid`, `subject`, `comment`, `date`, `n_status`) VALUES
+(1, 1, 10108, 0, 'test', 'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Fusce aliquet neque et accumsan fermentum. Aliquam lobortis neque in nulla tempus, molestie fermentum purus euismod. ', '2015-10-28 00:00:00', 1),
+(2, 0, 0, 0, NULL, '', '0000-00-00 00:00:00', 1),
+(3, 3, 10108, 0, NULL, 'sdadas', '2015-10-28 14:39:10', 1),
+(4, 3, 10108, 0, 'Message from admin', 'ini masih kurang', '2015-10-28 14:40:08', 1),
+(5, 1, 10108, 0, 'Message from admin', 'gK Bgs', '2015-10-31 16:33:25', 1),
+(6, 3, 10108, 4, 'Message from admin', 'foto masih kurang', '2015-11-04 08:23:41', 1),
+(7, 3, 10108, 2, 'Message from admin', 'Kode produksi masih kosong', '2015-11-10 09:35:04', 1),
+(8, 3, 10108, 2, 'Message from admin', 'Pelaporan ditolak', '2015-11-10 09:36:53', 1);
 
 -- --------------------------------------------------------
 
@@ -924,34 +991,19 @@ CREATE TABLE IF NOT EXISTS `bpom_pelaporan_kemasan` (
   `evaluator` int(11) NOT NULL DEFAULT '0',
   `verifikator` int(11) NOT NULL DEFAULT '0',
   `updateDate` datetime DEFAULT NULL,
-  `n_status` int(11) NOT NULL DEFAULT '0' COMMENT '1: evaluasi, 2:verifikasi, 3:approved, 7:evaluasi balai',
+  `n_status` int(11) NOT NULL DEFAULT '0' COMMENT '1: evaluasi, 2:verifikasi, 3:approved, 7:evaluasi balai, 10:posting',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `bpom_pelaporan_kemasan`
 --
 
 INSERT INTO `bpom_pelaporan_kemasan` (`id`, `industriID`, `pabrikID`, `merek`, `jenis`, `isi`, `satuan`, `bentuKemasan`, `jenisGambar`, `tulisanPeringatan`, `luasDepan`, `luasBelakang`, `suratPengantar`, `namaDan_alamat`, `kodeProduksi`, `tglProduksi`, `kadarNikotin`, `kadarTar`, `pernyataanDilarang_menjual`, `pernyataanTidak_aman`, `pernyataanZat_kimia`, `fotoDepan`, `fotoBelakang`, `fotoKiri`, `fotoKanan`, `fotoAtas`, `fotoBawah`, `kesimpulan`, `catatanDitolak`, `lokasiBeli`, `tglBeli`, `tahunCukai`, `hargaBungkus`, `hargaBatang`, `createDate`, `evaluator`, `verifikator`, `updateDate`, `n_status`) VALUES
-(15, 1, 1, 1, 1, 1, 0, 1, 1, 3, '11', NULL, NULL, 1, 'qwqwq', '2014-12-03', NULL, NULL, '1', '1', NULL, '2ae828159480c084c2afe0c487604689.JPG', 'e4ef5786fa2c9beae0420f754b251b07.JPG', '1eabb6059c9a4915ac012d347bf5d522.JPG', 'f96665517454d43069953ef416cddb16.JPG', 'a4f6e126c5c279ed6da8d712ee1bb72e.JPG', '208b6ce30c5d495c06a089cd703b5309.JPG', 1, NULL, NULL, NULL, NULL, NULL, NULL, '2014-11-24 14:17:38', 0, 0, NULL, 0),
-(16, 1, 1, 1, 1, 10, 3, 3, 3, 6, '12', '212', 'e34f38f33c0bd998541cd654bc8bfe10.jpg', 0, 'dadsas', '2014-12-03', '1121', '212', '1', '1', '1', '4613ed9a42e551108cac3629d6b81dca.png', '626559c0737cd0e09972f022b33cf980.png', '96969ec30e72fb5437661adb25bb9435.png', 'e647a3c8e8bcbf5301fccab2fa32533b.png', 'e4fbe3431d3ca16ca4c2c792d9031565.png', '7079ad375164cca556c7b48b5ffdaa96.png', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2014-12-03 08:59:14', 0, 0, NULL, 1),
-(17, 1, 24, 0, 4, 10, 4, 3, 5, 5, NULL, NULL, '30eeb815b046a8c27d36b3869fc7c8f7.png', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '7faf16e41c6174071447598f562ff9b4.png', '8a37ba80b191ad092f546ba40da5b0d2.png', 'c70cfe48b7112adb20ae79b3486d8f0b.png', '98ffdef6583206cd010d8440b8c1fcd8.png', '1923032fa4e6016f71c56ad3a7cb68a4.png', '0724adf941efe92769b3d66b75776978.png', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2014-12-03 09:43:25', 0, 0, NULL, 0),
-(18, 1, 1, 3, 1, 1, 0, 1, 1, 1, NULL, NULL, 'e0f033941e6433685d95a9943bb15a6b.png', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'd0a1f8df44fbfa87f745cb85c449e272.JPG', '64a16e6f5581ea32ef1ebc7af4d6a493.JPG', 'f38f2b58b9421b785f2440d49f592abb.JPG', 'f65ca41421ae606c2ff50eab04bd29ca.JPG', '18fe1848247284724d3def0587db2ab0.JPG', '0e9b79dadc49b2d2461f376361ce3192.JPG', 1, NULL, NULL, NULL, NULL, NULL, NULL, '2014-12-03 14:55:26', 0, 0, NULL, 0),
-(19, 8, 8, 2, 1, 1, 0, 1, 1, 1, '11', '11', '9a53c84a82a7fa80a9f448ab3705deb7.png', 1, '1231321', '2014-12-04', '12', '13', '1', '1', NULL, 'b4b400db377643a01f4dd567f4708e0a.JPG', '5d65dd5bcc309e1f71aa715251e12cd0.JPG', 'e97d6101813ff1c1eeaf75eb2be0697a.JPG', 'fb3fec5bb95f11ed15774afe4f8c2643.JPG', '65cdd4f3e1611b58ee17f2ecd3ec41de.JPG', 'f189584754fb630d07c74dca21badbf5.JPG', 0, 'ditolak laporan', NULL, NULL, NULL, NULL, NULL, '2014-12-03 15:09:25', 0, 0, NULL, 2),
-(20, 16, 8, 2, 1, 1, 0, 1, 1, 1, NULL, NULL, 'de7b36074efd107efd68980b189f7a05.jpg', 0, NULL, NULL, '1', '12', '1', NULL, NULL, 'bd94d629edb2795d7a5d5f6c74f3e47b.jpg', '40d2c4cb32b03f0e4d2be1034820ac8e.png', '27b0c7572342b0ffe7b1710753de80ae.jpeg', '385551b67ce737f751234dd01b751e3b.jpg', '9e4ab758083eaec372fd1591e212e983.jpg', 'e9245f803954d4b681ac50370f1f1a68.jpg', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2014-12-05 10:02:20', 0, 0, NULL, 2),
-(21, 16, 8, 1, 1, 1, 0, 1, 0, 1, NULL, NULL, NULL, 0, '1111', '2014-12-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'depok', '2014-12-03', '2014', '111111', '1111', '2014-12-06 01:07:34', 0, 0, NULL, 7),
-(22, 16, 8, 1, 1, 1, 0, 1, 1, 1, NULL, NULL, NULL, 0, '', '0000-00-00', NULL, NULL, NULL, NULL, NULL, 'eca7eee929a82d2168c1b0d5f4548d7e.jpg', 'e86389d951e60c5c7db612e907fcf300.jpg', '4b1bcdeefc7134333aa02251006b5827.jpg', '1cbad90e0e47440883dfcd37adcddf2f.jpg', 'd6ee13fa916456656a7ac95d397a372d.jpg', '83b32ea1da20a3da59ecb6597e4e38e7.jpg', 1, NULL, '', '0000-00-00', '', '', '', '2014-12-06 01:12:10', 0, 0, NULL, 2),
-(23, 18, 19, 1, 1, 20, 0, 1, 0, 1, NULL, NULL, 'ddc9fe992c09ec5de6a11e943cee0da8.jpg', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'db3dc65bf5d07d664dbbc364f83ba875.png', NULL, '1b9354750571ecc64743273838508589.jpg', '2108aba648aba75c54a33d489f9876a9.jpg', '1971277cdeafc76437b70dcc4ae5a0f7.jpg', '5cd18231e95e8b4896196da2d9af0511.png', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2015-09-10 16:21:37', 0, 0, NULL, 1),
-(24, 1, 24, 0, 1, 0, 0, 1, 0, 1, NULL, NULL, '932f66ed55b245e131bd10d396283b3d.jpg', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '5323cda21cf3f35f07641cb478a85c07.png', '41cc086ce56ea648ca5bc3d91dbbf4df.png', 'b13d0f743a988604c1d0a3d5fbf07329.png', 'feb639d3999b69ce43e2e6ba28a18172.png', 'b25fc9010cd6e25030663cd862eeaff6.png', 'f9335c2ff8f25c37655f9fc315d13dc2.png', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2015-09-10 16:25:38', 0, 0, NULL, 0),
-(25, 1, 18, 1, 1, 12, 0, 1, 0, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2015-09-11 15:00:09', 0, 0, NULL, 0),
-(26, 1, 24, 0, 1, 0, 0, 1, 0, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2015-09-11 15:16:06', 0, 0, NULL, 0),
-(27, 1, 24, 0, 1, 0, 0, 1, 0, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL, 0),
-(28, 1, 18, 2, 3, 10, 4, 3, 3, 5, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL, 0),
-(29, 1, 24, 2, 5, 10, 3, 2, 5, 3, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL, 0),
-(30, 1, 24, 2, 1, 0, 1, 1, 1, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL, 0),
-(31, 1, 24, 2, 1, 0, 1, 1, 1, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL, 0),
-(32, 1, 24, 2, 1, 0, 1, 1, 1, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL, 0),
-(33, 1, 18, 2, 1, 12, 2, 3, 1, 2, NULL, NULL, 'e57ce33b65f65eb6fe2adf2d5cc2ad28.jpg', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ed31cc6562d0445be2b4b240c12812a8.jpg', 'f45e6be5b793547929256d02c2bfe9b0.jpg', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL, 0);
+(1, 2, 2, 16, 1, 12, 3, 1, 3, 4, NULL, NULL, '7963693f406abb82f26d5df37768c88f.png', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '782d9aa29fc0d0063ad92febba9d37ca.jpg', 'fb96e8e7d65e358ab32b17f63478691b.jpg', 'a4aa1d512fa502a4db1a8366977b1cc4.png', '3bf71c50fe0dcc90628612abedae0802.jpg', 'a89e5c2ab5c820fbf9e64d64bfe159a7.png', '1bd7dbd8d4827cff4483ff9227903676.jpg', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2015-11-16 09:14:02', 0, 0, NULL, 10),
+(2, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL, 2),
+(3, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', 0, 0, NULL, 2),
+(4, 2, 2, 18, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ea5ebb31810feff71af86be115a2e126.JPG', 'fceba1f50f5cff7b7173ac2459459dd0.JPG', '0680b7f7b7a7b41e6dd20db5e96a7f6a.JPG', '2f053ac23c2ce64feceb8280991203fd.JPG', 'ea59b17f92623b45fe0e99999127f419.JPG', '934e7fc00770e4a4382b1fec7e6137bd.JPG', 0, NULL, NULL, NULL, NULL, NULL, NULL, '2015-12-13 21:41:30', 0, 0, NULL, 10);
 
 -- --------------------------------------------------------
 
@@ -972,31 +1024,23 @@ CREATE TABLE IF NOT EXISTS `bpom_pelaporan_nikotin` (
   `labID` int(11) NOT NULL DEFAULT '0',
   `noSertifikat` varchar(100) DEFAULT NULL,
   `tanggalUji` date DEFAULT NULL,
-  `kadarNikotin` int(20) DEFAULT NULL,
-  `kadarTar` int(20) DEFAULT NULL,
+  `kadarNikotin` varchar(20) DEFAULT NULL,
+  `kadarTar` varchar(20) DEFAULT NULL,
   `kadarKretek` varchar(20) DEFAULT NULL,
   `sertifikat` varchar(100) DEFAULT NULL,
+  `sertifikatlab` varchar(100) DEFAULT NULL,
   `catatanDitolak` varchar(300) DEFAULT NULL,
   `createdDate` datetime DEFAULT NULL,
   `n_status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `bpom_pelaporan_nikotin`
 --
 
-INSERT INTO `bpom_pelaporan_nikotin` (`id`, `industriID`, `pabrikID`, `merek`, `jenis`, `isiKemasan`, `satuan`, `kodeProduksi`, `kodeSample`, `labID`, `noSertifikat`, `tanggalUji`, `kadarNikotin`, `kadarTar`, `kadarKretek`, `sertifikat`, `catatanDitolak`, `createdDate`, `n_status`) VALUES
-(6, 1, 1, 1, 1, 1, 0, 'csaa', 'cascsa', 1, 'csaca', '0000-00-00', 0, 0, 'csacas', 'ab826fd6d05d8420fcf7c5ad80ee0436.png', NULL, '2014-11-14 09:46:48', 0),
-(7, 1, 2, 2, 1, 1, 0, 'fasfasf', 'fafsa', 1, 'fasfa', '0000-00-00', 0, 0, 'fasfasfsa', '6146e4e58c715bdaea4821f5a9efbde7.png', NULL, '2014-11-14 10:01:32', 0),
-(8, 1, 24, 1, 1, 10, 1, '121aw', '1111112222', 1, '213131', '2014-11-11', 12, 121, '121', 'd48b5f1ff13c06e97d2d95f0aa769984.jpg', NULL, '2014-12-03 09:48:53', 1),
-(9, 1, 1, 1, 1, 1, 0, '2131', '213213', 1, '1231', '2014-11-11', 12, 12, '12', '2afa7e3755efe41eae9c776c2d319487.png', NULL, '2014-12-03 10:32:10', 0),
-(10, 16, 8, 2, 1, 1, 0, '1111', '111dasa', 1, '12313', '2014-11-11', 12, 31, '12', 'a126ea996b71d411b3cd83d8ad25d35c.jpg', 'gk cocok nih', '2014-12-05 17:24:15', 1),
-(11, 16, 8, 1, 1, 1, 0, '', '', 1, '123456', '2014-11-11', 3, 3, '3,47', NULL, NULL, '2014-12-12 16:11:51', 1),
-(12, 16, 8, 1, 1, 1, 0, '1231', '23131', 1, '123456', '2014-11-11', 3, 3, '3,47', '4b34df1f5c83020761b7867f623e8c3e.png', NULL, '2014-12-12 16:12:31', 1),
-(13, 0, 0, 1, 1, 1, 0, 'csaa', 'cascsa', 0, 'csaca', '0000-00-00', 0, 0, 'csacas', NULL, NULL, '2015-07-07 14:07:55', 1),
-(14, 1, 18, 3, 1, 10, 1, '121212', 'dsafasdafa', 1, '231321', '2015-01-01', 1, 1, 'dsada', '2f7a7d9fd0b6ed2846561714977d0845.jpg', NULL, NULL, 0),
-(15, 1, 2, 2, 4, 11, 1, '121212', '212121', 1, '212121', '2015-01-01', 11, 21, '13', 'f900ca7f79cef3bdba55ca39607e56cc.jpg', NULL, NULL, 1);
+INSERT INTO `bpom_pelaporan_nikotin` (`id`, `industriID`, `pabrikID`, `merek`, `jenis`, `isiKemasan`, `satuan`, `kodeProduksi`, `kodeSample`, `labID`, `noSertifikat`, `tanggalUji`, `kadarNikotin`, `kadarTar`, `kadarKretek`, `sertifikat`, `sertifikatlab`, `catatanDitolak`, `createdDate`, `n_status`) VALUES
+(1, 2, 2, 16, 1, 12, 3, '1112131321232', '11', 6, '2', '2015-11-16', '1', '2', '1.2', '84d6a9bb91ee9f4fb4836d011291229a.png', '903dbb8a1a24e5dcbe127b96d1e5f4ba.png', NULL, NULL, 10);
 
 -- --------------------------------------------------------
 
@@ -1034,19 +1078,144 @@ CREATE TABLE IF NOT EXISTS `bpom_product` (
   `merek` varchar(100) DEFAULT NULL,
   `produsen` varchar(100) DEFAULT NULL,
   `alamat` text,
+  `kota` varchar(100) DEFAULT NULL,
   `jenis` varchar(10) DEFAULT NULL,
-  `n_status` int(11) DEFAULT '1',
+  `n_status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=128 ;
 
 --
 -- Dumping data for table `bpom_product`
 --
 
-INSERT INTO `bpom_product` (`id`, `merek`, `produsen`, `alamat`, `jenis`, `n_status`) VALUES
-(1, 'Clavo Premio Filter 12', 'PT Djarum', 'test', 'SKM', 1),
-(2, 'Djarum Black 16', 'PT Djarum', NULL, 'SKM', 1),
-(3, 'Camel White 20', 'PT Djarum', NULL, 'SKM', 1);
+INSERT INTO `bpom_product` (`id`, `merek`, `produsen`, `alamat`, `kota`, `jenis`, `n_status`) VALUES
+(1, 'Oepet Oe Sps Biru Putih 10', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKT', 1),
+(2, 'Oepet Extra Special 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'SKT', 1),
+(3, 'Oepet Oe Lights 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'SKM', 1),
+(4, 'Sinar Mas 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(5, 'Oepet Black Filter 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(6, 'Bintang Prima 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(7, 'Oepet Super 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(8, 'Samboga 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(9, 'New Kayumas Jaya 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(10, 'Oe Mild (Biru) 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(11, 'Oe Mild 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(12, 'Pool Mild 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(13, 'Nix 16', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(14, 'Samboga Super 16', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(15, 'Bintang Prima 12', 'Ongkowidjojo, PT', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'SKM', 1),
+(16, 'Maxus 16', 'Nikorama Citra Tobacco, PT', 'Jalan Lingkar Panjang Ds. Panjang, Kec. Bae, Kudus 59327', 'Kudus', 'SKM', 1),
+(17, 'Niko M16', 'Nikorama Citra Tobacco, PT', 'Jalan Lingkar Panjang Ds. Panjang, Kec. Bae, Kudus 59327', 'Kudus', 'SKM', 1),
+(18, 'DJ 12', 'Rajaa Tunggal, PT', 'Dk. Jembangan RT 01/ RW 02 Ds. Gagak Sipat, Kec. Ngemplak, Kab. Boyolali', 'Boyalali', 'SKT ', 1),
+(19, 'Kalisanga 12', 'Rajaa Tunggal, PT', 'Dk. Jembangan RT 01/ RW 02 Ds. Gagak Sipat, Kec. Ngemplak, Kab. Boyolali', 'Boyalali', 'SKT ', 1),
+(20, 'Rajaa 38 12', 'Rajaa Tunggal, PT', 'Dk. Jembangan RT 01/ RW 02 Ds. Gagak Sipat, Kec. Ngemplak, Kab. Boyolali', 'Boyalali', 'SKT ', 1),
+(21, 'Rajaa Istimewa 12', 'Rajaa Tunggal, PT', 'Dk. Jembangan RT 01/ RW 02 Ds. Gagak Sipat, Kec. Ngemplak, Kab. Boyolali', 'Boyalali', 'SKT ', 1),
+(22, 'Rajaa Sejati 12', 'Rajaa Tunggal, PT', 'Dk. Jembangan RT 01/ RW 02 Ds. Gagak Sipat, Kec. Ngemplak, Kab. Boyolali', 'Boyalali', 'SKT ', 1),
+(23, 'Rajaa Natural 12', 'Rajaa Tunggal, PT', 'Dk. Jembangan RT 01/ RW 02 Ds. Gagak Sipat, Kec. Ngemplak, Kab. Boyolali', 'Boyalali', 'SKT ', 1),
+(24, 'Siyem Baru 12', 'Siyem Mandala, PR', 'Jl. Sliwangi No. 371 Semarang, Jawa Tengah', 'Semarang', 'SKT ', 1),
+(25, 'Siyem International 12', 'Siyem Mandala, PR', 'Jl. Sliwangi No. 371 Semarang, Jawa Tengah', 'Semarang', 'SKM ', 1),
+(26, 'Siyem International 16', 'Siyem Mandala, PR', 'Jl. Sliwangi No. 371 Semarang, Jawa Tengah', 'Semarang', 'SKM ', 1),
+(27, 'Siyem Extra 12', 'Siyem Mandala, PR', 'Jl. Sliwangi No. 371 Semarang, Jawa Tengah', 'Semarang', 'SKM ', 1),
+(28, 'Siyem Extra 16', 'Siyem Mandala, PR', 'Jl. Sliwangi No. 371 Semarang, Jawa Tengah', 'Semarang', 'SKM ', 1),
+(29, 'Siyem Prado 12', 'Siyem Mandala, PR', 'Jl. Sliwangi No. 371 Semarang, Jawa Tengah', 'Semarang', 'SKT', 1),
+(30, 'Siyem Vellano 12', 'Siyem Mandala, PR', 'Jl. Sliwangi No. 371 Semarang, Jawa Tengah', 'Semarang', 'SKM ', 1),
+(31, 'Siyem Vellano 16', 'Siyem Mandala, PR', 'Jl. Sliwangi No. 371 Semarang, Jawa Tengah', 'Semarang', 'SKM ', 1),
+(32, 'Roekoen International 12', 'Putra Masa depan, PR', 'Desa Plosoharjo, Kec. Pace, Kab. Nganjuk Jawa Timur', 'Nganjuk ', 'SKM', 1),
+(33, 'Roekoen Premium 12', 'Putra Masa depan, PR', 'Desa Plosoharjo, Kec. Pace, Kab. Nganjuk Jawa Timur', 'Nganjuk ', 'SKM', 1),
+(34, 'PD Massa 12', 'Putra Masa depan, PR', 'Desa Plosoharjo, Kec. Pace, Kab. Nganjuk Jawa Timur', 'Nganjuk ', 'SKT', 1),
+(35, 'Putra Roekoen 12', 'Putra Masa depan, PR', 'Desa Plosoharjo, Kec. Pace, Kab. Nganjuk Jawa Timur', 'Nganjuk ', 'SKT', 1),
+(36, 'Roekoen Massa 12', 'Putra Masa depan, PR', 'Desa Plosoharjo, Kec. Pace, Kab. Nganjuk Jawa Timur', 'Nganjuk ', 'SKT', 1),
+(37, 'R Massa 12', 'Putra Masa depan, PR', 'Desa Plosoharjo, Kec. Pace, Kab. Nganjuk Jawa Timur', 'Nganjuk ', 'SKM', 1),
+(38, 'Mevius Original 20', 'Japan Tobacco International, PT', 'Sovereign Plaza Lantai 17 Unit C,D,E Jl. TB. Simatupang Kav. 36 Cilandak, Jakarta Selatan', 'Jakarta Selatan', 'SPM', 1),
+(39, 'Mevius Lights 20', 'Japan Tobacco International, PT', 'Sovereign Plaza Lantai 17 Unit C,D,E Jl. TB. Simatupang Kav. 36 Cilandak, Jakarta Selatan', 'Jakarta Selatan', 'SPM', 1),
+(40, 'Mevius Ice Menthol 20', 'Japan Tobacco International, PT', 'Sovereign Plaza Lantai 17 Unit C,D,E Jl. TB. Simatupang Kav. 36 Cilandak, Jakarta Selatan', 'Jakarta Selatan', 'SPM', 1),
+(41, 'Camel Black 20', 'Japan Tobacco International, PT', 'Sovereign Plaza Lantai 17 Unit C,D,E Jl. TB. Simatupang Kav. 36 Cilandak, Jakarta Selatan', 'Jakarta Selatan', 'SPM', 1),
+(42, 'Camel White 20', 'Japan Tobacco International, PT', 'Sovereign Plaza Lantai 17 Unit C,D,E Jl. TB. Simatupang Kav. 36 Cilandak, Jakarta Selatan', 'Jakarta Selatan', 'SPM', 1),
+(43, 'Bintang Lima 12', 'Rizky Putra Abadi, PR', 'Desa Ngaban RT 17 RW 06, Kec. Tanggulangin, Kab. Sidoarjo, Jawa Timur', 'Sidoarjo', 'SKT', 1),
+(44, 'Bintang Lima 10', 'Rizky Putra Abadi, PR', 'Desa Ngaban RT 17 RW 06, Kec. Tanggulangin, Kab. Sidoarjo, Jawa Timur', 'Sidoarjo', 'SKT', 1),
+(45, 'Wismilak Diplomat Anniversary 12', 'Gelora Djaja, PT', 'Jl. Buntaran No. 9, Tandes, Surabaya Jawa Timur', 'Surabaya', 'SKM', 1),
+(46, 'Test Lights 16', 'Rizky B, PR', 'Desa Pangkemiri RT 03 RW 03, Kec. Tulangan, Kab. Sidoarjo, Jawa Timur', 'Sidoarjo', 'SKM', 1),
+(47, '24 Prima 12', 'Rizky B, PR', 'Desa Pangkemiri RT 03 RW 03, Kec. Tulangan, Kab. Sidoarjo, Jawa Timur', 'Sidoarjo', 'SKT', 1),
+(48, '24 Prima 10', 'Rizky B, PR', 'Desa Pangkemiri RT 03 RW 03, Kec. Tulangan, Kab. Sidoarjo, Jawa Timur', 'Sidoarjo', 'SKT', 1),
+(49, 'AL Executive 12', 'Rizky B, PR', 'Desa Pangkemiri RT 03 RW 03, Kec. Tulangan, Kab. Sidoarjo, Jawa Timur', 'Sidoarjo', 'SKT', 1),
+(50, 'AL Executive 10', 'Rizky B, PR', 'Desa Pangkemiri RT 03 RW 03, Kec. Tulangan, Kab. Sidoarjo, Jawa Timur', 'Sidoarjo', 'SKT', 1),
+(51, '246 New 12', 'Rizky B, PR', 'Desa Pangkemiri RT 03 RW 03, Kec. Tulangan, Kab. Sidoarjo, Jawa Timur', 'Sidoarjo', 'SKT', 1),
+(52, '246 New 10', 'Rizky B, PR', 'Desa Pangkemiri RT 03 RW 03, Kec. Tulangan, Kab. Sidoarjo, Jawa Timur', 'Sidoarjo', 'SKT', 1),
+(53, 'Lodjie 99 12', 'Panen, PT', 'Ds. Garen RT 01 RW 03 Kel. Pandeyan, Kec. Ngemplak, Kab. Boyolali, Jawa Timur', 'Boyalali', 'SKT', 1),
+(54, 'Lodjie 99 Istimewa 12', 'Panen, PT', 'Ds. Garen RT 01 RW 03 Kel. Pandeyan, Kec. Ngemplak, Kab. Boyolali, Jawa Timur', 'Boyalali', 'SKT', 1),
+(55, 'Lodjie Ijo 99 12', 'Panen, PT', 'Ds. Garen RT 01 RW 03 Kel. Pandeyan, Kec. Ngemplak, Kab. Boyolali, Jawa Timur', 'Boyalali', 'SKT', 1),
+(56, 'Lodjie Gold 99 12', 'Panen, PT', 'Ds. Garen RT 01 RW 03 Kel. Pandeyan, Kec. Ngemplak, Kab. Boyolali, Jawa Timur', 'Boyalali', 'SKT', 1),
+(57, 'Lodjie Premio 99 12', 'Panen, PT', 'Ds. Garen RT 01 RW 03 Kel. Pandeyan, Kec. Ngemplak, Kab. Boyolali, Jawa Timur', 'Boyalali', 'SKT', 1),
+(58, 'GG Mild Shiver 16', 'Gudang Garam, PT', 'Jl. Semampir II/1 Kediri-Jawa Timur', 'Kediri', 'SKM', 1),
+(59, 'GG Mild Shiver 10', 'Gudang Garam, PT', 'Jl. Semampir II/1 Kediri-Jawa Timur', 'Kediri', 'SKM', 1),
+(60, 'Parade Bintang Kretek 12', 'Parade Bintang, PR', 'Jl Jepara Garung KM 3 Kudus', 'Kudus', 'SKT', 1),
+(61, 'Parade Bintang Kretek Quality 12', 'Parade Bintang, PR', 'Jl Jepara Garung KM 3 Kudus', 'Kudus', 'SKT', 1),
+(62, 'Modeng 20', 'Spencer Indonesia International, PT', 'Jl. Sunia Negara No. 31 Kepaon Denpasar Selatan', 'Denpasar', 'SPM', 1),
+(63, 'Modeng 10', 'Spencer Indonesia International, PT', 'Jl. Sunia Negara No. 31 Kepaon Denpasar Selatan', 'Denpasar', 'SPM', 1),
+(64, 'Pesat 12', 'Doa Ibu, PR', 'Jl Soekarno Hatta No. 10 Kediri', 'Kediri', 'SKT', 1),
+(65, 'Doa Ibu 12', 'Doa Ibu, PR', 'Jl Soekarno Hatta No. 10 Kediri', 'Kediri', 'SKT', 1),
+(66, 'Madjo Djaya Kretek 12', 'Patriot, PR', 'Ds Ceplukan RT 003 RW 017, Wonorejo, Gondangrejo, Karanganyar', 'Karanganyar', 'SKT', 1),
+(67, 'Adji Saka 12', 'Patriot, PR', 'Ds Ceplukan RT 003 RW 017, Wonorejo, Gondangrejo, Karanganyar', 'Karanganyar', 'SKM', 1),
+(68, 'Zupa 16', 'Nikorama Citra Tobacco, PT', 'Jalan Lingkar Panjang Ds. Panjang, Kec. Bae, Kudus 59326', 'Kudus', 'SKM', 1),
+(69, 'Rajaa Midas 12', 'Rajaa Tunggal, PT', 'Dk. Jembangan RT 01/ RW 02 Ds. Gagak Sipat, Kec. Ngemplak, Kab. Boyolali', 'Boyalali', 'SKM', 1),
+(70, 'Rexo International 16', 'Megah Sejahtera, CV', 'Desa Karangduren RT 007 RW 002 Kec. Pakisaji, Kota Malang', 'Malang', 'SKM', 1),
+(71, 'GL-P Merah 12', 'Tig Ser GL, PR', 'Dsn Krajan RT 04 RW 02 Ds. Jatiprahu, Kec. Karangan, Kab. Trenggalek', 'Trenggalek', 'SKT', 1),
+(72, 'GL-P Kuning 12', 'Tig Ser GL, PR', 'Dsn Krajan RT 04 RW 02 Ds. Jatiprahu, Kec. Karangan, Kab. Trenggalek', 'Trenggalek', 'SKT', 1),
+(73, '369 (Sam Lio Kioe) Special 12', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SKT', 1),
+(74, '369 (Sam Lio Kioe) Special Edition 12', '369 (Sam Liok Kioe), PR', 'Jl Raya Kanor No. 369 Ds. Sumuragung, Kec. Sumberejo-Bojonegoro', 'Bojonegoro', 'SKT', 1),
+(75, '369 (Sam Lio Kioe) Hijau 12', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SKT', 1),
+(76, '369 (Sam Lio Kioe) Filter Coklat 12', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SKM', 1),
+(77, '369 (Sam Lio Kioe) Music Edition 16', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SKM', 1),
+(78, '369 (Sam Lio Kioe) GLAN 16', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SKM', 1),
+(79, '369 (Sam Lio Kioe) SCOT 16', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SKM', 1),
+(80, '369 (Sam Lio Kioe) Combat 20', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SPM', 1),
+(81, '369 (Sam Lio Kioe) Combat Biru 20', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SPM', 1),
+(82, '369 (Sam Lio Kioe) Special Khusus Kawasan Bebas 12', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SKT', 1),
+(83, '369 (Sam Lio Kioe) Music Edition Khusus Kawasan Bebas 16', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SKM', 1),
+(84, '369 (Sam Lio Kioe) SCOT Khusus Kawasan Bebas 16', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SKM', 1),
+(85, '369 (Sam Lio Kioe) Combat Khusus Kawasan Bebas 16', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SPM', 1),
+(86, '369 (Sam Lio Kioe) Combat Biru Khusus Kawasan Bebas 16', '369 (Sam Liok Kioe), PR', 'Jl Raya Baureno No. 369 Ds. Tawang, Kec. Baureno-Bojonegoro ', 'Bojonegoro', 'SPM', 1),
+(87, 'Go Lak Tjit 567 Alami 16', '567, PR', 'Jl Raya Kapas No. 567 Ds. Sukowati, Bojonegoro, Jawa Timur', 'Bojonegoro', 'SKT', 1),
+(88, 'Lima Enam Tujuh Coklat Filter 16 Khusus Kawasan Bebas 16', '567, PR', 'Jl Raya Kapas No. 567 Ds. Sukowati, Bojonegoro, Jawa Timur', 'Bojonegoro', 'SKM', 1),
+(89, '567 Kretek 12', '567, PR', 'Jl Raya Kapas No. 567 Ds. Sukowati, Bojonegoro, Jawa Timur', 'Bojonegoro', 'SKT', 1),
+(90, 'Manunggal 10', 'Krido Tani, PR', 'RT 07 RW 01 Desa Jatipuro Kec. Karangjati, Kab. Ngawi', 'Ngawi', 'SKT', 1),
+(91, 'Manunggal 12', 'Krido Tani, PR', 'RT 07 RW 01 Desa Jatipuro Kec. Karangjati, Kab. Ngawi', 'Ngawi', 'SKT', 1),
+(92, 'Sukun Premiere 12', 'Sukun, PR', 'Kotak Pos 9 Kudus 59301', 'Kudus', 'SKT', 1),
+(93, 'Sukun Premiere 10', 'Sukun, PR', 'Kotak Pos 9 Kudus 59301', 'Kudus', 'SKT', 1),
+(94, 'Sukun Gold 12', 'Sukun, PR', 'Kotak Pos 9 Kudus 59301', 'Kudus', 'SKT', 1),
+(95, 'Sukun W MLD 16', 'Sukun, PR', 'Kotak Pos 9 Kudus 59301', 'Kudus', 'SKM', 1),
+(96, 'Sukun Klobot (Panjang)', 'Sukun, PR', 'Kotak Pos 9 Kudus 59301', 'Kudus', 'KLB', 1),
+(97, 'Sukun Record SLM 16', 'Sukun, PR', 'Kotak Pos 9 Kudus 59301', 'Kudus', 'SKT', 1),
+(98, 'Sukun Specy New SLM 16', 'Sukun, PR', 'Kotak Pos 9 Kudus 59301', 'Kudus', 'SKT', 1),
+(99, 'Shoot 12', 'Manunggal Jaya Tobacco, PT', 'Jl. Raya Trengguli-Gajah, Ds. Trengguli, Kec. Wonosalam, Kab. Demak', 'Demak', 'SKM', 1),
+(100, 'Vox 16', 'Muria Sigaret Industri, PT', 'Jl Raya Kudus-Demak, Desa Wonorejo, Kec. Karanganyar, Kab. Demak ', 'Demak', 'SKM', 1),
+(101, 'Enter 16', 'Transentra Tobacco, PT', 'Jalan Raya Kudus-Pati, Ds Terban, Kec. Jekulo Kudus', 'Kudus', 'SKM', 1),
+(102, 'Team 16', 'Tobacco Selatmalaka Industry, PT', 'Desa Bakung RT 01 RW 05, Kec. Mijen, Kab. Demak 59583', 'Demak', 'SKM', 1),
+(103, 'L-Vo 16', 'Roberta Prima Tobacco, PT', 'Jalan Raya Demak-Kudus, Desa Bango, Kec. Demak, Kab. Demak', 'Demak', 'SKM', 1),
+(104, 'Envio Menthol 16', 'Leni Jaya Tobacco, PT', 'Jl. Raya Kudus - Colo, Desa Purworejo, Kec. Bae, Kab. Kudus', 'Kudus', 'SKM', 1),
+(105, 'Link 16', 'Moeria Mulia, PT', 'Jl Tanjung Karang No 11 Kudus', 'Kudus', 'SKM', 1),
+(106, 'Tenor 16', 'Mercu Pantura Industry, PT', 'Jl. Lingkar Kudus Timur Blok 22 No. 001 RT 001 RW 011 Ds. Jepang, Kec. Mejobo Kab. Kudus Jawa Tengah 59381', 'Kudus', 'SKM', 1),
+(107, 'Prompt 16', 'Martindo Inti Tobacco Industry, PT', 'Desa Mijen No. 185 RT 04/06 Kec. Kaliwungu Kudus', 'Kudus', 'SKM', 1),
+(108, 'Senior Biru Mild 16', 'Victory Supra Sigaret, PT', 'Jl. Raya Pati Kudus KM 10 Ds. Terban Kec. Jekulo Kab. Kudus Jawa Tengah 59382', 'Kudus', 'SKM', 1),
+(109, 'Warung Kopi 20', 'Victory Supra Sigaret, PT', 'Jl. Raya Pati Kudus KM 10 Ds. Terban Kec. Jekulo Kab. Kudus Jawa Tengah 59382', 'Kudus', 'SKM', 1),
+(110, 'Camo 16', 'Armando Intertobacco Industry, PT', 'Desa Kedungdowo No.26 RT.04 RW.06, Kec. Kaliwungu, Kab. Kudus 59361', 'Kudus', 'SKM', 1),
+(111, 'APPS 16', 'Intertobacco Utama Industry, PT', 'Desa Mijen Kecamatan Kaliwungu, Kudus', 'Kudus', 'SKM', 1),
+(112, 'Brown Mild 16', 'Stevania Ultra Tobacco, PT', 'Jl. Raya Kudus - Jepara KM 7 No. 3, Ds. Mijen Kec. Kaliwungu, Kudus', 'Kudus', 'SKM', 1),
+(113, 'Ultramentha 12', 'Prima Tobacco Human Industry, PT', 'Jl. Raya Kudus - Pati KM 12, Desa Pladen, Kecamatan Jekulo, Kabupaten Kudus Jawa Tengah 59382', 'Kudus', 'SKM', 1),
+(114, 'Ultramentha 16', 'Prima Tobacco Human Industry, PT', 'Jl. Raya Kudus - Pati KM 12, Desa Pladen, Kecamatan Jekulo, Kabupaten Kudus Jawa Tengah 59382', 'Kudus', 'SKM', 1),
+(115, 'Bazz 16', 'Prima Tobacco Human Industry, PT', 'Jl. Raya Kudus - Pati KM 12, Desa Pladen, Kecamatan Jekulo, Kabupaten Kudus Jawa Tengah 59382', 'Kudus', 'SKM', 1),
+(116, 'Trenz 16', 'Wikatama Indah Sigaret Indonesia, PT', 'Desa Tanjungkarang Jl. Kudus - Purwodadi, Tanjungkarang, Kecamatan Jati Kabupaten Kudus Jawa Tengah 59345', 'Kudus', 'SKM', 1),
+(117, 'Crystal Special Mild 16', 'Filasta Indonesia, PT', 'Jl. Raya Kudus - Jepara KM 7, Ds. Kaliwungu, Kec. Kaliwungu, Kab. Kudus, Jawa Tengah', 'Kudus', 'SKM', 1),
+(118, 'Slic Menthol 16', 'Jamrud Khatulistiwa Tobacco, PT', 'Jl. Raya Kudus Pati, Desa Terban, Kec. Jekulo, Kab. Kudus ', 'Kudus', 'SKM', 1),
+(119, 'S Class 16', 'Sanggoro Sukses Makmur, PR', 'Jl. Raya Karangsono No. 18 RT 61 RW 12 Desa Kebonagung, Pakisaji, Malang', 'Malang', 'SKM', 1),
+(120, '92 Sejahtera King Size 12 (Hijau)', 'Sejahtera, CV', 'Jl. Raya Karangduren 92 RT 03 RW 01 Desa Karangduren, Kec. Pakisaji, Kab. Malang', 'Malang', 'SKM', 1),
+(121, '92 Sejahtera King Size 16 (Hijau)', 'Sejahtera, CV', 'Jl. Raya Karangduren 92 RT 03 RW 01 Desa Karangduren, Kec. Pakisaji, Kab. Malang', 'Malang', 'SKM', 1),
+(122, 'Sembilan Dua 12 (Putih)', 'Sejahtera, CV', 'Jl. Raya Karangduren 92 RT 03 RW 01 Desa Karangduren, Kec. Pakisaji, Kab. Malang', 'Malang', 'SKM', 1),
+(123, 'Sembilan Dua 16 (Putih)', 'Sejahtera, CV', 'Jl. Raya Karangduren 92 RT 03 RW 01 Desa Karangduren, Kec. Pakisaji, Kab. Malang', 'Malang', 'SKM', 1),
+(124, '92 Sejahtera 12 King Size (Kuning)', 'Sejahtera, CV', 'Jl. Raya Karangduren 92 RT 03 RW 01 Desa Karangduren, Kec. Pakisaji, Kab. Malang', 'Malang', 'SKT', 1),
+(125, 'Dunhill Fine Cut Mild 16', 'Perusahaan Dagang dan Industri Tresno, PT', 'Jl. Raya Karanglo, Singosari, Malang 65153', 'Malang', 'SKM', 1),
+(126, 'Dunhill Fine Cut Mild 20', 'Perusahaan Dagang dan Industri Tresno, PT', 'Jl. Raya Karanglo, Singosari, Malang 65153', 'Malang', 'SKM', 1),
+(127, 'Dunhill Fine Cut Filter 16', 'Perusahaan Dagang dan Industri Tresno, PT', 'Jl. Raya Karanglo, Singosari, Malang 65153', 'Malang', 'SKM', 1);
 
 -- --------------------------------------------------------
 
@@ -1129,29 +1298,28 @@ CREATE TABLE IF NOT EXISTS `social_member` (
   `phone_number` varchar(15) DEFAULT NULL,
   `n_status` int(3) NOT NULL DEFAULT '0' COMMENT '0:pending, 1:approved, 2:delete',
   `login_count` int(11) NOT NULL DEFAULT '0',
-  `verified` tinyint(3) DEFAULT '0' COMMENT '0->no hp blm verified, 1->sudah verified.',
+  `verified` tinyint(3) DEFAULT '0' COMMENT 'newuser',
   `usertype` int(11) NOT NULL COMMENT '1:industri, 2:balai, 3:balaiverificator, 4:bpom, 5:bpomverivicator',
   `email_token` varchar(50) DEFAULT NULL,
-  `photo_moderation` int(11) NOT NULL,
+  `data` text,
   `salt` varchar(200) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10105 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10110 ;
 
 --
 -- Dumping data for table `social_member`
 --
 
-INSERT INTO `social_member` (`id`, `industri_id`, `name`, `nickname`, `email`, `register_date`, `verified_date`, `img`, `image_profile`, `small_img`, `username`, `last_login`, `city`, `zipcode`, `sex`, `birthday`, `description`, `link`, `middle_name`, `last_name`, `StreetName`, `phone_number`, `n_status`, `login_count`, `verified`, `usertype`, `email_token`, `photo_moderation`, `salt`, `password`) VALUES
-(10071, '1', 'Ovan Pulu', NULL, 'o.pulu@yahoo.com', '2014-08-25 00:57:35', '0000-00-00 00:00:00', NULL, '', NULL, NULL, '2015-09-15 14:17:53', NULL, 0, 'male', NULL, 'direktur utama', 'https://www.facebook.com/app_scoped_user_id/10202304338879140/', 'Sunarto', 'Pulu', 'depok', '12345', 1, 51, 1, 1, '1234', 0, 'ovancop2014', '5b4dbf8a00bec804e7ace8cc400b1837cdcc05e4'),
-(10097, '14', 'csac', NULL, 'ovan89@gmail.com', '2014-11-19 09:42:00', '0000-00-00 00:00:00', NULL, '', NULL, NULL, NULL, NULL, 0, NULL, NULL, 'casca', NULL, NULL, 'csacsa', 'cacas', 'cacas', 0, 0, 0, 1, 'dhUtXRxoGyFveqV0mM6uLWInjcNr8B', 0, 'ovancop2014', 'YOUR PASSWORD'),
-(10100, '17', '', NULL, '', '2014-12-04 03:11:56', '0000-00-00 00:00:00', NULL, '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '', NULL, NULL, '', '', '', 0, 0, 0, 1, 'awkAinu3UIv1VqrbzxFQJY5Z0gco7K', 0, 'ovancop2014', 'YOUR PASSWORD'),
-(10101, '18', 'iswandi', NULL, 'iswandizen@gmail.com', '2015-09-10 07:32:22', '0000-00-00 00:00:00', NULL, '', NULL, NULL, '2015-09-10 14:42:08', NULL, 0, NULL, NULL, 'direktur palsu', NULL, NULL, 'zen', 'Jl Percetakan Negara 23', '08891503992', 1, 1, 1, 1, 'HbwtA9I8aEhCNX6x3ro7Yc0uyRVSmk', 0, 'ovancop2014', '5b4dbf8a00bec804e7ace8cc400b1837cdcc05e4'),
-(10102, '19', 'csasa', NULL, 'submit.ovan@gmail.com', '2015-09-10 07:34:28', '0000-00-00 00:00:00', NULL, '', NULL, NULL, NULL, NULL, 0, NULL, NULL, 'csacsa', NULL, NULL, 'cascsa', 'csacsa', 'csasac', 0, 0, 0, 1, '4LgtHhJjwZGC3TzpqlIxXr25vfaKSo', 0, 'ovancop2014', 'YOUR PASSWORD'),
-(10103, '20', 'sugeng', NULL, 'sugengriyadi@gmail.com', '2015-09-10 07:36:29', '0000-00-00 00:00:00', NULL, '', NULL, NULL, '2015-09-10 14:54:00', NULL, 0, NULL, NULL, 'direktur perusahaan', NULL, NULL, 'riyadi', 'jl. percetakan negara 23 jakarta pusat', '085772723434', 1, 3, 1, 1, '8pw93jvah4InfNz16CWZKYA7ilc5LG', 0, 'ovancop2014', '5b4dbf8a00bec804e7ace8cc400b1837cdcc05e4'),
-(10104, '22', 'Sammy', NULL, 'sumimultim@gmail.com', '2015-09-10 07:45:53', '0000-00-00 00:00:00', NULL, '', NULL, NULL, '2015-09-10 14:46:30', NULL, 0, NULL, NULL, 'Rokok', NULL, NULL, 'mintir', 'Percetakan Negara', '02198336435437', 1, 1, 1, 1, 'qUpRvLnzXH01OoQPG7VsAFhMr693fu', 0, 'ovancop2014', '5b4dbf8a00bec804e7ace8cc400b1837cdcc05e4');
+INSERT INTO `social_member` (`id`, `industri_id`, `name`, `nickname`, `email`, `register_date`, `verified_date`, `img`, `image_profile`, `small_img`, `username`, `last_login`, `city`, `zipcode`, `sex`, `birthday`, `description`, `link`, `middle_name`, `last_name`, `StreetName`, `phone_number`, `n_status`, `login_count`, `verified`, `usertype`, `email_token`, `data`, `salt`, `password`) VALUES
+(10100, '17', '', NULL, '', '2014-12-04 03:11:56', '0000-00-00 00:00:00', NULL, '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '', NULL, NULL, '', '', '', 0, 0, 0, 1, 'awkAinu3UIv1VqrbzxFQJY5Z0gco7K', '0', 'ovancop2014', 'YOUR PASSWORD'),
+(10101, '18', 'iswandi', NULL, 'iswandizen@gmail.com', '2015-09-10 07:32:22', '0000-00-00 00:00:00', NULL, '', NULL, NULL, '2015-10-07 13:44:27', NULL, 0, NULL, NULL, 'direktur palsu', NULL, NULL, 'zen', 'Jl Percetakan Negara 23', '08891503992', 1, 20, 1, 1, 'HbwtA9I8aEhCNX6x3ro7Yc0uyRVSmk', '0', 'ovancop2014', '5b4dbf8a00bec804e7ace8cc400b1837cdcc05e4'),
+(10103, '20', 'sugeng', NULL, 'sugengriyadi@gmail.com', '2015-09-10 07:36:29', '0000-00-00 00:00:00', NULL, '', NULL, NULL, '2015-09-10 14:54:00', NULL, 0, NULL, NULL, 'direktur perusahaan', NULL, NULL, 'riyadi', 'jl. percetakan negara 23 jakarta pusat', '085772723434', 1, 3, 1, 1, '8pw93jvah4InfNz16CWZKYA7ilc5LG', '0', 'ovancop2014', '5b4dbf8a00bec804e7ace8cc400b1837cdcc05e4'),
+(10104, '22', 'Sammy', NULL, 'sumimultim@gmail.com', '2015-09-10 07:45:53', '0000-00-00 00:00:00', NULL, '', NULL, NULL, '2015-09-10 14:46:30', NULL, 0, NULL, NULL, 'Rokok', NULL, NULL, 'mintir', 'Percetakan Negara', '02198336435437', 1, 1, 1, 1, 'qUpRvLnzXH01OoQPG7VsAFhMr693fu', '0', 'ovancop2014', '5b4dbf8a00bec804e7ace8cc400b1837cdcc05e4'),
+(10105, '23', 'Moh.', NULL, 'moh.haerumi@gmail.com', '2015-10-07 07:29:56', '0000-00-00 00:00:00', NULL, '', NULL, NULL, '2015-10-14 19:09:59', NULL, 0, NULL, NULL, 'Pimpinan PR. Gudang Mangga', NULL, NULL, 'Haerumi', 'Jl. Mandilaras No. 102 Pamekasan', '(0324) 322174', 1, 3, 1, 1, 'g0SWVTbhdzMnQyD1o2lP39px8HIfBC', '3', 'ovancop2014', '5b4dbf8a00bec804e7ace8cc400b1837cdcc05e4'),
+(10109, '2', 'ovan', NULL, 'ovan89@gmail.com', '2015-11-16 02:06:01', '0000-00-00 00:00:00', NULL, '', NULL, NULL, '2015-12-13 22:20:10', NULL, 0, NULL, NULL, 'manager pemasaran', NULL, NULL, 'pulu', 'depok', '1234', 1, 9, 1, 1, 'OVz53TIZYQDvSLM6uCWN7lBbdK4GsH', '9', 'ovancop2014', '986f4ba76ea1ed09240be2ce1a80c68161d8f8e9');
 
 -- --------------------------------------------------------
 
@@ -1190,7 +1358,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user_menu` (
   `menuAksesLogin` int(11) NOT NULL,
   PRIMARY KEY (`menuID`),
   KEY `menuID` (`menuID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=69 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=71 ;
 
 --
 -- Dumping data for table `tbl_user_menu`
@@ -1198,7 +1366,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user_menu` (
 
 INSERT INTO `tbl_user_menu` (`menuID`, `menuDesc`, `menuParent`, `menuPath`, `menuIcon`, `menuStatus`, `menuAksesLogin`) VALUES
 (1, 'Tambah User', 6, 'user/add', 'fa fa-user', 1, 0),
-(2, 'List User', 6, 'user', 'fa fa-list', 1, 0),
+(2, 'List User', 6, 'user/listAdmin', 'fa fa-list', 1, 0),
 (3, 'Evaluasi Kemasan', 2, 'evaluasi/label', 'fa fa-list', 1, 0),
 (4, 'Evaluasi Iklan MLR', 2, 'evaluasi/iklanmlr', 'fa fa-list', 1, 0),
 (5, 'Evaluasi Iklan TV', 2, 'evaluasi/iklantv', 'fa fa-list', 1, 0),
@@ -1221,7 +1389,9 @@ INSERT INTO `tbl_user_menu` (`menuID`, `menuDesc`, `menuParent`, `menuPath`, `me
 (22, 'Saran dan Pengaduan', 9, 'article/saran', 'fa fa-list', 1, 0),
 (23, 'Alur Prosedur', 10, 'article/alurprosedur', 'fa fa-list', 1, 0),
 (24, 'Petunjuk', 10, 'article/petunjuk', 'fa fa-list', 1, 0),
-(25, 'Buat Pelaporan', 3, 'pelaporan/buatlaporan', 'fa fa-list', 1, 0);
+(25, 'Buat Pelaporan', 3, 'pelaporan/buatlaporan', 'fa fa-list', 1, 0),
+(69, 'Pelaporan Ditolak', 2, 'evaluasi/status', 'fa fa-list', 1, 0),
+(70, 'Slideshow', 11, 'home/slideshow', 'fa fa-list', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1251,7 +1421,8 @@ INSERT INTO `tbl_user_menu_parent` (`menuParentID`, `menuParentDesc`, `menuOrder
 (10, 'Sistem Pelaporan', 10),
 (9, 'Informasi', 9),
 (8, 'Publikasi', 8),
-(7, 'Profil', 7);
+(7, 'Profil', 7),
+(11, 'Slideshow', 11);
 
 -- --------------------------------------------------------
 
@@ -1844,6 +2015,7 @@ CREATE TABLE IF NOT EXISTS `tmp_import` (
   `no` varchar(200) DEFAULT NULL,
   `merek` varchar(200) DEFAULT NULL,
   `produsen` varchar(200) DEFAULT NULL,
+  `badan` varchar(100) DEFAULT NULL,
   `nppbkc` varchar(200) DEFAULT NULL,
   `kode_status` varchar(200) DEFAULT NULL,
   `alamat` varchar(200) DEFAULT NULL,
@@ -1911,17 +2083,17 @@ CREATE TABLE IF NOT EXISTS `tmp_import` (
 -- Dumping data for table `tmp_import`
 --
 
-INSERT INTO `tmp_import` (`id`, `no`, `merek`, `produsen`, `nppbkc`, `kode_status`, `alamat`, `kota`, `prov`, `telp`, `fax`, `pemilik`, `jenis_rokok`, `isi`, `satuan_kemasan`, `bentuk_kemasan`, `jenis_gambar`, `tulisan_peringatan`, `phw_depan`, `kemasan_depan`, `luas_phw_depan`, `phw_belakang`, `kemasan_belakang`, `luas_phw_belakang`, `nikotin`, `tar`, `sisi`, `tulisan`, `dilarang_menjual`, `kode_produksi`, `tgl_produksi`, `alamat_produsen`, `tidak_aman`, `zat_kimia`, `kata_promotif`, `jenis_kata_promotif`, `evaluasi`, `kesimpulan_label`, `lab`, `alamat_lab`, `telp_lab`, `fax_lab`, `account_lab`, `kode_produksi_lab`, `kode_sampel`, `nomor_lab`, `tgl_uji`, `nikotin_uji`, `tar_uji`, `tar_sni_uji`, `phw_ditemukan`, `harga_bungkus`, `harga_batang`, `tahun_pengawsan`, `berkas_penilaian`, `contoh_kemasan`, `gambar_depan`, `gambar_belakang`, `gambar_kanan`, `gambar_kiri`, `gambar_atas`, `gambar_bawah`, `keterangan`, `session`) VALUES
-(1, '2992', 'Oepet Oe Sps Biru Putih 10', 'Ongkowidjojo, PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '10', 'btg/bgks', 'Kotak Persegi Panjang', '1', NULL, '3.2', '7.8', '41.03', '3.2', '7.8', '41.03', '1.7', '31.5', 'S', 'S', 'S', NULL, '', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490000', '(0341) 493697', 'NN Bhayangkari', '', '0405/KTb/E/04', '0405/SY/05/04', '06 0505 2004', '1.7', '31.5', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'kgd8eb43k598vpeec1mbvsqvf3'),
-(2, '2993', 'Oepet Oe Sps Biru Putih 10', 'Ongkowidjojo, PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65149', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '10', 'btg/bgks', 'Kotak Persegi Panjang', '2', NULL, '3.2', '7.8', '41.03', '3.2', '7.8', '41.03', '1.7', '31.5', 'S', 'S', 'S', NULL, '', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490000', '(0341) 493697', 'NN Bhayangkari', '', '0405/KTb/E/04', '0405/SY/05/04', '06 0505 2004', '1.7', '31.5', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'kgd8eb43k598vpeec1mbvsqvf3'),
-(3, '2994', 'Oepet Oe Sps Biru Putih 10', 'Ongkowidjojo, PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65150', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '10', 'btg/bgks', 'Kotak Persegi Panjang', '3', NULL, '3.2', '7.8', '41.03', '3.2', '7.8', '41.03', '1.7', '31.5', 'S', 'S', 'S', NULL, '', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490000', '(0341) 493697', 'NN Bhayangkari', '', '0405/KTb/E/04', '0405/SY/05/04', '06 0505 2004', '1.7', '31.5', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'kgd8eb43k598vpeec1mbvsqvf3'),
-(4, '2995', 'Oepet Oe Sps Biru Putih 10', 'Ongkowidjojo, PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65151', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '10', 'btg/bgks', 'Kotak Persegi Panjang', '4', NULL, '3.2', '7.8', '41.03', '3.2', '7.8', '41.03', '1.7', '31.5', 'S', 'S', 'S', NULL, '', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490000', '(0341) 493697', 'NN Bhayangkari', '', '0405/KTb/E/04', '0405/SY/05/04', '06 0505 2004', '1.7', '31.5', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'kgd8eb43k598vpeec1mbvsqvf3'),
-(5, '2996', 'Oepet Oe Sps Biru Putih 10', 'Ongkowidjojo, PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65152', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '10', 'btg/bgks', 'Kotak Persegi Panjang', '5', NULL, '3.2', '7.8', '41.03', '3.2', '7.8', '41.03', '1.7', '31.5', 'S', 'S', 'S', NULL, '', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490000', '(0341) 493697', 'NN Bhayangkari', '', '0405/KTb/E/04', '0405/SY/05/04', '06 0505 2004', '1.7', '31.5', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'kgd8eb43k598vpeec1mbvsqvf3'),
-(6, '2997', 'Oepet Extra Special 12', 'Ongkowidjojo, PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '12', 'btg/bgks', 'Kotak Persegi Panjang', '1', NULL, '3.4', '8.4', '40.48', '3.4', '8.4', '40.48', '1.8', '35.3', 'S', 'S', 'S', NULL, '', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '', 'MK', 'MK', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'kgd8eb43k598vpeec1mbvsqvf3'),
-(7, '2998', 'Oepet Extra Special 12', 'Ongkowidjojo, PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '12', 'btg/bgks', 'Kotak Persegi Panjang', '2', NULL, '3.4', '8.4', '40.48', '3.4', '8.4', '40.48', '1.8', '35.3', 'S', 'S', 'S', NULL, '', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '', 'MK', 'MK', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'kgd8eb43k598vpeec1mbvsqvf3'),
-(8, '2999', 'Oepet Extra Special 12', 'Ongkowidjojo, PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '12', 'btg/bgks', 'Kotak Persegi Panjang', '3', NULL, '3.4', '8.4', '40.48', '3.4', '8.4', '40.48', '1.8', '35.3', 'S', 'S', 'S', NULL, '', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '', 'MK', 'MK', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'kgd8eb43k598vpeec1mbvsqvf3'),
-(9, '3000', 'Oepet Extra Special 12', 'Ongkowidjojo, PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '12', 'btg/bgks', 'Kotak Persegi Panjang', '4', NULL, '3.4', '8.4', '40.48', '3.4', '8.4', '40.48', '1.8', '35.3', 'S', 'S', 'S', NULL, '', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '', 'MK', 'MK', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'kgd8eb43k598vpeec1mbvsqvf3'),
-(10, '3001', 'Oepet Extra Special 12', 'Ongkowidjojo, PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '12', 'btg/bgks', 'Kotak Persegi Panjang', '5', NULL, '3.4', '8.4', '40.48', '3.4', '8.4', '40.48', '1.8', '35.3', 'S', 'S', 'S', NULL, '', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '', 'MK', 'MK', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'kgd8eb43k598vpeec1mbvsqvf3');
+INSERT INTO `tmp_import` (`id`, `no`, `merek`, `produsen`, `badan`, `nppbkc`, `kode_status`, `alamat`, `kota`, `prov`, `telp`, `fax`, `pemilik`, `jenis_rokok`, `isi`, `satuan_kemasan`, `bentuk_kemasan`, `jenis_gambar`, `tulisan_peringatan`, `phw_depan`, `kemasan_depan`, `luas_phw_depan`, `phw_belakang`, `kemasan_belakang`, `luas_phw_belakang`, `nikotin`, `tar`, `sisi`, `tulisan`, `dilarang_menjual`, `kode_produksi`, `tgl_produksi`, `alamat_produsen`, `tidak_aman`, `zat_kimia`, `kata_promotif`, `jenis_kata_promotif`, `evaluasi`, `kesimpulan_label`, `lab`, `alamat_lab`, `telp_lab`, `fax_lab`, `account_lab`, `kode_produksi_lab`, `kode_sampel`, `nomor_lab`, `tgl_uji`, `nikotin_uji`, `tar_uji`, `tar_sni_uji`, `phw_ditemukan`, `harga_bungkus`, `harga_batang`, `tahun_pengawsan`, `berkas_penilaian`, `contoh_kemasan`, `gambar_depan`, `gambar_belakang`, `gambar_kanan`, `gambar_kiri`, `gambar_atas`, `gambar_bawah`, `keterangan`, `session`) VALUES
+(1, '2992', 'Oepet Oe Sps Biru Putih 10', 'Ongkowidjojo', ' PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65148', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '10', 'btg/bgks', 'Kotak Persegi Panjang', '1', 'Merokok Sebabkan Kanker Mulut', '3.2', '7.8', '41.03', '3.2', '7.8', '41.03', '1.7', '31.5', 'S', 'S', 'S', NULL, '-', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '-', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490000', '(0341) 493697', 'NN Bhayangkari', '-', '0405/KTb/E/04', '0405/SY/05/04', '06 0505 2004', '1.7', '31.5', '-', 'TA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lc02br2glf7qr54u1hm6j29851'),
+(2, '2993', 'Oepet Oe Sps Biru Putih 10', 'Ongkowidjojo', ' PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65149', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '10', 'btg/bgks', 'Kotak Persegi Panjang', '2', 'Merokok Membunuhmu', '3.2', '7.8', '41.03', '3.2', '7.8', '41.03', '1.7', '31.5', 'S', 'S', 'S', NULL, '-', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '-', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490000', '(0341) 493697', 'NN Bhayangkari', '-', '0405/KTb/E/04', '0405/SY/05/04', '06 0505 2004', '1.7', '31.5', '-', 'TA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lc02br2glf7qr54u1hm6j29851'),
+(3, '2994', 'Oepet Oe Sps Biru Putih 10', 'Ongkowidjojo', ' PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65150', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '10', 'btg/bgks', 'Kotak Persegi Panjang', '3', 'Merokok Sebabkan Kanker Tenggorokan', '3.2', '7.8', '41.03', '3.2', '7.8', '41.03', '1.7', '31.5', 'S', 'S', 'S', NULL, '-', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '-', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490000', '(0341) 493697', 'NN Bhayangkari', '-', '0405/KTb/E/04', '0405/SY/05/04', '06 0505 2004', '1.7', '31.5', '-', 'TA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lc02br2glf7qr54u1hm6j29851'),
+(4, '2995', 'Oepet Oe Sps Biru Putih 10', 'Ongkowidjojo', ' PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65151', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '10', 'btg/bgks', 'Kotak Persegi Panjang', '4', 'Merokok Dekat Anak Berbahaya Bagi Mereka', '3.2', '7.8', '41.03', '3.2', '7.8', '41.03', '1.7', '31.5', 'S', 'S', 'S', NULL, '-', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '-', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490000', '(0341) 493697', 'NN Bhayangkari', '-', '0405/KTb/E/04', '0405/SY/05/04', '06 0505 2004', '1.7', '31.5', '-', 'TA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lc02br2glf7qr54u1hm6j29851'),
+(5, '2996', 'Oepet Oe Sps Biru Putih 10', 'Ongkowidjojo', ' PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65152', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '10', 'btg/bgks', 'Kotak Persegi Panjang', '5', 'Merokok Sebabkan Kanker Paru-Paru dan Bronkitis Kronik', '3.2', '7.8', '41.03', '3.2', '7.8', '41.03', '1.7', '31.5', 'S', 'S', 'S', NULL, '-', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '-', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490000', '(0341) 493697', 'NN Bhayangkari', '-', '0405/KTb/E/04', '0405/SY/05/04', '06 0505 2004', '1.7', '31.5', '-', 'TA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lc02br2glf7qr54u1hm6j29851'),
+(6, '2997', 'Oepet Extra Special 12', 'Ongkowidjojo', ' PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '12', 'btg/bgks', 'Kotak Persegi Panjang', '1', 'Merokok Sebabkan Kanker Mulut', '3.4', '8.4', '40.48', '3.4', '8.4', '40.48', '1.8', '35.3', 'S', 'S', 'S', NULL, '-', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '-', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490001', '(0341) 493698', 'NN Bhayangkari', '-', '0405/KTb/E/05', '0405/SY/05/05', '07 0505 2004', '2.7', '32.5', '-', 'TA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lc02br2glf7qr54u1hm6j29851'),
+(7, '2998', 'Oepet Extra Special 12', 'Ongkowidjojo', ' PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '12', 'btg/bgks', 'Kotak Persegi Panjang', '2', 'Merokok Membunuhmu', '3.4', '8.4', '40.48', '3.4', '8.4', '40.48', '1.8', '35.3', 'S', 'S', 'S', NULL, '-', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '-', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490002', '(0341) 493699', 'NN Bhayangkari', '-', '0405/KTb/E/06', '0405/SY/05/06', '08 0505 2004', '3.7', '33.5', '-', 'TA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lc02br2glf7qr54u1hm6j29851'),
+(8, '2999', 'Oepet Extra Special 12', 'Ongkowidjojo', ' PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '12', 'btg/bgks', 'Kotak Persegi Panjang', '3', 'Merokok Sebabkan Kanker Tenggorokan', '3.4', '8.4', '40.48', '3.4', '8.4', '40.48', '1.8', '35.3', 'S', 'S', 'S', NULL, '-', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '-', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490003', '(0341) 493700', 'NN Bhayangkari', '-', '0405/KTb/E/07', '0405/SY/05/07', '09 0505 2004', '4.7', '34.5', '-', 'TA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lc02br2glf7qr54u1hm6j29851'),
+(9, '3000', 'Oepet Extra Special 12', 'Ongkowidjojo', ' PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '12', 'btg/bgks', 'Kotak Persegi Panjang', '4', 'Merokok Dekat Anak Berbahaya Bagi Mereka', '3.4', '8.4', '40.48', '3.4', '8.4', '40.48', '1.8', '35.3', 'S', 'S', 'S', NULL, '-', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '-', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490004', '(0341) 493701', 'NN Bhayangkari', '-', '0405/KTb/E/08', '0405/SY/05/08', '10 0505 2004', '5.7', '35.5', '-', 'TA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lc02br2glf7qr54u1hm6j29851'),
+(10, '3001', 'Oepet Extra Special 12', 'Ongkowidjojo', ' PT', '0706.1.3.0088', '1', 'Jl. Kolonel Sugiono 80 Malang 65153', 'Malang', 'Jawa Timur', '(0341) 362211', '(0341) 328139', 'Adrian Suharko', 'SKT', '12', 'btg/bgks', 'Kotak Persegi Panjang', '5', 'Merokok Sebabkan Kanker Paru-Paru dan Bronkitis Kronik', '3.4', '8.4', '40.48', '3.4', '8.4', '40.48', '1.8', '35.3', 'S', 'S', 'S', NULL, '-', 'PT Ongkowidjojo, Malang', 'A', 'A', 'A', '-', 'MK', 'MK', 'Laboratorium Penguji PT Bentoel Prima', 'Jl. Raya Karanglo - Singosari, Malang, Jawa Timur', '(0341) 490005', '(0341) 493702', 'NN Bhayangkari', '-', '0405/KTb/E/09', '0405/SY/05/09', '11 0505 2004', '6.7', '36.5', '-', 'TA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lc02br2glf7qr54u1hm6j29851');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
