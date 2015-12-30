@@ -489,5 +489,23 @@ class contentHelper extends Database {
         if ($fetch) return $fetch;
         return false;
     }
+
+    function searchNews($data)
+    {
+
+    	$filter ="";
+    	if ($data['req']) $filter .= " AND n.title LIKE '%{$data['req']}%'";
+
+    	$sql = array(
+                    'table' =>"{$this->prefix}_news_content AS n",
+                    'field' => "*",
+                    'condition' => "n.n_status = 1 AND n.categoryid = 0 AND n.articleType = 0 {$filter}",
+                );
+		
+		
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result) return $result;
+        return false;
+    }
 }
 ?>
