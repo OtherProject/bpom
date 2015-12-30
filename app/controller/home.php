@@ -47,6 +47,35 @@ class home extends Controller {
       }
     }
 
+    // get slideshow
+    $slideshow['table'] = 'bpom_news_content';
+    $slideshow['condition'] = array('n_status'=>1, 'categoryid'=>1);
+    $slideshow['oderby'] = "id DESC";
+    $slideshow['limit'] = 1;
+    $getDataSlideshow = $this->contentHelper->fetchDatas($slideshow);
+    if ($getData){
+      $slide['table'] = 'bpom_news_content_repo';
+      $slide['condition'] = array('n_status'=>1, 'otherid'=>$getDataSlideshow[0]['id']);
+      $slide['limit'] = 5;
+      $getDataSlide = $this->contentHelper->fetchDatas($slide);
+      if ($getDataSlide)$this->view->assign('slideshow',$getDataSlide);
+    }
+
+    // get statistik
+    $statistik['table'] = 'bpom_news_content';
+    $statistik['condition'] = array('n_status'=>1, 'categoryid'=>2);
+    $statistik['oderby'] = "id DESC";
+    $statistik['limit'] = 1;
+    $getDataStatistik = $this->contentHelper->fetchDatas($statistik);
+    if ($getDataStatistik){
+      $imagestatistik['table'] = 'bpom_news_content_repo';
+      $imagestatistik['condition'] = array('n_status'=>1, 'otherid'=>$getDataStatistik[0]['id']);
+      $imagestatistik['limit'] = 1;
+      $dataStatistik = $this->contentHelper->fetchDatas($imagestatistik);
+      if ($dataStatistik)$this->view->assign('statistik',$dataStatistik[0]);
+    }
+
+    // pr($dataStatistik);
     
 
     // pr($newData);

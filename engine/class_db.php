@@ -583,7 +583,9 @@ class Database
 		$dataIn = array();
 		if ($additional){
 			$dataIn = $additional['in'];
+			if ($additional['limit']) $filter .= " LIMIT " .intval($additional['limit']);
 		}
+		
 		if ($condition){
 			foreach ($condition as $key => $value) {
 				if ($value){

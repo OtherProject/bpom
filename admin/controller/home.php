@@ -100,7 +100,8 @@ class home extends Controller {
 			}
 
 			$category['table'] = 'bpom_news_content';
-	      	$category['condition'] = array('n_status'=>1, 'categoryid'=>1);
+	      	$category['condition'] = array('n_status'=>1, 'categoryid'=>'1,2');
+	      	$category['in'] = array('categoryid');
 	      	$getCategory = $this->contentHelper->fetchData($category);
 			if ($getCategory)$this->view->assign('albumcat',$getCategory);
 			

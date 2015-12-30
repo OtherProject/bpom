@@ -476,5 +476,18 @@ class contentHelper extends Database {
         if ($result) return $result;
         return false;
 	} 
+
+	function fetchDatas($data=array(),$debug=false)
+    {
+
+        $table = $data['table'];
+        $condition = $data['condition'];
+        $oderby = $data['oderby'];
+        $additional = $data;
+
+        $fetch = $this->fetchSingleTable($table, $condition, $oderby, $additional, $debug);
+        if ($fetch) return $fetch;
+        return false;
+    }
 }
 ?>

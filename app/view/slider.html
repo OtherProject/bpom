@@ -1,23 +1,28 @@
 <section id="main-slider" class="no-margin hidden-xs">
         <div class="carousel slide">
             <ol class="carousel-indicators">
-                <li data-target="#main-slider" data-slide-to="0" class="active"></li>
-                <li data-target="#main-slider" data-slide-to="1"></li>
+                {if $slideshow}
+                {foreach $slideshow as $k => $val}
+                <li data-target="#main-slider" data-slide-to="{$k}" class="{if $k==0}active{/if}"></li>
+                {*}<li data-target="#main-slider" data-slide-to="1"></li>
                 <li data-target="#main-slider" data-slide-to="2"></li>
-                <li data-target="#main-slider" data-slide-to="3"></li>
+                <li data-target="#main-slider" data-slide-to="3"></li>{/*}
+                {/foreach}
+                {/if}
             </ol>
             <div class="carousel-inner">
 
             
-				
-				 <div class="item active" style="background-image: url({$basedomain}assets/images/bpom-4.jpg)">
+				{if $slideshow}
+                {foreach $slideshow as $k => $val}
+				 <div class="item active" style="background-image: url({$basedomain}public_assets/{$val.files})">
                     <div class="container">
                         <div class="row slide-margin">
                             <div class="col-sm-6">
                                 <div class="carousel-content">
-                                      {*}
-                                      <h1 class="animation animated-item-1">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h1>
-                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
+                                      
+                                      <h1 class="animation animated-item-1">{$val.title}</h1>
+                                    {*}<h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
                                     <a class="btn-slide animation animated-item-3" href="#">Read More</a>{/*}
                                 </div>
                             </div>
@@ -31,51 +36,10 @@
                         </div>
                     </div>
                 </div><!--/.item-->
-				   
+                {/foreach}
+				{/if}
 
-                <div class="item" style="background-image: url({$basedomain}assets/images/bpom-6.jpg)">
-                    <div class="container">
-                        <div class="row slide-margin">
-                            <div class="col-sm-6">
-                                <div class="carousel-content">
-									{*}<h1 class="animation animated-item-1">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h1>
-                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>{/*}
-                                </div>
-                            </div>
 
-                            
-                        </div>
-                    </div>
-                </div><!--/.item-->
-                <div class="item" style="background-image: url({$basedomain}assets/images/bpom-1.jpg)">
-                    <div class="container">
-                        <div class="row slide-margin">
-                            <div class="col-sm-6">
-                                <div class="carousel-content">
-                                    {*}<h1 class="animation animated-item-1">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h1>
-                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>{/*}
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div><!--/.item-->
-                <div class="item" style="background-image: url({$basedomain}assets/images/bpom-5.jpg)">
-                    <div class="container">
-                        <div class="row slide-margin">
-                            <div class="col-sm-6">
-                                <div class="carousel-content">
-                                    {*}<h1 class="animation animated-item-1">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h1>
-                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>{/*}
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div><!--/.item-->
             </div><!--/.carousel-inner-->
         </div><!--/.carousel-->
         <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
