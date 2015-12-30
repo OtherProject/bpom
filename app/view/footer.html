@@ -42,6 +42,9 @@
     <script src="{$basedomain}assets/js/jquery.form.js"></script>
     <script src="{$basedomain}assets/js/plugins/datepicker/bootstrap-datepicker.js"></script>
     <script src="{$basedomain}assets/js/modernizr.js"></script> <!-- Modernizr -->
+    <script>
+        jssor_1_slider_init();
+    </script>
 	<script type="text/javascript">
         $(document).ready(function() {
           //change the integers below to match the height of your upper dive, which I called
@@ -49,16 +52,28 @@
           //to figure out what the scroll position is when exactly you want to fix the nav
           //bar or div or whatever.  I stuck in the console.log for you.  Just remove when
           //you know the position.
+
           $(window).scroll(function () { 
 
             console.log($(window).scrollTop());
 
             if ($(window).scrollTop() > 160) {
-              $('#nav_bar').addClass('navbar-fixed-top');
+
+               if ( $(window).width() < 1137) {
+                  $('#nav_bar').removeClass('navbar-fixed-top');
+
+              }else{
+
+                  $('#nav_bar').addClass('navbar-fixed-top');
+                  $("#nav_bar").height(60);
+                  $("#nav_bar").css("padding-top","0");
+              }
             }
 
             if ($(window).scrollTop() < 161) {
               $('#nav_bar').removeClass('navbar-fixed-top');
+              $('#nav_bar').css('height', 'auto');
+              $("#nav_bar").css("padding-top","15px");
             }
           });
         });

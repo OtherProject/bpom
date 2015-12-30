@@ -1,13 +1,42 @@
 {include file="slider.html"}
 <section id="recent-works">
         <div class="container">
-            <div class=" wow fadeInDown">
+            <!-- <div class=" wow fadeInDown"> -->
+            <div class="row">
 
                 <div class="col-md-8">
-                    <h2 align="left" >Headline News</h2>
+
+                    <h2 class="line-bottom"><i class="fa fa-plus-square-o"></i> Headline News</h2>
                     <p class="lead" align="left"> {*}{$val1.content}{/*}</p>
 
+                    <div class="row">
 
+                        {if $data}
+                        {foreach $data as $val}
+                        <div class="col-md-12 section-news" >
+                            <div class="row">
+                                 <div class="col-md-4">
+                                    {if $val.image}
+                                      <img class="thumbnail" src="{$basedomain}public_assets/{$val.image}" width="100%" height="200px"/> 
+                                    {/if}
+                                 </div>
+
+                                 <div class="col-md-8">
+                                    <span class="title-news"><a href="{$basedomain}news/detailnews/?id={$val.id}">{$val.title}</a></span><br/>
+                                    <span>by administrator on monday</span>
+                                    <div class="content-news">
+                                      {$val.brief}...
+                                      <a href="{$basedomain}news/detailnews/?id={$val.id}" style="color:#068FC8"><i>Baca Selengkapnya</i></a>
+                                    </div>
+
+                                 </div>
+                            </div>
+                        </div>
+
+                        {/foreach}
+                        {/if}
+                    </div>
+                    {*}
                     <table class="table" border="0">
                     
                             
@@ -35,17 +64,39 @@
                            
                 
                     </table>
+                    {/*}
                 </div>
                 
                 <div class="col-md-4">
-                    <h2 align="center" >Statistik</h2>
-                    <p class="lead" align="justify"> {*}{$val1.content}{/*}</p>
-                    {if $statistik}
-                    <img src="{$basedomain}public_assets/{$statistik.files}" width="100%">{/if}
+                    <div class="row">
+                     <div class="col-md-12">
+                        <h2 class="line-bottom"><i class="fa fa-bar-chart-o"></i> Statistik</h2>
+                        <p class="lead" align="justify"> {*}{$val1.content}{/*}</p>
+                        {if $statistik}
+                        <a href="#" class="thumbnail">
+                          <img src="{$basedomain}public_assets/{$statistik.files}" width="100%">
+                        </a>
+                        {/if}
+                     </div>
+                     <div class="col-md-12">
+                        <h2 class="line-bottom"><i class="fa fa-video-camera"></i> Video</h2>
+            
+                        <!-- <div class="thumbnail"> -->
+                         <iframe width="100%" height="315px" src="https://www.youtube.com/embed/AumUtimZRnA" frameborder="0" allowfullscreen></iframe>
+
+                        <!-- </div> -->
+                     </div>
+                     <div class="col-md-12">
+                        <h2 class="line-bottom"><i class="fa fa-users"></i> Visitor</h2>
+                        <a href="#" class="thumbnail">
+                          <img src="{$basedomain}assets/images/statistik.jpg" width="100%">
+                        </a>
+                     </div>
+                    </div>
                 </div>
 
-            <div class="row">
-            {*}
+            {*}<div class="row">
+            
             {if $data}
                 {foreach $data as $val } 
                 <div class="col-xs-12 col-sm-4 col-md-3">
@@ -63,7 +114,8 @@
             
                 {/foreach}
             {/if} 
-            {/*}
             </div><!--/.row-->
+            {/*}
         </div><!--/.container-->
     </section><!--/#recent-works-->
+     
