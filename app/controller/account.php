@@ -248,6 +248,13 @@ class account extends Controller {
     $this->view->assign('idpabrik',0);
 
     $getPelaporanKemasan = $this->contentHelper->getPelaporanKemasan(false,$getIndustri[0]['id']);
+    
+    if ($getPelaporanKemasan){
+      foreach ($getPelaporanKemasan as $key => $value) {
+        $getPelaporanKemasan[$key]['changeDate'] = changeDate($value['createDate']);
+      }
+    }
+
     $this->view->assign('laporankemasan',$getPelaporanKemasan); 
 
     $getPabrik = $this->contentHelper->getPabrik(false,$getIndustri[0]['id']);
@@ -343,6 +350,12 @@ class account extends Controller {
     $this->view->assign('listindustri',$getIndustri); 
     
     $getPelaporanNikotin = $this->contentHelper->getPelaporanNikotin(false,$getIndustri[0]['id']);
+    // pr($getPelaporanNikotin);
+    if ($getPelaporanNikotin){
+      foreach ($getPelaporanNikotin as $key => $value) {
+        $getPelaporanNikotin[$key]['changeDate'] = changeDate($value['createdDate']);
+      }
+    }
     $this->view->assign('laporannikotin',$getPelaporanNikotin); 
 
     $getLab = $this->contentHelper->getLab();
@@ -371,6 +384,7 @@ class account extends Controller {
     $this->view->assign('produk',$getProduk);  
     
     if ($_POST){
+
       $saveData = $this->contentHelper->saveDataNikotin($_POST);
       if ($saveData){
 
@@ -577,6 +591,11 @@ class account extends Controller {
     $this->view->assign('idpabrik',0);
 
     $getPelaporanKemasan = $this->contentHelper->getPelaporanKemasan(false,$getIndustri[0]['id'], '0,10');
+    if ($getPelaporanKemasan){
+      foreach ($getPelaporanKemasan as $key => $value) {
+        $getPelaporanKemasan[$key]['changeDate'] = changeDate($value['createDate']);
+      }
+    }
     $this->view->assign('laporankemasan',$getPelaporanKemasan); 
 
     
@@ -675,12 +694,15 @@ class account extends Controller {
   function notifikasi(){
 
     $notif = $this->contentHelper->getNotif();
+
     if ($notif){
       foreach ($notif as $key => $value) {
         if ($value['date']) $notif[$key]['changeDate'] = changeDate($value['date']);
       }
+      $this->view->assign('notif',$notif);
+    
     }
-    $this->view->assign('notif',$notif);
+
     $this->view->assign('user',$this->user);  
     return $this->loadView('notif');
   }

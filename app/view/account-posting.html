@@ -82,7 +82,7 @@
           </div>
           <div class="portlet-content">
         
-            <div class="col-sm-10">
+            <div class="col-sm-8">
               <div class="form-group">
                 {if $laporankemasan}
                 {foreach $laporankemasan as $val}
@@ -91,13 +91,13 @@
                 {/if}
               </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-4">
               <div class="form-group">
                 {if $laporankemasan}
                 {foreach $laporankemasan as $val}
               
                 {if $val.n_status == 10}
-                 <a href="#" class="form-control btn-success" onclick="">Sudah Posting</a><br>
+                 <a href="javascript:void(0)" class="form-control btn-success" onclick="">Sudah Posting tanggal {$val.changeDate}</a><br>
                 {else}
                  <a href="{$basedomain}account/postingKemasan/?id={$val.id}" class="form-control" onclick="return submit_confirm('Kirim data ke BPOM ?')">Posting</a><br>
                 {/if}

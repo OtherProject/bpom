@@ -29,6 +29,7 @@ class news extends Controller {
 
 		global $CONFIG, $basedomain;
 
+    $this->log('surf', 'list berita');
 		$getData = $this->contentHelper->getArticle();
     
     if ($getData){
@@ -127,6 +128,15 @@ class news extends Controller {
     }
 
     exit;
+  }
+
+  function search()
+  {
+    $news['req'] = _p('req');
+    $getData = $this->contentHelper->searchNews($news);
+    // pr($getData);
+    if ($getData)$this->view->assign('news',$getData);
+
   }
 }
 

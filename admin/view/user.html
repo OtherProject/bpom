@@ -64,9 +64,9 @@
 										<input type="checkbox" class="icheck-input" onchange="return AreAnyCheckboxesChecked();">
 									</th>
 									<th data-filterable="true" data-sortable="true" >Nama</th>
-									<th data-filterable="true" data-sortable="true" >Instansi</th>
+									<th data-filterable="true" data-sortable="true" >Jabatan</th>
 									<th data-filterable="true" data-sortable="true">Email</th>
-									<th data-filterable="true" data-sortable="true">Status</th>
+									<th data-filterable="false" data-sortable="true">Status</th>
 									
 								</tr>
 							</thead>
@@ -77,7 +77,12 @@
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();">
 									</td>
 									<td><a href="{$basedomain}user/editAdmin/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.name}</a></td>
-									<td style="color:{$var.status_color}">{$var.description}</td>
+									<td>
+										{if $var.type==1}Administrator{/if}
+										{if $var.type==2}Verifikator{/if}
+										{if $var.type==3}Evaluator{/if}
+										{if $var.type==4}Balai{/if}
+									</td>
 									<td>{$var.email}</td>
 									<td>
 										{if $var.n_status == 0}Pending{/if}

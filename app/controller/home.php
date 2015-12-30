@@ -29,6 +29,7 @@ class home extends Controller {
 
 		global $CONFIG, $basedomain;
 
+    $this->log('surf', 'landing');
     $limit = array(0,1,2);
 		$getData = $this->contentHelper->getArticle();
     if ($getData){
@@ -85,53 +86,6 @@ class home extends Controller {
   }
 	
 	
-  function formRegister()
-  {
-    global $basedomain;
-   
-   if(!$this->user) {redirect($basedomain."home/connect");exit;} 
-    $getUserInfo = $this->loginHelper->getUserInfo();
-    if ($getUserInfo['verified']>0){
-      redirect($basedomain.'uploadfoto/pilihframe');
-    }
-
-    $this->view->assign('user',$this->user);
-    return $this->loadView('form');
-  }
-
-  function inputForm()
-  {
-
-    global $basedomain;
-
-    $inputData=$this->contentHelper->registerUser($_POST); 
-    if ($inputData)redirect($basedomain.'uploadfoto/pilihframe');
-
-  }
-
-  function dashboard()
-  {
-
-    return $this->loadView('dashboard');
-  }
-
-	function loginSocmed()
-  {
-
-    global $CONFIG, $basedomain;
-
-    
-  }
-  function thanks(){
-    return $this->loadView('thanks');
-
-  }
-
-  function privacy(){
-     return $this->loadView('privacy');
-
-  }
-
   function debuging()
   {
     $email = _g('email');

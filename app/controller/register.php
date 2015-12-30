@@ -29,7 +29,7 @@ class register extends Controller {
 	function index(){
 
 		global $CONFIG, $basedomain;
-
+    $this->log('surf', 'register');
 		// $getData = $this->contentHelper->getArticle();
     // pr($getData);
 

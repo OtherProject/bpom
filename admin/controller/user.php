@@ -62,6 +62,7 @@ class user extends Controller {
 		$fetchData['condition'] = array('n_status'=>1);
 
 		$admin = $this->contentHelper->fetchData($fetchData);
+		// pr($admin);
 		$this->view->assign('data',$admin);
 		return $this->loadView('user');
 	}
