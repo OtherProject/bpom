@@ -17,7 +17,8 @@ $ROUTES = array(
                 'publikasi',
                 'api',
                 'informasi',
-                'gallery'
+                'gallery',
+                'label'
                 
                 );
 ?>
