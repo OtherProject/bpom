@@ -15,7 +15,7 @@
             
 				{if $slideshow}
                 {foreach $slideshow as $k => $val}
-				 <div class="item active" style="background-image: url({$basedomain}public_assets/{$val.files})">
+				 <div class="item {if $k==0}active{/if}" style="background-image: url({$basedomain}public_assets/{$val.files})">
                     <div class="container">
                         <div class="row slide-margin">
                             <div class="col-sm-6">
