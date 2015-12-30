@@ -18,7 +18,7 @@ $(function () {
 </div> <!-- #content-header -->	
 
 <div id="content-container">
-	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}home/add" enctype="multipart/form-data">
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}home/addMerek" enctype="multipart/form-data">
 
 		<div class="row">
 			<div class="col-md-9">
@@ -47,8 +47,7 @@ $(function () {
 							<div class="form-group">
 							<label for="text-input">Kategori</label>
 								<select name="categoryid" class="form-control">
-									<option value="1" {if $album.categoryid == 1}selected{/if}>Slideshow</option>
-									<option value="2" {if $album.categoryid == 2}selected{/if}>Statistik</option>
+									<option value="3" {if $album.categoryid == 1}selected{/if}>Merek Rokok</option>
 								</select>
 							</div>
 						</div>

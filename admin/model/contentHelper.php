@@ -628,8 +628,9 @@ class contentHelper extends Database {
         $table = $data['table'];
         $condition = $data['condition'];
         $oderby = $data['oderby'];
+        $additional = $data;
 
-        $fetch = $this->fetchSingleTable($table, $condition, $oderby, $debug);
+        $fetch = $this->fetchSingleTable($table, $condition, $oderby, $additional, $debug);
         if ($fetch) return $fetch;
         return false;
     }

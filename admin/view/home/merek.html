@@ -37,7 +37,7 @@
 
 					<form action="{$basedomain}article/articledel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
 
-					<a href="{$basedomain}home/add"><button type="button" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Album</button></a>
+					<a href="{$basedomain}home/addMerek"><button type="button" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Album</button></a>
 					{*}
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
 					{/*}
@@ -53,7 +53,6 @@
 									<th data-filterable="false" data-sortable="true" >No</th>
 									<th data-filterable="true" data-sortable="true" >Title</th>
 									<th data-filterable="false" data-sortable="true" >Cover</th>
-									<th data-filterable="false" data-sortable="true" >Categori</th>
 									<th data-filterable="false" data-sortable="true">Posted Date</th>
 									<th data-filterable="false" data-sortable="true">Action</th>
 								</tr>
@@ -66,7 +65,6 @@
 									</td>
 									<td><a href="{$basedomain}article/addarticle/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
 									<td><img src="{$app_domain}public_assets/{$var.image}" width="25%"></td>
-									<td>{if $var.categoryid==1}Slideshow{else if $var.categoryid==2}Statistik{/if}</td>
 									<td>{$var.posted_date}</td>
 									<td><a href="{$basedomain}home/addFoto/?idparent={$var.id}"><button type="button" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Lihat Foto</button></a>
 									<a href="{$basedomain}home/add/?id={$var.id}&type=1"><button type="button" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</button></a>

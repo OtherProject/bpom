@@ -11,7 +11,7 @@
 	}
 </script>
 <div id="content-header">
-	<h1>List Album</h1>
+	<h1>List Foto Album</h1>
 </div> <!-- #content-header -->	
 
 <div id="content-container">
@@ -26,7 +26,7 @@
 
 					<h3>
 						<i class="fa fa-table"></i>
-						List Album
+						List Foto
 					</h3>
 
 				</div> <!-- /.portlet-header -->
@@ -37,7 +37,8 @@
 
 					<form action="{$basedomain}article/articledel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
 
-					<a href="{$basedomain}home/add"><button type="button" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Album</button></a>
+					<a href="{$basedomain}home/add/?idparent={$idparent}&type=2"><button type="button" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Foto</button></a>
+					<a href="{$basedomain}home/add"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Tambah Album</button></a>
 					{*}
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
 					{/*}
@@ -51,26 +52,24 @@
 							<thead>
 								<tr>
 									<th data-filterable="false" data-sortable="true" >No</th>
-									<th data-filterable="true" data-sortable="true" >Title</th>
-									<th data-filterable="false" data-sortable="true" >Cover</th>
-									<th data-filterable="false" data-sortable="true" >Categori</th>
+									<th data-filterable="false" data-sortable="true" >Title</th>
+									<th data-filterable="false" data-sortable="true" >Foto</th>
 									<th data-filterable="false" data-sortable="true">Posted Date</th>
 									<th data-filterable="false" data-sortable="true">Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								{foreach $data as $k => $var}
+								{foreach $foto as $k => $var}
 								<tr>
 									<td class="checkbox-column">
 										{$k+1}.
 									</td>
-									<td><a href="{$basedomain}article/addarticle/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
-									<td><img src="{$app_domain}public_assets/{$var.image}" width="25%"></td>
-									<td>{if $var.categoryid==1}Slideshow{else if $var.categoryid==2}Statistik{/if}</td>
+									<td><a href="{$basedomain}home/add/?idparent={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
+									<td><img src="{$app_domain}public_assets/{$var.files}" width="25%"></td>
 									<td>{$var.posted_date}</td>
-									<td><a href="{$basedomain}home/addFoto/?idparent={$var.id}"><button type="button" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Lihat Foto</button></a>
-									<a href="{$basedomain}home/add/?id={$var.id}&type=1"><button type="button" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</button></a>
-									<a href="{$basedomain}home/delete/?id={$var.id}&req=1"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Hapus</button></a>
+									<td>
+									<a href="{$basedomain}home/add/?id={$var.id}&type=2&idparent={$var.otherid}"><button type="button" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</button></a>
+									<a href="{$basedomain}home/delete/?id={$var.id}&req=2&idparent={$var.otherid}"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Hapus</button></a>
 									</td>
 								</tr>
 								{/foreach}

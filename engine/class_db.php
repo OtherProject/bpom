@@ -572,7 +572,7 @@ class Database
 		return false;
 	}
 
-	function fetchSingleTable($table=false, $condition=array(), $order='ASC', $debug=false)
+	function fetchSingleTable($table=false, $condition=array(), $order='ASC', $additional=false, $debug=false)
 	{
 
 		global $dbConfig;
@@ -587,22 +587,19 @@ class Database
 		if ($condition){
 			foreach ($condition as $key => $value) {
 				if ($value){
-					if ($dbConfig[0]['server']=='mysql'){
-						$field[] = "`{$key}` = '{$value}'";
-					}else{
-
+					
 						if (count($dataIn)>0){
 							if (in_array($key, $dataIn)){
-								$field[] = "{$key} IN ({$value})";
+								$field[] = "`{$key}` IN ({$value})";
 							}else{
-								$field[] = "{$key} = '{$value}'";
+								$field[] = "`{$key}` = '{$value}'";
 							}	
 						}else{
-							$field[] = "{$key} = '{$value}'";
+							$field[] = "`{$key}` = '{$value}'";
 						}
 						
 						
-					}
+					
 					
 				}
 				
