@@ -81,7 +81,7 @@ $(document).ready(function(){
           </div>
           <div class="portlet-content">
         
-            <div class="col-sm-10">
+            <div class="col-sm-9">
               <div class="form-group">
                 {if $laporannikotin}
                 {foreach $laporannikotin as $val}
@@ -90,11 +90,11 @@ $(document).ready(function(){
                 {/if}
               </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
               <div class="form-group">
                 {if $laporannikotin}
                 {foreach $laporannikotin as $val}
-              {*}<a href="{$basedomain}account/delnikotin/?id={$val.id}" class="form-control" onclick="return submit_confirm('Hapus data ?')">Delete</a><br>{/*}
+              {*}<a href="{$basedomain}account/delnikotin/?id={$val.id}" class="form-control" onclick="return submit_confirm('Hapus data ?')">Delete</a><br>{/*}<label class="form-control">{$val.changeDate}</label><br>
                 {/foreach}
                 {/if}
               </div>

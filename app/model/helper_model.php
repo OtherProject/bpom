@@ -109,7 +109,7 @@ class helper_model extends Database {
     function logActivity($action='surf', $comment=null, $userid=false)
     {
         $sql = "SELECT id FROM activity WHERE activityValue = '{$action}' LIMIT 1 ";
-        // pr($sql);
+        // pr($sql);exit;
         $res = $this->fetch($sql);
         if ($res){
 
@@ -120,12 +120,11 @@ class helper_model extends Database {
             if ($userid) $user = $userid;
             else $user = $this->user['id'];
 
-            if (!$userid) return false;
+            if (!$user) $user = 0;
 
             $ins = "INSERT INTO activity_log (userid, activityId, activityDesc, source, datetimes, n_status)
                     VALUES ({$user}, {$res['id']}, '{$comment}', '{$source}', '{$date}',1)";
             $result = $this->query($ins);
-
             if ($result) return true;
             return false;
         }

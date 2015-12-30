@@ -73,7 +73,7 @@ class contentHelper extends Database {
 
 		$id = _p('id');
 		$_POST['n_status'] = 0;
-		
+		$_POST['createDate'] = date('Y-m-d H:i:s');
 
 		if ($id){
 
@@ -94,7 +94,8 @@ class contentHelper extends Database {
 
 		$id = _p('id');
 		$_POST['n_status'] = 10;
-		
+		$_POST['createdDate'] = date('Y-m-d H:i:s');
+
 		if ($id){
 
 			$run = $this->save("update", "{$this->prefix}_pelaporan_nikotin", $_POST, "id = {$id}");
