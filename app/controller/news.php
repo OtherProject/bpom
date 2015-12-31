@@ -56,6 +56,7 @@ class news extends Controller {
 
     $id = _g('id');
     $getData = $this->contentHelper->getArticle($id);
+    $getDataAll = $this->contentHelper->getArticle();
     // pr($getData);
     if ($getData){
       foreach ($getData as $key => $value) {
@@ -68,7 +69,9 @@ class news extends Controller {
         
       }
     }
+
     $this->view->assign('data',$getData); 
+    $this->view->assign('dataAll',$getDataAll); 
 
     return $this->loadView('detail-news');
   }
@@ -132,11 +135,15 @@ class news extends Controller {
 
   function search()
   {
-    $news['req'] = _p('req');
-    $getData = $this->contentHelper->searchNews($news);
-    // pr($getData);
-    if ($getData)$this->view->assign('news',$getData);
 
+    $news['req'] = _p('req');
+    $search = $this->contentHelper->searchNews($news);
+    $getData = $this->contentHelper->getArticle();
+    // pr($getData);
+    if ($search)$this->view->assign('news',$search);
+    if ($getData)$this->view->assign('data',$getData);
+
+    return $this->loadView('news-search');
   }
 }
 

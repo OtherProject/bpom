@@ -2,7 +2,7 @@
 <section id="blog" class="container">
         
         <div class="center">
-            <h2>Berita Terkini</h2>
+            <h2>Pencarian Berita</h2>
             
         </div>
 
@@ -10,10 +10,10 @@
             <div class="row">
                  <div class="col-md-8">
 
-                    <h2 class="line-bottom"><i class="fa fa-plus-square-o"></i> Berita Terkini</h2>
+                    <h2 class="line-bottom"><i class="fa fa-plus-square-o"></i> Pencarian Berita</h2>
                  <div class="row">
-                     {if $data}
-                        {foreach $data as $val}
+                     {if $news}
+                        {foreach $news as $val}
                         <div class="col-md-12 section-news" >
                             <div class="row">
                                  <div class="col-md-4">
@@ -112,6 +112,7 @@
                         <li><a href="#">5</a></li>
                         <li><a href="#">Next Page<i class="fa fa-long-arrow-right"></i></a></li>
                     </ul><!--/.pagination-->
+
                       {/*} 
                 </div><!--/.col-md-8-->
                 <aside class="col-md-4">
@@ -122,6 +123,7 @@
                                 <form method="POST" action="{$basedomain}news/search" role="form">
                                         <input type="text" class="form-control search_box" autocomplete="off" placeholder="Search Here" name="req">
                                 </form>
+                            </div><!--/.search-->
                             </div><!--/.search-->
                          </div>
                         

@@ -16,7 +16,7 @@
                     <div class="blog-item">
                         {if $val.image}
                         <a href="#">
-                                    <img class="img-responsive img-blog" src="{$basedomain}public_assets/{$val.image}" width="100%"  alt="" />
+                                    <img class="img-responsive img-blog" src="{$basedomain}public_assets/{$val.image}" width="100%" style="height:300px" alt="" />
                                 </a>
                         {/if}
                             <div class="row">  
@@ -40,11 +40,29 @@
                     
 
                       <aside class="col-md-4">
-                    <div class="widget search">
-                        <form role="form">
-                                <input type="text" class="form-control search_box" autocomplete="off" placeholder="Search Here">
-                        </form>
-                    </div><!--/.search-->
+                        
+                        <div class="row">
+                             <div class="col-md-12">
+                                <h2 class="line-bottom"><i class="fa fa-search"></i> Pencarian</h2>
+                               <div class="widget search">
+                                <form method="POST" action="{$basedomain}news/search" role="form">
+                                        <input type="text" class="form-control search_box" autocomplete="off" placeholder="Search Here" name="req">
+                                </form>
+                            </div><!--/.search-->
+                                </div><!--/.search-->
+                             </div>
+                            
+                             <div class="col-md-12">
+                                <h2 class="line-bottom"><i class="fa fa-file-text-o"></i> Recent POST</h2>
+                                <ul class="link-terkait">
+
+                                 {if $dataAll}
+                                    {foreach $dataAll as $val}
+                                    <li><a href="{$basedomain}news/detailnews/?id={$val.id}"><i class="fa fa-plus"></i> {$val.title}</a></li>
+                                    {/foreach}
+                                {/if}
+                                </ul>
+                             </div>
                     
                 
                     {*}

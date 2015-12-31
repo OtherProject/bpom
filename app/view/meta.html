@@ -46,6 +46,15 @@
     bottom: -60px;
     position: absolute;
   }*/
+  .quote{
+    text-align: center;
+    margin-bottom: 70px;
+    font-style: italic;
+  }
+  .black-lg{
+    color:#000;
+    padding-bottom: 10px;
+  }
   .link-terkait{
     list-style: outside none;
     color:#000;
@@ -117,5 +126,53 @@
               padding-top: 90px;
           }          
       }
+  </style> 
+  <style type="text/css">
+  {literal}
+    .lightbox {width: 100%; overflow: auto;}
+    section {clear: both;}
+    .gallery figure {float: left; margin: 20px; border: 1px #aaa solid;}
+    img {border: none;}
+
+
+    /* Add in animation effects */
+    /* overlay at start */
+    .mfp-fade.mfp-bg {
+      opacity: 0;
+
+      -webkit-transition: all 0.15s ease-out;
+      -moz-transition: all 0.15s ease-out;
+      transition: all 0.15s ease-out;
+    }
+    /* overlay animate in */
+    .mfp-fade.mfp-bg.mfp-ready {
+      opacity: 0.8;
+    }
+    /* overlay animate out */
+    .mfp-fade.mfp-bg.mfp-removing {
+      opacity: 0;
+    }
+
+    /* content at start */
+    .mfp-fade.mfp-wrap .mfp-content {
+      opacity: 0;
+
+      -webkit-transition: all 0.15s ease-out;
+      -moz-transition: all 0.15s ease-out;
+      transition: all 0.15s ease-out;
+    }
+    /* content animate it */
+    .mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+      opacity: 1;
+    }
+    /* content animate out */
+    .mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+      opacity: 0;
+    }
+
+  {/literal}
   </style>
+ 
+    <link rel="stylesheet" href="{$basedomain}assets/css/magnific-popup.css" type="text/css">
+
 </head><!--/head-->
