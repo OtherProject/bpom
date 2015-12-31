@@ -30,7 +30,7 @@ class home extends Controller {
 		global $CONFIG, $basedomain;
 
     $this->log('surf', 'landing');
-    $limit = array(0,1,2);
+    $limit = array(0,1,2,3);
 		$getData = $this->contentHelper->getArticle();
     if ($getData){
       foreach ($getData as $key => $value) {
