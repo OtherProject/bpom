@@ -3,7 +3,23 @@
         list-style:;
     }
 </style>
+<div class="container" style="margin-top:15px">
+
+        <ol class="breadcrumb">
+          <li><a href="#">Beranda</a></li>
+          <li><a href="#">Profil</a></li>
+          <li class="active">
+          {if $data}
+            {foreach $data as $val}   
+                 {$val.title}
+            {/foreach}
+        {/if}
+          </li>
+        
+        </ol>
+    </div>
 <section id="contact-info">
+
         <div class="">  
         {if $data}
             {foreach $data as $val}              
