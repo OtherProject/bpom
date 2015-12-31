@@ -2,33 +2,17 @@
         <div class="">  
         {if $data}
             {foreach $data as $val}              
-            <div class="center"><h2>{$val.title}</h2></div>
-            <p class="lead">&nbsp;</p>
-
-            <div class="row">
-            	<div class="col-md-2"></div>
-            {if $val.image}
-            <div class="col-md-8">
-            	<img src="{$basedomain}public_assets/{$val.image}" width="100%">
+            {$val.title}
+            <p>{$val.content}</p>
+            {if $val.file}
+            <a href="{$basedomain}public_assets/{$val.file}" width="100%">Download</a>
             </div>
             {/if}
-            <div class="col-md-2"></div>
             
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-2"></div>
-            
-            <div class="col-md-8">
-                
-                <p>{$val.content}</p>
-            </div>
-            <div class="col-md-2"></div>
-            
-            </div>
             {/foreach}
         {/if}
         </div>
+        {*}
         <div class="row">
                 <div class="col-md-2"></div>
             
@@ -40,5 +24,5 @@
             </div>
             <div class="col-md-2"></div>
             
-            </div>
+            </div>{/*}
     </section>  <!--/gmap_area -->

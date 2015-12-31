@@ -230,9 +230,12 @@ class marticle extends Database {
 
 	}
 
-	function getContent($type=1)
+	function getContent($type=1, $id=false)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE articletype = {$type} ";
+
+		$filter = "";
+		if ($id) $filter .= " AND id = {$id}";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = 1 AND articletype = {$type} {$filter}";
 		
 		$result = $this->fetch($query,1);
 		if ($result) return $result;

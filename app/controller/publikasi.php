@@ -41,7 +41,8 @@ class publikasi extends Controller {
    
     global $CONFIG, $basedomain;
 
-    $getData = $this->contentHelper->getArticle(false,0,5,1);
+    $getData = $this->contentHelper->getArticle(false,0,5);
+    // pr($getData);
     if ($getData){
       foreach ($getData as $key => $value) {
         if ($value['posted_date']){
@@ -66,7 +67,7 @@ class publikasi extends Controller {
   {
     global $CONFIG, $basedomain;
 
-    $getData = $this->contentHelper->getArticle(false,0,6,1);
+    $getData = $this->contentHelper->getArticle(false,0,6);
     if ($getData){
       foreach ($getData as $key => $value) {
         if ($value['posted_date']){

@@ -7,17 +7,22 @@ class article extends Controller {
 	
 	public function __construct()
 	{
+		global $basedomain, $app_domain;
+
 		parent::__construct();
 		$this->loadmodule();
 		$this->view = $this->setSmarty();
 		$sessionAdmin = new Session;
 		$this->admin = $sessionAdmin->get_session();
 		// $this->validatePage();
+		$this->view->assign('basedomain',$basedomain);
+		$this->view->assign('app_domain',$app_domain);
 	}
 	public function loadmodule()
 	{
 		
 		$this->models = $this->loadModel('marticle');
+		$this->contentHelper = $this->loadModel('contentHelper');
 	}
 	
 	public function index(){
@@ -343,10 +348,44 @@ class article extends Controller {
 
 		global $CONFIG;
 		$getProfil = $this->models->getContent(5);
-		$this->view->assign('data',$getProfil[0]);
+		$this->view->assign('data',$getProfil);
+		$this->view->assign('req',1);
+
+		return $this->loadView('publikasi/list');
+	}
+
+	function add()
+	{
+
+		global $CONFIG, $basedomain, $app_domain;
+
+		$req = _g('req');
+		$id = _g('id');
+
+		if ($req == 1){
+			$type = 5;
+			$this->view->assign('req',1);
+			$this->view->assign('articletype',$type);
+		} 
+		if ($req == 2){
+			$type = 6;
+			$this->view->assign('req',2);
+			$this->view->assign('articletype',$type);
+		} 
+		if ($req == 3){
+			$type = 14;
+			$this->view->assign('req',3);
+			$this->view->assign('articletype',$type);
+		} 
+
+		if ($id){
+			$getProfil = $this->models->getContent($type, $id);
+			// pr($getProfil);
+			$this->view->assign('data',$getProfil[0]);
+		}
 
 		if ($_POST['title']){
-			$_POST['articletype']=5;
+			// $_POST['articletype']=5;
 			$_POST['n_status']=1;
 			$x = form_validation($_POST);
 
@@ -365,7 +404,8 @@ class article extends Controller {
 							if($_FILES['file_image']['name'] != ''){
 								if($x['action'] == 'update') deleteFile($x['image']);
 								$image = uploadFile('file_image',null,'image');
-								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
+								
+								$x['image_url'] = $image['real_name'];
 								$x['image'] = $image['full_name'];
 							}
 						}
@@ -374,12 +414,20 @@ class article extends Controller {
 			   		}
 				   	
 			   }catch (Exception $e){}
-			   
-            echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."article/profil'</script>";
+			
+			if ($_POST['req']==1) $link = 'article/peraturan';
+			if ($_POST['req']==2) $link = 'article/penelitian';
+
+            echo "<script>alert('Data berhasil di simpan');window.location.href='".$basedomain . $link ."'</script>";
             
 		}
 
-		return $this->loadView('profil');
+		if ($req==3){ 
+			return $this->loadView('labeling/add');
+		}else{
+			return $this->loadView('publikasi/peraturan');
+		}
+		
 	}
 
 	function penelitian()
@@ -387,43 +435,19 @@ class article extends Controller {
 
 		global $CONFIG;
 		$getProfil = $this->models->getContent(6);
-		$this->view->assign('data',$getProfil[0]);
+		$this->view->assign('data',$getProfil);
+		$this->view->assign('req',2);
+		return $this->loadView('publikasi/list');
+	}
 
-		if ($_POST['title']){
-			$_POST['articletype']=6;
-			$_POST['n_status']=1;
-			$x = form_validation($_POST);
+	function label()
+	{
 
-			   try
-			   {
-			   		if(isset($x) && count($x) != 0)
-			   		{
-						//update or insert
-						$x['action'] = 'insert';
-						if($x['id'] != ''){
-							$x['action'] = 'update';
-						}
-						
-						//upload file
-						if(!empty($_FILES)){
-							if($_FILES['file_image']['name'] != ''){
-								if($x['action'] == 'update') deleteFile($x['image']);
-								$image = uploadFile('file_image',null,'image');
-								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
-								$x['image'] = $image['full_name'];
-							}
-						}
-						
-						$data = $this->models->article_inp($x);
-			   		}
-				   	
-			   }catch (Exception $e){}
-			   
-            echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."article/profil'</script>";
-            
-		}
-
-		return $this->loadView('profil');
+		global $CONFIG;
+		$getProfil = $this->models->getContent(14);
+		$this->view->assign('data',$getProfil);
+		$this->view->assign('req',3);
+		return $this->loadView('labeling/list');
 	}
 
 	function faq()
@@ -658,6 +682,32 @@ class article extends Controller {
 			print json_encode(array('status'=>false));
 		}
 		exit;
+	}
+
+	function delete()
+	{
+
+		global $basedomain;
+
+		$id = _g('id');
+		$req = _g('req');
+		$idparent = _g('idparent');
+
+		if ($req == 1) $link = 'home/slideshow';
+		if ($req == 2) $link = "home/addFoto/?idparent={$idparent}";
+		// else $link = 'struktur';
+
+		$listTable = array('content'=>array(1), 'repo'=>array(2));
+		if (in_array($req, $listTable['content'])) $table = "_news_content";
+		else if (in_array($req, $listTable['repo'])) $table = "_news_content_repo";
+		
+		$data['id'] = $id;
+		$data['n_status'] = 0;
+		$save = $this->contentHelper->saveData($data,$table);
+		if ($save){
+			redirect($basedomain . $link);
+		}
+		
 	}
 }
 
