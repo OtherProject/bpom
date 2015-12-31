@@ -1,16 +1,40 @@
 <section id="contact-info">
-        <div class="">  
-        {if $data}
-            {foreach $data as $val}              
-            {$val.title}
-            <p>{$val.content}</p>
-            {if $val.file}
-            <a href="{$basedomain}public_assets/{$val.file}" width="100%">Download</a>
+
+        <div class="container">
+            <div class="row">
+            <div class="center"><h2>Publikasi Peraturan</h2></div>
+                {if $data}
+                    {foreach $data as $key=>$val}    
+
+                        <div class="col-md-3"  style="height:300px">
+                            <div class="row" style="padding-left:10px;padding-right:10px">
+
+                              <div class="col-md-12 thumbnail">
+                                <img src="{$basedomain}assets/images/pdf_128.png"/><!--doc_128.png untuk file doc-->
+                                <h3><i>{$val.title}</i></h3>
+                                    <p>{$val.content}</p>
+                                     {if $val.file}
+                                     <div align="center">
+                                    <a href="{$basedomain}public_assets/{$val.file}" class="btn btn-info" width="100%" ><i class="fa fa-cloud-download" ></i> Download File</a>
+                                    </div>
+                                    {/if}
+                              </div>
+                            </div>
+                        </div>
+                    {/foreach}
+                {/if}
+                 <div class="col-md-12" align="center">
+                    <ul class="pagination pagination-lg">
+                        <li><a href="#"><i class="fa fa-long-arrow-left"></i>Previous Page</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">Next Page<i class="fa fa-long-arrow-right"></i></a></li>
+                    </ul><!--/.pagination-->
+                </div>
             </div>
-            {/if}
-            
-            {/foreach}
-        {/if}
         </div>
         {*}
         <div class="row">

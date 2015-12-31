@@ -1,33 +1,40 @@
 <section id="contact-info">
-        <div class="">  
-        {if $data}
-            {foreach $data as $val}              
-            <div class="center"><h2>{$val.title}</h2></div>
-            <p class="lead">&nbsp;</p>
+       <div class="container">
+            <div class="row">
+            <div class="center"><h2>Publikasi Penelitian</h2></div>
+                {if $data}
+                    {foreach $data as $key=>$val}    
 
-            <div class="row">
-            	<div class="col-md-2"></div>
-            {if $val.image}
-            <div class="col-md-8">
-            	<img src="{$basedomain}public_assets/{$val.image}" width="100%">
+                        <div class="col-md-3"  style="height:300px">
+                            <div class="row" style="padding-left:10px;padding-right:10px">
+
+                              <div class="col-md-12 thumbnail">
+                                <img src="{$basedomain}assets/images/pdf_128.png"/><!--doc_128.png untuk file doc-->
+                                <h3><i>{$val.title}</i></h3>
+                                    <p>{$val.content}</p>
+                                     {if $val.file}
+                                     <div align="center">
+                                    <a href="{$basedomain}public_assets/{$val.file}" class="btn btn-info" width="100%" ><i class="fa fa-cloud-download" ></i> Download File</a>
+                                    </div>
+                                    {/if}
+                              </div>
+                            </div>
+                        </div>
+                    {/foreach}
+                {/if}
+                 <div class="col-md-12" align="center">
+                    <ul class="pagination pagination-lg">
+                        <li><a href="#"><i class="fa fa-long-arrow-left"></i>Previous Page</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">Next Page<i class="fa fa-long-arrow-right"></i></a></li>
+                    </ul><!--/.pagination-->
+                </div>
             </div>
-            {/if}
-            <div class="col-md-2"></div>
-            
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-2"></div>
-            
-            <div class="col-md-8">
-                
-                <p>{$val.content}</p>
-            </div>
-            <div class="col-md-2"></div>
-            
-            </div>
-            {/foreach}
-        {/if}
+        </div>
         </div>
         
     </section>  <!--/gmap_area -->
