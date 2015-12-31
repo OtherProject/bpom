@@ -49,6 +49,27 @@ class label extends Controller {
     
     return $this->loadView('label/galeri');
   }
+  function galerijenis(){
+
+    global $CONFIG, $basedomain;
+
+    
+    return $this->loadView('label/galeri-jenis');
+  }
+   function gallerymerek(){
+
+    global $CONFIG, $basedomain;
+
+    
+    return $this->loadView('label/galeri-merek');
+  }
+   function gallerymerekD(){
+
+    global $CONFIG, $basedomain;
+
+    
+    return $this->loadView('label/galeri-merek-detail');
+  }
 }
 
 ?>

@@ -847,7 +847,7 @@ a.accordion-toggle  i{
   background: #9CCC65;
   color: #fff;
 }
-
+/*
 .nav-tabs>li{
   margin-bottom: 0px;
   border-bottom: 1px solid #e6e6e6;
@@ -870,12 +870,12 @@ a.accordion-toggle  i{
 
 .nav-tabs li:last-child{
   border-bottom: 0 none;
-} 
+} */
 
 .nav-stacked>li+li{
   margin-top: 0;
 }
-
+/*
 .nav-tabs>li>a:hover{
   background: #1f1f20;
   color:#fff;
@@ -900,7 +900,7 @@ a.accordion-toggle  i{
   border-width: 25px 22px;
   right: -44px;
   top:0;
-}
+}*/
 
 .tab-wrap{
   border:1px solid #e6e6e6;
