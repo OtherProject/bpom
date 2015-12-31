@@ -491,7 +491,7 @@ class contentHelper extends Database {
         return false;
     }
 
-    function searchNews($data)
+    function searchNews($data, $articleType=0)
     {
 
     	$filter ="";
@@ -500,7 +500,7 @@ class contentHelper extends Database {
     	$sql = array(
                     'table' =>"{$this->prefix}_news_content AS n",
                     'field' => "*",
-                    'condition' => "n.n_status = 1 AND n.categoryid = 0 AND n.articleType = 0 {$filter}",
+                    'condition' => "n.n_status = 1 AND n.categoryid = 0 AND n.articleType = {$articleType} {$filter}",
                 );
 		
 		
