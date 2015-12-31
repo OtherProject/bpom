@@ -30,10 +30,10 @@
                                  </div>
 
                                  <div class="col-md-8">
-                                    <span class="title-news"><a href="{$basedomain}news/detailnews/?id={$val.id}">{$val.title}</a></span><br/>
+                                    <span class="title-news"><a href="{$basedomain}news/detailnews/?id={$val.id}">{$val.title|html_entity_decode}</a></span><br/>
                                     <span>by administrator on {$val.changeDate}</span>
                                     <div class="content-news">
-                                      {$val.brief}...
+                                      {$val.brief|html_entity_decode}...
                                       <a href="{$basedomain}news/detailnews/?id={$val.id}" style="color:#068FC8"><i>Baca Selengkapnya</i></a>
                                     </div>
 
