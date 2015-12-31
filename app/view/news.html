@@ -69,8 +69,8 @@
                                     <img class="img-responsive img-blog" src="{$basedomain}public_assets/{$val.image}" width="50%"  alt="" />
                                 </a>
                                 {/if}
-                                <h2><a href="{$basedomain}news/detailnews/?id={$val.id}">{$val.title}</a></h2>
-                                <h3>{$val.brief}</h3>
+                                <h2><a href="{$basedomain}news/detailnews/?id={$val.id}">{$val.title|html_entity_decode}</a></h2>
+                                <h3>{$val.brief|html_entity_decode}</h3>
                                 <a class="btn btn-primary readmore" href="{$basedomain}news/detailnews/?id={$val.id}">Detail <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>    
@@ -131,7 +131,7 @@
 
                              {if $data}
                                 {foreach $data as $val}
-                                <li><a href="{$basedomain}news/detailnews/?id={$val.id}"><i class="fa fa-plus"></i> {$val.title}</a></li>
+                                <li><a href="{$basedomain}news/detailnews/?id={$val.id}"><i class="fa fa-plus"></i> {$val.title|html_entity_decode}</a></li>
                                 {/foreach}
                             {/if}
                             </ul>
