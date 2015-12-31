@@ -124,6 +124,13 @@ class label extends Controller {
     
     return $this->loadView('label/galeri-jenis');
   }
+   function galleryjenisD(){
+
+    global $CONFIG, $basedomain;
+
+    
+    return $this->loadView('label/galeri-jenis-detail');
+  }
    function gallerymerek(){
 
     global $CONFIG, $basedomain;
