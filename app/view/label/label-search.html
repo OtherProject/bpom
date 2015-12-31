@@ -2,7 +2,7 @@
 <section id="blog" class="container">
         
         <div class="center">
-            <h2>Berita Terkini</h2>
+            <h2>Pencarian Label</h2>
             
         </div>
 
@@ -10,10 +10,10 @@
             <div class="row">
                  <div class="col-md-8">
 
-                    <h2 class="line-bottom"><i class="fa fa-plus-square-o"></i> Berita Terkini</h2>
+                    <h2 class="line-bottom"><i class="fa fa-plus-square-o"></i> Pencarian Label</h2>
                  <div class="row">
-                     {if $data}
-                        {foreach $data as $val}
+                     {if $news}
+                        {foreach $news as $val}
                         <div class="col-md-12 section-news" >
                             <div class="row">
                                  <div class="col-md-4">
@@ -23,11 +23,11 @@
                                  </div>
 
                                  <div class="col-md-8">
-                                    <span class="title-news"><a href="{$basedomain}news/detailnews/?id={$val.id}">{$val.title|html_entity_decode}</a></span><br/>
+                                    <span class="title-news"><a href="{$basedomain}label/detailLabel/?id={$val.id}">{$val.title|html_entity_decode}</a></span><br/>
                                     <span>by administrator on {$val.changeDate}</span>
                                     <div class="content-news">
                                       {$val.brief|html_entity_decode}...
-                                      <a href="{$basedomain}news/detailnews/?id={$val.id}" style="color:#068FC8"><i>Baca Selengkapnya</i></a>
+                                      <a href="{$basedomain}label/detailLabel/?id={$val.id}" style="color:#068FC8"><i>Baca Selengkapnya</i></a>
                                     </div>
 
                                  </div>
@@ -69,9 +69,9 @@
                                     <img class="img-responsive img-blog" src="{$basedomain}public_assets/{$val.image}" width="50%"  alt="" />
                                 </a>
                                 {/if}
-                                <h2><a href="{$basedomain}news/detailnews/?id={$val.id}">{$val.title|html_entity_decode}</a></h2>
-                                <h3>{$val.brief|html_entity_decode}</h3>
-                                <a class="btn btn-primary readmore" href="{$basedomain}news/detailnews/?id={$val.id}">Detail <i class="fa fa-angle-right"></i></a>
+                                <h2><a href="{$basedomain}label/detailLabel/?id={$val.id}">{$val.title}</a></h2>
+                                <h3>{$val.brief}</h3>
+                                <a class="btn btn-primary readmore" href="{$basedomain}label/detailLabel/?id={$val.id}">Detail <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>    
                     </div><!--/.blog-item-->
@@ -112,6 +112,7 @@
                         <li><a href="#">5</a></li>
                         <li><a href="#">Next Page<i class="fa fa-long-arrow-right"></i></a></li>
                     </ul><!--/.pagination-->
+
                       {/*} 
                 </div><!--/.col-md-8-->
                 <aside class="col-md-4">
@@ -119,9 +120,10 @@
                          <div class="col-md-12">
                             <h2 class="line-bottom"><i class="fa fa-search"></i> Pencarian</h2>
                            <div class="widget search">
-                                <form method="POST" action="{$basedomain}news/search" role="form">
+                                <form method="POST" action="{$basedomain}label/search" role="form">
                                         <input type="text" class="form-control search_box" autocomplete="off" placeholder="Search Here" name="req">
                                 </form>
+                            </div><!--/.search-->
                             </div><!--/.search-->
                          </div>
                         
@@ -131,7 +133,7 @@
 
                              {if $data}
                                 {foreach $data as $val}
-                                <li><a href="{$basedomain}news/detailnews/?id={$val.id}"><i class="fa fa-plus"></i> {$val.title|html_entity_decode}</a></li>
+                                <li><a href="{$basedomain}label/detailLabel/?id={$val.id}"><i class="fa fa-plus"></i> {$val.title|html_entity_decode}</a></li>
                                 {/foreach}
                             {/if}
                             </ul>

@@ -1,0 +1,93 @@
+<section id="blog" class="container">
+        <div class="center">
+            <h2>Detail Label</h2>
+            <p class="lead">&nbsp;</p>
+        </div>
+
+        <div class="blog">
+            <div class="row">
+
+                
+                <div class="col-md-8">
+
+                    {if $data}
+                    {foreach $data as $val}
+
+                    <div class="blog-item">
+                        {if $val.image}
+                        <a href="#">
+                                    <img class="img-responsive img-blog" src="{$basedomain}public_assets/{$val.image}" width="100%" style="height:300px" alt="" />
+                                </a>
+                        {/if}
+                            <div class="row">  
+                                <div class="col-xs-12 col-sm-2 text-center">
+                                    <div class="entry-meta">
+                                        <span id="publish_date">{$val.changeDate}</span>
+                                        <span><i class="fa fa-user"></i> <a href="#"> NAPZA</a></span>
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-10 blog-content" id="news">
+                                    <h2>{$val.title|html_entity_decode}</h2>
+                                    <p>{$val.content|html_entity_decode}</p>
+                                    
+                                </div>
+                            </div>
+                        </div><!--/.blog-item-->
+                        {/foreach}
+                    {/if}
+                    </div><!--/.col-md-8-->
+                    
+
+                      <aside class="col-md-4">
+                        
+                        <div class="row">
+                             <div class="col-md-12">
+                                <h2 class="line-bottom"><i class="fa fa-search"></i> Pencarian</h2>
+                               <div class="widget search">
+                                <form method="POST" action="{$basedomain}label/search" role="form">
+                                        <input type="text" class="form-control search_box" autocomplete="off" placeholder="Search Here" name="req">
+                                </form>
+                            </div><!--/.search-->
+                                </div><!--/.search-->
+                             </div>
+                            
+                             <div class="col-md-12">
+                                <h2 class="line-bottom"><i class="fa fa-file-text-o"></i> Recent POST</h2>
+                                <ul class="link-terkait">
+
+                                 {if $dataAll}
+                                    {foreach $dataAll as $val}
+                                    <li><a href="{$basedomain}label/detailLabel/?id={$val.id}"><i class="fa fa-plus"></i> {$val.title}</a></li>
+                                    {/foreach}
+                                {/if}
+                                </ul>
+                             </div>
+                    
+                
+                    {*}
+                    <div class="widget archieve">
+                        <h3>Archieve</h3>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ul class="blog_archieve">
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Agustus 2014 <span class="pull-right">(97)</span></a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i> September 2014 <span class="pull-right">(32)</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i> October 2014 <span class="pull-right">(19)</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i> November 2014 <span class="pull-right">(08)</a></li>
+                                </ul>
+                            </div>
+                        </div>                     
+                    </div><!--/.archieve-->
+                    {/*}
+                </aside>  
+                
+
+            </div><!--/.row-->
+
+         </div><!--/.blog-->
+
+    </section><!--/#blog-->
+<script type="text/javascript">
+    $("p").removeAttr("style");
+</script>

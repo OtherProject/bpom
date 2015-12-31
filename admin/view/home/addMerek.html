@@ -43,9 +43,40 @@ $(function () {
 						</div>	
 						
 						{if $type==1}
+						
+
 						<div class="col-md-6">
 							<div class="form-group">
-							<label for="text-input">Kategori</label>
+							<label for="text-input">Nama Produsen</label>
+								<select name="produsen" class="form-control">
+									<option value="3" {if $album.categoryid == 1}selected{/if}>Merek Rokok</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+							<label for="text-input">Jenis</label>
+								<select name="produsen" class="form-control">
+									<option value="3" {if $album.categoryid == 1}selected{/if}>Merek Rokok</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+							<label for="text-input">Harga di pita cukai</label>
+								<input type="text" name="title" class="form-control" value="{$album.title}" data-required="true"/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+							<label for="text-input">Harga pasar</label>
+								<input type="text" name="title" class="form-control" value="{$album.title}" data-required="true"/>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+							<label for="text-input">Kategori Album</label>
 								<select name="categoryid" class="form-control">
 									<option value="3" {if $album.categoryid == 1}selected{/if}>Merek Rokok</option>
 								</select>
