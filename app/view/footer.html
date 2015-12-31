@@ -45,6 +45,41 @@
     <script src="{$basedomain}assets/js/jquery.form.js"></script>
     <script src="{$basedomain}assets/js/plugins/datepicker/bootstrap-datepicker.js"></script>
     <script src="{$basedomain}assets/js/modernizr.js"></script> <!-- Modernizr -->
+    <script src="{$basedomain}assets/js/jquery.magnific.pupup.js"></script>
+    <script>
+    {literal}
+    // First Example Group
+    $(document).ready(function() {
+      $('.lightbox').magnificPopup({ 
+        type: 'image',
+        // other options here
+        // end each line with a comma
+      });
+    });
+
+    // Second Example Group
+    $(document).ready(function() {
+      $('.lightbox-doodles').magnificPopup({ 
+        type: 'image',
+        gallery:{enabled:true},
+        // other options
+        // end each line with a comma
+      });
+    });
+
+
+    // Third Example Group
+    $(document).ready(function() {
+      $('.doodles').magnificPopup({ 
+        type: 'image',
+        gallery:{enabled:true},
+        removalDelay: 300,      // Delay in milliseconds before popup is removed
+        mainClass: 'mfp-fade',    // Class that is added to popup wrapper and background
+        // other options
+      });
+  });
+    {/literal}
+  </script>
     <script>
         jssor_1_slider_init();
     </script>

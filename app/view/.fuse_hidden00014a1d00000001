@@ -28,8 +28,8 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-10 blog-content" id="news">
-                                    <h2>{$val.title|html_entity_decode}</h2>
-                                    <p>{$val.content|html_entity_decode}</p>
+                                    <h2>{$val.title}</h2>
+                                    <p>{$val.content}</p>
                                     
                                 </div>
                             </div>
