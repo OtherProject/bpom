@@ -53,6 +53,7 @@
 									<th data-filterable="false" data-sortable="true" >No</th>
 									<th data-filterable="true" data-sortable="true" >Title</th>
 									<th data-filterable="false" data-sortable="true" >Cover</th>
+									<th data-filterable="false" data-sortable="true" >Produsen</th>
 									<th data-filterable="false" data-sortable="true">Posted Date</th>
 									<th data-filterable="false" data-sortable="true">Action</th>
 								</tr>
@@ -64,10 +65,11 @@
 										{$k+1}.
 									</td>
 									<td><a href="{$basedomain}article/addarticle/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
-									<td><img src="{$app_domain}public_assets/{$var.image}" width="25%"></td>
+									<td><img src="{$app_domain}public_assets/{$var.image}" width="100px"></td>
+									<td>{$var.fromwho}</td>
 									<td>{$var.posted_date}</td>
 									<td><a href="{$basedomain}home/addFoto/?idparent={$var.id}"><button type="button" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Lihat Foto</button></a>
-									<a href="{$basedomain}home/add/?id={$var.id}&type=1"><button type="button" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</button></a>
+									<a href="{$basedomain}home/addMerek/?id={$var.id}&type=1"><button type="button" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</button></a>
 									<a href="{$basedomain}home/delete/?id={$var.id}&req=1"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Hapus</button></a>
 									</td>
 								</tr>

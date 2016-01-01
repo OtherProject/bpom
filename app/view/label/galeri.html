@@ -20,12 +20,12 @@
 <section id="recent-works">
         <div class="container">
         <div class="row">
-        	<form method="" action="#">
+        	<form method="POST" action="{$basedomain}label/gallerymerek">
         	<div class="col-md-10">
-				  <input type="text" class="form-control" placeholder="Pencarian Data" aria-describedby="basic-addon2">
+				  <input type="text" class="form-control" placeholder="Pencarian Data" aria-describedby="basic-addon2" name="merek">
         	</div>
         	<div class="col-md-1">
-        	<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+        	<button type="submit" class="btn btn-info" name="submit"><i class="fa fa-search"></i></button>
         	</div>
 			</form>
         </div>
@@ -38,16 +38,22 @@
       <div class="tab-content responsive hidden-xs hidden-sm">
 	        <div class="tab-pane active" id="jenis">
 	        	<div class="row list-jenis">
-	        		<a href="{$basedomain}label/galerijenis" class="btn btn-info">Uses standard bootstrap tab markup <i class="fa fa-location-arrow"></i></a>
+	        		<a href="{$basedomain}label/galerijenis/?req=1" class="btn btn-info">SKM <i class="fa fa-location-arrow"></i></a>
 	        	</div>
 	        	<div class="row list-jenis">
-	        	<a href="{$basedomain}label/galerijenis" class="btn btn-info">Accordion is created with jquery <i class="fa fa-location-arrow"></i></a>
+	        	<a href="{$basedomain}label/galerijenis/?req=2" class="btn btn-info">SKT <i class="fa fa-location-arrow"></i></a>
 	        	</div>
 	        	<div class="row list-jenis">
-	        	<a href="{$basedomain}label/galerijenis" class="btn btn-info">Tabs and Accordion are the fully accessible via keyboard <i class="fa fa-location-arrow"></i></a>
+	        	<a href="{$basedomain}label/galerijenis/?req=3" class="btn btn-info">SPM <i class="fa fa-location-arrow"></i></a>
 	        	</div>
 	        	<div class="row list-jenis">
-	        	<a href="{$basedomain}label/galerijenis" class="btn btn-info">Supports multiple tabs on a page, with or without being responsive <i class="fa fa-location-arrow"></i></a>
+	        	<a href="{$basedomain}label/galerijenis/?req=4" class="btn btn-info">CRT <i class="fa fa-location-arrow"></i></a>
+	        	</div>
+	        	<div class="row list-jenis">
+	        	<a href="{$basedomain}label/galerijenis/?req=5" class="btn btn-info">TIS <i class="fa fa-location-arrow"></i></a>
+	        	</div>
+	        	<div class="row list-jenis">
+	        	<a href="{$basedomain}label/galerijenis/?req=6" class="btn btn-info">KLM <i class="fa fa-location-arrow"></i></a>
 	        	</div>
 	        </div>
 

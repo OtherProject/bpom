@@ -121,28 +121,71 @@ class label extends Controller {
 
     global $CONFIG, $basedomain;
 
-    
+    $jenis = _g('req');
+    $merek['table'] = 'bpom_news_content';
+    $merek['condition'] = array('n_status'=>1, 'categoryid'=>3, 'jenis'=>$jenis);
+    $getData = $this->contentHelper->fetchDatas($merek);
+    // pr($getData);
+    if ($getData){
+
+      $this->view->assign('merek',$getData);
+    }
     return $this->loadView('label/galeri-jenis');
   }
-   function galleryjenisD(){
+  
+  function galleryjenisD(){
 
     global $CONFIG, $basedomain;
 
     
     return $this->loadView('label/galeri-jenis-detail');
   }
-   function gallerymerek(){
+  
+  function gallerymerek(){
 
     global $CONFIG, $basedomain;
+    
+    // pr($getData);
 
+
+    if (isset($_POST['submit'])){
+      $merek['req'] = _p('merek');
+      $getData = $this->contentHelper->searchMerek($merek);
+    }else{
+      $merek['table'] = 'bpom_news_content';
+      $merek['condition'] = array('n_status'=>1, 'categoryid'=>3);
+      $getData = $this->contentHelper->fetchDatas($merek);
+    }
+
+    if ($getData){
+
+      $this->view->assign('merek',$getData);
+    }
     
     return $this->loadView('label/galeri-merek');
   }
-   function gallerymerekD(){
+   function galleryDetail(){
 
     global $CONFIG, $basedomain;
 
-    
+    $otherid = _g('id');
+    $merek['table'] = 'bpom_news_content_repo';
+    $merek['condition'] = array('n_status'=>1, 'otherid'=>$otherid);
+    $getData = $this->contentHelper->fetchDatas($merek);
+    // pr($getData);
+    if ($getData){
+
+      $merekContent['table'] = 'bpom_news_content';
+      $merekContent['condition'] = array('n_status'=>1, 'id'=>$otherid);
+      $getDataAlbum = $this->contentHelper->fetchDatas($merekContent);
+      if ($getDataAlbum){
+        $unserial = unserialize($getDataAlbum[0]['tags']);
+        $this->view->assign('album',$unserial);
+      }
+      $this->view->assign('merek',$getData);
+    }
+    // pr($unserial);
+      
     return $this->loadView('label/galeri-merek-detail');
   }
 }

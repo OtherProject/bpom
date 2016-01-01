@@ -42,14 +42,19 @@
 	         <div class="row">
               <div class="col-md-8">
 
-	              <div class="col-md-12">
+              	{if $merek}
+              	{foreach $merek as $k => $val}
+	              <div class="col-md-{if $k==0}12{else}4{/if}">
 	                <!-- POST ITEM -->
 	                <div class="blog-post-item">
-						<a href="{$basedomain}assets/demo/rokok.jpg" class="thumbnail doodles">
-		                  <img src="{$basedomain}assets/demo/rokok.jpg" width="100%">
+						<a href="{$basedomain}public_assets/{$val.files}" class="thumbnail doodles">
+		                  <img src="{$basedomain}public_assets/{$val.files}" width="100%">
 		                </a>
 	                </div>
 	              </div>
+	            {/foreach}
+              	{/if}
+              	{*}
 	              <div class="col-md-4">
 	                <!-- POST ITEM -->
 	                <div class="blog-post-item">
@@ -106,16 +111,19 @@
 		                </a>
 	                </div>
 	              </div>
-
+	            {/*}
               </div>
+              {if $merek}
               <div class="col-md-4">
-               <p class="brand family 17"><b>brand family:</b> Beras Tuton</p>
-			    <p class="product 15"><b>product:</b> Kreteks</p>
-			    <p class="country 16"><b>country:</b> Indonesia</p>
+               <p class="brand family 17"><b>Produsen:</b> {$album.fromwho}</p>
+			    <p class="product 15"><b>Merek:</b> {$merek.0.title}</p>
+			    {*}<p class="country 16"><b>country:</b> Indonesia</p>
 			    <p class="city 0"><b>city:</b> Semarang</p>
-			    <p class="purchase date 19"><b>purchase date:</b> November 2013</p>
-			    <p class="price 13"><b>price:</b> 5000.00 IDR (0.44 USD)</p>
+			    <p class="purchase date 19"><b>purchase date:</b> November 2013</p>{/*}
+			    <p class="price 13"><b>Harga di pita cukai:</b> {$album.hargacukai}</p>
+			    <p class="price 13"><b>Harga pasar:</b> {$album.hargapasar}</p>
               </div>
+              {/if}
             </div>
 
 	        </div>

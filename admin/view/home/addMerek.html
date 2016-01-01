@@ -48,29 +48,32 @@ $(function () {
 						<div class="col-md-6">
 							<div class="form-group">
 							<label for="text-input">Nama Produsen</label>
-								<select name="produsen" class="form-control">
-									<option value="3" {if $album.categoryid == 1}selected{/if}>Merek Rokok</option>
-								</select>
+								<input type="text" name="fromwho" class="form-control" value="{$album.fromwho}" data-required="true"/>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 							<label for="text-input">Jenis</label>
-								<select name="produsen" class="form-control">
-									<option value="3" {if $album.categoryid == 1}selected{/if}>Merek Rokok</option>
+								<select name="jenis" class="form-control">
+									<option value="1" {if $data.jenis==1}selected{/if}>SKM</option>
+									<option value="2" {if $data.jenis==2}selected{/if}>SKT</option>
+									<option value="3" {if $data.jenis==3}selected{/if}>SPM</option>
+									<option value="4" {if $data.jenis==4}selected{/if}>CRT</option>
+									<option value="5" {if $data.jenis==5}selected{/if}>TIS</option>
+									<option value="6" {if $data.jenis==6}selected{/if}>KLM</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 							<label for="text-input">Harga di pita cukai</label>
-								<input type="text" name="title" class="form-control" value="{$album.title}" data-required="true"/>
+								<input type="text" name="hargacukai" class="form-control" value="{$album.merek.hargacukai}" data-required="true"/>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 							<label for="text-input">Harga pasar</label>
-								<input type="text" name="title" class="form-control" value="{$album.title}" data-required="true"/>
+								<input type="text" name="hargapasar" class="form-control" value="{$album.merek.hargapasar}" data-required="true"/>
 							</div>
 						</div>
 

@@ -508,5 +508,23 @@ class contentHelper extends Database {
         if ($result) return $result;
         return false;
     }
+
+    function searchMerek($data, $debug=false)
+    {
+
+    	$filter ="";
+    	if ($data['req']) $filter .= " AND (n.title LIKE '%{$data['req']}%' OR n.fromwho LIKE '%{$data['req']}%')";
+
+    	$sql = array(
+                    'table' =>"{$this->prefix}_news_content AS n",
+                    'field' => "*",
+                    'condition' => "n.n_status = 1 AND categoryid = 3 {$filter}",
+                );
+		
+		
+        $result = $this->lazyQuery($sql,$debug);
+        if ($result) return $result;
+        return false;
+    }
 }
 ?>

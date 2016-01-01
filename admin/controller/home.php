@@ -100,7 +100,7 @@ class home extends Controller {
 			}
 
 			$category['table'] = 'bpom_news_content';
-	      	$category['condition'] = array('n_status'=>1, 'categoryid'=>'1,2');
+	      	$category['condition'] = array('n_status'=>1, 'categoryid'=>'1,2,3');
 	      	$category['in'] = array('categoryid');
 	      	$getCategory = $this->contentHelper->fetchData($category);
 			if ($getCategory)$this->view->assign('albumcat',$getCategory);
@@ -169,8 +169,11 @@ class home extends Controller {
 				$slideshow['table'] = 'bpom_news_content_repo';
 		      	$slideshow['condition'] = array('n_status'=>1, 'id'=>$id);
 		      	$getData = $this->contentHelper->fetchData($slideshow);
-				if ($getData)$this->view->assign('album',$getData[0]);
 				
+				if ($getData){
+					
+					$this->view->assign('album',$getData[0]);
+				}
 			}
 
 			$category['table'] = 'bpom_news_content';
@@ -186,11 +189,15 @@ class home extends Controller {
 			// edit album 
 			if ($id){
 				$slideshow['table'] = 'bpom_news_content';
-		      	$slideshow['condition'] = array('n_status'=>1, 'categoryid'=>1, 'id'=>$id);
+		      	$slideshow['condition'] = array('n_status'=>1, 'categoryid'=>3, 'id'=>$id);
 		      	$getData = $this->contentHelper->fetchData($slideshow);
-				if ($getData)$this->view->assign('album',$getData[0]);
-				
+				// pr($getData);
+				if ($getData){
+					$getData[0]['merek'] = unserialize($getData[0]['tags']);
+					$this->view->assign('album',$getData[0]);
+				}
 			}
+
 		}
 
 		if ($_POST['submit']){
@@ -204,6 +211,10 @@ class home extends Controller {
 			
 			$idparent = $_POST['otherid'];
 			$type = _p('type');
+			$_POST['tags'] = serialize(array('hargacukai'=>$_POST['hargacukai'],
+											'hargapasar'=>$_POST['hargapasar'],
+											'fromwho'=>$_POST['fromwho']));							
+
 			if ($type==2){
 				if ($upload) $_POST['files'] = $upload['full_name'];
 				$save = $this->contentHelper->saveData($_POST,"_news_content_repo");
