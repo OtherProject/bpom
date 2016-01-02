@@ -179,8 +179,10 @@ class label extends Controller {
       $merekContent['condition'] = array('n_status'=>1, 'id'=>$otherid);
       $getDataAlbum = $this->contentHelper->fetchDatas($merekContent);
       if ($getDataAlbum){
+
         $unserial = unserialize($getDataAlbum[0]['tags']);
         $this->view->assign('album',$unserial);
+        $this->view->assign('master',$getDataAlbum[0]);
       }
       $this->view->assign('merek',$getData);
     }

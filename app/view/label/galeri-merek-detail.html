@@ -116,7 +116,9 @@
               {if $merek}
               <div class="col-md-4">
                <p class="brand family 17"><b>Produsen:</b> {$album.fromwho}</p>
-			    <p class="product 15"><b>Merek:</b> {$merek.0.title}</p>
+			    <p class="product 15"><b>Merek:</b> {$master.title}</p>
+			    <p class="product 15"><b>Jenis:</b> {$merek.0.title}</p>
+			    <p class="product 15"><b>Tahun:</b> {if $album.tahun}{$album.tahun}{else}-{/if}</p>
 			    {*}<p class="country 16"><b>country:</b> Indonesia</p>
 			    <p class="city 0"><b>city:</b> Semarang</p>
 			    <p class="purchase date 19"><b>purchase date:</b> November 2013</p>{/*}

@@ -213,7 +213,8 @@ class home extends Controller {
 			$type = _p('type');
 			$_POST['tags'] = serialize(array('hargacukai'=>$_POST['hargacukai'],
 											'hargapasar'=>$_POST['hargapasar'],
-											'fromwho'=>$_POST['fromwho']));							
+											'fromwho'=>$_POST['fromwho'],
+											'tahun'=>$_POST['tahun']));							
 
 			if ($type==2){
 				if ($upload) $_POST['files'] = $upload['full_name'];
